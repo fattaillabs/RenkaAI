@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - renka ai</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0d0d0d;
+            color: #e0e0e0;
+            line-height: 1.8;
+        }
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #4CAF50;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .back-link:hover { text-decoration: underline; }
+        
+        /* Language Switcher */
+        .lang-switcher {
+            display: flex;
+            gap: 8px;
+        }
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 8px 12px;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .lang-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .lang-btn.active {
+            background: rgba(76, 175, 80, 0.2);
+            border-color: #4CAF50;
+        }
+        
+        h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+        .last-updated {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 40px;
+        }
+        h2 {
+            font-size: 20px;
+            color: #4CAF50;
+            margin: 35px 0 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(76, 175, 80, 0.2);
+        }
+        p {
+            margin-bottom: 15px;
+            color: #b0b0b0;
+        }
+        ul {
+            margin: 15px 0 15px 25px;
+            color: #b0b0b0;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        strong {
+            color: #e0e0e0;
+        }
+        a {
+            color: #4CAF50;
+        }
+        .highlight-box {
+            background: rgba(76, 175, 80, 0.1);
+            border-left: 3px solid #4CAF50;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: #444;
+            font-size: 13px;
+        }
+        
+        /* Language visibility */
+        [lang]:not([lang="en"]) { display: none; }
+        body.lang-ko [lang="ko"] { display: block; }
+        body.lang-ko [lang="en"], body.lang-ko [lang="ja"] { display: none; }
+        body.lang-ja [lang="ja"] { display: block; }
+        body.lang-ja [lang="en"], body.lang-ja [lang="ko"] { display: none; }
+        body.lang-en [lang="en"] { display: block; }
+        body.lang-en [lang="ko"], body.lang-en [lang="ja"] { display: none; }
+        
+        /* Inline spans */
+        span[lang] { display: none; }
+        body.lang-en span[lang="en"] { display: inline; }
+        body.lang-ko span[lang="ko"] { display: inline; }
+        body.lang-ja span[lang="ja"] { display: inline; }
+    </style>
+</head>
+<body class="lang-en">
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="back-link">← <span lang="en">Back to Home</span><span lang="ko">홈으로</span><span lang="ja">ホームへ</span></a>
+            <div class="lang-switcher">
+                <button class="lang-btn active" onclick="setLang('en')" title="English">🇺🇸</button>
+                <button class="lang-btn" onclick="setLang('ko')" title="한국어">🇰🇷</button>
+                <button class="lang-btn" onclick="setLang('ja')" title="日本語">🇯🇵</button>
+            </div>
+        </div>
+        
+        <!-- Title -->
+        <h1 lang="en">🔒 Privacy Policy</h1>
+        <h1 lang="ko">🔒 개인정보처리방침</h1>
+        <h1 lang="ja">🔒 プライバシーポリシー</h1>
+        
+        <p class="last-updated">
+            <span lang="en">Last updated: December 2, 2025</span>
+            <span lang="ko">최종 수정일: 2025년 12월 2일</span>
+            <span lang="ja">最終更新日: 2025年12月2日</span>
+        </p>
+        
+        <!-- Summary Box -->
+        <div class="highlight-box">
+            <p lang="en"><strong>Summary:</strong> renka ai processes all facial data locally on your device. We do not collect, store, or transmit your biometric data to any external servers.</p>
+            <p lang="ko"><strong>요약:</strong> renka ai는 모든 얼굴 데이터를 사용자의 기기에서 로컬로 처리합니다. 당사는 사용자의 생체 정보를 외부 서버로 수집, 저장 또는 전송하지 않습니다.</p>
+            <p lang="ja"><strong>要約:</strong> renka aiは、すべての顔データをお使いのデバイス上でローカルに処理します。お客様の生体情報を外部サーバーに収集、保存、または送信することはありません。</p>
+        </div>
+        
+        <!-- Section 1 -->
+        <div lang="en">
+            <h2>1. Information We Collect</h2>
+            <p>renka ai uses your device's TrueDepth camera to measure facial dimensions. Here's how we handle your data:</p>
+            <ul>
+                <li><strong>Facial Measurement Data:</strong> All measurements are processed entirely on your device. This data never leaves your phone.</li>
+                <li><strong>Captured Images:</strong> Face photos are stored only in the app's local storage on your device.</li>
+                <li><strong>Measurement History:</strong> Your measurement records are saved locally and are not uploaded to any server.</li>
+            </ul>
+        </div>
+        <div lang="ko">
+            <h2>1. 수집하는 정보</h2>
+            <p>renka ai는 기기의 TrueDepth 카메라를 사용하여 얼굴 치수를 측정합니다. 데이터 처리 방식은 다음과 같습니다:</p>
+            <ul>
+                <li><strong>얼굴 측정 데이터:</strong> 모든 측정은 사용자의 기기에서 완전히 처리됩니다. 이 데이터는 절대 기기 외부로 전송되지 않습니다.</li>
+                <li><strong>캡처된 이미지:</strong> 얼굴 사진은 기기의 앱 내부 저장소에만 저장됩니다.</li>
+                <li><strong>측정 기록:</strong> 측정 기록은 로컬에 저장되며 어떤 서버에도 업로드되지 않습니다.</li>
+            </ul>
+        </div>
+        <div lang="ja">
+            <h2>1. 収集する情報</h2>
+            <p>renka aiは、デバイスのTrueDepthカメラを使用して顔の寸法を測定します。データの取り扱い方法は以下の通りです：</p>
+            <ul>
+                <li><strong>顔測定データ：</strong> すべての測定はお使いのデバイス上で完全に処理されます。このデータがデバイスの外部に送信されることはありません。</li>
+                <li><strong>撮影した画像：</strong> 顔写真はデバイスのアプリ内ローカルストレージにのみ保存されます。</li>
+                <li><strong>測定履歴：</strong> 測定記録はローカルに保存され、サーバーにアップロードされることはありません。</li>
+            </ul>
+        </div>
+        
+        <!-- Section 2 -->
+        <div lang="en">
+            <h2>2. Camera Usage</h2>
+            <p>The app requires access to your device's TrueDepth camera (Face ID camera) for the following purposes:</p>
+            <ul>
+                <li>Creating a 3D mesh of your face for accurate measurements</li>
+                <li>Analyzing facial features for personal color and golden ratio calculations</li>
+                <li>Tracking facial changes over time</li>
+            </ul>
+            <p>Camera data is processed in real-time and is not recorded or transmitted externally.</p>
+        </div>
+        <div lang="ko">
+            <h2>2. 카메라 사용</h2>
+            <p>앱은 다음 목적을 위해 기기의 TrueDepth 카메라(Face ID 카메라) 접근 권한이 필요합니다:</p>
+            <ul>
+                <li>정확한 측정을 위한 얼굴 3D 메시 생성</li>
+                <li>퍼스널 컬러 및 황금비 계산을 위한 얼굴 특징 분석</li>
+                <li>시간에 따른 얼굴 변화 추적</li>
+            </ul>
+            <p>카메라 데이터는 실시간으로 처리되며 녹화되거나 외부로 전송되지 않습니다.</p>
+        </div>
+        <div lang="ja">
+            <h2>2. カメラの使用</h2>
+            <p>本アプリは、以下の目的でデバイスのTrueDepthカメラ（Face IDカメラ）へのアクセスが必要です：</p>
+            <ul>
+                <li>正確な測定のための顔の3Dメッシュ作成</li>
+                <li>パーソナルカラーと黄金比計算のための顔の特徴分析</li>
+                <li>時間の経過に伴う顔の変化の追跡</li>
+            </ul>
+            <p>カメラデータはリアルタイムで処理され、録画や外部への送信は行われません。</p>
+        </div>
+        
+        <!-- Section 3 -->
+        <div lang="en">
+            <h2>3. Data Storage</h2>
+            <p>All data generated by renka ai is stored exclusively on your device:</p>
+            <ul>
+                <li>Measurement history and statistics</li>
+                <li>Captured face images</li>
+                <li>Personal settings and preferences</li>
+            </ul>
+            <p>We do not operate any external servers to store your data. All information remains on your device only.</p>
+        </div>
+        <div lang="ko">
+            <h2>3. 데이터 저장</h2>
+            <p>renka ai에서 생성된 모든 데이터는 사용자의 기기에만 저장됩니다:</p>
+            <ul>
+                <li>측정 기록 및 통계</li>
+                <li>캡처된 얼굴 이미지</li>
+                <li>개인 설정 및 환경설정</li>
+            </ul>
+            <p>당사는 사용자 데이터를 저장하기 위한 외부 서버를 운영하지 않습니다. 모든 정보는 사용자의 기기에만 남습니다.</p>
+        </div>
+        <div lang="ja">
+            <h2>3. データの保存</h2>
+            <p>renka aiで生成されたすべてのデータは、お使いのデバイスにのみ保存されます：</p>
+            <ul>
+                <li>測定履歴と統計</li>
+                <li>撮影した顔画像</li>
+                <li>個人設定と環境設定</li>
+            </ul>
+            <p>当社はお客様のデータを保存するための外部サーバーを運用していません。すべての情報はお使いのデバイスにのみ残ります。</p>
+        </div>
+        
+        <!-- Section 4 -->
+        <div lang="en">
+            <h2>4. Advertising and Tracking</h2>
+            <p>renka ai uses the following third-party services for advertising:</p>
+            <ul>
+                <li><strong>Google AdMob:</strong> We display advertisements through Google AdMob. AdMob may collect anonymized device information for ad delivery and measurement purposes.</li>
+            </ul>
+            <p><strong>App Tracking Transparency (ATT):</strong></p>
+            <ul>
+                <li>When you first launch the app, you will be asked whether to allow tracking.</li>
+                <li>If you consent, your device's advertising identifier (IDFA) may be used for personalized advertising.</li>
+                <li>If you do not consent, only non-personalized ads will be displayed.</li>
+                <li>You can change this setting at any time in your device's Settings → Privacy → Tracking.</li>
+            </ul>
+            <p>Your biometric facial data is never shared with advertisers or any third parties.</p>
+        </div>
+        <div lang="ko">
+            <h2>4. 광고 및 추적</h2>
+            <p>renka ai는 광고를 위해 다음 서드파티 서비스를 사용합니다:</p>
+            <ul>
+                <li><strong>Google AdMob:</strong> Google AdMob을 통해 광고를 표시합니다. AdMob은 광고 제공 및 측정 목적으로 익명화된 기기 정보를 수집할 수 있습니다.</li>
+            </ul>
+            <p><strong>앱 추적 투명성 (ATT):</strong></p>
+            <ul>
+                <li>앱을 처음 실행할 때 추적 허용 여부를 묻는 메시지가 표시됩니다.</li>
+                <li>동의하시면 기기의 광고 식별자(IDFA)가 맞춤형 광고에 사용될 수 있습니다.</li>
+                <li>동의하지 않으시면 맞춤형이 아닌 일반 광고만 표시됩니다.</li>
+                <li>이 설정은 기기의 설정 → 개인정보 보호 → 추적에서 언제든지 변경할 수 있습니다.</li>
+            </ul>
+            <p>사용자의 생체 얼굴 데이터는 광고주나 제3자와 절대 공유되지 않습니다.</p>
+        </div>
+        <div lang="ja">
+            <h2>4. 広告とトラッキング</h2>
+            <p>renka aiは、広告のために以下のサードパーティサービスを使用しています：</p>
+            <ul>
+                <li><strong>Google AdMob：</strong> Google AdMobを通じて広告を表示します。AdMobは、広告配信および測定目的で匿名化されたデバイス情報を収集する場合があります。</li>
+            </ul>
+            <p><strong>Appトラッキング透明性（ATT）：</strong></p>
+            <ul>
+                <li>アプリを初めて起動すると、トラッキングを許可するかどうかを尋ねられます。</li>
+                <li>同意された場合、お使いのデバイスの広告識別子（IDFA）がパーソナライズド広告に使用される場合があります。</li>
+                <li>同意されない場合、パーソナライズされていない広告のみが表示されます。</li>
+                <li>この設定は、デバイスの設定→プライバシー→トラッキングでいつでも変更できます。</li>
+            </ul>
+            <p>お客様の生体顔データが広告主やその他の第三者と共有されることは決してありません。</p>
+        </div>
+        
+        <!-- Section 5 -->
+        <div lang="en">
+            <h2>5. Children's Privacy</h2>
+            <p>renka ai is not intended for use by children under the age of 13. We do not knowingly collect personal information from children under 13. If you are a parent or guardian and believe your child has used this app, please contact us.</p>
+        </div>
+        <div lang="ko">
+            <h2>5. 아동 개인정보 보호</h2>
+            <p>renka ai는 13세 미만 아동의 사용을 대상으로 하지 않습니다. 당사는 13세 미만 아동의 개인정보를 의도적으로 수집하지 않습니다. 부모 또는 보호자이시고 자녀가 이 앱을 사용했다고 생각되시면 당사에 연락해 주세요.</p>
+        </div>
+        <div lang="ja">
+            <h2>5. お子様のプライバシー</h2>
+            <p>renka aiは13歳未満のお子様の使用を対象としていません。当社は13歳未満のお子様から意図的に個人情報を収集することはありません。保護者の方で、お子様が本アプリを使用したと思われる場合は、当社までご連絡ください。</p>
+        </div>
+        
+        <!-- Section 6 -->
+        <div lang="en">
+            <h2>6. Your Rights and Data Deletion</h2>
+            <p>You have full control over your data:</p>
+            <ul>
+                <li><strong>View:</strong> Access all your measurement data within the app</li>
+                <li><strong>Delete Measurement Records:</strong> Go to Settings → Clear All Records to delete all measurement history</li>
+                <li><strong>Complete Reset:</strong> Delete the app to remove all data from your device</li>
+            </ul>
+            <p>Since all data is stored locally, deleting the app will permanently remove all your data.</p>
+        </div>
+        <div lang="ko">
+            <h2>6. 사용자 권리 및 데이터 삭제</h2>
+            <p>사용자는 자신의 데이터를 완전히 제어할 수 있습니다:</p>
+            <ul>
+                <li><strong>열람:</strong> 앱 내에서 모든 측정 데이터에 접근 가능</li>
+                <li><strong>측정 기록 삭제:</strong> 설정 → 모든 기록 삭제로 측정 기록 전체 삭제 가능</li>
+                <li><strong>완전 초기화:</strong> 앱을 삭제하면 기기에서 모든 데이터가 제거됨</li>
+            </ul>
+            <p>모든 데이터는 로컬에 저장되므로 앱을 삭제하면 모든 데이터가 영구적으로 삭제됩니다.</p>
+        </div>
+        <div lang="ja">
+            <h2>6. お客様の権利とデータの削除</h2>
+            <p>お客様はご自身のデータを完全に管理できます：</p>
+            <ul>
+                <li><strong>閲覧：</strong> アプリ内ですべての測定データにアクセス可能</li>
+                <li><strong>測定記録の削除：</strong> 設定→すべての記録を削除で、測定履歴をすべて削除可能</li>
+                <li><strong>完全リセット：</strong> アプリを削除すると、デバイスからすべてのデータが削除されます</li>
+            </ul>
+            <p>すべてのデータはローカルに保存されているため、アプリを削除するとすべてのデータが永久に削除されます。</p>
+        </div>
+        
+        <!-- Section 7 -->
+        <div lang="en">
+            <h2>7. Changes to This Policy</h2>
+            <p>We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last updated" date.</p>
+        </div>
+        <div lang="ko">
+            <h2>7. 방침 변경</h2>
+            <p>당사는 수시로 본 개인정보처리방침을 업데이트할 수 있습니다. 변경 사항이 있을 경우 이 페이지에 새로운 개인정보처리방침을 게시하고 "최종 수정일"을 업데이트하여 알려드립니다.</p>
+        </div>
+        <div lang="ja">
+            <h2>7. ポリシーの変更</h2>
+            <p>当社は随時、本プライバシーポリシーを更新する場合があります。変更がある場合は、このページに新しいプライバシーポリシーを掲載し、「最終更新日」を更新してお知らせします。</p>
+        </div>
+        
+        <!-- Section 8 -->
+        <div lang="en">
+            <h2>8. Contact Us</h2>
+            <p>If you have any questions about this Privacy Policy, please contact us:</p>
+            <ul>
+                <li>Email: <a href="mailto:fattaillabs.ceo@gmail.com">fattaillabs.ceo@gmail.com</a></li>
+            </ul>
+        </div>
+        <div lang="ko">
+            <h2>8. 문의하기</h2>
+            <p>본 개인정보처리방침에 대해 궁금한 점이 있으시면 연락해 주세요:</p>
+            <ul>
+                <li>이메일: <a href="mailto:fattaillabs.ceo@gmail.com">fattaillabs.ceo@gmail.com</a></li>
+            </ul>
+        </div>
+        <div lang="ja">
+            <h2>8. お問い合わせ</h2>
+            <p>本プライバシーポリシーについてご質問がある場合は、以下までご連絡ください：</p>
+            <ul>
+                <li>メール: <a href="mailto:fattaillabs.ceo@gmail.com">fattaillabs.ceo@gmail.com</a></li>
+            </ul>
+        </div>
+        
+        <footer class="footer">
+            <p>© 2025 FattailLabs. All rights reserved.</p>
+        </footer>
+    </div>
+    
+    <script>
+        function setLang(lang) {
+            document.body.className = 'lang-' + lang;
+            
+            // Update active button
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Save preference
+            localStorage.setItem('preferred-lang', lang);
+        }
+        
+        // Load saved preference
+        document.addEventListener('DOMContentLoaded', function() {
+            const saved = localStorage.getItem('preferred-lang');
+            if (saved) {
+                setLang(saved);
+                document.querySelectorAll('.lang-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                    if (btn.getAttribute('onclick').includes(saved)) {
+                        btn.classList.add('active');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
