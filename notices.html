@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notices - renka ai</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0d0d0d;
+            color: #e0e0e0;
+            line-height: 1.8;
+        }
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #4CAF50;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .back-link:hover { text-decoration: underline; }
+        .lang-switcher { display: flex; gap: 8px; }
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 8px 12px;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .lang-btn:hover { background: rgba(255, 255, 255, 0.1); }
+        .lang-btn.active { background: rgba(76, 175, 80, 0.2); border-color: #4CAF50; }
+        h1 { font-size: 32px; margin-bottom: 10px; color: #fff; }
+        .subtitle { color: #666; font-size: 14px; margin-bottom: 40px; }
+        
+        /* Notice Card */
+        .notice {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+        }
+        .notice-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .notice-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #fff;
+        }
+        .notice-date {
+            font-size: 13px;
+            color: #666;
+            white-space: nowrap;
+        }
+        .notice-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .badge-new { background: rgba(76, 175, 80, 0.2); color: #4CAF50; }
+        .badge-update { background: rgba(33, 150, 243, 0.2); color: #2196F3; }
+        .badge-event { background: rgba(255, 152, 0, 0.2); color: #FF9800; }
+        .badge-important { background: rgba(244, 67, 54, 0.2); color: #F44336; }
+        .notice-content {
+            color: #a0a0a0;
+            font-size: 15px;
+        }
+        .notice-content ul {
+            margin: 10px 0 0 20px;
+        }
+        .notice-content li {
+            margin-bottom: 6px;
+        }
+        
+        /* Divider between notices */
+        .notice-divider {
+            border: none;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin: 30px 0;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: #444;
+            font-size: 13px;
+        }
+        
+        /* Language visibility */
+        [lang]:not([lang="en"]) { display: none; }
+        body.lang-ko [lang="ko"] { display: block; }
+        body.lang-ko [lang="en"], body.lang-ko [lang="ja"] { display: none; }
+        body.lang-ja [lang="ja"] { display: block; }
+        body.lang-ja [lang="en"], body.lang-ja [lang="ko"] { display: none; }
+        body.lang-en [lang="en"] { display: block; }
+        body.lang-en [lang="ko"], body.lang-en [lang="ja"] { display: none; }
+        span[lang] { display: none; }
+        body.lang-en span[lang="en"] { display: inline; }
+        body.lang-ko span[lang="ko"] { display: inline; }
+        body.lang-ja span[lang="ja"] { display: inline; }
+    </style>
+</head>
+<body class="lang-en">
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="back-link">← <span lang="en">Back to Home</span><span lang="ko">홈으로</span><span lang="ja">ホームへ</span></a>
+            <div class="lang-switcher">
+                <button class="lang-btn active" onclick="setLang('en')" title="English">🇺🇸</button>
+                <button class="lang-btn" onclick="setLang('ko')" title="한국어">🇰🇷</button>
+                <button class="lang-btn" onclick="setLang('ja')" title="日本語">🇯🇵</button>
+            </div>
+        </div>
+        
+        <h1 lang="en">📢 Notices</h1>
+        <h1 lang="ko">📢 공지사항</h1>
+        <h1 lang="ja">📢 お知らせ</h1>
+        
+        <p class="subtitle">
+            <span lang="en">Latest updates and announcements</span>
+            <span lang="ko">최신 업데이트 및 안내사항</span>
+            <span lang="ja">最新のアップデートとお知らせ</span>
+        </p>
+        
+        <!-- ========================================
+             🆕 새 공지사항은 여기 위에 추가하세요!
+             Add new notices above this line!
+             ======================================== -->
+        
+        
+        <!-- ======================================== 
+             Notice: v1.0 Launch
+             Date: 2025-12-02
+             ======================================== -->
+        <article class="notice">
+            <span class="notice-badge badge-new">NEW</span>
+            
+            <div lang="en">
+                <div class="notice-header">
+                    <h2 class="notice-title">🎉 renka ai v1.0 Launch!</h2>
+                    <span class="notice-date">December 2, 2025</span>
+                </div>
+                <div class="notice-content">
+                    <p>We're excited to announce the official launch of renka ai!</p>
+                    <p>renka ai is a face measurement app that uses AR technology to provide:</p>
+                    <ul>
+                        <li>Accurate facial measurements (height, width, area)</li>
+                        <li>Golden ratio and symmetry analysis</li>
+                        <li>Personal color diagnosis</li>
+                        <li>Swelling tracking over time</li>
+                        <li>Body ratio (head-to-body) calculation</li>
+                    </ul>
+                    <p>Thank you for using renka ai. We'll continue to improve and add new features!</p>
+                </div>
+            </div>
+            
+            <div lang="ko">
+                <div class="notice-header">
+                    <h2 class="notice-title">🎉 renka ai v1.0 출시!</h2>
+                    <span class="notice-date">2025년 12월 2일</span>
+                </div>
+                <div class="notice-content">
+                    <p>renka ai의 공식 출시를 알려드립니다!</p>
+                    <p>renka ai는 AR 기술을 활용한 얼굴 측정 앱으로 다음 기능을 제공합니다:</p>
+                    <ul>
+                        <li>정확한 얼굴 측정 (세로, 가로, 면적)</li>
+                        <li>황금비 및 대칭도 분석</li>
+                        <li>퍼스널 컬러 진단</li>
+                        <li>붓기 변화 추적</li>
+                        <li>등신 비율 계산</li>
+                    </ul>
+                    <p>renka ai를 이용해 주셔서 감사합니다. 앞으로도 지속적으로 개선하고 새로운 기능을 추가하겠습니다!</p>
+                </div>
+            </div>
+            
+            <div lang="ja">
+                <div class="notice-header">
+                    <h2 class="notice-title">🎉 renka ai v1.0 リリース!</h2>
+                    <span class="notice-date">2025年12月2日</span>
+                </div>
+                <div class="notice-content">
+                    <p>renka aiの正式リリースをお知らせします！</p>
+                    <p>renka aiはAR技術を活用した顔測定アプリで、以下の機能を提供します：</p>
+                    <ul>
+                        <li>正確な顔測定（縦、横、面積）</li>
+                        <li>黄金比と対称性の分析</li>
+                        <li>パーソナルカラー診断</li>
+                        <li>むくみの変化追跡</li>
+                        <li>頭身比率の計算</li>
+                    </ul>
+                    <p>renka aiをご利用いただきありがとうございます。今後も継続的に改善し、新機能を追加してまいります！</p>
+                </div>
+            </div>
+        </article>
+        
+        <!-- ======================================== 
+             공지사항 템플릿 (복사해서 사용하세요)
+             Notice Template (copy and use)
+             ========================================
+        
+        <hr class="notice-divider">
+        
+        <article class="notice">
+            <span class="notice-badge badge-update">UPDATE</span>
+            
+            <div lang="en">
+                <div class="notice-header">
+                    <h2 class="notice-title">Title here</h2>
+                    <span class="notice-date">Month Day, Year</span>
+                </div>
+                <div class="notice-content">
+                    <p>Content here...</p>
+                </div>
+            </div>
+            
+            <div lang="ko">
+                <div class="notice-header">
+                    <h2 class="notice-title">제목</h2>
+                    <span class="notice-date">YYYY년 MM월 DD일</span>
+                </div>
+                <div class="notice-content">
+                    <p>내용...</p>
+                </div>
+            </div>
+            
+            <div lang="ja">
+                <div class="notice-header">
+                    <h2 class="notice-title">タイトル</h2>
+                    <span class="notice-date">YYYY年MM月DD日</span>
+                </div>
+                <div class="notice-content">
+                    <p>内容...</p>
+                </div>
+            </div>
+        </article>
+        
+        ======================================== -->
+        
+        <footer class="footer"><p>© 2025 FattailLabs. All rights reserved.</p></footer>
+    </div>
+    
+    <script>
+        function setLang(lang) {
+            document.body.className = 'lang-' + lang;
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            localStorage.setItem('preferred-lang', lang);
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            const saved = localStorage.getItem('preferred-lang');
+            if (saved) {
+                document.body.className = 'lang-' + saved;
+                document.querySelectorAll('.lang-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                    if (btn.getAttribute('onclick').includes(saved)) btn.classList.add('active');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
