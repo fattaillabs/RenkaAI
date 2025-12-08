@@ -6,142 +6,168 @@
     <title>Terms of Service - renka ai</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #0d0d0d;
-            color: #e0e0e0;
-            line-height: 1.8;
-        }
-        .container {
-            max-width: 700px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            color: #4CAF50;
-            text-decoration: none;
-            font-size: 14px;
-        }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0d0d0d; color: #e0e0e0; line-height: 1.8; }
+        .container { max-width: 700px; margin: 0 auto; padding: 40px 20px; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .back-link { display: inline-flex; align-items: center; gap: 6px; color: #4CAF50; text-decoration: none; font-size: 14px; }
         .back-link:hover { text-decoration: underline; }
-        .lang-switcher { display: flex; gap: 8px; }
-        .lang-btn {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            padding: 8px 12px;
-            font-size: 20px;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        .lang-btn:hover { background: rgba(255, 255, 255, 0.1); }
-        .lang-btn.active { background: rgba(76, 175, 80, 0.2); border-color: #4CAF50; }
+        .lang-switcher { display: flex; gap: 6px; flex-wrap: wrap; }
+        .lang-btn { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 8px 10px; font-size: 18px; cursor: pointer; transition: all 0.2s; }
+        .lang-btn:hover { background: rgba(255,255,255,0.1); }
+        .lang-btn.active { background: rgba(76,175,80,0.2); border-color: #4CAF50; }
         h1 { font-size: 32px; margin-bottom: 10px; color: #fff; }
         .last-updated { color: #666; font-size: 14px; margin-bottom: 40px; }
-        h2 { font-size: 20px; color: #4CAF50; margin: 35px 0 15px; padding-bottom: 8px; border-bottom: 1px solid rgba(76, 175, 80, 0.2); }
+        h2 { font-size: 20px; color: #4CAF50; margin: 35px 0 15px; padding-bottom: 8px; border-bottom: 1px solid rgba(76,175,80,0.2); }
         p { margin-bottom: 15px; color: #b0b0b0; }
         ul { margin: 15px 0 15px 25px; color: #b0b0b0; }
         li { margin-bottom: 8px; }
         strong { color: #e0e0e0; }
         a { color: #4CAF50; }
-        .warning-box { background: rgba(255, 152, 0, 0.1); border-left: 3px solid #FF9800; padding: 15px 20px; margin: 20px 0; border-radius: 0 8px 8px 0; }
-        .info-box { background: rgba(33, 150, 243, 0.1); border-left: 3px solid #2196F3; padding: 15px 20px; margin: 20px 0; border-radius: 0 8px 8px 0; }
-        .footer { text-align: center; margin-top: 60px; padding-top: 30px; border-top: 1px solid rgba(255, 255, 255, 0.05); color: #444; font-size: 13px; }
+        .warning-box { background: rgba(255,152,0,0.1); border-left: 3px solid #FF9800; padding: 15px 20px; margin: 20px 0; border-radius: 0 8px 8px 0; }
+        .info-box { background: rgba(33,150,243,0.1); border-left: 3px solid #2196F3; padding: 15px 20px; margin: 20px 0; border-radius: 0 8px 8px 0; }
+        .footer { text-align: center; margin-top: 60px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.05); color: #444; font-size: 13px; }
         [lang]:not([lang="en"]) { display: none; }
         body.lang-ko [lang="ko"] { display: block; }
-        body.lang-ko [lang="en"], body.lang-ko [lang="ja"] { display: none; }
+        body.lang-ko [lang="en"], body.lang-ko [lang="ja"], body.lang-ko [lang="zh-CN"], body.lang-ko [lang="zh-TW"] { display: none; }
         body.lang-ja [lang="ja"] { display: block; }
-        body.lang-ja [lang="en"], body.lang-ja [lang="ko"] { display: none; }
+        body.lang-ja [lang="en"], body.lang-ja [lang="ko"], body.lang-ja [lang="zh-CN"], body.lang-ja [lang="zh-TW"] { display: none; }
         body.lang-en [lang="en"] { display: block; }
-        body.lang-en [lang="ko"], body.lang-en [lang="ja"] { display: none; }
+        body.lang-en [lang="ko"], body.lang-en [lang="ja"], body.lang-en [lang="zh-CN"], body.lang-en [lang="zh-TW"] { display: none; }
+        body.lang-zh-CN [lang="zh-CN"] { display: block; }
+        body.lang-zh-CN [lang="en"], body.lang-zh-CN [lang="ko"], body.lang-zh-CN [lang="ja"], body.lang-zh-CN [lang="zh-TW"] { display: none; }
+        body.lang-zh-TW [lang="zh-TW"] { display: block; }
+        body.lang-zh-TW [lang="en"], body.lang-zh-TW [lang="ko"], body.lang-zh-TW [lang="ja"], body.lang-zh-TW [lang="zh-CN"] { display: none; }
         span[lang] { display: none; }
         body.lang-en span[lang="en"] { display: inline; }
         body.lang-ko span[lang="ko"] { display: inline; }
         body.lang-ja span[lang="ja"] { display: inline; }
+        body.lang-zh-CN span[lang="zh-CN"] { display: inline; }
+        body.lang-zh-TW span[lang="zh-TW"] { display: inline; }
     </style>
 </head>
 <body class="lang-en">
     <div class="container">
         <div class="header">
-            <a href="index.html" class="back-link">← <span lang="en">Back to Home</span><span lang="ko">홈으로</span><span lang="ja">ホームへ</span></a>
+            <a href="index.html" class="back-link">← <span lang="en">Back to Home</span><span lang="ko">홈으로</span><span lang="ja">ホームへ</span><span lang="zh-CN">返回首页</span><span lang="zh-TW">返回首頁</span></a>
             <div class="lang-switcher">
                 <button class="lang-btn active" onclick="setLang('en')" title="English">🇺🇸</button>
                 <button class="lang-btn" onclick="setLang('ko')" title="한국어">🇰🇷</button>
                 <button class="lang-btn" onclick="setLang('ja')" title="日本語">🇯🇵</button>
+                <button class="lang-btn" onclick="setLang('zh-CN')" title="简体中文">🇨🇳</button>
+                <button class="lang-btn" onclick="setLang('zh-TW')" title="繁體中文">🇹🇼</button>
             </div>
         </div>
         
         <h1 lang="en">📋 Terms of Service</h1>
         <h1 lang="ko">📋 이용약관</h1>
         <h1 lang="ja">📋 利用規約</h1>
+        <h1 lang="zh-CN">📋 服务条款</h1>
+        <h1 lang="zh-TW">📋 服務條款</h1>
         
         <p class="last-updated">
-            <span lang="en">Last updated: December 2, 2025</span>
-            <span lang="ko">최종 수정일: 2025년 12월 2일</span>
-            <span lang="ja">最終更新日: 2025年12月2日</span>
+            <span lang="en">Last updated: December 8, 2025</span>
+            <span lang="ko">최종 수정일: 2025년 12월 8일</span>
+            <span lang="ja">最終更新日: 2025年12月8日</span>
+            <span lang="zh-CN">最后更新：2025年12月8日</span>
+            <span lang="zh-TW">最後更新：2025年12月8日</span>
         </p>
         
+        <!-- Intro -->
         <div lang="en"><p>Please read these Terms of Service ("Terms") carefully before using renka ai ("the App"). By downloading, installing, or using the App, you agree to be bound by these Terms.</p></div>
         <div lang="ko"><p>renka ai("앱")를 사용하기 전에 본 이용약관("약관")을 주의 깊게 읽어주세요. 앱을 다운로드, 설치 또는 사용함으로써 귀하는 본 약관에 동의하게 됩니다.</p></div>
-        <div lang="ja"><p>renka ai（「本アプリ」）をご利用になる前に、この利用規約（「規約」）をよくお読みください。本アプリをダウンロード、インストール、または使用することにより、お客様は本規約に同意したものとみなされます。</p></div>
+        <div lang="ja"><p>renka ai（「本アプリ」）をご利用になる前に、この利用規約（「規約」）をよくお読みください。本アプリをダウンロード、インストール、または使用することにより、お客様は本規約に拘束されることに同意したものとみなされます。</p></div>
+        <div lang="zh-CN"><p>在使用 renka ai（"本应用"）之前，请仔细阅读本服务条款（"条款"）。下载、安装或使用本应用即表示您同意受本条款的约束。</p></div>
+        <div lang="zh-TW"><p>在使用 renka ai（「本應用程式」）之前，請仔細閱讀本服務條款（「條款」）。下載、安裝或使用本應用程式即表示您同意受本條款的約束。</p></div>
         
-        <div lang="en"><h2>1. Acceptance of Terms</h2><p>By accessing or using renka ai, you agree to be bound by these Terms. If you do not agree to these Terms, please do not use the App.</p></div>
-        <div lang="ko"><h2>1. 약관 동의</h2><p>renka ai에 접속하거나 사용함으로써 귀하는 본 약관에 동의하게 됩니다. 본 약관에 동의하지 않으시면 앱을 사용하지 마세요.</p></div>
-        <div lang="ja"><h2>1. 規約への同意</h2><p>renka aiにアクセスまたは使用することにより、お客様は本規約に同意したものとみなされます。本規約に同意されない場合は、本アプリを使用しないでください。</p></div>
+        <!-- Section 1 -->
+        <div lang="en"><h2>1. App Description</h2><p>renka ai is a facial measurement application that uses ARKit and TrueDepth camera technology to:</p><ul><li>Measure facial dimensions and proportions</li><li>Analyze personal color types based on skin tone</li><li>Calculate golden ratio analysis for facial features</li><li>Track facial changes over time</li></ul><p>All processing is performed locally on your device.</p></div>
+        <div lang="ko"><h2>1. 앱 설명</h2><p>renka ai는 ARKit 및 TrueDepth 카메라 기술을 사용하는 얼굴 측정 애플리케이션으로 다음 기능을 제공합니다:</p><ul><li>얼굴 치수 및 비율 측정</li><li>피부톤 기반 퍼스널 컬러 유형 분석</li><li>얼굴 특징에 대한 황금비 분석 계산</li><li>시간에 따른 얼굴 변화 추적</li></ul><p>모든 처리는 사용자의 기기에서 로컬로 수행됩니다.</p></div>
+        <div lang="ja"><h2>1. アプリの説明</h2><p>renka aiは、ARKitとTrueDepthカメラ技術を使用した顔測定アプリケーションで、以下の機能を提供します：</p><ul><li>顔の寸法と比率の測定</li><li>肌の色に基づくパーソナルカラータイプの分析</li><li>顔の特徴に対する黄金比分析の計算</li><li>時間の経過に伴う顔の変化の追跡</li></ul><p>すべての処理はお使いのデバイス上でローカルに実行されます。</p></div>
+        <div lang="zh-CN"><h2>1. 应用说明</h2><p>renka ai 是一款使用 ARKit 和 TrueDepth 摄像头技术的面部测量应用，提供以下功能：</p><ul><li>测量面部尺寸和比例</li><li>基于肤色分析个人色彩类型</li><li>计算面部特征的黄金比例分析</li><li>追踪面部随时间的变化</li></ul><p>所有处理均在您的设备上本地执行。</p></div>
+        <div lang="zh-TW"><h2>1. 應用程式說明</h2><p>renka ai 是一款使用 ARKit 和 TrueDepth 相機技術的臉部測量應用程式，提供以下功能：</p><ul><li>測量臉部尺寸和比例</li><li>基於膚色分析個人色彩類型</li><li>計算臉部特徵的黃金比例分析</li><li>追蹤臉部隨時間的變化</li></ul><p>所有處理均在您的裝置上本機執行。</p></div>
         
-        <div lang="en"><h2>2. Description of Service</h2><p>renka ai is a face measurement application that uses augmented reality (AR) technology to:</p><ul><li>Measure facial dimensions (height, width, area)</li><li>Analyze facial proportions and symmetry</li><li>Determine personal color type based on skin tone</li><li>Track facial changes over time</li></ul></div>
-        <div lang="ko"><h2>2. 서비스 설명</h2><p>renka ai는 증강현실(AR) 기술을 사용하여 다음 기능을 제공하는 얼굴 측정 애플리케이션입니다:</p><ul><li>얼굴 치수 측정 (세로, 가로, 면적)</li><li>얼굴 비율 및 대칭성 분석</li><li>피부톤 기반 퍼스널 컬러 진단</li><li>시간에 따른 얼굴 변화 추적</li></ul></div>
-        <div lang="ja"><h2>2. サービスの説明</h2><p>renka aiは、拡張現実（AR）技術を使用して以下の機能を提供する顔測定アプリケーションです：</p><ul><li>顔の寸法測定（縦、横、面積）</li><li>顔の比率と対称性の分析</li><li>肌の色調に基づくパーソナルカラー診断</li><li>時間の経過に伴う顔の変化の追跡</li></ul></div>
+        <!-- Section 2 -->
+        <div lang="en"><h2>2. Device Requirements</h2><p>To use renka ai, you need:</p><ul><li>An iPhone with TrueDepth camera (iPhone X or later)</li><li>iOS 15.0 or later</li><li>Camera permission enabled</li></ul></div>
+        <div lang="ko"><h2>2. 기기 요구사항</h2><p>renka ai를 사용하려면 다음이 필요합니다:</p><ul><li>TrueDepth 카메라가 탑재된 iPhone (iPhone X 이상)</li><li>iOS 15.0 이상</li><li>카메라 권한 활성화</li></ul></div>
+        <div lang="ja"><h2>2. デバイス要件</h2><p>renka aiを使用するには、以下が必要です：</p><ul><li>TrueDepthカメラを搭載したiPhone（iPhone X以降）</li><li>iOS 15.0以降</li><li>カメラ権限の有効化</li></ul></div>
+        <div lang="zh-CN"><h2>2. 设备要求</h2><p>使用 renka ai 需要：</p><ul><li>配备 TrueDepth 摄像头的 iPhone（iPhone X 或更新机型）</li><li>iOS 15.0 或更高版本</li><li>启用相机权限</li></ul></div>
+        <div lang="zh-TW"><h2>2. 裝置需求</h2><p>使用 renka ai 需要：</p><ul><li>配備 TrueDepth 相機的 iPhone（iPhone X 或更新機型）</li><li>iOS 15.0 或更高版本</li><li>啟用相機權限</li></ul></div>
         
-        <div lang="en"><h2>3. Age Requirements</h2><p>renka ai is rated 4+ and can be used by users of all ages. However:</p><ul><li><strong>Minors (under 18):</strong> Must use the App under parental or guardian supervision.</li><li>Parents and guardians are responsible for monitoring their children's use of the App.</li></ul></div>
-        <div lang="ko"><h2>3. 연령 요건</h2><p>renka ai는 4세 이상 등급으로 모든 연령대가 사용할 수 있습니다. 단:</p><ul><li><strong>미성년자 (18세 미만):</strong> 부모 또는 보호자의 감독 하에 앱을 사용해야 합니다.</li><li>부모와 보호자는 자녀의 앱 사용을 모니터링할 책임이 있습니다.</li></ul></div>
-        <div lang="ja"><h2>3. 年齢要件</h2><p>renka aiは4歳以上を対象としており、すべての年齢層がご利用いただけます。ただし：</p><ul><li><strong>未成年者（18歳未満）：</strong> 保護者の監督の下でアプリを使用する必要があります。</li><li>保護者は、お子様のアプリ使用を監視する責任があります。</li></ul></div>
+        <!-- Section 3 -->
+        <div lang="en"><h2>3. Age Rating and Usage</h2><p>renka ai is rated 4+ on the App Store, meaning it is suitable for all ages. However:</p><ul><li><strong>Minors (under 18):</strong> Should use the App under parental or guardian supervision.</li><li>Parents and guardians are responsible for monitoring their children's use of the App.</li><li>We are not liable for any issues arising from use of the App by minors without proper supervision.</li></ul></div>
+        <div lang="ko"><h2>3. 연령 등급 및 사용</h2><p>renka ai는 App Store에서 4세 이상 등급으로, 모든 연령대에 적합합니다. 단:</p><ul><li><strong>미성년자 (18세 미만):</strong> 부모 또는 보호자의 감독 하에 앱을 사용해야 합니다.</li><li>부모와 보호자는 자녀의 앱 사용을 모니터링할 책임이 있습니다.</li><li>적절한 감독 없이 미성년자가 앱을 사용하여 발생하는 문제에 대해 당사는 책임지지 않습니다.</li></ul></div>
+        <div lang="ja"><h2>3. 年齢レーティングと使用</h2><p>renka aiはApp Storeで4歳以上を対象としており、すべての年齢層に適しています。ただし：</p><ul><li><strong>未成年者（18歳未満）：</strong> 保護者の監督の下でアプリを使用する必要があります。</li><li>保護者は、お子様のアプリ使用を監視する責任があります。</li><li>適切な監督なしに未成年者がアプリを使用して生じた問題について、当社は責任を負いません。</li></ul></div>
+        <div lang="zh-CN"><h2>3. 年龄分级和使用</h2><p>renka ai 在 App Store 的分级为 4+，适合所有年龄段使用。但是：</p><ul><li><strong>未成年人（18岁以下）：</strong> 应在家长或监护人的监督下使用本应用。</li><li>家长和监护人有责任监督孩子对应用的使用。</li><li>对于未成年人在没有适当监督的情况下使用本应用而产生的任何问题，我们不承担责任。</li></ul></div>
+        <div lang="zh-TW"><h2>3. 年齡分級和使用</h2><p>renka ai 在 App Store 的分級為 4+，適合所有年齡層使用。但是：</p><ul><li><strong>未成年人（18歲以下）：</strong> 應在家長或監護人的監督下使用本應用程式。</li><li>家長和監護人有責任監督孩子對應用程式的使用。</li><li>對於未成年人在沒有適當監督的情況下使用本應用程式而產生的任何問題，我們不承擔責任。</li></ul></div>
         
-        <div lang="en"><h2>4. Medical Disclaimer</h2><div class="warning-box"><strong>Important:</strong> renka ai is NOT a medical device and does NOT provide medical information or advice.</div><ul><li>Measurements are estimates based on AR technology and may not be accurate.</li><li>Do not use this App for medical diagnosis, treatment decisions, or surgical planning.</li><li>For any health-related concerns, please consult a qualified healthcare professional.</li><li>The App is intended for entertainment and personal reference purposes only.</li></ul></div>
-        <div lang="ko"><h2>4. 의료 면책 조항</h2><div class="warning-box"><strong>중요:</strong> renka ai는 의료 기기가 아니며 의료 정보나 조언을 제공하지 않습니다.</div><ul><li>측정값은 AR 기술 기반의 추정치이며 정확하지 않을 수 있습니다.</li><li>의료 진단, 치료 결정 또는 수술 계획에 이 앱을 사용하지 마세요.</li><li>건강 관련 문제는 자격을 갖춘 의료 전문가와 상담하세요.</li><li>이 앱은 오락 및 개인 참고 목적으로만 제공됩니다.</li></ul></div>
-        <div lang="ja"><h2>4. 医療に関する免責事項</h2><div class="warning-box"><strong>重要：</strong> renka aiは医療機器ではなく、医療情報やアドバイスを提供するものではありません。</div><ul><li>測定値はAR技術に基づく推定値であり、正確でない場合があります。</li><li>医療診断、治療の決定、または手術計画に本アプリを使用しないでください。</li><li>健康に関する問題については、資格のある医療専門家にご相談ください。</li><li>本アプリは娯楽および個人的な参考目的でのみ提供されています。</li></ul></div>
+        <!-- Section 4 -->
+        <div lang="en"><h2>4. Acceptable Use</h2><p>You agree to use the App only for its intended purpose of personal facial measurement and analysis. You agree NOT to:</p><ul><li>Use the App for any illegal purposes</li><li>Attempt to reverse engineer or modify the App</li><li>Use the App to measure or analyze others without their consent</li><li>Distribute or share any modified versions of the App</li></ul></div>
+        <div lang="ko"><h2>4. 허용되는 사용</h2><p>귀하는 개인 얼굴 측정 및 분석이라는 앱의 의도된 목적으로만 앱을 사용하는 데 동의합니다. 다음 행위는 금지됩니다:</p><ul><li>불법적인 목적으로 앱 사용</li><li>앱을 리버스 엔지니어링하거나 수정하려는 시도</li><li>타인의 동의 없이 타인을 측정하거나 분석하는 데 앱 사용</li><li>앱의 수정된 버전 배포 또는 공유</li></ul></div>
+        <div lang="ja"><h2>4. 許容される使用</h2><p>お客様は、個人的な顔の測定と分析という本アプリの意図された目的のためにのみ本アプリを使用することに同意します。以下の行為は禁止されています：</p><ul><li>違法な目的でのアプリの使用</li><li>アプリのリバースエンジニアリングまたは改変の試み</li><li>他者の同意なしに他者を測定または分析するためのアプリの使用</li><li>アプリの改変版の配布または共有</li></ul></div>
+        <div lang="zh-CN"><h2>4. 可接受的使用</h2><p>您同意仅将本应用用于其预期目的，即个人面部测量和分析。您同意不会：</p><ul><li>将本应用用于任何非法目的</li><li>尝试逆向工程或修改本应用</li><li>未经他人同意使用本应用测量或分析他人</li><li>分发或共享本应用的任何修改版本</li></ul></div>
+        <div lang="zh-TW"><h2>4. 可接受的使用</h2><p>您同意僅將本應用程式用於其預期目的，即個人臉部測量和分析。您同意不會：</p><ul><li>將本應用程式用於任何非法目的</li><li>嘗試逆向工程或修改本應用程式</li><li>未經他人同意使用本應用程式測量或分析他人</li><li>分發或共享本應用程式的任何修改版本</li></ul></div>
         
-        <div lang="en"><h2>5. Measurement Accuracy</h2><p>The accuracy of measurements may vary depending on:</p><ul><li>Lighting conditions</li><li>Distance from the camera (optimal: 30-50cm)</li><li>Face angle and position</li><li>Device model and sensor quality</li></ul><p>We do not guarantee the accuracy of any measurements provided by the App.</p></div>
-        <div lang="ko"><h2>5. 측정 정확도</h2><p>측정의 정확도는 다음 요인에 따라 달라질 수 있습니다:</p><ul><li>조명 조건</li><li>카메라와의 거리 (최적: 30-50cm)</li><li>얼굴 각도 및 위치</li><li>기기 모델 및 센서 품질</li></ul><p>당사는 앱이 제공하는 측정값의 정확성을 보증하지 않습니다.</p></div>
-        <div lang="ja"><h2>5. 測定精度</h2><p>測定の精度は以下の要因によって異なる場合があります：</p><ul><li>照明条件</li><li>カメラからの距離（最適：30-50cm）</li><li>顔の角度と位置</li><li>デバイスのモデルとセンサーの品質</li></ul><p>当社は、本アプリが提供する測定値の精度を保証しません。</p></div>
+        <!-- Warning Box -->
+        <div class="warning-box">
+            <p lang="en"><strong>⚠️ Important:</strong> This App is for entertainment and personal reference only. Measurements should not be used for medical diagnosis or professional purposes.</p>
+            <p lang="ko"><strong>⚠️ 중요:</strong> 이 앱은 오락 및 개인 참고용으로만 사용됩니다. 측정값은 의료 진단이나 전문적인 목적으로 사용해서는 안 됩니다.</p>
+            <p lang="ja"><strong>⚠️ 重要：</strong> 本アプリはエンターテインメントおよび個人的な参考目的のみを意図しています。測定値は医療診断や専門的な目的に使用しないでください。</p>
+            <p lang="zh-CN"><strong>⚠️ 重要提示：</strong> 本应用仅供娱乐和个人参考使用。测量结果不应用于医疗诊断或专业目的。</p>
+            <p lang="zh-TW"><strong>⚠️ 重要提示：</strong> 本應用程式僅供娛樂和個人參考使用。測量結果不應用於醫療診斷或專業目的。</p>
+        </div>
         
-        <div lang="en"><h2>6. In-App Purchases</h2><p>renka ai offers optional in-app purchases:</p><ul><li><strong>Ad Removal:</strong> Remove all advertisements from the App.</li><li><strong>Premium Features:</strong> Access to additional features and functionality.</li></ul><div class="info-box"><strong>Note:</strong> Premium features may be added, modified, or removed at our discretion. We will make reasonable efforts to notify users of significant changes.</div><ul><li>All purchases are processed through Apple's App Store.</li><li>Refund requests must be made through Apple.</li><li>Prices are subject to change.</li></ul></div>
-        <div lang="ko"><h2>6. 인앱 구매</h2><p>renka ai는 선택적 인앱 구매를 제공합니다:</p><ul><li><strong>광고 제거:</strong> 앱에서 모든 광고를 제거합니다.</li><li><strong>프리미엄 기능:</strong> 추가 기능에 접근할 수 있습니다.</li></ul><div class="info-box"><strong>참고:</strong> 프리미엄 기능은 당사의 재량에 따라 추가, 수정 또는 제거될 수 있습니다. 중요한 변경 사항이 있을 경우 사용자에게 알리기 위해 합리적인 노력을 기울이겠습니다.</div><ul><li>모든 구매는 Apple App Store를 통해 처리됩니다.</li><li>환불 요청은 Apple을 통해 해야 합니다.</li><li>가격은 변경될 수 있습니다.</li></ul></div>
-        <div lang="ja"><h2>6. アプリ内購入</h2><p>renka aiはオプションのアプリ内購入を提供しています：</p><ul><li><strong>広告削除：</strong> アプリからすべての広告を削除します。</li><li><strong>プレミアム機能：</strong> 追加機能へのアクセスが可能になります。</li></ul><div class="info-box"><strong>注意：</strong> プレミアム機能は、当社の裁量により追加、変更、または削除される場合があります。重要な変更がある場合は、ユーザーに通知するよう合理的な努力をいたします。</div><ul><li>すべての購入はApple App Storeを通じて処理されます。</li><li>払い戻しリクエストはAppleを通じて行う必要があります。</li><li>価格は変更される場合があります。</li></ul></div>
+        <!-- Section 5 -->
+        <div lang="en"><h2>5. Intellectual Property</h2><p>All content, features, and functionality of renka ai are owned by FatTail Labs and are protected by international copyright, trademark, and other intellectual property laws.</p></div>
+        <div lang="ko"><h2>5. 지적재산권</h2><p>renka ai의 모든 콘텐츠, 기능 및 기능성은 FatTail Labs가 소유하며 국제 저작권, 상표권 및 기타 지적재산권법에 의해 보호됩니다.</p></div>
+        <div lang="ja"><h2>5. 知的財産権</h2><p>renka aiのすべてのコンテンツ、機能、および機能性はFatTail Labsが所有し、国際的な著作権、商標権、およびその他の知的財産権法によって保護されています。</p></div>
+        <div lang="zh-CN"><h2>5. 知识产权</h2><p>renka ai 的所有内容、特性和功能均归 FatTail Labs 所有，并受国际版权、商标和其他知识产权法的保护。</p></div>
+        <div lang="zh-TW"><h2>5. 智慧財產權</h2><p>renka ai 的所有內容、特性和功能均歸 FatTail Labs 所有，並受國際版權、商標和其他智慧財產權法的保護。</p></div>
         
-        <div lang="en"><h2>7. User Responsibilities</h2><p>You agree to:</p><ul><li>Use the App only for its intended purpose</li><li>Not rely solely on measurements for important decisions</li><li>Keep your device secure to protect your data</li><li>Not attempt to reverse engineer, modify, or exploit the App</li><li>Comply with all applicable laws and regulations</li></ul></div>
-        <div lang="ko"><h2>7. 사용자 책임</h2><p>귀하는 다음에 동의합니다:</p><ul><li>앱을 본래 목적으로만 사용</li><li>중요한 결정에 측정값만 의존하지 않음</li><li>데이터 보호를 위해 기기 보안 유지</li><li>앱을 역설계, 수정 또는 악용하지 않음</li><li>모든 관련 법률 및 규정 준수</li></ul></div>
-        <div lang="ja"><h2>7. ユーザーの責任</h2><p>お客様は以下に同意するものとします：</p><ul><li>本アプリを本来の目的にのみ使用すること</li><li>重要な決定を測定値のみに依存しないこと</li><li>データを保護するためにデバイスのセキュリティを維持すること</li><li>本アプリをリバースエンジニアリング、改変、または悪用しないこと</li><li>すべての適用法令を遵守すること</li></ul></div>
+        <!-- Section 6 -->
+        <div lang="en"><h2>6. Disclaimer of Warranties</h2><p>THE APP IS PROVIDED "AS IS" WITHOUT WARRANTIES OF ANY KIND. We do not guarantee:</p><ul><li>The accuracy of facial measurements</li><li>The reliability of personal color analysis</li><li>Uninterrupted or error-free operation</li><li>Compatibility with all devices</li></ul></div>
+        <div lang="ko"><h2>6. 보증 부인</h2><p>앱은 어떠한 종류의 보증 없이 "있는 그대로" 제공됩니다. 당사는 다음을 보장하지 않습니다:</p><ul><li>얼굴 측정의 정확성</li><li>퍼스널 컬러 분석의 신뢰성</li><li>중단 없거나 오류 없는 작동</li><li>모든 기기와의 호환성</li></ul></div>
+        <div lang="ja"><h2>6. 保証の免責</h2><p>本アプリはいかなる種類の保証もなく「現状のまま」提供されます。当社は以下を保証しません：</p><ul><li>顔測定の正確性</li><li>パーソナルカラー分析の信頼性</li><li>中断やエラーのない動作</li><li>すべてのデバイスとの互換性</li></ul></div>
+        <div lang="zh-CN"><h2>6. 免责声明</h2><p>本应用按"原样"提供，不提供任何形式的保证。我们不保证：</p><ul><li>面部测量的准确性</li><li>个人色彩分析的可靠性</li><li>不间断或无错误的运行</li><li>与所有设备的兼容性</li></ul></div>
+        <div lang="zh-TW"><h2>6. 免責聲明</h2><p>本應用程式按「原樣」提供，不提供任何形式的保證。我們不保證：</p><ul><li>臉部測量的準確性</li><li>個人色彩分析的可靠性</li><li>不間斷或無錯誤的運行</li><li>與所有裝置的相容性</li></ul></div>
         
-        <div lang="en"><h2>8. Intellectual Property</h2><p>All content, features, and functionality of renka ai, including but not limited to text, graphics, logos, and software, are owned by FattailLabs and are protected by international copyright, trademark, and other intellectual property laws.</p></div>
-        <div lang="ko"><h2>8. 지적재산권</h2><p>텍스트, 그래픽, 로고, 소프트웨어를 포함하되 이에 국한되지 않는 renka ai의 모든 콘텐츠, 기능 및 기능성은 FattailLabs가 소유하며 국제 저작권, 상표권 및 기타 지적재산권법에 의해 보호됩니다.</p></div>
-        <div lang="ja"><h2>8. 知的財産権</h2><p>テキスト、グラフィック、ロゴ、ソフトウェアを含むがこれに限定されないrenka aiのすべてのコンテンツ、機能は、FattailLabsが所有し、国際著作権法、商標法、その他の知的財産法によって保護されています。</p></div>
+        <!-- Section 7 -->
+        <div lang="en"><h2>7. Limitation of Liability</h2><p>TO THE MAXIMUM EXTENT PERMITTED BY LAW, FatTail Labs shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of the App.</p></div>
+        <div lang="ko"><h2>7. 책임 제한</h2><p>법률이 허용하는 최대 범위 내에서, FatTail Labs는 귀하의 앱 사용으로 인해 발생하는 간접적, 부수적, 특별, 결과적 또는 징벌적 손해에 대해 책임지지 않습니다.</p></div>
+        <div lang="ja"><h2>7. 責任の制限</h2><p>法律で許容される最大限の範囲において、FatTail Labsは、お客様の本アプリの使用から生じる間接的、付随的、特別、結果的、または懲罰的損害について責任を負いません。</p></div>
+        <div lang="zh-CN"><h2>7. 责任限制</h2><p>在法律允许的最大范围内，FatTail Labs 对因您使用本应用而产生的任何间接、附带、特殊、后果性或惩罚性损害不承担责任。</p></div>
+        <div lang="zh-TW"><h2>7. 責任限制</h2><p>在法律允許的最大範圍內，FatTail Labs 對因您使用本應用程式而產生的任何間接、附帶、特殊、後果性或懲罰性損害不承擔責任。</p></div>
         
-        <div lang="en"><h2>9. Limitation of Liability</h2><p>To the maximum extent permitted by law:</p><ul><li>We are not liable for any decisions made based on the App's measurements</li><li>We are not responsible for any inaccuracies in measurements</li><li>We are not liable for any direct, indirect, incidental, or consequential damages arising from your use of the App</li><li>The App is provided "as is" without warranties of any kind</li></ul></div>
-        <div lang="ko"><h2>9. 책임 제한</h2><p>법이 허용하는 최대 범위 내에서:</p><ul><li>당사는 앱의 측정값에 기반한 어떠한 결정에 대해서도 책임지지 않습니다</li><li>당사는 측정의 부정확성에 대해 책임지지 않습니다</li><li>당사는 앱 사용으로 인한 직접적, 간접적, 부수적 또는 결과적 손해에 대해 책임지지 않습니다</li><li>앱은 어떠한 종류의 보증 없이 "있는 그대로" 제공됩니다</li></ul></div>
-        <div lang="ja"><h2>9. 責任の制限</h2><p>法律で認められる最大限の範囲において：</p><ul><li>当社は、本アプリの測定値に基づいて行われたいかなる決定についても責任を負いません</li><li>当社は、測定の不正確さについて責任を負いません</li><li>当社は、本アプリの使用から生じる直接的、間接的、付随的、または結果的な損害について責任を負いません</li><li>本アプリは、いかなる種類の保証もなく「現状のまま」提供されます</li></ul></div>
+        <!-- Section 8 -->
+        <div lang="en"><h2>8. Subscriptions and In-App Purchases</h2><p>renka ai offers optional premium features:</p><ul><li><strong>Premium Subscription:</strong> Provides access to advanced features and removes advertisements</li><li>Subscriptions auto-renew unless cancelled at least 24 hours before the end of the current period</li><li>Payment is charged to your Apple ID account</li><li>You can manage and cancel subscriptions in your device's Settings → Apple ID → Subscriptions</li></ul></div>
+        <div lang="ko"><h2>8. 구독 및 인앱 구매</h2><p>renka ai는 선택적 프리미엄 기능을 제공합니다:</p><ul><li><strong>프리미엄 구독:</strong> 고급 기능에 대한 접근 권한을 제공하고 광고를 제거합니다</li><li>구독은 현재 기간 종료 최소 24시간 전에 취소하지 않으면 자동 갱신됩니다</li><li>결제는 Apple ID 계정으로 청구됩니다</li><li>기기의 설정 → Apple ID → 구독에서 구독을 관리하고 취소할 수 있습니다</li></ul></div>
+        <div lang="ja"><h2>8. サブスクリプションとアプリ内購入</h2><p>renka aiはオプションのプレミアム機能を提供しています：</p><ul><li><strong>プレミアムサブスクリプション：</strong> 高度な機能へのアクセスを提供し、広告を削除します</li><li>サブスクリプションは、現在の期間終了の少なくとも24時間前にキャンセルしない限り、自動更新されます</li><li>支払いはApple IDアカウントに請求されます</li><li>デバイスの設定→Apple ID→サブスクリプションでサブスクリプションの管理とキャンセルができます</li></ul></div>
+        <div lang="zh-CN"><h2>8. 订阅和应用内购买</h2><p>renka ai 提供可选的高级功能：</p><ul><li><strong>高级订阅：</strong> 提供高级功能访问权限并移除广告</li><li>订阅会自动续订，除非在当前周期结束前至少 24 小时取消</li><li>付款将从您的 Apple ID 账户扣除</li><li>您可以在设备的设置 → Apple ID → 订阅中管理和取消订阅</li></ul></div>
+        <div lang="zh-TW"><h2>8. 訂閱和應用程式內購買</h2><p>renka ai 提供可選的進階功能：</p><ul><li><strong>進階訂閱：</strong> 提供進階功能存取權限並移除廣告</li><li>訂閱會自動續訂，除非在當前週期結束前至少 24 小時取消</li><li>付款將從您的 Apple ID 帳號扣除</li><li>您可以在裝置的設定 → Apple ID → 訂閱中管理和取消訂閱</li></ul></div>
         
-        <div lang="en"><h2>10. Modifications to the App and Terms</h2><p>We reserve the right to:</p><ul><li>Modify, suspend, or discontinue the App at any time</li><li>Update these Terms from time to time</li></ul><p>Your continued use of the App after any changes constitutes acceptance of the new Terms.</p></div>
-        <div lang="ko"><h2>10. 앱 및 약관 수정</h2><p>당사는 다음의 권리를 보유합니다:</p><ul><li>언제든지 앱을 수정, 중단 또는 종료</li><li>수시로 본 약관 업데이트</li></ul><p>변경 후에도 앱을 계속 사용하면 새로운 약관에 동의한 것으로 간주됩니다.</p></div>
-        <div lang="ja"><h2>10. アプリおよび規約の変更</h2><p>当社は以下の権利を留保します：</p><ul><li>いつでもアプリを変更、停止、または終了すること</li><li>随時本規約を更新すること</li></ul><p>変更後も本アプリを継続して使用することにより、新しい規約に同意したものとみなされます。</p></div>
+        <!-- Section 9 -->
+        <div lang="en"><h2>9. Changes to Terms</h2><p>We reserve the right to modify these Terms at any time. We will notify you of any changes by updating the "Last updated" date. Continued use of the App after changes constitutes acceptance of the new Terms.</p></div>
+        <div lang="ko"><h2>9. 약관 변경</h2><p>당사는 언제든지 본 약관을 수정할 권리를 보유합니다. "최종 수정일"을 업데이트하여 변경 사항을 알려드립니다. 변경 후 앱을 계속 사용하면 새 약관에 동의한 것으로 간주됩니다.</p></div>
+        <div lang="ja"><h2>9. 規約の変更</h2><p>当社は、いつでも本規約を変更する権利を留保します。「最終更新日」を更新することで変更をお知らせします。変更後も本アプリを継続して使用することは、新しい規約への同意を意味します。</p></div>
+        <div lang="zh-CN"><h2>9. 条款变更</h2><p>我们保留随时修改本条款的权利。我们将通过更新"最后更新"日期来通知您任何变更。在变更后继续使用本应用即表示接受新条款。</p></div>
+        <div lang="zh-TW"><h2>9. 條款變更</h2><p>我們保留隨時修改本條款的權利。我們將透過更新「最後更新」日期來通知您任何變更。在變更後繼續使用本應用程式即表示接受新條款。</p></div>
         
-        <div lang="en"><h2>11. Governing Law</h2><p>These Terms shall be governed by and construed in accordance with the laws of the Republic of Korea, without regard to its conflict of law provisions.</p></div>
-        <div lang="ko"><h2>11. 준거법</h2><p>본 약관은 법률 충돌 조항에 관계없이 대한민국 법률에 따라 규율되고 해석됩니다.</p></div>
-        <div lang="ja"><h2>11. 準拠法</h2><p>本規約は、法の抵触に関する規定にかかわらず、大韓民国の法律に準拠し、解釈されるものとします。</p></div>
+        <!-- Section 10 -->
+        <div lang="en"><h2>10. Contact Us</h2><p>If you have any questions about these Terms, please contact us:</p><ul><li>Email: <a href="mailto:fattaillabs.ceo@gmail.com">fattaillabs.ceo@gmail.com</a></li></ul></div>
+        <div lang="ko"><h2>10. 문의하기</h2><p>본 약관에 대해 궁금한 점이 있으시면 연락해 주세요:</p><ul><li>이메일: <a href="mailto:fattaillabs.ceo@gmail.com">fattaillabs.ceo@gmail.com</a></li></ul></div>
+        <div lang="ja"><h2>10. お問い合わせ</h2><p>本規約についてご質問がある場合は、以下までご連絡ください：</p><ul><li>メール: <a href="mailto:fattaillabs.ceo@gmail.com">fattaillabs.ceo@gmail.com</a></li></ul></div>
+        <div lang="zh-CN"><h2>10. 联系我们</h2><p>如果您对本条款有任何疑问，请联系我们：</p><ul><li>电子邮件：<a href="mailto:fattaillabs.ceo@gmail.com">fattaillabs.ceo@gmail.com</a></li></ul></div>
+        <div lang="zh-TW"><h2>10. 聯繫我們</h2><p>如果您對本條款有任何疑問，請聯繫我們：</p><ul><li>電子郵件：<a href="mailto:fattaillabs.ceo@gmail.com">fattaillabs.ceo@gmail.com</a></li></ul></div>
         
-        <div lang="en"><h2>12. Contact Us</h2><p>If you have any questions about these Terms, please contact us:</p><ul><li>Email: <a href="mailto:fattaillabs.ceo@gmail.com">fattaillabs.ceo@gmail.com</a></li></ul></div>
-        <div lang="ko"><h2>12. 문의하기</h2><p>본 약관에 대해 궁금한 점이 있으시면 연락해 주세요:</p><ul><li>이메일: <a href="mailto:fattaillabs.ceo@gmail.com">fattaillabs.ceo@gmail.com</a></li></ul></div>
-        <div lang="ja"><h2>12. お問い合わせ</h2><p>本規約についてご質問がある場合は、以下までご連絡ください：</p><ul><li>メール: <a href="mailto:fattaillabs.ceo@gmail.com">fattaillabs.ceo@gmail.com</a></li></ul></div>
+        <!-- Info Box -->
+        <div class="info-box">
+            <p lang="en">By using renka ai, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service.</p>
+            <p lang="ko">renka ai를 사용함으로써 귀하는 본 이용약관을 읽고 이해했으며 이에 동의함을 인정합니다.</p>
+            <p lang="ja">renka aiを使用することにより、お客様は本利用規約を読み、理解し、これに拘束されることに同意したことを認めます。</p>
+            <p lang="zh-CN">使用 renka ai 即表示您确认已阅读、理解并同意受本服务条款的约束。</p>
+            <p lang="zh-TW">使用 renka ai 即表示您確認已閱讀、理解並同意受本服務條款的約束。</p>
+        </div>
         
-        <footer class="footer"><p>© 2025 FattailLabs. All rights reserved.</p></footer>
+        <footer class="footer"><p>© 2025 FatTail Labs. All rights reserved.</p></footer>
     </div>
     
     <script>
@@ -157,7 +183,7 @@
                 document.body.className = 'lang-' + saved;
                 document.querySelectorAll('.lang-btn').forEach(btn => {
                     btn.classList.remove('active');
-                    if (btn.getAttribute('onclick').includes(saved)) btn.classList.add('active');
+                    if (btn.getAttribute('onclick').includes("'" + saved + "'")) btn.classList.add('active');
                 });
             }
         });
