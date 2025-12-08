@@ -7,191 +7,53 @@
     <meta name="description" content="Precise face measurement app using AR technology. Measure facial dimensions, analyze golden ratio, discover your personal color.">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #0d0d0d 0%, #1a1a2e 50%, #0d0d0d 100%);
-            min-height: 100vh;
-            color: #fff;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #0d0d0d 0%, #1a1a2e 50%, #0d0d0d 100%); min-height: 100vh; color: #fff; }
+        .container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
+        .lang-bar { display: flex; justify-content: flex-end; gap: 6px; margin-bottom: 20px; flex-wrap: wrap; }
+        .lang-btn { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 8px 10px; font-size: 18px; cursor: pointer; transition: all 0.2s; }
+        .lang-btn:hover { background: rgba(255,255,255,0.1); }
+        .lang-btn.active { background: rgba(76,175,80,0.2); border-color: #4CAF50; }
+        .hero { text-align: center; padding: 40px 0 60px; }
+        .app-icon { width: 160px; height: auto; margin: 0 auto 30px; display: block; filter: drop-shadow(0 10px 30px rgba(210,180,140,0.3)); }
+        .hero h1 { font-size: 52px; font-weight: 700; margin-bottom: 15px; background: linear-gradient(135deg, #D4B896, #E8DCC8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .hero .tagline { font-size: 20px; color: #a0a0a0; margin-bottom: 40px; }
+        .download-btn { display: inline-flex; align-items: center; gap: 12px; background: #fff; color: #000; padding: 16px 32px; border-radius: 14px; text-decoration: none; font-weight: 600; font-size: 17px; transition: transform 0.2s, box-shadow 0.2s; }
+        .download-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(255,255,255,0.15); }
+        .download-btn svg { width: 28px; height: 28px; }
+        .features { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 50px 0; }
+        @media (max-width: 500px) { .features { grid-template-columns: 1fr; } }
+        .feature { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 24px; border-radius: 16px; text-align: center; transition: transform 0.2s, border-color 0.2s; }
+        .feature:hover { transform: translateY(-3px); border-color: rgba(76,175,80,0.3); }
+        .feature-icon { font-size: 40px; margin-bottom: 12px; }
+        .feature h3 { font-size: 16px; margin-bottom: 8px; color: #4CAF50; }
+        .feature p { font-size: 14px; color: #888; line-height: 1.5; }
+        .links-section { margin-top: 60px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.08); }
+        .links-title { font-size: 13px; color: #555; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; text-align: center; }
+        .links { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
+        .links a { color: #888; text-decoration: none; font-size: 15px; transition: color 0.2s; }
+        .links a:hover { color: #4CAF50; }
+        .footer { text-align: center; margin-top: 60px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.05); }
+        .footer p { color: #444; font-size: 13px; margin-bottom: 8px; }
+        .footer a { color: #555; text-decoration: none; }
+        .footer a:hover { color: #4CAF50; }
         
-        /* Language Switcher */
-        .lang-bar {
-            display: flex;
-            justify-content: flex-end;
-            gap: 8px;
-            margin-bottom: 20px;
-        }
-        .lang-btn {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            padding: 8px 12px;
-            font-size: 20px;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        .lang-btn:hover { background: rgba(255, 255, 255, 0.1); }
-        .lang-btn.active { background: rgba(76, 175, 80, 0.2); border-color: #4CAF50; }
-        
-        /* Hero Section */
-        .hero {
-            text-align: center;
-            padding: 40px 0 60px;
-        }
-        .app-icon {
-            width: 120px;
-            height: 120px;
-            background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%);
-            border-radius: 28px;
-            margin: 0 auto 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 50px;
-            box-shadow: 0 10px 40px rgba(76, 175, 80, 0.3);
-        }
-        .hero h1 {
-            font-size: 52px;
-            font-weight: 700;
-            margin-bottom: 15px;
-            background: linear-gradient(135deg, #4CAF50, #81C784);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .hero .tagline {
-            font-size: 20px;
-            color: #a0a0a0;
-            margin-bottom: 40px;
-        }
-        
-        /* Download Button */
-        .download-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            background: #fff;
-            color: #000;
-            padding: 16px 32px;
-            border-radius: 14px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 17px;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        .download-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(255, 255, 255, 0.15);
-        }
-        .download-btn svg {
-            width: 28px;
-            height: 28px;
-        }
-        
-        /* Features */
-        .features {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
-            margin: 50px 0;
-        }
-        @media (max-width: 500px) {
-            .features { grid-template-columns: 1fr; }
-        }
-        .feature {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 24px;
-            border-radius: 16px;
-            text-align: center;
-            transition: transform 0.2s, border-color 0.2s;
-        }
-        .feature:hover {
-            transform: translateY(-3px);
-            border-color: rgba(76, 175, 80, 0.3);
-        }
-        .feature-icon {
-            font-size: 40px;
-            margin-bottom: 12px;
-        }
-        .feature h3 {
-            font-size: 16px;
-            margin-bottom: 8px;
-            color: #4CAF50;
-        }
-        .feature p {
-            font-size: 14px;
-            color: #888;
-            line-height: 1.5;
-        }
-        
-        /* Links Section */
-        .links-section {
-            margin-top: 60px;
-            padding-top: 40px;
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
-        }
-        .links-title {
-            font-size: 13px;
-            color: #555;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        .links {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-        }
-        .links a {
-            color: #888;
-            text-decoration: none;
-            font-size: 15px;
-            transition: color 0.2s;
-        }
-        .links a:hover {
-            color: #4CAF50;
-        }
-        
-        /* Footer */
-        .footer {
-            text-align: center;
-            margin-top: 60px;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        .footer p {
-            color: #444;
-            font-size: 13px;
-            margin-bottom: 8px;
-        }
-        .footer a {
-            color: #555;
-            text-decoration: none;
-        }
-        .footer a:hover {
-            color: #4CAF50;
-        }
-        
-        /* Language visibility */
         [lang]:not([lang="en"]) { display: none; }
         body.lang-ko [lang="ko"] { display: block; }
-        body.lang-ko [lang="en"], body.lang-ko [lang="ja"] { display: none; }
+        body.lang-ko [lang="en"], body.lang-ko [lang="ja"], body.lang-ko [lang="zh-CN"], body.lang-ko [lang="zh-TW"] { display: none; }
         body.lang-ja [lang="ja"] { display: block; }
-        body.lang-ja [lang="en"], body.lang-ja [lang="ko"] { display: none; }
+        body.lang-ja [lang="en"], body.lang-ja [lang="ko"], body.lang-ja [lang="zh-CN"], body.lang-ja [lang="zh-TW"] { display: none; }
         body.lang-en [lang="en"] { display: block; }
-        body.lang-en [lang="ko"], body.lang-en [lang="ja"] { display: none; }
+        body.lang-en [lang="ko"], body.lang-en [lang="ja"], body.lang-en [lang="zh-CN"], body.lang-en [lang="zh-TW"] { display: none; }
+        body.lang-zh-CN [lang="zh-CN"] { display: block; }
+        body.lang-zh-CN [lang="en"], body.lang-zh-CN [lang="ko"], body.lang-zh-CN [lang="ja"], body.lang-zh-CN [lang="zh-TW"] { display: none; }
+        body.lang-zh-TW [lang="zh-TW"] { display: block; }
+        body.lang-zh-TW [lang="en"], body.lang-zh-TW [lang="ko"], body.lang-zh-TW [lang="ja"], body.lang-zh-TW [lang="zh-CN"] { display: none; }
         span[lang] { display: none; }
         body.lang-en span[lang="en"] { display: inline; }
         body.lang-ko span[lang="ko"] { display: inline; }
         body.lang-ja span[lang="ja"] { display: inline; }
+        body.lang-zh-CN span[lang="zh-CN"] { display: inline; }
+        body.lang-zh-TW span[lang="zh-TW"] { display: inline; }
     </style>
 </head>
 <body class="lang-en">
@@ -200,16 +62,20 @@
             <button class="lang-btn active" onclick="setLang('en')" title="English">🇺🇸</button>
             <button class="lang-btn" onclick="setLang('ko')" title="한국어">🇰🇷</button>
             <button class="lang-btn" onclick="setLang('ja')" title="日本語">🇯🇵</button>
+            <button class="lang-btn" onclick="setLang('zh-CN')" title="简体中文">🇨🇳</button>
+            <button class="lang-btn" onclick="setLang('zh-TW')" title="繁體中文">🇹🇼</button>
         </div>
         
         <section class="hero">
-            <div class="app-icon">📐</div>
+            <img src="logo.png" alt="renka ai" class="app-icon">
             <h1>renka ai</h1>
             
             <p class="tagline">
                 <span lang="en">Precise Face Measurement with AR Technology</span>
                 <span lang="ko">AR 기술을 활용한 정밀 얼굴 측정</span>
                 <span lang="ja">AR技術による精密な顔測定</span>
+                <span lang="zh-CN">AR 技术精准面部测量</span>
+                <span lang="zh-TW">AR 技術精準臉部測量</span>
             </p>
             
             <a href="#" class="download-btn">
@@ -219,6 +85,8 @@
                 <span lang="en">Download on App Store</span>
                 <span lang="ko">App Store에서 다운로드</span>
                 <span lang="ja">App Storeでダウンロード</span>
+                <span lang="zh-CN">在 App Store 下载</span>
+                <span lang="zh-TW">在 App Store 下載</span>
             </a>
         </section>
         
@@ -294,38 +162,94 @@
             </div>
         </section>
         
+        <!-- Features - Simplified Chinese -->
+        <section class="features" lang="zh-CN">
+            <div class="feature">
+                <div class="feature-icon">📏</div>
+                <h3>面部测量</h3>
+                <p>使用 TrueDepth 摄像头精确测量面部尺寸</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">✨</div>
+                <h3>黄金比例</h3>
+                <p>分析面部比例和对称性</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🎨</div>
+                <h3>个人色彩</h3>
+                <p>发现您的季节色彩类型</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">📊</div>
+                <h3>变化追踪</h3>
+                <p>监测浮肿和面部变化</p>
+            </div>
+        </section>
+        
+        <!-- Features - Traditional Chinese -->
+        <section class="features" lang="zh-TW">
+            <div class="feature">
+                <div class="feature-icon">📏</div>
+                <h3>臉部測量</h3>
+                <p>使用 TrueDepth 相機精確測量臉部尺寸</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">✨</div>
+                <h3>黃金比例</h3>
+                <p>分析臉部比例和對稱性</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🎨</div>
+                <h3>個人色彩</h3>
+                <p>發現您的季節色彩類型</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">📊</div>
+                <h3>變化追蹤</h3>
+                <p>監測浮腫和臉部變化</p>
+            </div>
+        </section>
+        
         <section class="links-section">
             <p class="links-title">
                 <span lang="en">Information</span>
                 <span lang="ko">안내</span>
                 <span lang="ja">ご案内</span>
+                <span lang="zh-CN">信息</span>
+                <span lang="zh-TW">資訊</span>
             </p>
             <div class="links">
                 <a href="notices.html">
                     <span lang="en">📢 Notices</span>
                     <span lang="ko">📢 공지사항</span>
                     <span lang="ja">📢 お知らせ</span>
+                    <span lang="zh-CN">📢 公告</span>
+                    <span lang="zh-TW">📢 公告</span>
                 </a>
                 <a href="privacy-policy.html">
                     <span lang="en">🔒 Privacy Policy</span>
                     <span lang="ko">🔒 개인정보처리방침</span>
                     <span lang="ja">🔒 プライバシーポリシー</span>
+                    <span lang="zh-CN">🔒 隐私政策</span>
+                    <span lang="zh-TW">🔒 隱私權政策</span>
                 </a>
                 <a href="terms-of-service.html">
                     <span lang="en">📋 Terms of Service</span>
                     <span lang="ko">📋 이용약관</span>
                     <span lang="ja">📋 利用規約</span>
+                    <span lang="zh-CN">📋 服务条款</span>
+                    <span lang="zh-TW">📋 服務條款</span>
                 </a>
             </div>
         </section>
         
         <footer class="footer">
-            <p>© 2025 FattailLabs. All rights reserved.</p>
-            <p><a href="mailto:fattaillabs.ceo@gmail.com">fattaillabs.ceo@gmail.com</a></p>
+            <p>© 2025 FatTail Labs. All rights reserved.</p>
+            <p><a href="/cdn-cgi/l/email-protection#2543445151444c49494447560b46404a654248444c490b464a48"><span class="__cf_email__" data-cfemail="e98f889d9d88808585888b9ac78a8c86a98e84888085c78a8684">[email&#160;protected]</span></a></p>
         </footer>
     </div>
     
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         function setLang(lang) {
             document.body.className = 'lang-' + lang;
             document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
@@ -336,12 +260,4 @@
             const saved = localStorage.getItem('preferred-lang');
             if (saved) {
                 document.body.className = 'lang-' + saved;
-                document.querySelectorAll('.lang-btn').forEach(btn => {
-                    btn.classList.remove('active');
-                    if (btn.getAttribute('onclick').includes(saved)) btn.classList.add('active');
-                });
-            }
-        });
-    </script>
-</body>
-</html>
+                document.querySelectorAll('.lang-btn').
