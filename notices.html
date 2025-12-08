@@ -6,145 +6,76 @@
     <title>Notices - renka ai</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #0d0d0d;
-            color: #e0e0e0;
-            line-height: 1.8;
-        }
-        .container {
-            max-width: 700px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            color: #4CAF50;
-            text-decoration: none;
-            font-size: 14px;
-        }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0d0d0d; color: #e0e0e0; line-height: 1.8; }
+        .container { max-width: 700px; margin: 0 auto; padding: 40px 20px; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .back-link { display: inline-flex; align-items: center; gap: 6px; color: #4CAF50; text-decoration: none; font-size: 14px; }
         .back-link:hover { text-decoration: underline; }
-        .lang-switcher { display: flex; gap: 8px; }
-        .lang-btn {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            padding: 8px 12px;
-            font-size: 20px;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        .lang-btn:hover { background: rgba(255, 255, 255, 0.1); }
-        .lang-btn.active { background: rgba(76, 175, 80, 0.2); border-color: #4CAF50; }
+        .lang-switcher { display: flex; gap: 6px; flex-wrap: wrap; }
+        .lang-btn { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 8px 10px; font-size: 18px; cursor: pointer; transition: all 0.2s; }
+        .lang-btn:hover { background: rgba(255,255,255,0.1); }
+        .lang-btn.active { background: rgba(76,175,80,0.2); border-color: #4CAF50; }
         h1 { font-size: 32px; margin-bottom: 10px; color: #fff; }
         .subtitle { color: #666; font-size: 14px; margin-bottom: 40px; }
+        .notice { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 24px; margin-bottom: 20px; }
+        .notice-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; flex-wrap: wrap; gap: 10px; }
+        .notice-title { font-size: 18px; font-weight: 600; color: #fff; }
+        .notice-date { font-size: 13px; color: #666; white-space: nowrap; }
+        .notice-badge { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; margin-bottom: 10px; }
+        .badge-new { background: rgba(76,175,80,0.2); color: #4CAF50; }
+        .badge-update { background: rgba(33,150,243,0.2); color: #2196F3; }
+        .badge-event { background: rgba(255,152,0,0.2); color: #FF9800; }
+        .badge-important { background: rgba(244,67,54,0.2); color: #F44336; }
+        .notice-content { color: #a0a0a0; font-size: 15px; }
+        .notice-content ul { margin: 10px 0 0 20px; }
+        .notice-content li { margin-bottom: 6px; }
+        .notice-divider { border: none; border-top: 1px solid rgba(255,255,255,0.05); margin: 30px 0; }
+        .footer { text-align: center; margin-top: 60px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.05); color: #444; font-size: 13px; }
         
-        /* Notice Card */
-        .notice {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 12px;
-            padding: 24px;
-            margin-bottom: 20px;
-        }
-        .notice-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 12px;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        .notice-title {
-            font-size: 18px;
-            font-weight: 600;
-            color: #fff;
-        }
-        .notice-date {
-            font-size: 13px;
-            color: #666;
-            white-space: nowrap;
-        }
-        .notice-badge {
-            display: inline-block;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-        .badge-new { background: rgba(76, 175, 80, 0.2); color: #4CAF50; }
-        .badge-update { background: rgba(33, 150, 243, 0.2); color: #2196F3; }
-        .badge-event { background: rgba(255, 152, 0, 0.2); color: #FF9800; }
-        .badge-important { background: rgba(244, 67, 54, 0.2); color: #F44336; }
-        .notice-content {
-            color: #a0a0a0;
-            font-size: 15px;
-        }
-        .notice-content ul {
-            margin: 10px 0 0 20px;
-        }
-        .notice-content li {
-            margin-bottom: 6px;
-        }
-        
-        /* Divider between notices */
-        .notice-divider {
-            border: none;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            margin: 30px 0;
-        }
-        
-        .footer {
-            text-align: center;
-            margin-top: 60px;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            color: #444;
-            font-size: 13px;
-        }
-        
-        /* Language visibility */
         [lang]:not([lang="en"]) { display: none; }
         body.lang-ko [lang="ko"] { display: block; }
-        body.lang-ko [lang="en"], body.lang-ko [lang="ja"] { display: none; }
+        body.lang-ko [lang="en"], body.lang-ko [lang="ja"], body.lang-ko [lang="zh-CN"], body.lang-ko [lang="zh-TW"] { display: none; }
         body.lang-ja [lang="ja"] { display: block; }
-        body.lang-ja [lang="en"], body.lang-ja [lang="ko"] { display: none; }
+        body.lang-ja [lang="en"], body.lang-ja [lang="ko"], body.lang-ja [lang="zh-CN"], body.lang-ja [lang="zh-TW"] { display: none; }
         body.lang-en [lang="en"] { display: block; }
-        body.lang-en [lang="ko"], body.lang-en [lang="ja"] { display: none; }
+        body.lang-en [lang="ko"], body.lang-en [lang="ja"], body.lang-en [lang="zh-CN"], body.lang-en [lang="zh-TW"] { display: none; }
+        body.lang-zh-CN [lang="zh-CN"] { display: block; }
+        body.lang-zh-CN [lang="en"], body.lang-zh-CN [lang="ko"], body.lang-zh-CN [lang="ja"], body.lang-zh-CN [lang="zh-TW"] { display: none; }
+        body.lang-zh-TW [lang="zh-TW"] { display: block; }
+        body.lang-zh-TW [lang="en"], body.lang-zh-TW [lang="ko"], body.lang-zh-TW [lang="ja"], body.lang-zh-TW [lang="zh-CN"] { display: none; }
         span[lang] { display: none; }
         body.lang-en span[lang="en"] { display: inline; }
         body.lang-ko span[lang="ko"] { display: inline; }
         body.lang-ja span[lang="ja"] { display: inline; }
+        body.lang-zh-CN span[lang="zh-CN"] { display: inline; }
+        body.lang-zh-TW span[lang="zh-TW"] { display: inline; }
     </style>
 </head>
 <body class="lang-en">
     <div class="container">
         <div class="header">
-            <a href="index.html" class="back-link">← <span lang="en">Back to Home</span><span lang="ko">홈으로</span><span lang="ja">ホームへ</span></a>
+            <a href="index.html" class="back-link">← <span lang="en">Back to Home</span><span lang="ko">홈으로</span><span lang="ja">ホームへ</span><span lang="zh-CN">返回首页</span><span lang="zh-TW">返回首頁</span></a>
             <div class="lang-switcher">
                 <button class="lang-btn active" onclick="setLang('en')" title="English">🇺🇸</button>
                 <button class="lang-btn" onclick="setLang('ko')" title="한국어">🇰🇷</button>
                 <button class="lang-btn" onclick="setLang('ja')" title="日本語">🇯🇵</button>
+                <button class="lang-btn" onclick="setLang('zh-CN')" title="简体中文">🇨🇳</button>
+                <button class="lang-btn" onclick="setLang('zh-TW')" title="繁體中文">🇹🇼</button>
             </div>
         </div>
         
         <h1 lang="en">📢 Notices</h1>
         <h1 lang="ko">📢 공지사항</h1>
         <h1 lang="ja">📢 お知らせ</h1>
+        <h1 lang="zh-CN">📢 公告</h1>
+        <h1 lang="zh-TW">📢 公告</h1>
         
         <p class="subtitle">
             <span lang="en">Latest updates and announcements</span>
             <span lang="ko">최신 업데이트 및 안내사항</span>
             <span lang="ja">最新のアップデートとお知らせ</span>
+            <span lang="zh-CN">最新更新和公告</span>
+            <span lang="zh-TW">最新更新和公告</span>
         </p>
         
         <!-- ========================================
@@ -216,6 +147,44 @@
                     <p>renka aiをご利用いただきありがとうございます。今後も継続的に改善し、新機能を追加してまいります！</p>
                 </div>
             </div>
+            
+            <div lang="zh-CN">
+                <div class="notice-header">
+                    <h2 class="notice-title">🎉 renka ai v1.0 正式上线！</h2>
+                    <span class="notice-date">2025年12月2日</span>
+                </div>
+                <div class="notice-content">
+                    <p>我们很高兴地宣布 renka ai 正式上线！</p>
+                    <p>renka ai 是一款利用 AR 技术的面部测量应用，提供以下功能：</p>
+                    <ul>
+                        <li>精确的面部测量（高度、宽度、面积）</li>
+                        <li>黄金比例和对称性分析</li>
+                        <li>个人色彩诊断</li>
+                        <li>浮肿变化追踪</li>
+                        <li>身体比例（头身比）计算</li>
+                    </ul>
+                    <p>感谢您使用 renka ai。我们将继续改进并添加新功能！</p>
+                </div>
+            </div>
+            
+            <div lang="zh-TW">
+                <div class="notice-header">
+                    <h2 class="notice-title">🎉 renka ai v1.0 正式上線！</h2>
+                    <span class="notice-date">2025年12月2日</span>
+                </div>
+                <div class="notice-content">
+                    <p>我們很高興地宣布 renka ai 正式上線！</p>
+                    <p>renka ai 是一款利用 AR 技術的臉部測量應用程式，提供以下功能：</p>
+                    <ul>
+                        <li>精確的臉部測量（高度、寬度、面積）</li>
+                        <li>黃金比例和對稱性分析</li>
+                        <li>個人色彩診斷</li>
+                        <li>浮腫變化追蹤</li>
+                        <li>身體比例（頭身比）計算</li>
+                    </ul>
+                    <p>感謝您使用 renka ai。我們將繼續改進並添加新功能！</p>
+                </div>
+            </div>
         </article>
         
         <!-- ======================================== 
@@ -257,11 +226,31 @@
                     <p>内容...</p>
                 </div>
             </div>
+            
+            <div lang="zh-CN">
+                <div class="notice-header">
+                    <h2 class="notice-title">标题</h2>
+                    <span class="notice-date">YYYY年MM月DD日</span>
+                </div>
+                <div class="notice-content">
+                    <p>内容...</p>
+                </div>
+            </div>
+            
+            <div lang="zh-TW">
+                <div class="notice-header">
+                    <h2 class="notice-title">標題</h2>
+                    <span class="notice-date">YYYY年MM月DD日</span>
+                </div>
+                <div class="notice-content">
+                    <p>內容...</p>
+                </div>
+            </div>
         </article>
         
         ======================================== -->
         
-        <footer class="footer"><p>© 2025 FattailLabs. All rights reserved.</p></footer>
+        <footer class="footer"><p>© 2025 FatTail Labs. All rights reserved.</p></footer>
     </div>
     
     <script>
@@ -277,7 +266,7 @@
                 document.body.className = 'lang-' + saved;
                 document.querySelectorAll('.lang-btn').forEach(btn => {
                     btn.classList.remove('active');
-                    if (btn.getAttribute('onclick').includes(saved)) btn.classList.add('active');
+                    if (btn.getAttribute('onclick').includes("'" + saved + "'")) btn.classList.add('active');
                 });
             }
         });
