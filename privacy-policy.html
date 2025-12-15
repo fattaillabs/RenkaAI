@@ -174,20 +174,40 @@
     </div>
     
     <script>
+        // ✅ 언어 설정 (버튼 클릭용)
         function setLang(lang) {
+            setLangSilent(lang);
+        }
+        
+        // ✅ 언어 설정 (내부용)
+        function setLangSilent(lang) {
             document.body.className = 'lang-' + lang;
-            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('onclick').includes("'" + lang + "'")) {
+                    btn.classList.add('active');
+                }
+            });
             localStorage.setItem('preferred-lang', lang);
         }
+        
+        // ✅ 페이지 로드 시 언어 설정
         document.addEventListener('DOMContentLoaded', function() {
-            const saved = localStorage.getItem('preferred-lang');
-            if (saved) {
-                document.body.className = 'lang-' + saved;
-                document.querySelectorAll('.lang-btn').forEach(btn => {
-                    btn.classList.remove('active');
-                    if (btn.getAttribute('onclick').includes("'" + saved + "'")) btn.classList.add('active');
-                });
+            // 1. URL 파라미터에서 언어 체크 (앱에서 전달)
+            const urlParams = new URLSearchParams(window.location.search);
+            const langParam = urlParams.get('lang');
+            
+            const supportedLangs = ['en', 'ko', 'ja', 'zh-CN', 'zh-TW'];
+            
+            if (langParam && supportedLangs.includes(langParam)) {
+                setLangSilent(langParam);
+            } else {
+                // 2. 저장된 언어 확인
+                const saved = localStorage.getItem('preferred-lang');
+                if (saved && supportedLangs.includes(saved)) {
+                    setLangSilent(saved);
+                }
+                // 3. 둘 다 없으면 기본값 (영어) 유지
             }
         });
     </script>
