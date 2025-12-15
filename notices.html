@@ -255,19 +255,32 @@
     
     <script>
         function setLang(lang) {
+            setLangSilent(lang);
+        }
+        
+        function setLangSilent(lang) {
             document.body.className = 'lang-' + lang;
-            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('onclick').includes("'" + lang + "'")) {
+                    btn.classList.add('active');
+                }
+            });
             localStorage.setItem('preferred-lang', lang);
         }
+        
         document.addEventListener('DOMContentLoaded', function() {
-            const saved = localStorage.getItem('preferred-lang');
-            if (saved) {
-                document.body.className = 'lang-' + saved;
-                document.querySelectorAll('.lang-btn').forEach(btn => {
-                    btn.classList.remove('active');
-                    if (btn.getAttribute('onclick').includes("'" + saved + "'")) btn.classList.add('active');
-                });
+            const urlParams = new URLSearchParams(window.location.search);
+            const langParam = urlParams.get('lang');
+            const supportedLangs = ['en', 'ko', 'ja', 'zh-CN', 'zh-TW'];
+            
+            if (langParam && supportedLangs.includes(langParam)) {
+                setLangSilent(langParam);
+            } else {
+                const saved = localStorage.getItem('preferred-lang');
+                if (saved && supportedLangs.includes(saved)) {
+                    setLangSilent(saved);
+                }
             }
         });
     </script>
