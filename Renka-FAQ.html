@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Renka</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0d0d0d; color: #e0e0e0; line-height: 1.8; }
+        .container { max-width: 700px; margin: 0 auto; padding: 40px 20px; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .back-link { display: inline-flex; align-items: center; gap: 6px; color: #4CAF50; text-decoration: none; font-size: 14px; }
+        .back-link:hover { text-decoration: underline; }
+        .lang-switcher { display: flex; gap: 6px; flex-wrap: wrap; }
+        .lang-btn { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 8px 10px; font-size: 18px; cursor: pointer; transition: all 0.2s; }
+        .lang-btn:hover { background: rgba(255,255,255,0.1); }
+        .lang-btn.active { background: rgba(76,175,80,0.2); border-color: #4CAF50; }
+        h1 { font-size: 32px; margin-bottom: 10px; color: #fff; }
+        .subtitle { color: #666; font-size: 14px; margin-bottom: 40px; }
+        .faq-item { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 24px; margin-bottom: 16px; }
+        .faq-question { font-size: 16px; font-weight: 600; color: #fff; margin-bottom: 12px; display: flex; gap: 10px; }
+        .faq-number { color: #4CAF50; font-weight: 700; }
+        .faq-answer { color: #a0a0a0; font-size: 15px; padding-left: 28px; }
+        .faq-answer p { margin-bottom: 10px; }
+        .faq-answer p:last-child { margin-bottom: 0; }
+        .footer { text-align: center; margin-top: 60px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.05); color: #444; font-size: 13px; }
+        
+        [lang]:not([lang="en"]) { display: none; }
+        body.lang-ko [lang="ko"] { display: block; }
+        body.lang-ko [lang="en"], body.lang-ko [lang="ja"], body.lang-ko [lang="zh-CN"], body.lang-ko [lang="zh-TW"] { display: none; }
+        body.lang-ja [lang="ja"] { display: block; }
+        body.lang-ja [lang="en"], body.lang-ja [lang="ko"], body.lang-ja [lang="zh-CN"], body.lang-ja [lang="zh-TW"] { display: none; }
+        body.lang-en [lang="en"] { display: block; }
+        body.lang-en [lang="ko"], body.lang-en [lang="ja"], body.lang-en [lang="zh-CN"], body.lang-en [lang="zh-TW"] { display: none; }
+        body.lang-zh-CN [lang="zh-CN"] { display: block; }
+        body.lang-zh-CN [lang="en"], body.lang-zh-CN [lang="ko"], body.lang-zh-CN [lang="ja"], body.lang-zh-CN [lang="zh-TW"] { display: none; }
+        body.lang-zh-TW [lang="zh-TW"] { display: block; }
+        body.lang-zh-TW [lang="en"], body.lang-zh-TW [lang="ko"], body.lang-zh-TW [lang="ja"], body.lang-zh-TW [lang="zh-CN"] { display: none; }
+        span[lang] { display: none; }
+        body.lang-en span[lang="en"] { display: inline; }
+        body.lang-ko span[lang="ko"] { display: inline; }
+        body.lang-ja span[lang="ja"] { display: inline; }
+        body.lang-zh-CN span[lang="zh-CN"] { display: inline; }
+        body.lang-zh-TW span[lang="zh-TW"] { display: inline; }
+    </style>
+</head>
+<body class="lang-en">
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="back-link">← <span lang="en">Home</span><span lang="ko">홈으로</span><span lang="ja">ホームへ</span><span lang="zh-CN">返回首页</span><span lang="zh-TW">返回首頁</span></a>
+            <div class="lang-switcher">
+                <button class="lang-btn active" onclick="setLang('en')" title="English">🇺🇸</button>
+                <button class="lang-btn" onclick="setLang('ko')" title="한국어">🇰🇷</button>
+                <button class="lang-btn" onclick="setLang('ja')" title="日本語">🇯🇵</button>
+                <button class="lang-btn" onclick="setLang('zh-CN')" title="简体中文">🇨🇳</button>
+                <button class="lang-btn" onclick="setLang('zh-TW')" title="繁體中文">🇹🇼</button>
+            </div>
+        </div>
+        
+        <h1 lang="en">❓ FAQ</h1>
+        <h1 lang="ko">❓ 자주 묻는 질문</h1>
+        <h1 lang="ja">❓ よくある質問</h1>
+        <h1 lang="zh-CN">❓ 常见问题</h1>
+        <h1 lang="zh-TW">❓ 常見問題</h1>
+        
+        <p class="subtitle">
+            <span lang="en">Frequently asked questions about Renka</span>
+            <span lang="ko">Renka에 대해 자주 묻는 질문들</span>
+            <span lang="ja">Renkaに関するよくある質問</span>
+            <span lang="zh-CN">关于Renka的常见问题</span>
+            <span lang="zh-TW">關於Renka的常見問題</span>
+        </p>
+        
+        <!-- FAQ 1 -->
+        <article class="faq-item">
+            <div lang="en">
+                <div class="faq-question"><span class="faq-number">1.</span> How is Renka different from other beauty scanner apps?</div>
+                <div class="faq-answer">
+                    <p>There is a fundamental difference. Existing beauty scanner apps simply send 2D images to AI services like ChatGPT to receive analysis results. While this can help evaluate the general feel of a face, it does not provide accurate measurements at all. Since your facial photos are sent to AI services, there are privacy concerns and high usage costs.</p>
+                    <p>In contrast, Renka uses your iPhone's IR sensor to analyze key facial features through accurate 3D measurements. All data is processed only on your device, ensuring your privacy is protected.</p>
+                </div>
+            </div>
+            <div lang="ko">
+                <div class="faq-question"><span class="faq-number">1.</span> Renka는 다른 뷰티 스캐너 앱과 어떻게 다른가요?</div>
+                <div class="faq-answer">
+                    <p>근본적인 차이가 있습니다. 기존의 뷰티 스캐너 앱들은 2D 이미지를 단순히 ChatGPT와 같은 AI 서비스에 보내서 분석 결과를 받아오는 방식입니다. 얼굴의 느낌을 평가하는 데는 도움이 되지만 정확한 측정은 전혀 제공해 주지 않습니다. AI 서비스에 여러분의 얼굴 사진을 보내므로 프라이버시 유출의 우려도 있고, 사용료도 비쌉니다.</p>
+                    <p>반면, Renka는 아이폰의 IR 센서를 사용하여 정확한 3D 측정값을 통해 얼굴의 주요 특징을 분석합니다. 모든 데이터는 기기 내에서만 처리되어 프라이버시가 보장됩니다.</p>
+                </div>
+            </div>
+            <div lang="ja">
+                <div class="faq-question"><span class="faq-number">1.</span> Renkaは他のビューティースキャナーアプリとどう違いますか？</div>
+                <div class="faq-answer">
+                    <p>根本的な違いがあります。既存のビューティースキャナーアプリは、2D画像を単にChatGPTのようなAIサービスに送信して分析結果を受け取る方式です。顔の印象を評価するには役立ちますが、正確な測定は全く提供しません。AIサービスに顔写真を送信するため、プライバシー漏洩の懸念があり、利用料も高額です。</p>
+                    <p>一方、RenkaはiPhoneのIRセンサーを使用して、正確な3D測定値を通じて顔の主要な特徴を分析します。すべてのデータはデバイス内でのみ処理され、プライバシーが保護されます。</p>
+                </div>
+            </div>
+            <div lang="zh-CN">
+                <div class="faq-question"><span class="faq-number">1.</span> Renka与其他美颜扫描应用有什么不同？</div>
+                <div class="faq-answer">
+                    <p>存在根本性的区别。现有的美颜扫描应用只是将2D图像发送到ChatGPT等AI服务来获取分析结果。虽然这可以帮助评估面部的整体感觉，但完全无法提供准确的测量。由于您的面部照片会被发送到AI服务，存在隐私泄露的风险，使用费用也很高。</p>
+                    <p>相比之下，Renka使用iPhone的IR传感器，通过准确的3D测量来分析面部的主要特征。所有数据仅在您的设备上处理，确保您的隐私得到保护。</p>
+                </div>
+            </div>
+            <div lang="zh-TW">
+                <div class="faq-question"><span class="faq-number">1.</span> Renka與其他美顏掃描應用程式有什麼不同？</div>
+                <div class="faq-answer">
+                    <p>存在根本性的區別。現有的美顏掃描應用程式只是將2D圖像發送到ChatGPT等AI服務來獲取分析結果。雖然這可以幫助評估臉部的整體感覺，但完全無法提供準確的測量。由於您的臉部照片會被發送到AI服務，存在隱私洩露的風險，使用費用也很高。</p>
+                    <p>相比之下，Renka使用iPhone的IR傳感器，通過準確的3D測量來分析臉部的主要特徵。所有數據僅在您的裝置上處理，確保您的隱私得到保護。</p>
+                </div>
+            </div>
+        </article>
+        
+        <!-- FAQ 2 -->
+        <article class="faq-item">
+            <div lang="en">
+                <div class="faq-question"><span class="faq-number">2.</span> How far does the vertical face measurement go? Should it measure to the hairline?</div>
+                <div class="faq-answer">
+                    <p>The hairline is not necessarily the boundary of the face. This is because the hairline constantly changes depending on factors like hair loss. This app uses precise measurements from the IR sensor and Apple TrueDepth technology, utilizing the ergonomically defined facial boundaries set by Apple.</p>
+                    <p>Therefore, you can consider the vertical face length measured by this app to be quite accurate. However, head size is an estimated value based on face size, so it may be somewhat inaccurate in some cases.</p>
+                </div>
+            </div>
+            <div lang="ko">
+                <div class="faq-question"><span class="faq-number">2.</span> 얼굴의 세로 길이는 어디까지 재는 건가요? 헤어라인까지 재야 한다는데 맞나요?</div>
+                <div class="faq-answer">
+                    <p>헤어라인이 반드시 얼굴의 경계가 되지는 않습니다. 탈모 여부 등에 따라 헤어라인은 계속 변화하기 때문입니다. 본 앱은 IR 센서의 정밀 측정값과 Apple TrueDepth 기술을 이용하기에, Apple에서 인체공학적으로 정의한 얼굴의 경계값을 사용합니다.</p>
+                    <p>따라서 본 앱에서 측정한 얼굴의 세로 길이는 상당히 정확한 값이라고 생각하시면 됩니다. 다만, 머리 크기는 얼굴 크기에 기반한 추정값이기 때문에 경우에 따라 다소 부정확할 수 있습니다.</p>
+                </div>
+            </div>
+            <div lang="ja">
+                <div class="faq-question"><span class="faq-number">2.</span> 顔の縦の長さはどこまで測るのですか？ヘアラインまで測るべきですか？</div>
+                <div class="faq-answer">
+                    <p>ヘアラインが必ずしも顔の境界になるわけではありません。薄毛の有無などによってヘアラインは常に変化するためです。本アプリはIRセンサーの精密測定値とApple TrueDepth技術を利用しているため、Appleが人間工学的に定義した顔の境界値を使用しています。</p>
+                    <p>したがって、本アプリで測定した顔の縦の長さはかなり正確な値だと考えていただいて結構です。ただし、頭のサイズは顔のサイズに基づく推定値であるため、場合によっては多少不正確になることがあります。</p>
+                </div>
+            </div>
+            <div lang="zh-CN">
+                <div class="faq-question"><span class="faq-number">2.</span> 面部的垂直长度测量到哪里？应该测量到发际线吗？</div>
+                <div class="faq-answer">
+                    <p>发际线不一定是面部的边界。这是因为发际线会随着脱发等因素不断变化。本应用使用IR传感器的精密测量值和Apple TrueDepth技术，采用Apple人体工程学定义的面部边界值。</p>
+                    <p>因此，您可以认为本应用测量的面部垂直长度是相当准确的。但是，头部大小是基于面部大小的估计值，在某些情况下可能会有些不准确。</p>
+                </div>
+            </div>
+            <div lang="zh-TW">
+                <div class="faq-question"><span class="faq-number">2.</span> 臉部的垂直長度測量到哪裡？應該測量到髮際線嗎？</div>
+                <div class="faq-answer">
+                    <p>髮際線不一定是臉部的邊界。這是因為髮際線會隨著脫髮等因素不斷變化。本應用程式使用IR傳感器的精密測量值和Apple TrueDepth技術，採用Apple人體工程學定義的臉部邊界值。</p>
+                    <p>因此，您可以認為本應用程式測量的臉部垂直長度是相當準確的。但是，頭部大小是基於臉部大小的估計值，在某些情況下可能會有些不準確。</p>
+                </div>
+            </div>
+        </article>
+        
+        <!-- FAQ 3 -->
+        <article class="faq-item">
+            <div lang="en">
+                <div class="faq-question"><span class="faq-number">3.</span> What size is a face that can be covered by a CD?</div>
+                <div class="faq-answer">
+                    <p>Since face length can be easily adjusted with hairstyles, face width is quite important in determining face size. A CD has a diameter of about 12cm, so if your face width is less than about 14cm, a CD placed right in front of your face would almost cover it.</p>
+                    <p>This is similar to why a single sheet of toilet paper is often used for face size measurement. (One sheet of toilet paper is about 10-11cm)</p>
+                </div>
+            </div>
+            <div lang="ko">
+                <div class="faq-question"><span class="faq-number">3.</span> 얼굴이 CD 한 장으로 가려진다는 건 어느 정도 크기인가요?</div>
+                <div class="faq-answer">
+                    <p>얼굴의 길이는 헤어스타일로 보정이 쉬우므로, 얼굴 크기는 가로가 얼마나 짧은가가 상당히 중요합니다. CD 한 장의 지름은 약 12cm이므로, 얼굴 가로 길이가 약 14cm 미만이시라면 CD를 얼굴 바로 앞에 놓았을 때 거의 가려지게 됩니다.</p>
+                    <p>휴지 한 칸을 얼굴 크기 측정에 종종 사용하는 이유도 비슷합니다. (휴지 1칸은 약 10~11cm)</p>
+                </div>
+            </div>
+            <div lang="ja">
+                <div class="faq-question"><span class="faq-number">3.</span> CDで隠れる顔のサイズはどれくらいですか？</div>
+                <div class="faq-answer">
+                    <p>顔の長さはヘアスタイルで調整しやすいため、顔のサイズは横幅がどれだけ短いかがかなり重要です。CDの直径は約12cmなので、顔の横幅が約14cm未満であれば、CDを顔の真正面に置くとほぼ隠れます。</p>
+                    <p>トイレットペーパー1枚を顔のサイズ測定によく使う理由も同様です。（トイレットペーパー1枚は約10〜11cm）</p>
+                </div>
+            </div>
+            <div lang="zh-CN">
+                <div class="faq-question"><span class="faq-number">3.</span> 能被一张CD遮住的脸是多大？</div>
+                <div class="faq-answer">
+                    <p>由于脸的长度可以通过发型轻松调整，所以脸的宽度对于确定脸部大小相当重要。一张CD的直径约为12厘米，所以如果您的脸部宽度小于约14厘米，将CD放在脸前面几乎可以遮住。</p>
+                    <p>这也是为什么经常用一格卫生纸来测量脸部大小的原因。（一格卫生纸约10-11厘米）</p>
+                </div>
+            </div>
+            <div lang="zh-TW">
+                <div class="faq-question"><span class="faq-number">3.</span> 能被一張CD遮住的臉是多大？</div>
+                <div class="faq-answer">
+                    <p>由於臉的長度可以通過髮型輕鬆調整，所以臉的寬度對於確定臉部大小相當重要。一張CD的直徑約為12公分，所以如果您的臉部寬度小於約14公分，將CD放在臉前面幾乎可以遮住。</p>
+                    <p>這也是為什麼經常用一格衛生紙來測量臉部大小的原因。（一格衛生紙約10-11公分）</p>
+                </div>
+            </div>
+        </article>
+        
+        <!-- FAQ 4 -->
+        <article class="faq-item">
+            <div lang="en">
+                <div class="faq-question"><span class="faq-number">4.</span> How can I measure puffiness accurately?</div>
+                <div class="faq-answer">
+                    <p>Puffiness measurement works by continuously measuring your face and tracking displacement values over time. It also tracks changes in expressions such as closed eyelids, protruding lips, and puffy cheeks to help track puffiness in specific areas.</p>
+                    <p>Therefore, maintaining a consistent expression and posture during measurement greatly helps improve accuracy. A neutral expression is best for accuracy. However, please note that a neutral expression may result in a slightly lower attractiveness score.</p>
+                </div>
+            </div>
+            <div lang="ko">
+                <div class="faq-question"><span class="faq-number">4.</span> 붓기 측정은 어떻게 해야 정확한가요?</div>
+                <div class="faq-answer">
+                    <p>붓기 측정은 얼굴을 지속적으로 측정하면서 시간에 따른 측정 변위(displacement) 값을 추적하여 계산합니다. 또한, 감긴 눈꺼풀, 튀어나온 입술, 볼록 나온 볼 등 표정의 변화를 추적하여 특정 부위의 붓기 추적에 활용합니다.</p>
+                    <p>따라서 측정 시 일관된 표정과 자세를 유지해 주시면 정확도 향상에 매우 도움이 됩니다. 표정은 무표정이 가장 정확도에 유리합니다. 다만, 무표정일 경우 매력도 점수가 다소 낮게 나올 수 있으니 참고해 주세요.</p>
+                </div>
+            </div>
+            <div lang="ja">
+                <div class="faq-question"><span class="faq-number">4.</span> むくみ測定を正確に行うにはどうすればよいですか？</div>
+                <div class="faq-answer">
+                    <p>むくみ測定は、顔を継続的に測定しながら時間の経過に伴う変位値を追跡して計算します。また、閉じたまぶた、突き出た唇、膨らんだ頬などの表情の変化を追跡し、特定の部位のむくみ追跡に活用します。</p>
+                    <p>したがって、測定時に一貫した表情と姿勢を維持していただくと、精度向上に大いに役立ちます。表情は無表情が最も精度に有利です。ただし、無表情の場合、魅力度スコアがやや低くなる可能性がありますのでご了承ください。</p>
+                </div>
+            </div>
+            <div lang="zh-CN">
+                <div class="faq-question"><span class="faq-number">4.</span> 如何准确测量浮肿？</div>
+                <div class="faq-answer">
+                    <p>浮肿测量通过持续测量您的面部并追踪随时间变化的位移值来计算。它还会追踪闭眼、嘴唇突出、脸颊鼓起等表情变化，以帮助追踪特定区域的浮肿。</p>
+                    <p>因此，在测量时保持一致的表情和姿势对提高准确性非常有帮助。无表情状态对准确性最有利。但请注意，无表情可能会导致魅力度评分略低。</p>
+                </div>
+            </div>
+            <div lang="zh-TW">
+                <div class="faq-question"><span class="faq-number">4.</span> 如何準確測量浮腫？</div>
+                <div class="faq-answer">
+                    <p>浮腫測量通過持續測量您的臉部並追蹤隨時間變化的位移值來計算。它還會追蹤閉眼、嘴唇突出、臉頰鼓起等表情變化，以幫助追蹤特定區域的浮腫。</p>
+                    <p>因此，在測量時保持一致的表情和姿勢對提高準確性非常有幫助。無表情狀態對準確性最有利。但請注意，無表情可能會導致魅力度評分略低。</p>
+                </div>
+            </div>
+        </article>
+        
+        <!-- FAQ 5 -->
+        <article class="faq-item">
+            <div lang="en">
+                <div class="faq-question"><span class="faq-number">5.</span> Puffiness values changed significantly after an app update.</div>
+                <div class="faq-answer">
+                    <p>This could be due to actual differences in puffiness, but it may also be caused by changes in the puffiness calculation logic from the app update. Puffiness is a very sensitive measurement indicator, and we are continuously working to improve its accuracy.</p>
+                    <p>We appreciate your understanding that sudden changes may be due to app updates. If measurements continue to appear abnormal, deleting data from before the update will restore accuracy. We will continue to work towards providing stable results.</p>
+                </div>
+            </div>
+            <div lang="ko">
+                <div class="faq-question"><span class="faq-number">5.</span> 앱 업데이트 후 붓기 값의 변화가 크게 나타납니다.</div>
+                <div class="faq-answer">
+                    <p>실제 붓기의 차이가 있어서일 수도 있지만, 앱 업데이트로 인해 변경된 붓기 계산 로직 때문일 수 있습니다. 붓기는 상당히 민감한 측정 지표로, 정확도를 높이기 위한 노력을 계속하고 있습니다.</p>
+                    <p>너무 급격한 변화가 나타났을 경우에는 앱 업데이트로 인한 것일 수 있음을 양해해 주시면 감사하겠습니다. 측정치가 계속 이상하게 나타난다면, 업데이트 전 과거 데이터를 삭제해 주시면 정확도가 복구됩니다. 앞으로 안정적인 결과를 제공할 수 있도록 노력하겠습니다.</p>
+                </div>
+            </div>
+            <div lang="ja">
+                <div class="faq-question"><span class="faq-number">5.</span> アプリのアップデート後、むくみの値が大きく変化しました。</div>
+                <div class="faq-answer">
+                    <p>実際のむくみの違いが原因の可能性もありますが、アプリのアップデートによるむくみ計算ロジックの変更が原因の可能性もあります。むくみは非常に敏感な測定指標であり、精度向上のための努力を続けています。</p>
+                    <p>急激な変化が現れた場合は、アプリのアップデートによるものである可能性がありますことをご了承ください。測定値が異常に表示され続ける場合は、アップデート前のデータを削除していただくと精度が回復します。今後も安定した結果を提供できるよう努めてまいります。</p>
+                </div>
+            </div>
+            <div lang="zh-CN">
+                <div class="faq-question"><span class="faq-number">5.</span> 应用更新后浮肿值发生了很大变化。</div>
+                <div class="faq-answer">
+                    <p>这可能是由于实际浮肿的差异，但也可能是由于应用更新导致的浮肿计算逻辑变更。浮肿是一个非常敏感的测量指标，我们正在不断努力提高其准确性。</p>
+                    <p>如果出现剧烈变化，请理解这可能是由于应用更新造成的。如果测量值持续异常，删除更新前的数据将恢复准确性。我们将继续努力提供稳定的结果。</p>
+                </div>
+            </div>
+            <div lang="zh-TW">
+                <div class="faq-question"><span class="faq-number">5.</span> 應用程式更新後浮腫值發生了很大變化。</div>
+                <div class="faq-answer">
+                    <p>這可能是由於實際浮腫的差異，但也可能是由於應用程式更新導致的浮腫計算邏輯變更。浮腫是一個非常敏感的測量指標，我們正在不斷努力提高其準確性。</p>
+                    <p>如果出現劇烈變化，請理解這可能是由於應用程式更新造成的。如果測量值持續異常，刪除更新前的數據將恢復準確性。我們將繼續努力提供穩定的結果。</p>
+                </div>
+            </div>
+        </article>
+        
+        <!-- FAQ 6 -->
+        <article class="faq-item">
+            <div lang="en">
+                <div class="faq-question"><span class="faq-number">6.</span> How can I get accurate color diagnosis?</div>
+                <div class="faq-answer">
+                    <p>Color diagnosis is most accurate when measured in a place with sufficient natural light. This app uses measurements based on skin color and tone.</p>
+                    <p>However, there are various measurement methods that combine factors beyond simple skin tone/color, so if you desire a more precise diagnosis, we recommend consulting with a beauty/color specialist.</p>
+                </div>
+            </div>
+            <div lang="ko">
+                <div class="faq-question"><span class="faq-number">6.</span> 컬러 진단은 어떻게 해야 정확한가요?</div>
+                <div class="faq-answer">
+                    <p>컬러 진단은 충분한 자연광이 있는 곳에서 측정하는 것이 가장 정확합니다. 본 앱에서는 피부 색상과 톤에 따른 측정값을 사용합니다.</p>
+                    <p>다만, 단순 피부 톤/색상 이외에도 다양한 요소와 결합된 측정 방법들이 존재하므로, 보다 정밀한 진단을 원하실 경우 뷰티/색채 전문가의 조언을 구하시는 것을 권장합니다.</p>
+                </div>
+            </div>
+            <div lang="ja">
+                <div class="faq-question"><span class="faq-number">6.</span> カラー診断を正確に行うにはどうすればよいですか？</div>
+                <div class="faq-answer">
+                    <p>カラー診断は、十分な自然光がある場所で測定するのが最も正確です。本アプリでは、肌の色とトーンに基づく測定値を使用しています。</p>
+                    <p>ただし、単純な肌のトーン/色以外にもさまざまな要素と組み合わせた測定方法が存在するため、より精密な診断をご希望の場合は、ビューティー/カラー専門家のアドバイスを受けることをお勧めします。</p>
+                </div>
+            </div>
+            <div lang="zh-CN">
+                <div class="faq-question"><span class="faq-number">6.</span> 如何获得准确的色彩诊断？</div>
+                <div class="faq-answer">
+                    <p>在有充足自然光的地方进行测量时，色彩诊断最为准确。本应用使用基于肤色和色调的测量值。</p>
+                    <p>但是，除了简单的肤色/色调之外，还存在结合各种因素的测量方法，所以如果您希望获得更精确的诊断，建议咨询美容/色彩专家。</p>
+                </div>
+            </div>
+            <div lang="zh-TW">
+                <div class="faq-question"><span class="faq-number">6.</span> 如何獲得準確的色彩診斷？</div>
+                <div class="faq-answer">
+                    <p>在有充足自然光的地方進行測量時，色彩診斷最為準確。本應用程式使用基於膚色和色調的測量值。</p>
+                    <p>但是，除了簡單的膚色/色調之外，還存在結合各種因素的測量方法，所以如果您希望獲得更精確的診斷，建議諮詢美容/色彩專家。</p>
+                </div>
+            </div>
+        </article>
+        
+        <!-- FAQ 7 -->
+        <article class="faq-item">
+            <div lang="en">
+                <div class="faq-question"><span class="faq-number">7.</span> Will the plastic surgery simulator show the same results as actual surgery?</div>
+                <div class="faq-answer">
+                    <p>The plastic surgery simulator is provided for reference purposes only. While it simulates based on actual 3D facial data, real surgery results can vary depending on various factors such as skin elasticity, bone structure, and the surgeon's technique.</p>
+                    <p>Please be sure to consult with qualified medical professionals for accurate consultations.</p>
+                </div>
+            </div>
+            <div lang="ko">
+                <div class="faq-question"><span class="faq-number">7.</span> 성형 시뮬레이터는 실제 수술 결과와 같나요?</div>
+                <div class="faq-answer">
+                    <p>성형 시뮬레이터는 참고용으로만 제공됩니다. 실제 3D 얼굴 데이터를 기반으로 시뮬레이션하지만, 실제 수술 결과는 피부 탄력, 뼈 구조, 의사의 기술 등 다양한 요인에 따라 달라질 수 있습니다.</p>
+                    <p>정확한 상담은 반드시 전문 의료진과 진행해 주세요.</p>
+                </div>
+            </div>
+            <div lang="ja">
+                <div class="faq-question"><span class="faq-number">7.</span> 整形シミュレーターは実際の手術結果と同じですか？</div>
+                <div class="faq-answer">
+                    <p>整形シミュレーターは参考目的でのみ提供されています。実際の3D顔データに基づいてシミュレーションしますが、実際の手術結果は肌の弾力、骨格、医師の技術など、さまざまな要因によって異なる場合があります。</p>
+                    <p>正確なカウンセリングは必ず専門の医療スタッフとご相談ください。</p>
+                </div>
+            </div>
+            <div lang="zh-CN">
+                <div class="faq-question"><span class="faq-number">7.</span> 整形模拟器会显示与实际手术相同的结果吗？</div>
+                <div class="faq-answer">
+                    <p>整形模拟器仅供参考。虽然它基于实际的3D面部数据进行模拟，但实际手术结果可能因皮肤弹性、骨骼结构、医生技术等各种因素而异。</p>
+                    <p>请务必与专业医疗人员进行准确的咨询。</p>
+                </div>
+            </div>
+            <div lang="zh-TW">
+                <div class="faq-question"><span class="faq-number">7.</span> 整形模擬器會顯示與實際手術相同的結果嗎？</div>
+                <div class="faq-answer">
+                    <p>整形模擬器僅供參考。雖然它基於實際的3D臉部數據進行模擬，但實際手術結果可能因皮膚彈性、骨骼結構、醫生技術等各種因素而異。</p>
+                    <p>請務必與專業醫療人員進行準確的諮詢。</p>
+                </div>
+            </div>
+        </article>
+        
+        <!-- FAQ 8 -->
+        <article class="faq-item">
+            <div lang="en">
+                <div class="faq-question"><span class="faq-number">8.</span> Which iPhones can use Renka?</div>
+                <div class="faq-answer">
+                    <p>Renka can only be used on iPhones equipped with TrueDepth camera (Face ID). It is supported on all iPhones released after iPhone X (excluding iPhone SE series). It is also available on iPad Pro models with Face ID.</p>
+                </div>
+            </div>
+            <div lang="ko">
+                <div class="faq-question"><span class="faq-number">8.</span> 어떤 아이폰에서 사용할 수 있나요?</div>
+                <div class="faq-answer">
+                    <p>Renka는 TrueDepth 카메라(Face ID)가 탑재된 아이폰에서만 사용 가능합니다. iPhone X 이후 출시된 모든 아이폰에서 지원됩니다 (iPhone SE 시리즈 제외). iPad Pro(Face ID 모델)에서도 사용 가능합니다.</p>
+                </div>
+            </div>
+            <div lang="ja">
+                <div class="faq-question"><span class="faq-number">8.</span> どのiPhoneで使用できますか？</div>
+                <div class="faq-answer">
+                    <p>RenkaはTrueDepthカメラ（Face ID）を搭載したiPhoneでのみ使用できます。iPhone X以降に発売されたすべてのiPhoneでサポートされています（iPhone SEシリーズを除く）。Face ID搭載のiPad Proでも使用可能です。</p>
+                </div>
+            </div>
+            <div lang="zh-CN">
+                <div class="faq-question"><span class="faq-number">8.</span> 哪些iPhone可以使用Renka？</div>
+                <div class="faq-answer">
+                    <p>Renka只能在配备TrueDepth相机（Face ID）的iPhone上使用。支持iPhone X之后发布的所有iPhone（iPhone SE系列除外）。也可在配备Face ID的iPad Pro上使用。</p>
+                </div>
+            </div>
+            <div lang="zh-TW">
+                <div class="faq-question"><span class="faq-number">8.</span> 哪些iPhone可以使用Renka？</div>
+                <div class="faq-answer">
+                    <p>Renka只能在配備TrueDepth相機（Face ID）的iPhone上使用。支援iPhone X之後發布的所有iPhone（iPhone SE系列除外）。也可在配備Face ID的iPad Pro上使用。</p>
+                </div>
+            </div>
+        </article>
+        
+        <!-- FAQ 9 -->
+        <article class="faq-item">
+            <div lang="en">
+                <div class="faq-question"><span class="faq-number">9.</span> Results are slightly different each time I measure. Why is that?</div>
+                <div class="faq-answer">
+                    <p>Measurement values can vary slightly depending on lighting, posture, expression, and distance from the camera. For the most accurate results, maintain a consistent distance while looking straight ahead with a neutral expression under bright lighting.</p>
+                </div>
+            </div>
+            <div lang="ko">
+                <div class="faq-question"><span class="faq-number">9.</span> 측정할 때마다 결과가 조금씩 다릅니다. 왜 그런가요?</div>
+                <div class="faq-answer">
+                    <p>조명, 자세, 표정, 카메라와의 거리 등에 따라 측정값이 약간 달라질 수 있습니다. 가장 정확한 결과를 위해서는 밝은 조명 아래에서 정면을 바라보고, 무표정 상태로 일정한 거리를 유지해 주세요.</p>
+                </div>
+            </div>
+            <div lang="ja">
+                <div class="faq-question"><span class="faq-number">9.</span> 測定するたびに結果が少し異なります。なぜですか？</div>
+                <div class="faq-answer">
+                    <p>照明、姿勢、表情、カメラとの距離などによって測定値がわずかに異なる場合があります。最も正確な結果を得るには、明るい照明の下で正面を向き、無表情の状態で一定の距離を保ってください。</p>
+                </div>
+            </div>
+            <div lang="zh-CN">
+                <div class="faq-question"><span class="faq-number">9.</span> 每次测量结果都略有不同。为什么？</div>
+                <div class="faq-answer">
+                    <p>测量值可能因光线、姿势、表情和与相机的距离等因素而略有不同。为获得最准确的结果，请在明亮的光线下正视前方，保持无表情状态和一致的距离。</p>
+                </div>
+            </div>
+            <div lang="zh-TW">
+                <div class="faq-question"><span class="faq-number">9.</span> 每次測量結果都略有不同。為什麼？</div>
+                <div class="faq-answer">
+                    <p>測量值可能因光線、姿勢、表情和與相機的距離等因素而略有不同。為獲得最準確的結果，請在明亮的光線下正視前方，保持無表情狀態和一致的距離。</p>
+                </div>
+            </div>
+        </article>
+        
+        <!-- FAQ 10 -->
+        <article class="faq-item">
+            <div lang="en">
+                <div class="faq-question"><span class="faq-number">10.</span> Are there plans to release an Android version?</div>
+                <div class="faq-answer">
+                    <p>Unfortunately, Android devices rarely have precision IR depth sensors like the iPhone. Since it is difficult to implement Renka's core feature of accurate 3D measurement, there are currently no plans to release an Android version.</p>
+                </div>
+            </div>
+            <div lang="ko">
+                <div class="faq-question"><span class="faq-number">10.</span> 안드로이드 버전 출시 계획은 없나요?</div>
+                <div class="faq-answer">
+                    <p>안타깝게도 안드로이드 기기의 경우 아이폰처럼 정밀한 IR 깊이 센서를 탑재한 경우가 거의 없습니다. Renka의 핵심 기능인 정확한 3D 측정을 구현하기 어렵기 때문에, 현재로서는 안드로이드 버전 출시 계획이 없습니다.</p>
+                </div>
+            </div>
+            <div lang="ja">
+                <div class="faq-question"><span class="faq-number">10.</span> Android版のリリース予定はありますか？</div>
+                <div class="faq-answer">
+                    <p>残念ながら、AndroidデバイスにはiPhoneのような精密なIR深度センサーを搭載しているものがほとんどありません。Renkaのコア機能である正確な3D測定を実現することが難しいため、現時点ではAndroid版のリリース予定はありません。</p>
+                </div>
+            </div>
+            <div lang="zh-CN">
+                <div class="faq-question"><span class="faq-number">10.</span> 有发布Android版本的计划吗？</div>
+                <div class="faq-answer">
+                    <p>遗憾的是，Android设备很少配备像iPhone那样精密的IR深度传感器。由于难以实现Renka的核心功能——准确的3D测量，目前没有发布Android版本的计划。</p>
+                </div>
+            </div>
+            <div lang="zh-TW">
+                <div class="faq-question"><span class="faq-number">10.</span> 有發布Android版本的計劃嗎？</div>
+                <div class="faq-answer">
+                    <p>遺憾的是，Android裝置很少配備像iPhone那樣精密的IR深度傳感器。由於難以實現Renka的核心功能——準確的3D測量，目前沒有發布Android版本的計劃。</p>
+                </div>
+            </div>
+        </article>
+        
+        <footer class="footer"><p>© 2025 FatTail Labs. All rights reserved.</p></footer>
+    </div>
+    
+    <script>
+        function setLang(lang) {
+            setLangSilent(lang);
+        }
+        
+        function setLangSilent(lang) {
+            document.body.className = 'lang-' + lang;
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('onclick').includes("'" + lang + "'")) {
+                    btn.classList.add('active');
+                }
+            });
+            localStorage.setItem('preferred-lang', lang);
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const langParam = urlParams.get('lang');
+            const supportedLangs = ['en', 'ko', 'ja', 'zh-CN', 'zh-TW'];
+            
+            if (langParam && supportedLangs.includes(langParam)) {
+                setLangSilent(langParam);
+            } else {
+                const saved = localStorage.getItem('preferred-lang');
+                if (saved && supportedLangs.includes(saved)) {
+                    setLangSilent(saved);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
