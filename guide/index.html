@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Style Guide - Renka</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Apple SD Gothic Neo', sans-serif; background: linear-gradient(160deg, #f2fae8 0%, #e2f3d0 100%); background-attachment: fixed; color: #33402d; line-height: 1.75; }
+        .container { max-width: 700px; margin: 0 auto; padding: 36px 20px 80px; }
+        .header { display: flex; justify-content: flex-end; align-items: center; margin-bottom: 22px; }
+        .lang-switcher { display: flex; gap: 6px; flex-wrap: wrap; }
+        .lang-btn { background: rgba(255,255,255,0.7); border: 1px solid #cfe6b5; border-radius: 8px; padding: 7px 10px; font-size: 18px; cursor: pointer; transition: all 0.2s; }
+        .lang-btn:hover { background: #fff; }
+        .lang-btn.active { background: #fff; border-color: #7cb342; box-shadow: 0 1px 5px rgba(124,179,66,0.35); }
+
+        h1 { font-size: 29px; font-weight: 800; margin-bottom: 8px; color: #fff; letter-spacing: -0.3px; text-shadow: 0 1px 0 #6aa83a, 0 2px 0 #5d9931, 2px 3px 7px rgba(80,140,40,0.35); }
+        .subtitle { font-size: 14px; color: #6b7a60; margin-bottom: 30px; }
+
+        .cat-card { display: block; text-decoration: none; color: inherit; background: rgba(255,255,255,0.5); border: 1px solid rgba(255,255,255,0.65); border-radius: 18px; padding: 22px; margin-bottom: 14px; box-shadow: 0 2px 12px rgba(99,150,55,0.1); transition: all 0.2s; }
+        .cat-card.active:hover { background: rgba(255,255,255,0.7); box-shadow: 0 5px 18px rgba(99,150,55,0.2); transform: translateY(-2px); }
+        .cat-card.soon { opacity: 0.65; cursor: default; box-shadow: 0 1px 6px rgba(99,150,55,0.07); }
+        .cat-title { font-size: 18px; font-weight: 700; color: #34452a; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+        .cat-desc { font-size: 13.5px; color: #6b7a60; margin-top: 5px; }
+        .cat-arrow { float: right; color: #6aa83a; font-size: 20px; font-weight: 700; }
+        .badge-soon { font-size: 11px; color: #7a8a6c; background: #eaf3dc; border-radius: 6px; padding: 2px 7px; }
+
+        [lang]:not([lang="en"]) { display: none; }
+        body.lang-ko [lang="ko"] { display: block; }
+        body.lang-ko [lang="en"], body.lang-ko [lang="ja"], body.lang-ko [lang="zh-CN"], body.lang-ko [lang="zh-TW"] { display: none; }
+        body.lang-ja [lang="ja"] { display: block; }
+        body.lang-ja [lang="en"], body.lang-ja [lang="ko"], body.lang-ja [lang="zh-CN"], body.lang-ja [lang="zh-TW"] { display: none; }
+        body.lang-en [lang="en"] { display: block; }
+        body.lang-en [lang="ko"], body.lang-en [lang="ja"], body.lang-en [lang="zh-CN"], body.lang-en [lang="zh-TW"] { display: none; }
+        body.lang-zh-CN [lang="zh-CN"] { display: block; }
+        body.lang-zh-CN [lang="en"], body.lang-zh-CN [lang="ko"], body.lang-zh-CN [lang="ja"], body.lang-zh-CN [lang="zh-TW"] { display: none; }
+        body.lang-zh-TW [lang="zh-TW"] { display: block; }
+        body.lang-zh-TW [lang="en"], body.lang-zh-TW [lang="ko"], body.lang-zh-TW [lang="ja"], body.lang-zh-TW [lang="zh-CN"] { display: none; }
+        span[lang] { display: none; }
+        body.lang-en span[lang="en"] { display: inline; }
+        body.lang-ko span[lang="ko"] { display: inline; }
+        body.lang-ja span[lang="ja"] { display: inline; }
+        body.lang-zh-CN span[lang="zh-CN"] { display: inline; }
+        body.lang-zh-TW span[lang="zh-TW"] { display: inline; }
+    </style>
+</head>
+<body class="lang-en">
+    <div class="container">
+        <div class="header">
+            <div class="lang-switcher">
+                <button class="lang-btn active" onclick="setLang('en')" title="English">🇺🇸</button>
+                <button class="lang-btn" onclick="setLang('ko')" title="한국어">🇰🇷</button>
+                <button class="lang-btn" onclick="setLang('ja')" title="日本語">🇯🇵</button>
+                <button class="lang-btn" onclick="setLang('zh-CN')" title="简体中文">🇨🇳</button>
+                <button class="lang-btn" onclick="setLang('zh-TW')" title="繁體中文">🇹🇼</button>
+            </div>
+        </div>
+
+        <h1>
+            <span lang="en">Style Guide</span><span lang="ko">스타일 가이드</span><span lang="ja">スタイルガイド</span><span lang="zh-CN">风格指南</span><span lang="zh-TW">風格指南</span>
+        </h1>
+        <p class="subtitle">
+            <span lang="en">Styling tips matched to your measured features.</span>
+            <span lang="ko">측정된 내 얼굴 데이터에 맞춘 스타일링 팁.</span>
+            <span lang="ja">測定したあなたの顔データに合わせたスタイリングのヒント。</span>
+            <span lang="zh-CN">根据您测得的面部数据量身定制的造型建议。</span>
+            <span lang="zh-TW">根據您測得的面部資料量身定制的造型建議。</span>
+        </p>
+
+        <!-- 헤어 (활성) -->
+        <a class="cat-card active" href="hair.html">
+            <span class="cat-arrow">›</span>
+            <div class="cat-title">💇 <span lang="en">Hairstyles by Face Shape</span><span lang="ko">얼굴형별 헤어스타일</span><span lang="ja">顔型別ヘアスタイル</span><span lang="zh-CN">脸型对应发型</span><span lang="zh-TW">臉型對應髮型</span></div>
+            <div class="cat-desc"><span lang="en">Cuts that suit your face shape, and what to avoid.</span><span lang="ko">내 얼굴형에 어울리는 컷과 피해야 할 스타일.</span><span lang="ja">顔型に似合うカットと避けたいスタイル。</span><span lang="zh-CN">适合您脸型的发型与应避免的造型。</span><span lang="zh-TW">適合您臉型的髮型與應避免的造型。</span></div>
+        </a>
+
+        <!-- 퍼스널컬러 (준비 중) -->
+        <div class="cat-card soon">
+            <div class="cat-title">🎨 <span lang="en">Personal Color Styling</span><span lang="ko">퍼스널컬러 스타일링</span><span lang="ja">パーソナルカラー</span><span lang="zh-CN">个人色彩搭配</span><span lang="zh-TW">個人色彩搭配</span> <span class="badge-soon"><span lang="en">Soon</span><span lang="ko">준비 중</span><span lang="ja">準備中</span><span lang="zh-CN">即将上线</span><span lang="zh-TW">即將上線</span></span></div>
+        </div>
+
+        <!-- 비율 가이드 (준비 중) -->
+        <div class="cat-card soon">
+            <div class="cat-title">📐 <span lang="en">Proportion &amp; Midface Guide</span><span lang="ko">비율·중안부 가이드</span><span lang="ja">比率・中顔面ガイド</span><span lang="zh-CN">比例·中庭指南</span><span lang="zh-TW">比例·中庭指南</span> <span class="badge-soon"><span lang="en">Soon</span><span lang="ko">준비 중</span><span lang="ja">準備中</span><span lang="zh-CN">即将上线</span><span lang="zh-TW">即將上線</span></span></div>
+        </div>
+    </div>
+
+    <script>
+        function setLang(lang) { setLangSilent(lang); }
+        function setLangSilent(lang) {
+            document.body.className = 'lang-' + lang;
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('onclick').includes("'" + lang + "'")) btn.classList.add('active');
+            });
+            localStorage.setItem('preferred-lang', lang);
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const langParam = urlParams.get('lang');
+            const supportedLangs = ['en', 'ko', 'ja', 'zh-CN', 'zh-TW'];
+            if (langParam && supportedLangs.includes(langParam)) {
+                setLangSilent(langParam);
+            } else {
+                const saved = localStorage.getItem('preferred-lang');
+                if (saved && supportedLangs.includes(saved)) setLangSilent(saved);
+            }
+        });
+        // 카테고리 카드가 hair.html로 갈 때 현재 언어 유지
+        document.querySelector('.cat-card.active')?.addEventListener('click', function(e) {
+            const lang = document.body.className.replace('lang-', '');
+            if (lang && lang !== 'en') { e.preventDefault(); window.location.href = 'hair.html?lang=' + lang; }
+        });
+    </script>
+</body>
+</html>
