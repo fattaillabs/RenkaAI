@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Makeup Guide by Midface Ratio - Renka</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Apple SD Gothic Neo', sans-serif; background: linear-gradient(160deg, #f2fae8 0%, #e2f3d0 100%); background-attachment: fixed; color: #33402d; line-height: 1.75; }
+        .container { max-width: 700px; margin: 0 auto; padding: 36px 20px 80px; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 22px; flex-wrap: wrap; gap: 12px; }
+        .back-link { display: inline-flex; align-items: center; gap: 6px; color: #4e8a2c; text-decoration: none; font-size: 14px; font-weight: 600; }
+        .back-link:hover { text-decoration: underline; }
+        .lang-switcher { display: flex; gap: 6px; flex-wrap: wrap; }
+        .lang-btn { background: rgba(255,255,255,0.7); border: 1px solid #cfe6b5; border-radius: 8px; padding: 7px 10px; font-size: 18px; cursor: pointer; transition: all 0.2s; }
+        .lang-btn:hover { background: #fff; }
+        .lang-btn.active { background: #fff; border-color: #7cb342; box-shadow: 0 1px 5px rgba(124,179,66,0.35); }
+
+        /* 제목 — 흰색 글씨 + 초록 그림자로 포인트 */
+        h1 { font-size: 28px; font-weight: 800; margin-bottom: 8px; color: #fff; letter-spacing: -0.3px; text-shadow: 0 1px 0 #6aa83a, 0 2px 0 #5d9931, 2px 3px 7px rgba(80,140,40,0.35); }
+        .subtitle { font-size: 14px; color: #6b7a60; margin-bottom: 14px; }
+        .auto-note { font-size: 12.5px; color: #87937c; margin-bottom: 24px; }
+
+        /* 중안부 분류 빠른 이동 칩 */
+        .section-nav { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px; }
+        .section-chip { display: inline-block; padding: 7px 13px; font-size: 13px; font-weight: 600; color: #4e6b39; background: rgba(255,255,255,0.75); border: 1px solid #d4e8bd; border-radius: 20px; text-decoration: none; transition: all 0.2s; }
+        .section-chip:hover { background: #fff; border-color: #7cb342; color: #3d6b1f; }
+        .section-chip.active { background: #fff; border-color: #7cb342; color: #3d6b1f; box-shadow: 0 1px 5px rgba(124,179,66,0.35); }
+
+        /* 분류 카드 — 반투명 흰 레이어 (배경 연두가 비쳐 가볍고 산뜻) */
+        .guide-card { scroll-margin-top: 16px; background: rgba(255,255,255,0.5); border: 1px solid rgba(255,255,255,0.65); border-radius: 18px; padding: 24px 22px; margin-bottom: 18px; box-shadow: 0 2px 12px rgba(99,150,55,0.1); }
+        .guide-card h2 { font-size: 22px; font-weight: 800; margin-bottom: 4px; display: flex; align-items: baseline; gap: 8px; color: #3d6b1f; flex-wrap: wrap; }
+        .guide-card h2 .en-name { font-size: 13px; color: #6aa83a; font-weight: 600; }
+        .feature { font-size: 14.5px; color: #56624e; margin: 10px 0 18px; }
+
+        .block-label { font-size: 13px; font-weight: 800; letter-spacing: 0.2px; margin: 16px 0 8px; display: inline-flex; align-items: center; gap: 6px; }
+        .block-label.rec { color: #4e8a2c; }
+        .block-label.avoid { color: #c4882f; }
+        ul.tips { list-style: none; }
+        ul.tips li { position: relative; padding-left: 18px; margin-bottom: 7px; font-size: 14.5px; color: #3f4a39; }
+        ul.tips li::before { content: ''; position: absolute; left: 2px; top: 10px; width: 6px; height: 6px; border-radius: 50%; }
+        ul.tips.rec li::before { background: #7cb342; }
+        ul.tips.avoid li::before { background: #e0ad5f; }
+        /* 번호 매기는 추천 리스트 (이미지의 ①②③ 원과 매칭) */
+        ul.tips.rec.numbered { counter-reset: pt; }
+        ul.tips.rec.numbered li { counter-increment: pt; padding-left: 26px; }
+        ul.tips.rec.numbered li::before { content: counter(pt); width: 17px; height: 17px; left: 0; top: 3px; background: #7cb342; color: #fff; font-size: 10px; font-weight: 800; line-height: 17px; text-align: center; border-radius: 50%; }
+        ul.tips.rec.numbered li.no-num { counter-increment: 0; }
+        ul.tips.rec.numbered li.no-num::before { content: ''; width: 6px; height: 6px; left: 2px; top: 10px; line-height: 0; }
+
+        /* 이미지 (분류당 1장) → 사진 넣으면 자동 표시 */
+        .img-row { display: flex; gap: 10px; margin-top: 16px; justify-content: center; }
+        .face-img { width: 240px; max-width: 70%; margin: 0; }
+        .face-img img { width: 100%; height: auto; border-radius: 14px; display: block; background: #eef3e6; }
+        .face-img figcaption { display: none; }
+        .face-img.pending img { display: none; }
+        .face-img.pending { aspect-ratio: 4 / 5; border: 1.5px dashed #b9d49a; border-radius: 14px; display: flex; align-items: center; justify-content: center; text-align: center; background: rgba(255,255,255,0.5); }
+        .face-img.pending figcaption { display: block; font-size: 11px; color: #8aa372; line-height: 1.5; padding: 8px; }
+
+        .footer-note { margin-top: 28px; font-size: 12px; color: #87937c; text-align: center; line-height: 1.7; }
+
+        /* ===== 다국어 표시 제어 (기존 사이트와 동일 메커니즘) ===== */
+        [lang]:not([lang="en"]) { display: none; }
+        body.lang-ko [lang="ko"] { display: block; }
+        body.lang-ko [lang="en"], body.lang-ko [lang="ja"], body.lang-ko [lang="zh-CN"], body.lang-ko [lang="zh-TW"] { display: none; }
+        body.lang-ja [lang="ja"] { display: block; }
+        body.lang-ja [lang="en"], body.lang-ja [lang="ko"], body.lang-ja [lang="zh-CN"], body.lang-ja [lang="zh-TW"] { display: none; }
+        body.lang-en [lang="en"] { display: block; }
+        body.lang-en [lang="ko"], body.lang-en [lang="ja"], body.lang-en [lang="zh-CN"], body.lang-en [lang="zh-TW"] { display: none; }
+        body.lang-zh-CN [lang="zh-CN"] { display: block; }
+        body.lang-zh-CN [lang="en"], body.lang-zh-CN [lang="ko"], body.lang-zh-CN [lang="ja"], body.lang-zh-CN [lang="zh-TW"] { display: none; }
+        body.lang-zh-TW [lang="zh-TW"] { display: block; }
+        body.lang-zh-TW [lang="en"], body.lang-zh-TW [lang="ko"], body.lang-zh-TW [lang="ja"], body.lang-zh-TW [lang="zh-CN"] { display: none; }
+        /* inline 요소용 */
+        span[lang] { display: none; }
+        body.lang-en span[lang="en"] { display: inline; }
+        body.lang-ko span[lang="ko"] { display: inline; }
+        body.lang-ja span[lang="ja"] { display: inline; }
+        body.lang-zh-CN span[lang="zh-CN"] { display: inline; }
+        body.lang-zh-TW span[lang="zh-TW"] { display: inline; }
+    </style>
+</head>
+<body class="lang-en">
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="back-link">← <span lang="en">Style Guide</span><span lang="ko">스타일 가이드</span><span lang="ja">スタイルガイド</span><span lang="zh-CN">风格指南</span><span lang="zh-TW">風格指南</span></a>
+            <div class="lang-switcher">
+                <button class="lang-btn active" onclick="setLang('en')" title="English">🇺🇸</button>
+                <button class="lang-btn" onclick="setLang('ko')" title="한국어">🇰🇷</button>
+                <button class="lang-btn" onclick="setLang('ja')" title="日本語">🇯🇵</button>
+                <button class="lang-btn" onclick="setLang('zh-CN')" title="简体中文">🇨🇳</button>
+                <button class="lang-btn" onclick="setLang('zh-TW')" title="繁體中文">🇹🇼</button>
+            </div>
+        </div>
+
+        <h1>
+            <span lang="en">Makeup Guide by Midface Ratio</span>
+            <span lang="ko">중안부 비율별 메이크업 가이드</span>
+            <span lang="ja">中顔面の長さ別メイクガイド</span>
+            <span lang="zh-CN">中庭比例对应妆容指南</span>
+            <span lang="zh-TW">中庭比例對應妝容指南</span>
+        </h1>
+        <p class="subtitle">
+            <span lang="en">Balance your measured midface (brow to nose base) with makeup. A guide, not a rule — your features come first.</span>
+            <span lang="ko">측정된 중안부(미간~코밑) 비율에 맞춰 메이크업으로 균형을 잡아보세요. 정답이 아닌 참고용 가이드입니다.</span>
+            <span lang="ja">測定された中顔面（眉～鼻の下）の長さに合わせて、メイクでバランスを。あくまで参考ガイドです。</span>
+            <span lang="zh-CN">根据测得的中庭（眉到鼻底）比例，用妆容找到平衡。仅供参考，并非定式。</span>
+            <span lang="zh-TW">根據測得的中庭（眉到鼻底）比例，用妝容找到平衡。僅供參考，並非定式。</span>
+        </p>
+        <p class="auto-note">
+            <span lang="en">You'll jump to your measured ratio automatically — feel free to check the other sections too.</span>
+            <span lang="ko">측정 결과에 따라 내 비율 섹션으로 자동 이동해요. 다른 비율의 팁도 자유롭게 확인하세요.</span>
+            <span lang="ja">測定結果に応じて自分の比率へ自動で移動します。他の比率のコツも自由にどうぞ。</span>
+            <span lang="zh-CN">会根据测量结果自动跳到你的比例，其他比例的技巧也欢迎查看。</span>
+            <span lang="zh-TW">會根據測量結果自動跳到你的比例，其他比例的技巧也歡迎查看。</span>
+        </p>
+
+        <!-- 중안부 분류 빠른 이동 -->
+        <nav class="section-nav">
+            <a class="section-chip" href="#short"><span lang="en">Short midface</span><span lang="ko">짧은 중안부</span><span lang="ja">中顔面が短い</span><span lang="zh-CN">中庭偏短</span><span lang="zh-TW">中庭偏短</span></a>
+            <a class="section-chip" href="#balanced"><span lang="en">Balanced</span><span lang="ko">균형 중안부</span><span lang="ja">バランス型</span><span lang="zh-CN">比例均衡</span><span lang="zh-TW">比例均衡</span></a>
+            <a class="section-chip" href="#long"><span lang="en">Long midface</span><span lang="ko">긴 중안부</span><span lang="ja">中顔面が長い</span><span lang="zh-CN">中庭偏长</span><span lang="zh-TW">中庭偏長</span></a>
+        </nav>
+
+        <!-- =================== 짧은 중안부 (short) =================== -->
+        <section class="guide-card" id="short">
+            <h2>
+                <span lang="en">Short Midface</span><span lang="ko">짧은 중안부</span><span lang="ja">中顔面が短い</span><span lang="zh-CN">中庭偏短</span><span lang="zh-TW">中庭偏短</span>
+                <span class="en-name" lang="ko">Short Midface</span><span class="en-name" lang="ja">Short Midface</span><span class="en-name" lang="zh-CN">Short Midface</span><span class="en-name" lang="zh-TW">Short Midface</span>
+            </h2>
+            <p class="feature">
+                <span lang="en">Your midface (brow to nose base) is shorter than average, giving a youthful, cute impression. This is a sought-after ratio — play up the strength rather than "correcting" it.</span>
+                <span lang="ko">중안부(미간~코밑)가 평균보다 짧아 어리고 귀여운 인상을 줘요. 요즘 선호되는 비율이라, 보정하기보다 장점을 살리는 게 좋아요.</span>
+                <span lang="ja">中顔面（眉～鼻の下）が平均より短く、若々しく可愛い印象。今っぽい好バランスなので、補正より強みを活かして。</span>
+                <span lang="zh-CN">中庭（眉到鼻底）比平均偏短，显得年轻可爱。这是当下受欢迎的比例，重点在发挥优势而非"修饰"。</span>
+                <span lang="zh-TW">中庭（眉到鼻底）比平均偏短，顯得年輕可愛。這是當下受歡迎的比例，重點在發揮優勢而非"修飾"。</span>
+            </p>
+            <div class="block-label rec">✓ <span lang="en">Play it up</span><span lang="ko">장점 살리기</span><span lang="ja">強みを活かす</span><span lang="zh-CN">发挥优势</span><span lang="zh-TW">發揮優勢</span></div>
+            <ul class="tips rec numbered">
+                <li><span lang="en">Keep undereye fullness — don't bury aegyo-sal under heavy concealer; a touch of shadow keeps it dimensional.</span><span lang="ko">애교살은 살리되 누르지 않기 — 컨실러를 눈밑까지 과하게 올리지 말고, 옅은 섀도로 입체만 더해요.</span><span lang="ja">涙袋は活かして潰さない — コンシーラーを塗りすぎず、影色で立体感だけプラス。</span><span lang="zh-CN">保留卧蚕——别用厚遮瑕压平，用浅影色保留立体感。</span><span lang="zh-TW">保留臥蠶——別用厚遮瑕壓平，用淺影色保留立體感。</span></li>
+                <li><span lang="en">Lean into clear features — define the eyes with liner and mascara, add a flush of color on the lips.</span><span lang="ko">또렷한 이목구비를 강조 — 아이라인·마스카라로 눈매를, 화사한 컬러 립으로 생기를.</span><span lang="ja">はっきりした目鼻立ちを強調 — アイライン・マスカラで目元を、血色リップで華やかさを。</span><span lang="zh-CN">强化清晰五官——用眼线和睫毛膏勾勒眼神，用气色唇色提亮。</span><span lang="zh-TW">強化清晰五官——用眼線和睫毛膏勾勒眼神，用氣色唇色提亮。</span></li>
+                <li><span lang="en">Blush wherever suits your mood — you're not bound by "filling the gap."</span><span lang="ko">블러셔는 원하는 무드대로 — 여백 채우기에 얽매일 필요 없어요.</span><span lang="ja">チークは好みのムードで — 余白埋めにこだわらなくてOK。</span><span lang="zh-CN">腮红随你的风格——不必拘泥于"填补留白"。</span><span lang="zh-TW">腮紅隨你的風格——不必拘泥於"填補留白"。</span></li>
+            </ul>
+            <div class="block-label avoid">✕ <span lang="en">Makes it look longer</span><span lang="ko">길어 보이는 실수</span><span lang="ja">長く見える注意点</span><span lang="zh-CN">会显长的做法</span><span lang="zh-TW">會顯長的做法</span></div>
+            <ul class="tips avoid">
+                <li><span lang="en">A nose shadow drawn vertically down to the tip — it lengthens the face.</span><span lang="ko">코끝까지 세로로 길게 내린 노즈 섀도우 — 얼굴이 길어 보여요.</span><span lang="ja">鼻先まで縦に長いノーズシャドウ — 顔が長く見えます。</span><span lang="zh-CN">一直拉到鼻尖的竖向鼻影——会显脸长。</span><span lang="zh-TW">一直拉到鼻尖的豎向鼻影——會顯臉長。</span></li>
+                <li><span lang="en">A sharply drawn lip line — it emphasizes the philtrum and nose; a blurred lip looks softer.</span><span lang="ko">또렷하게 그린 립라인 — 인중·코가 강조돼요. 블러 립이 자연스러워요.</span><span lang="ja">くっきり描いたリップライン — 人中や鼻が強調されます。ぼかしリップが自然。</span><span lang="zh-CN">描得过清的唇线——会强调人中和鼻子；晕染唇更自然。</span><span lang="zh-TW">描得過清的唇線——會強調人中和鼻子；暈染唇更自然。</span></li>
+            </ul>
+            <div class="img-row">
+                <!-- IMAGE: 짧은 중안부 메이크업 · img/makeup-short.jpg -->
+                <figure class="face-img"><img src="img/makeup-short.jpg" alt="Short midface makeup" loading="lazy" width="400" height="500" onerror="this.closest('.face-img').classList.add('pending')"><figcaption>img/makeup-short.jpg</figcaption></figure>
+            </div>
+        </section>
+
+        <!-- =================== 균형 중안부 (balanced) =================== -->
+        <section class="guide-card" id="balanced">
+            <h2>
+                <span lang="en">Balanced Midface</span><span lang="ko">균형 중안부</span><span lang="ja">バランス型</span><span lang="zh-CN">比例均衡</span><span lang="zh-TW">比例均衡</span>
+                <span class="en-name" lang="ko">Balanced Midface</span><span class="en-name" lang="ja">Balanced Midface</span><span class="en-name" lang="zh-CN">Balanced Midface</span><span class="en-name" lang="zh-TW">Balanced Midface</span>
+            </h2>
+            <p class="feature">
+                <span lang="en">Your upper, mid, and lower thirds sit close to the ideal 1:1:1. With a well-balanced midface, you can skip ratio-correcting tricks and let your natural proportions shine.</span>
+                <span lang="ko">상·중·하안부가 이상적인 1:1:1에 가까운 균형 잡힌 비율이에요. 무리한 보정 없이 본연의 균형을 살리면 돼요.</span>
+                <span lang="ja">上・中・下顔面が理想の1:1:1に近い、バランスの取れた比率。無理な補正なしで、持ち前のバランスを活かせます。</span>
+                <span lang="zh-CN">上庭、中庭、下庭接近理想的1:1:1。比例本就均衡，无需刻意修饰，发挥天生比例即可。</span>
+                <span lang="zh-TW">上庭、中庭、下庭接近理想的1:1:1。比例本就均衡，無需刻意修飾，發揮天生比例即可。</span>
+            </p>
+            <div class="block-label rec">✓ <span lang="en">Flattering</span><span lang="ko">추천 포인트</span><span lang="ja">おすすめ</span><span lang="zh-CN">推荐</span><span lang="zh-TW">推薦</span></div>
+            <ul class="tips rec numbered">
+                <li><span lang="en">Focus on color over correction — pick lip, blush, and shadow shades from your personal-color palette to bring out radiance and mood.</span><span lang="ko">비율 보정보다 색에 집중 — 퍼스널컬러에 맞는 립·블러셔·섀도로 혈색과 분위기를 살려요.</span><span lang="ja">補正より色を楽しんで — パーソナルカラーに合うリップ・チーク・シャドウで血色とムードを。</span><span lang="zh-CN">重点放在颜色而非修饰——按个人色选唇、腮红、眼影，提升气色与氛围。</span><span lang="zh-TW">重點放在顏色而非修飾——按個人色選唇、腮紅、眼影，提升氣色與氛圍。</span></li>
+                <li><span lang="en">Light, even contour and highlight just for dimension — cheekbones, nose bridge, chin, kept subtle.</span><span lang="ko">자연스러운 음영·하이라이트로 입체감만 — 광대·콧대·턱에 은은하게.</span><span lang="ja">陰影とハイライトは立体感づくり程度に — 頬骨・鼻筋・あごへ控えめに。</span><span lang="zh-CN">用淡淡的修容和高光只为立体——颧骨、鼻梁、下巴，点到为止。</span><span lang="zh-TW">用淡淡的修容和高光只為立體——顴骨、鼻樑、下巴，點到為止。</span></li>
+                <li class="no-num"><span lang="en">Choose your point feature freely — go for the mood you want, fresh or chic.</span><span lang="ko">원하는 무드(청순·시크 등)에 맞춰 포인트 부위를 자유롭게 선택해요.</span><span lang="ja">なりたい雰囲気（清楚・シックなど）に合わせてポイントを自由に。</span><span lang="zh-CN">自由选择重点部位——想要清纯或高级感都行。</span><span lang="zh-TW">自由選擇重點部位——想要清純或高級感都行。</span></li>
+            </ul>
+            <div class="block-label avoid">✕ <span lang="en">Go easy on</span><span lang="ko">주의할 점</span><span lang="ja">注意</span><span lang="zh-CN">需注意</span><span lang="zh-TW">需注意</span></div>
+            <ul class="tips avoid">
+                <li><span lang="en">Strong one-directional correction (heavy shortening or lengthening tricks) — it can throw off a balance you already have.</span><span lang="ko">한쪽으로 치우친 강한 보정(과한 단축·연장 기법) — 이미 갖춘 균형을 오히려 깨뜨려요.</span><span lang="ja">片寄った強い補正（やりすぎの短縮・延長テク） — せっかくのバランスを崩します。</span><span lang="zh-CN">单方向的强修饰（过度缩短或拉长）——会破坏你本有的平衡。</span><span lang="zh-TW">單方向的強修飾（過度縮短或拉長）——會破壞你本有的平衡。</span></li>
+            </ul>
+            <div class="img-row">
+                <!-- IMAGE: 균형 중안부 메이크업 · img/makeup-balanced.jpg -->
+                <figure class="face-img"><img src="img/makeup-balanced.jpg" alt="Balanced midface makeup" loading="lazy" width="400" height="500" onerror="this.closest('.face-img').classList.add('pending')"><figcaption>img/makeup-balanced.jpg</figcaption></figure>
+            </div>
+        </section>
+
+        <!-- =================== 긴 중안부 (long) =================== -->
+        <section class="guide-card" id="long">
+            <h2>
+                <span lang="en">Long Midface</span><span lang="ko">긴 중안부</span><span lang="ja">中顔面が長い</span><span lang="zh-CN">中庭偏长</span><span lang="zh-TW">中庭偏長</span>
+                <span class="en-name" lang="ko">Long Midface</span><span class="en-name" lang="ja">Long Midface</span><span class="en-name" lang="zh-CN">Long Midface</span><span class="en-name" lang="zh-TW">Long Midface</span>
+            </h2>
+            <p class="feature">
+                <span lang="en">Your midface (brow to nose base) is longer than average, which can read as mature or elongated. The goal: fill the vertical gaps with makeup so it looks shorter and more compact.</span>
+                <span lang="ko">중안부(미간~코밑)가 평균보다 길어 얼굴이 길고 성숙해 보일 수 있어요. 세로 여백을 메이크업으로 채워 짧고 또렷해 보이게 하는 게 핵심이에요.</span>
+                <span lang="ja">中顔面（眉～鼻の下）が平均より長く、大人びて間延びして見えがち。縦の余白をメイクで埋め、短くコンパクトに見せるのがポイント。</span>
+                <span lang="zh-CN">中庭（眉到鼻底）比平均偏长，容易显成熟或"拉长"。重点是用妆容填补纵向留白，让它显短、显紧致。</span>
+                <span lang="zh-TW">中庭（眉到鼻底）比平均偏長，容易顯成熟或"拉長"。重點是用妝容填補縱向留白，讓它顯短、顯緊緻。</span>
+            </p>
+            <div class="block-label rec">✓ <span lang="en">Shorten the midface</span><span lang="ko">짧아 보이게</span><span lang="ja">短く見せる</span><span lang="zh-CN">显短技巧</span><span lang="zh-TW">顯短技巧</span></div>
+            <ul class="tips rec numbered">
+                <li><span lang="en">Define the undereye (aegyo-sal) — a blood-tone liner and shadow add fullness just under the eye, closing the eye-to-cheek gap.</span><span lang="ko">애교살을 또렷이 — 혈색 라이너·섀도로 눈밑에 입체를 만들어 눈~볼 여백을 채워요.</span><span lang="ja">涙袋をしっかり — 血色ライナーと影色で目の下にふくらみを作り、目～頬の余白を埋める。</span><span lang="zh-CN">强调卧蚕——用气色眼线和影色在眼下做出饱满，填补眼到颊的留白。</span><span lang="zh-TW">強調臥蠶——用氣色眼線和影色在眼下做出飽滿，填補眼到頰的留白。</span></li>
+                <li><span lang="en">Sweep blush wide and horizontal — from beside the nostrils out toward the ears, filling the cheek space (avoid a high placement).</span><span lang="ko">블러셔는 가로로 넓게 — 콧볼 옆에서 귀 쪽으로 타원으로 발라 볼 여백을 메워요. (높은 위치는 피해요)</span><span lang="ja">チークは横長に広く — 小鼻の横から耳に向かって楕円に入れ、頬の余白を埋める（高い位置はNG）。</span><span lang="zh-CN">腮红横向大面积——从鼻翼旁向耳朵扫成椭圆，填补颊部留白（避免打太高）。</span><span lang="zh-TW">腮紅橫向大面積——從鼻翼旁向耳朵掃成橢圓，填補頰部留白（避免打太高）。</span></li>
+                <li><span lang="en">Cut the nose shadow horizontally at the nostrils and leave the tip bright — don't draw it long.</span><span lang="ko">노즈 섀도우는 콧볼에서 가로로 끊고 코끝은 밝게 — 코를 길게 늘이지 않아요.</span><span lang="ja">ノーズシャドウは小鼻で横に止め、鼻先は明るく — 鼻を長く伸ばさない。</span><span lang="zh-CN">鼻影在鼻翼处横向收住、鼻尖留亮——别画得太长。</span><span lang="zh-TW">鼻影在鼻翼處橫向收住、鼻尖留亮——別畫得太長。</span></li>
+                <li><span lang="en">Shorten the philtrum with an overlip — lift the lip peaks about 1mm and dot highlight above the upper lip.</span><span lang="ko">오버립으로 인중 단축 — 윗입술 산을 1mm 위로 올리고, 윗입술 위에 소량 하이라이트.</span><span lang="ja">オーバーリップで人中短縮 — 上唇の山を1mm上げ、上唇の上に少量ハイライト。</span><span lang="zh-CN">用超出唇线缩短人中——唇峰上提约1mm，上唇上方点少量高光。</span><span lang="zh-TW">用超出唇線縮短人中——唇峰上提約1mm，上唇上方點少量高光。</span></li>
+                <li><span lang="en">Place highlight as dots, not lines — cheekbones, nose tip, chin; avoid a vertical stripe down the nose.</span><span lang="ko">하이라이트는 점으로 — 광대·코끝·턱끝에 톡톡. 콧대 세로 일직선은 피해요.</span><span lang="ja">ハイライトは点で — 頬骨・鼻先・あご先にトントン。鼻筋の縦線はNG。</span><span lang="zh-CN">高光点状而非线状——颧骨、鼻尖、下巴点上；避免鼻梁竖线。</span><span lang="zh-TW">高光點狀而非線狀——顴骨、鼻尖、下巴點上；避免鼻樑豎線。</span></li>
+            </ul>
+            <div class="block-label avoid">✕ <span lang="en">Go easy on</span><span lang="ko">주의할 점</span><span lang="ja">注意</span><span lang="zh-CN">需注意</span><span lang="zh-TW">需注意</span></div>
+            <ul class="tips avoid">
+                <li><span lang="en">A vertical line of contour or highlight down the nose bridge — it stretches the face longer.</span><span lang="ko">콧대를 따라 세로로 긴 셰이딩·하이라이트 — 얼굴이 더 길어 보여요.</span><span lang="ja">鼻筋に沿った縦長のシェーディング・ハイライト — 顔がさらに長く見えます。</span><span lang="zh-CN">沿鼻梁的竖向修容或高光——会让脸更长。</span><span lang="zh-TW">沿鼻樑的豎向修容或高光——會讓臉更長。</span></li>
+                <li><span lang="en">High, round blush and a sharp vertical lip line — both pull the eye downward and lengthen.</span><span lang="ko">높은 위치의 동그란 블러셔, 또렷한 세로 립라인 — 시선을 아래로 끌어 길어 보여요.</span><span lang="ja">高い位置の丸いチークや、くっきり縦のリップライン — 視線が下がり長く見えます。</span><span lang="zh-CN">打太高的圆形腮红、清晰的竖向唇线——都会把视线下拉、显长。</span><span lang="zh-TW">打太高的圓形腮紅、清晰的豎向唇線——都會把視線下拉、顯長。</span></li>
+            </ul>
+            <div class="img-row">
+                <!-- IMAGE: 긴 중안부 메이크업 · img/makeup-long.jpg -->
+                <figure class="face-img"><img src="img/makeup-long.jpg" alt="Long midface makeup" loading="lazy" width="400" height="500" onerror="this.closest('.face-img').classList.add('pending')"><figcaption>img/makeup-long.jpg</figcaption></figure>
+            </div>
+        </section>
+
+        <p class="footer-note">
+            <span lang="en">This guide is general reference, not a strict rule. Skin tone, features, and personal taste all matter — use it as a starting point.</span>
+            <span lang="ko">본 가이드는 일반적 참고용이며 절대적 기준이 아닙니다. 피부톤·이목구비·취향에 따라 달라질 수 있어요.</span>
+            <span lang="ja">本ガイドは一般的な参考であり、絶対的なルールではありません。肌色・目鼻立ち・好みによって変わります。</span>
+            <span lang="zh-CN">本指南仅供参考，并非严格定式。肤色、五官与个人喜好都会影响效果，请作为起点参考。</span>
+            <span lang="zh-TW">本指南僅供參考，並非嚴格定式。膚色、五官與個人喜好都會影響效果，請作為起點參考。</span>
+        </p>
+    </div>
+
+    <script>
+        var VALID_LANGS = ['en','ko','ja','zh-CN','zh-TW'];
+        var VALID_SECTIONS = ['short','balanced','long'];
+
+        function setLang(lang) {
+            VALID_LANGS.forEach(function(c){ document.body.classList.remove('lang-' + c); });
+            document.body.classList.add('lang-' + lang);
+            document.querySelectorAll('.lang-btn').forEach(function(b){
+                b.classList.toggle('active', b.getAttribute('onclick').indexOf("'" + lang + "'") !== -1);
+            });
+            try { localStorage.setItem('preferred-lang', lang); } catch (e) {}
+        }
+
+        function markActiveChip(id) {
+            document.querySelectorAll('.section-chip').forEach(function(c){
+                c.classList.toggle('active', c.getAttribute('href') === '#' + id);
+            });
+        }
+
+        // 측정된 중안부 % → 분류 (시작 임계값: <32 짧음 / 32–35 균형 / >35 긴)
+        function classifyMid(mid) {
+            if (mid < 32) return 'short';
+            if (mid > 35) return 'long';
+            return 'balanced';
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var params = new URLSearchParams(location.search);
+
+            // 언어: ?lang= → localStorage → 기본 en
+            var lang = params.get('lang') || (function(){ try { return localStorage.getItem('preferred-lang'); } catch (e) { return null; } })() || 'en';
+            if (VALID_LANGS.indexOf(lang) === -1) lang = 'en';
+            setLang(lang);
+
+            // 분류 점프: #hash 우선, 없으면 ?mid= 측정값으로 자동 분류
+            var target = null;
+            var hash = (location.hash || '').replace('#', '');
+            if (VALID_SECTIONS.indexOf(hash) !== -1) {
+                target = hash;
+            } else {
+                var midParam = params.get('mid');
+                if (midParam !== null) {
+                    var mid = parseFloat(midParam);
+                    if (!isNaN(mid)) target = classifyMid(mid);
+                }
+            }
+
+            if (target) {
+                markActiveChip(target);
+                var el = document.getElementById(target);
+                if (el) { setTimeout(function(){ el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 120); }
+            }
+        });
+    </script>
+</body>
+</html>
