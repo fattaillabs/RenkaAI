@@ -16,6 +16,12 @@
         .lang-btn:hover { background: #fff; }
         .lang-btn.active { background: #fff; border-color: #7cb342; box-shadow: 0 1px 5px rgba(124,179,66,0.35); }
 
+        /* 성별 토글 */
+        .gender-switcher { display: flex; justify-content: center; gap: 8px; margin-bottom: 26px; }
+        .gender-btn { background: rgba(255,255,255,0.7); border: 1px solid #cfe6b5; border-radius: 20px; padding: 7px 18px; font-size: 14px; font-weight: 600; color: #4e6b39; cursor: pointer; transition: all 0.2s; }
+        .gender-btn:hover { background: #fff; }
+        .gender-btn.active { background: #fff; border-color: #7cb342; color: #3d6b1f; box-shadow: 0 1px 5px rgba(124,179,66,0.35); }
+
         /* 제목 — 흰색 글씨 + 초록 그림자로 포인트 */
         h1 { font-size: 28px; font-weight: 800; margin-bottom: 8px; color: #fff; letter-spacing: -0.3px; text-shadow: 0 1px 0 #6aa83a, 0 2px 0 #5d9931, 2px 3px 7px rgba(80,140,40,0.35); }
         .subtitle { font-size: 14px; color: #6b7a60; margin-bottom: 26px; }
@@ -78,9 +84,14 @@
         body.lang-zh-TW span[lang="zh-TW"] { display: inline; }
         /* li/h2 등 block 외 요소도 같은 언어 규칙 적용되도록 (display:block 대신 원래 표시) */
         li[lang], h2 span[lang] { }
+
+        /* ===== 성별 표시 제어 (여성/남성 추천 분기) ===== */
+        [data-gender] { display: none; }
+        body.gender-f [data-gender="f"] { display: block; }
+        body.gender-m [data-gender="m"] { display: block; }
     </style>
 </head>
-<body class="lang-en">
+<body class="lang-en gender-f">
     <div class="container">
         <div class="header">
             <a href="index.html" class="back-link">← <span lang="en">Style Guide</span><span lang="ko">스타일 가이드</span><span lang="ja">スタイルガイド</span><span lang="zh-CN">风格指南</span><span lang="zh-TW">風格指南</span></a>
@@ -107,6 +118,11 @@
             <span lang="zh-CN">为您测得的脸型找到合适的发型。仅供参考，并非定式。</span>
             <span lang="zh-TW">為您測得的臉型找到合適的髮型。僅供參考，並非定式。</span>
         </p>
+
+        <div class="gender-switcher">
+            <button class="gender-btn active" onclick="setGender('f')">👩 <span lang="en">Women</span><span lang="ko">여성</span><span lang="ja">女性</span><span lang="zh-CN">女士</span><span lang="zh-TW">女士</span></button>
+            <button class="gender-btn" onclick="setGender('m')">👨 <span lang="en">Men</span><span lang="ko">남성</span><span lang="ja">男性</span><span lang="zh-CN">男士</span><span lang="zh-TW">男士</span></button>
+        </div>
 
         <!-- 얼굴형 빠른 이동 -->
         <nav class="shape-nav">
@@ -135,6 +151,7 @@
                 <span lang="zh-TW">額頭與下巴比例勻稱，縱向略長於橫向，是公認的理想臉型。幾乎適合任何髮型，最適合大膽嘗試。</span>
             </p>
 
+            <div data-gender="f">
             <div class="block-label rec">✓ <span lang="en">Flattering</span><span lang="ko">추천 스타일</span><span lang="ja">おすすめ</span><span lang="zh-CN">推荐</span><span lang="zh-TW">推薦</span></div>
             <ul class="tips rec">
                 <li><span lang="en">Most styles work well — layers, bob, long hair, or updos all suit you.</span><span lang="ko">레이어드, 단발, 롱, 업스타일까지 거의 모든 스타일이 잘 어울려요.</span><span lang="ja">レイヤー・ボブ・ロング・アップまでほぼ何でも似合います。</span><span lang="zh-CN">层次、波波头、长发、盘发几乎都很合适。</span><span lang="zh-TW">層次、鮑伯頭、長髮、盤髮幾乎都很合適。</span></li>
@@ -148,8 +165,28 @@
             </ul>
 
             <div class="img-row">
-                <!-- IMAGE: 계란형 추천컷 1장 · 파일명 img/hair-oval.jpg · 권장 세로 4:5 -->
+                <!-- IMAGE: 계란형(여) 추천컷 · img/hair-oval.jpg -->
                 <figure class="hair-img"><img src="img/hair-oval.jpg" alt="Oval recommended style" loading="lazy" width="400" height="500" onerror="this.closest('.hair-img').classList.add('pending')"><figcaption>img/hair-oval.jpg</figcaption></figure>
+            </div>
+            </div>
+
+            <div data-gender="m">
+            <div class="block-label rec">✓ <span lang="en">Flattering</span><span lang="ko">추천 스타일</span><span lang="ja">おすすめ</span><span lang="zh-CN">推荐</span><span lang="zh-TW">推薦</span></div>
+            <ul class="tips rec">
+                <li><span lang="en">Most styles suit you — keep it simple or go bold.</span><span lang="ko">대부분의 스타일이 잘 어울려요 — 심플하게도, 과감하게도 OK.</span><span lang="ja">ほとんどのスタイルが似合います。シンプルでも大胆でも。</span><span lang="zh-CN">几乎所有发型都适合，简约或个性都行。</span><span lang="zh-TW">幾乎所有髮型都適合，簡約或個性都行。</span></li>
+                <li><span lang="en">From a textured quiff to a dandy cut or side-part perm — most cuts work.</span><span lang="ko">텍스처 퀵부터 댄디컷·가르마펌까지 폭넓게 시도할 수 있어요.</span><span lang="ja">テクスチャークイッフからダンディカット・七三パーマまで幅広く。</span><span lang="zh-CN">从纹理感上扬到丹迪剪、偏分烫都能驾驭。</span><span lang="zh-TW">從紋理感上揚到丹迪剪、偏分燙都能駕馭。</span></li>
+                <li><span lang="en">A classic side part (or two-block) is a reliable, polished choice.</span><span lang="ko">클래식 사이드 파트(가르마)나 투블럭은 단정한 선택이에요.</span><span lang="ja">クラシックな七三やツーブロックは上品で間違いのない選択。</span><span lang="zh-CN">经典侧分或two-block是干练稳妥的选择。</span><span lang="zh-TW">經典側分或two-block是俐落穩妥的選擇。</span></li>
+            </ul>
+
+            <div class="block-label avoid">✕ <span lang="en">Go easy on</span><span lang="ko">주의할 점</span><span lang="ja">注意</span><span lang="zh-CN">需注意</span><span lang="zh-TW">需注意</span></div>
+            <ul class="tips avoid">
+                <li><span lang="en">Few rules with balanced features — just don't bury them under very long, heavy hair.</span><span lang="ko">균형 잡힌 이목구비라 제약이 적어요 — 아주 길고 무거운 머리로 가리지만 않으면 돼요.</span><span lang="ja">整った輪郭なので制約は少なめ。長く重い髪で隠さないように。</span><span lang="zh-CN">五官匀称、限制少，只要别用又长又厚重的发型遮住即可。</span><span lang="zh-TW">五官勻稱、限制少，只要別用又長又厚重的髮型遮住即可。</span></li>
+            </ul>
+
+            <div class="img-row">
+                <!-- IMAGE: 계란형(남) 추천컷 · img/hair-m-oval.jpg -->
+                <figure class="hair-img"><img src="img/hair-m-oval.jpg" alt="Oval men's style" loading="lazy" width="400" height="500" onerror="this.closest('.hair-img').classList.add('pending')"><figcaption>img/hair-m-oval.jpg</figcaption></figure>
+            </div>
             </div>
         </section>
 
@@ -167,6 +204,7 @@
                 <span lang="zh-TW">橫縱長度接近、線條柔和，顯得年輕。重點是拉長縱向、修飾兩側。</span>
             </p>
 
+            <div data-gender="f">
             <div class="block-label rec">✓ <span lang="en">Flattering</span><span lang="ko">추천 스타일</span><span lang="ja">おすすめ</span><span lang="zh-CN">推荐</span><span lang="zh-TW">推薦</span></div>
             <ul class="tips rec">
                 <li><span lang="en">Long layers add vertical length and slim the face.</span><span lang="ko">긴 레이어드로 세로 길이감을 더해 갸름하게 보여요.</span><span lang="ja">ロングレイヤーで縦のラインを強調してすっきりと。</span><span lang="zh-CN">长层次增添纵向感、显瘦。</span><span lang="zh-TW">長層次增添縱向感、顯瘦。</span></li>
@@ -181,8 +219,28 @@
             </ul>
 
             <div class="img-row">
-                <!-- IMAGE: 둥근형 추천컷 1장 · 파일명 img/hair-round.jpg · 권장 세로 4:5 -->
+                <!-- IMAGE: 둥근형(여) 추천컷 · img/hair-round.jpg -->
                 <figure class="hair-img"><img src="img/hair-round.jpg" alt="Round recommended style" loading="lazy" width="400" height="500" onerror="this.closest('.hair-img').classList.add('pending')"><figcaption>img/hair-round.jpg</figcaption></figure>
+            </div>
+            </div>
+
+            <div data-gender="m">
+            <div class="block-label rec">✓ <span lang="en">Flattering</span><span lang="ko">추천 스타일</span><span lang="ja">おすすめ</span><span lang="zh-CN">推荐</span><span lang="zh-TW">推薦</span></div>
+            <ul class="tips rec">
+                <li><span lang="en">Volume on top lengthens the face — a side-part perm, regent perm, or pompadour.</span><span lang="ko">윗머리에 볼륨을 줘 세로로 길어 보이게 — 가르마펌·리젠트펌·포마드.</span><span lang="ja">トップにボリュームを出して縦長に — 七三パーマ・リーゼント・ポンパドール。</span><span lang="zh-CN">头顶蓬松显长 — 偏分烫、飞机头等。</span><span lang="zh-TW">頭頂蓬鬆顯長 — 偏分燙、飛機頭等。</span></li>
+                <li><span lang="en">Keep the sides short — a two-block cut slims the face.</span><span lang="ko">옆머리는 투블럭으로 짧게 정리해 얼굴을 갸름하게.</span><span lang="ja">サイドはツーブロックで短くして小顔効果。</span><span lang="zh-CN">两侧推短（two-block）显瘦。</span><span lang="zh-TW">兩側推短（two-block）顯瘦。</span></li>
+                <li><span lang="en">A side part or comma bang spreads the focus upward and outward.</span><span lang="ko">가르마나 쉼표 앞머리로 시선을 위·옆으로 분산해요.</span><span lang="ja">七三や前髪の流しで視線を上・横へ分散。</span><span lang="zh-CN">偏分或逗号刘海分散视线。</span><span lang="zh-TW">偏分或逗號瀏海分散視線。</span></li>
+            </ul>
+
+            <div class="block-label avoid">✕ <span lang="en">Go easy on</span><span lang="ko">주의할 점</span><span lang="ja">注意</span><span lang="zh-CN">需注意</span><span lang="zh-TW">需注意</span></div>
+            <ul class="tips avoid">
+                <li><span lang="en">Volume at the sides or a flat top — they widen and round the face.</span><span lang="ko">양옆 볼륨이나 납작한 윗머리 — 얼굴이 더 넓고 둥글어 보여요.</span><span lang="ja">サイドのボリュームや平らなトップは顔を広く丸く見せる。</span><span lang="zh-CN">两侧蓬松或扁平的头顶会让脸更圆更宽。</span><span lang="zh-TW">兩側蓬鬆或扁平的頭頂會讓臉更圓更寬。</span></li>
+            </ul>
+
+            <div class="img-row">
+                <!-- IMAGE: 둥근형(남) 추천컷 · img/hair-m-round.jpg -->
+                <figure class="hair-img"><img src="img/hair-m-round.jpg" alt="Round men's style" loading="lazy" width="400" height="500" onerror="this.closest('.hair-img').classList.add('pending')"><figcaption>img/hair-m-round.jpg</figcaption></figure>
+            </div>
             </div>
         </section>
 
@@ -199,6 +257,7 @@
                 <span lang="zh-CN">额头、颧骨与下颌宽度相近，下颌线分明，轮廓硬朗。重点是柔化棱角。</span>
                 <span lang="zh-TW">額頭、顴骨與下顎寬度相近，下顎線分明，輪廓硬朗。重點是柔化稜角。</span>
             </p>
+            <div data-gender="f">
             <div class="block-label rec">✓ <span lang="en">Flattering</span><span lang="ko">추천 스타일</span><span lang="ja">おすすめ</span><span lang="zh-CN">推荐</span><span lang="zh-TW">推薦</span></div>
             <ul class="tips rec">
                 <li><span lang="en">Soft layers around the face that break up the angles.</span><span lang="ko">얼굴을 감싸는 부드러운 레이어로 각진 라인을 풀어주세요.</span><span lang="ja">顔まわりの柔らかいレイヤーで角をなじませる。</span><span lang="zh-CN">用修饰脸庞的柔和层次淡化棱角。</span><span lang="zh-TW">用修飾臉龐的柔和層次淡化稜角。</span></li>
@@ -211,8 +270,26 @@
                 <li><span lang="en">Sleek, straight styles pulled flat back.</span><span lang="ko">직선으로 매끈하게 넘긴 풀백 스타일.</span><span lang="ja">直線的に後ろへ流すぴったりスタイル。</span><span lang="zh-CN">笔直贴头向后梳的造型。</span><span lang="zh-TW">筆直貼頭向後梳的造型。</span></li>
             </ul>
             <div class="img-row">
-                <!-- IMAGE: 각진형 추천컷 1장 · 파일명 img/hair-square.jpg · 권장 세로 4:5 -->
+                <!-- IMAGE: 각진형(여) 추천컷 · img/hair-square.jpg -->
                 <figure class="hair-img"><img src="img/hair-square.jpg" alt="Square recommended style" loading="lazy" width="400" height="500" onerror="this.closest('.hair-img').classList.add('pending')"><figcaption>img/hair-square.jpg</figcaption></figure>
+            </div>
+            </div>
+
+            <div data-gender="m">
+            <div class="block-label rec">✓ <span lang="en">Flattering</span><span lang="ko">추천 스타일</span><span lang="ja">おすすめ</span><span lang="zh-CN">推荐</span><span lang="zh-TW">推薦</span></div>
+            <ul class="tips rec">
+                <li><span lang="en">Soft waves soften the angular jawline — a shadow perm or as-perm.</span><span lang="ko">부드러운 웨이브로 각진 턱선을 풀어줘요 — 쉐도우펌·애즈펌.</span><span lang="ja">柔らかなウェーブでエラを和らげる — シャドウパーマ・エズパーマ。</span><span lang="zh-CN">柔和卷发柔化棱角下颌 — 阴影烫、随性烫。</span><span lang="zh-TW">柔和捲髮柔化稜角下顎 — 陰影燙、隨性燙。</span></li>
+                <li><span lang="en">A natural-flow fringe eases a strong impression — a dandy cut or natural side part.</span><span lang="ko">자연스러운 흐름의 앞머리로 강한 인상을 완화 — 댄디컷·내추럴 가르마.</span><span lang="ja">自然に流す前髪で強い印象を緩和 — ダンディカット・七三。</span><span lang="zh-CN">自然垂落的刘海缓和硬朗感 — 丹迪剪、自然偏分。</span><span lang="zh-TW">自然垂落的瀏海緩和硬朗感 — 丹迪剪、自然偏分。</span></li>
+                <li><span lang="en">A little side volume rounds out the silhouette.</span><span lang="ko">옆머리에 살짝 볼륨을 줘 실루엣을 둥글게.</span><span lang="ja">サイドに少しボリュームで輪郭を丸く。</span><span lang="zh-CN">侧边略加蓬松让轮廓更圆。</span><span lang="zh-TW">側邊略加蓬鬆讓輪廓更圓。</span></li>
+            </ul>
+            <div class="block-label avoid">✕ <span lang="en">Go easy on</span><span lang="ko">주의할 점</span><span lang="ja">注意</span><span lang="zh-CN">需注意</span><span lang="zh-TW">需注意</span></div>
+            <ul class="tips avoid">
+                <li><span lang="en">Buzzed-tight sides and straight, blocky cuts — they sharpen the jaw.</span><span lang="ko">옆을 바짝 민 각진 컷·직선적인 스타일 — 턱 각을 강조해요.</span><span lang="ja">サイドを刈り上げた角ばったカットや直線的なスタイルはエラを強調。</span><span lang="zh-CN">两侧推光的方正剪裁、笔直造型会强调下颌棱角。</span><span lang="zh-TW">兩側推光的方正剪裁、筆直造型會強調下顎稜角。</span></li>
+            </ul>
+            <div class="img-row">
+                <!-- IMAGE: 각진형(남) 추천컷 · img/hair-m-square.jpg -->
+                <figure class="hair-img"><img src="img/hair-m-square.jpg" alt="Square men's style" loading="lazy" width="400" height="500" onerror="this.closest('.hair-img').classList.add('pending')"><figcaption>img/hair-m-square.jpg</figcaption></figure>
+            </div>
             </div>
         </section>
 
@@ -229,6 +306,7 @@
                 <span lang="zh-CN">下颌硬朗且脸偏长，像拉长的方脸。重点是柔化棱角、缩短纵向感。</span>
                 <span lang="zh-TW">下顎硬朗且臉偏長，像拉長的方臉。重點是柔化稜角、縮短縱向感。</span>
             </p>
+            <div data-gender="f">
             <div class="block-label rec">✓ <span lang="en">Flattering</span><span lang="ko">추천 스타일</span><span lang="ja">おすすめ</span><span lang="zh-CN">推荐</span><span lang="zh-TW">推薦</span></div>
             <ul class="tips rec">
                 <li><span lang="en">Soft waves and curls that add width and round the face.</span><span lang="ko">가로 볼륨을 더하는 부드러운 웨이브와 컬.</span><span lang="ja">横幅を出す柔らかなウェーブとカール。</span><span lang="zh-CN">增添横向感的柔和卷发。</span><span lang="zh-TW">增添橫向感的柔和捲髮。</span></li>
@@ -240,8 +318,26 @@
                 <li><span lang="en">Long, straight hair with no bangs — it lengthens the face further.</span><span lang="ko">앞머리 없는 긴 생머리 — 얼굴이 더 길어 보여요.</span><span lang="ja">前髪なしの長いストレートは顔をさらに長く見せる。</span><span lang="zh-CN">无刘海的长直发会让脸更长。</span><span lang="zh-TW">無瀏海的長直髮會讓臉更長。</span></li>
             </ul>
             <div class="img-row">
-                <!-- IMAGE: 직사각형 추천컷 1장 · 파일명 img/hair-rectangle.jpg · 권장 세로 4:5 -->
+                <!-- IMAGE: 직사각형(여) 추천컷 · img/hair-rectangle.jpg -->
                 <figure class="hair-img"><img src="img/hair-rectangle.jpg" alt="Rectangle recommended style" loading="lazy" width="400" height="500" onerror="this.closest('.hair-img').classList.add('pending')"><figcaption>img/hair-rectangle.jpg</figcaption></figure>
+            </div>
+            </div>
+
+            <div data-gender="m">
+            <div class="block-label rec">✓ <span lang="en">Flattering</span><span lang="ko">추천 스타일</span><span lang="ja">おすすめ</span><span lang="zh-CN">推荐</span><span lang="zh-TW">推薦</span></div>
+            <ul class="tips rec">
+                <li><span lang="en">Soft waves ease both the angles and the length — an as-perm or dandy perm.</span><span lang="ko">부드러운 웨이브로 각과 길이를 함께 완화 — 애즈펌·댄디펌.</span><span lang="ja">柔らかなウェーブで角と長さを同時に和らげる — エズパーマ・ダンディパーマ。</span><span lang="zh-CN">柔和卷发同时缓和棱角与脸长 — 随性烫、丹迪烫。</span><span lang="zh-TW">柔和捲髮同時緩和稜角與臉長 — 隨性燙、丹迪燙。</span></li>
+                <li><span lang="en">Lower a fringe to make a long face look shorter.</span><span lang="ko">앞머리를 내려 긴 얼굴을 짧아 보이게.</span><span lang="ja">前髪を下ろして長い顔を短く見せる。</span><span lang="zh-CN">放下刘海让长脸显短。</span><span lang="zh-TW">放下瀏海讓長臉顯短。</span></li>
+                <li><span lang="en">Side volume adds width to balance the length.</span><span lang="ko">사이드 볼륨으로 가로감을 더해 길이와 균형을.</span><span lang="ja">サイドのボリュームで横幅を足してバランスを。</span><span lang="zh-CN">侧边蓬松增加横向感、平衡脸长。</span><span lang="zh-TW">側邊蓬鬆增加橫向感、平衡臉長。</span></li>
+            </ul>
+            <div class="block-label avoid">✕ <span lang="en">Go easy on</span><span lang="ko">주의할 점</span><span lang="ja">注意</span><span lang="zh-CN">需注意</span><span lang="zh-TW">需注意</span></div>
+            <ul class="tips avoid">
+                <li><span lang="en">Swept-back styles with no fringe and tall crown volume — they lengthen the face.</span><span lang="ko">앞머리 없이 넘긴 스타일·정수리만 높은 볼륨 — 얼굴이 더 길어 보여요.</span><span lang="ja">前髪なしのオールバックやトップだけ高いスタイルは顔を長く見せる。</span><span lang="zh-CN">无刘海的后梳、只在头顶拔高会让脸更长。</span><span lang="zh-TW">無瀏海的後梳、只在頭頂拔高會讓臉更長。</span></li>
+            </ul>
+            <div class="img-row">
+                <!-- IMAGE: 직사각형(남) 추천컷 · img/hair-m-rectangle.jpg -->
+                <figure class="hair-img"><img src="img/hair-m-rectangle.jpg" alt="Rectangle men's style" loading="lazy" width="400" height="500" onerror="this.closest('.hair-img').classList.add('pending')"><figcaption>img/hair-m-rectangle.jpg</figcaption></figure>
+            </div>
             </div>
         </section>
 
@@ -258,6 +354,7 @@
                 <span lang="zh-CN">纵向明显长于横向、宽度均匀，优雅但显长。重点是增加横向感、缩短纵向。</span>
                 <span lang="zh-TW">縱向明顯長於橫向、寬度均勻，優雅但顯長。重點是增加橫向感、縮短縱向。</span>
             </p>
+            <div data-gender="f">
             <div class="block-label rec">✓ <span lang="en">Flattering</span><span lang="ko">추천 스타일</span><span lang="ja">おすすめ</span><span lang="zh-CN">推荐</span><span lang="zh-TW">推薦</span></div>
             <ul class="tips rec">
                 <li><span lang="en">Bangs (see-through or full) to shorten the face instantly.</span><span lang="ko">앞머리(시스루뱅·풀뱅)로 얼굴을 짧아 보이게 해요.</span><span lang="ja">前髪（シースルーバング・full bang）で顔を短く見せる。</span><span lang="zh-CN">刘海（空气感或齐刘海）瞬间缩短脸长。</span><span lang="zh-TW">瀏海（空氣感或齊瀏海）瞬間縮短臉長。</span></li>
@@ -269,8 +366,26 @@
                 <li><span lang="en">Long hair with a center part and no bangs, or extra crown volume.</span><span lang="ko">앞머리 없는 센터파트 긴 머리, 정수리 볼륨.</span><span lang="ja">前髪なしのセンターパートロングや、トップの高さ。</span><span lang="zh-CN">无刘海的中分长发，或头顶过高的蓬松。</span><span lang="zh-TW">無瀏海的中分長髮，或頭頂過高的蓬鬆。</span></li>
             </ul>
             <div class="img-row">
-                <!-- IMAGE: 긴형 추천컷 1장 · 파일명 img/hair-oblong.jpg · 권장 세로 4:5 -->
+                <!-- IMAGE: 긴형(여) 추천컷 · img/hair-oblong.jpg -->
                 <figure class="hair-img"><img src="img/hair-oblong.jpg" alt="Oblong recommended style" loading="lazy" width="400" height="500" onerror="this.closest('.hair-img').classList.add('pending')"><figcaption>img/hair-oblong.jpg</figcaption></figure>
+            </div>
+            </div>
+
+            <div data-gender="m">
+            <div class="block-label rec">✓ <span lang="en">Flattering</span><span lang="ko">추천 스타일</span><span lang="ja">おすすめ</span><span lang="zh-CN">推荐</span><span lang="zh-TW">推薦</span></div>
+            <ul class="tips rec">
+                <li><span lang="en">Lower a fringe over the forehead to balance the proportions — a crop cut or fringe-down dandy.</span><span lang="ko">앞머리를 내려 이마를 적당히 가려 비율을 보완 — 크롭컷·앞머리 내린 댄디.</span><span lang="ja">前髪を下ろして額を程よく隠し、バランスを補正 — クロップカット・前髪ダウンのダンディ。</span><span lang="zh-CN">放下刘海适度遮额、改善比例 — 寸头剪、刘海垂落的丹迪。</span><span lang="zh-TW">放下瀏海適度遮額、改善比例 — 寸頭剪、瀏海垂落的丹迪。</span></li>
+                <li><span lang="en">Add width to make the face look shorter — a side-part down perm.</span><span lang="ko">가로 볼륨을 살려 얼굴이 짧아 보이게 — 가르마 다운펌.</span><span lang="ja">横のボリュームで顔を短く — 七三のダウンパーマ。</span><span lang="zh-CN">增加横向蓬松显短 — 偏分下压烫。</span><span lang="zh-TW">增加橫向蓬鬆顯短 — 偏分下壓燙。</span></li>
+                <li><span lang="en">Keep the sides natural, not too short.</span><span lang="ko">옆머리는 너무 짧지 않게 자연스럽게 연결.</span><span lang="ja">サイドは短すぎず自然に。</span><span lang="zh-CN">两侧不要太短、自然衔接。</span><span lang="zh-TW">兩側不要太短、自然銜接。</span></li>
+            </ul>
+            <div class="block-label avoid">✕ <span lang="en">Go easy on</span><span lang="ko">주의할 점</span><span lang="ja">注意</span><span lang="zh-CN">需注意</span><span lang="zh-TW">需注意</span></div>
+            <ul class="tips avoid">
+                <li><span lang="en">A tall pompadour or no-fringe slick-back — they make the face longer.</span><span lang="ko">정수리만 높이 세운 스타일·앞머리 없는 올백 — 얼굴이 더 길어 보여요.</span><span lang="ja">トップだけ高いスタイルや前髪なしのオールバックは顔を長く見せる。</span><span lang="zh-CN">只在头顶拔高、无刘海后梳会让脸更长。</span><span lang="zh-TW">只在頭頂拔高、無瀏海後梳會讓臉更長。</span></li>
+            </ul>
+            <div class="img-row">
+                <!-- IMAGE: 긴형(남) 추천컷 · img/hair-m-oblong.jpg -->
+                <figure class="hair-img"><img src="img/hair-m-oblong.jpg" alt="Oblong men's style" loading="lazy" width="400" height="500" onerror="this.closest('.hair-img').classList.add('pending')"><figcaption>img/hair-m-oblong.jpg</figcaption></figure>
+            </div>
             </div>
         </section>
 
@@ -287,6 +402,7 @@
                 <span lang="zh-CN">颧骨最宽、额头与下巴较窄，轮廓鲜明。重点是为额头和下巴增加宽度、柔化颧骨。</span>
                 <span lang="zh-TW">顴骨最寬、額頭與下巴較窄，輪廓鮮明。重點是為額頭和下巴增加寬度、柔化顴骨。</span>
             </p>
+            <div data-gender="f">
             <div class="block-label rec">✓ <span lang="en">Flattering</span><span lang="ko">추천 스타일</span><span lang="ja">おすすめ</span><span lang="zh-CN">推荐</span><span lang="zh-TW">推薦</span></div>
             <ul class="tips rec">
                 <li><span lang="en">Side-swept bangs to add softness and width at the forehead.</span><span lang="ko">사이드뱅으로 이마 쪽에 부드러운 폭을 더해요.</span><span lang="ja">サイドに流す前髪で額に柔らかな幅を。</span><span lang="zh-CN">侧分刘海为额头增添柔和宽度。</span><span lang="zh-TW">側分瀏海為額頭增添柔和寬度。</span></li>
@@ -298,8 +414,26 @@
                 <li><span lang="en">Volume right at the cheekbones, or hair slicked flat back.</span><span lang="ko">광대 위치에 볼륨이 몰리는 컷, 매끈하게 넘긴 슬릭백.</span><span lang="ja">頬骨にボリュームが集まる髪型や、ぴったり後ろへ流すスタイル。</span><span lang="zh-CN">蓬松集中在颧骨的造型，或贴头向后梳。</span><span lang="zh-TW">蓬鬆集中在顴骨的造型，或貼頭向後梳。</span></li>
             </ul>
             <div class="img-row">
-                <!-- IMAGE: 다이아몬드형 추천컷 1장 · 파일명 img/hair-diamond.jpg · 권장 세로 4:5 -->
+                <!-- IMAGE: 다이아몬드형(여) 추천컷 · img/hair-diamond.jpg -->
                 <figure class="hair-img"><img src="img/hair-diamond.jpg" alt="Diamond recommended style" loading="lazy" width="400" height="500" onerror="this.closest('.hair-img').classList.add('pending')"><figcaption>img/hair-diamond.jpg</figcaption></figure>
+            </div>
+            </div>
+
+            <div data-gender="m">
+            <div class="block-label rec">✓ <span lang="en">Flattering</span><span lang="ko">추천 스타일</span><span lang="ja">おすすめ</span><span lang="zh-CN">推荐</span><span lang="zh-TW">推薦</span></div>
+            <ul class="tips rec">
+                <li><span lang="en">Build overall volume for a dimensional shape — a dandy volume perm.</span><span lang="ko">전체적으로 볼륨을 살려 입체감 있게 — 댄디 볼륨펌.</span><span lang="ja">全体にボリュームを出して立体感を — ダンディボリュームパーマ。</span><span lang="zh-CN">整体增加蓬松、营造立体感 — 丹迪蓬松烫。</span><span lang="zh-TW">整體增加蓬鬆、營造立體感 — 丹迪蓬鬆燙。</span></li>
+                <li><span lang="en">Soft waves give natural volume and movement — a natural wave.</span><span lang="ko">웨이브로 자연스러운 볼륨과 움직임을 — 내추럴 웨이브.</span><span lang="ja">ウェーブで自然なボリュームと動きを — ナチュラルウェーブ。</span><span lang="zh-CN">卷发带来自然蓬松与动感 — 自然卷。</span><span lang="zh-TW">捲髮帶來自然蓬鬆與動感 — 自然捲。</span></li>
+                <li><span lang="en">Keep the hair around forehead and chin full, not cropped — a see-through dandy.</span><span lang="ko">이마·턱 쪽 옆머리는 너무 짧지 않게 풍성하게 — 시스루 댄디컷.</span><span lang="ja">額・顎まわりは短すぎず豊かに — シースルーダンディ。</span><span lang="zh-CN">额头与下巴侧边保持丰盈、不要太短 — 空气感丹迪。</span><span lang="zh-TW">額頭與下巴側邊保持豐盈、不要太短 — 空氣感丹迪。</span></li>
+            </ul>
+            <div class="block-label avoid">✕ <span lang="en">Go easy on</span><span lang="ko">주의할 점</span><span lang="ja">注意</span><span lang="zh-CN">需注意</span><span lang="zh-TW">需注意</span></div>
+            <ul class="tips avoid">
+                <li><span lang="en">Volume bunched at the cheekbones or buzzed-tight sides.</span><span lang="ko">광대 쪽에 볼륨이 몰리는 컷·옆을 바짝 민 스타일.</span><span lang="ja">頬骨にボリュームが集まるカットやサイドを刈り込んだスタイル。</span><span lang="zh-CN">蓬松集中在颧骨、或两侧推光的造型。</span><span lang="zh-TW">蓬鬆集中在顴骨、或兩側推光的造型。</span></li>
+            </ul>
+            <div class="img-row">
+                <!-- IMAGE: 다이아몬드형(남) 추천컷 · img/hair-m-diamond.jpg -->
+                <figure class="hair-img"><img src="img/hair-m-diamond.jpg" alt="Diamond men's style" loading="lazy" width="400" height="500" onerror="this.closest('.hair-img').classList.add('pending')"><figcaption>img/hair-m-diamond.jpg</figcaption></figure>
+            </div>
             </div>
         </section>
 
@@ -316,6 +450,7 @@
                 <span lang="zh-CN">额头与颧骨较宽、下巴窄而尖，柔美浪漫。重点是在下颌增添丰盈感、柔化偏宽的上半部。</span>
                 <span lang="zh-TW">額頭與顴骨較寬、下巴窄而尖，柔美浪漫。重點是在下顎增添豐盈感、柔化偏寬的上半部。</span>
             </p>
+            <div data-gender="f">
             <div class="block-label rec">✓ <span lang="en">Flattering</span><span lang="ko">추천 스타일</span><span lang="ja">おすすめ</span><span lang="zh-CN">推荐</span><span lang="zh-TW">推薦</span></div>
             <ul class="tips rec">
                 <li><span lang="en">Side-swept bangs to soften and narrow a wide forehead.</span><span lang="ko">사이드뱅으로 넓은 이마를 부드럽게 좁혀줘요.</span><span lang="ja">サイドに流す前髪で広い額を柔らかくカバー。</span><span lang="zh-CN">侧分刘海柔化并收窄偏宽的额头。</span><span lang="zh-TW">側分瀏海柔化並收窄偏寬的額頭。</span></li>
@@ -327,8 +462,26 @@
                 <li><span lang="en">Short blunt bangs that highlight the forehead, or extra crown volume.</span><span lang="ko">이마를 강조하는 짧은 일자 앞머리, 정수리 볼륨.</span><span lang="ja">額を強調する短いぱっつん前髪や、トップの高さ。</span><span lang="zh-CN">强调额头的短齐刘海，或头顶过高的蓬松。</span><span lang="zh-TW">強調額頭的短齊瀏海，或頭頂過高的蓬鬆。</span></li>
             </ul>
             <div class="img-row">
-                <!-- IMAGE: 하트형 추천컷 1장 · 파일명 img/hair-heart.jpg · 권장 세로 4:5 -->
+                <!-- IMAGE: 하트형(여) 추천컷 · img/hair-heart.jpg -->
                 <figure class="hair-img"><img src="img/hair-heart.jpg" alt="Heart recommended style" loading="lazy" width="400" height="500" onerror="this.closest('.hair-img').classList.add('pending')"><figcaption>img/hair-heart.jpg</figcaption></figure>
+            </div>
+            </div>
+
+            <div data-gender="m">
+            <div class="block-label rec">✓ <span lang="en">Flattering</span><span lang="ko">추천 스타일</span><span lang="ja">おすすめ</span><span lang="zh-CN">推荐</span><span lang="zh-TW">推薦</span></div>
+            <ul class="tips rec">
+                <li><span lang="en">A textured fringe softens a wide forehead — a see-through dandy or natural side part.</span><span lang="ko">텍스처 앞머리로 넓은 이마를 자연스럽게 완화 — 시스루 댄디·내추럴 가르마.</span><span lang="ja">動きのある前髪で広い額を自然にカバー — シースルーダンディ・七三。</span><span lang="zh-CN">纹理刘海自然柔化偏宽额头 — 空气感丹迪、自然偏分。</span><span lang="zh-TW">紋理瀏海自然柔化偏寬額頭 — 空氣感丹迪、自然偏分。</span></li>
+                <li><span lang="en">Build a little volume at the sides and lower face to fill the narrow chin.</span><span lang="ko">옆·아래쪽에 볼륨을 줘 좁은 턱을 보완.</span><span lang="ja">サイドや下半分にボリュームを足して細い顎を補う。</span><span lang="zh-CN">在两侧与下半部增加蓬松、补足较窄的下巴。</span><span lang="zh-TW">在兩側與下半部增加蓬鬆、補足較窄的下巴。</span></li>
+                <li><span lang="en">Keep the top balanced — avoid stacking too much height.</span><span lang="ko">윗볼륨은 과하지 않게 균형감 있게.</span><span lang="ja">トップは盛りすぎず、バランスよく。</span><span lang="zh-CN">顶部不要堆太高、保持平衡。</span><span lang="zh-TW">頂部不要堆太高、保持平衡。</span></li>
+            </ul>
+            <div class="block-label avoid">✕ <span lang="en">Go easy on</span><span lang="ko">주의할 점</span><span lang="ja">注意</span><span lang="zh-CN">需注意</span><span lang="zh-TW">需注意</span></div>
+            <ul class="tips avoid">
+                <li><span lang="en">A forehead-baring slick-back or tall crown volume — they emphasize the wide top.</span><span lang="ko">이마를 드러내는 올백·정수리 과볼륨 — 넓은 상부를 강조해요.</span><span lang="ja">額を出すオールバックやトップの盛りすぎは上部を強調。</span><span lang="zh-CN">露额后梳、头顶过度蓬松会强调偏宽的上半部。</span><span lang="zh-TW">露額後梳、頭頂過度蓬鬆會強調偏寬的上半部。</span></li>
+            </ul>
+            <div class="img-row">
+                <!-- IMAGE: 하트형(남) 추천컷 · img/hair-m-heart.jpg -->
+                <figure class="hair-img"><img src="img/hair-m-heart.jpg" alt="Heart men's style" loading="lazy" width="400" height="500" onerror="this.closest('.hair-img').classList.add('pending')"><figcaption>img/hair-m-heart.jpg</figcaption></figure>
+            </div>
             </div>
         </section>
 
@@ -345,6 +498,7 @@
                 <span lang="zh-CN">额头宽、眉骨分明，向下颌逐渐收窄。上半部偏重，重点是在下颌附近增加蓬松以求平衡。</span>
                 <span lang="zh-TW">額頭寬、眉骨分明，向下顎逐漸收窄。上半部偏重，重點是在下顎附近增加蓬鬆以求平衡。</span>
             </p>
+            <div data-gender="f">
             <div class="block-label rec">✓ <span lang="en">Flattering</span><span lang="ko">추천 스타일</span><span lang="ja">おすすめ</span><span lang="zh-CN">推荐</span><span lang="zh-TW">推薦</span></div>
             <ul class="tips rec">
                 <li><span lang="en">A chin-length bob that builds weight at the narrow jaw.</span><span lang="ko">턱선 단발로 좁은 턱에 무게감을 줘요.</span><span lang="ja">顎ラインのボブで細い顎にボリュームを。</span><span lang="zh-CN">下巴长度的波波头为较窄下颌增添分量。</span><span lang="zh-TW">下巴長度的鮑伯頭為較窄下顎增添分量。</span></li>
@@ -356,8 +510,26 @@
                 <li><span lang="en">Volume at the crown or very short cuts that emphasize the wide top.</span><span lang="ko">정수리 볼륨, 상부를 강조하는 아주 짧은 컷.</span><span lang="ja">トップのボリュームや、上部を強調する極端なショート。</span><span lang="zh-CN">头顶蓬松，或强调上半部的过短发型。</span><span lang="zh-TW">頭頂蓬鬆，或強調上半部的過短髮型。</span></li>
             </ul>
             <div class="img-row">
-                <!-- IMAGE: 역삼각형 추천컷 1장 · 파일명 img/hair-invertedTriangle.jpg · 권장 세로 4:5 -->
+                <!-- IMAGE: 역삼각형(여) 추천컷 · img/hair-invertedTriangle.jpg -->
                 <figure class="hair-img"><img src="img/hair-invertedTriangle.jpg" alt="Inverted Triangle recommended style" loading="lazy" width="400" height="500" onerror="this.closest('.hair-img').classList.add('pending')"><figcaption>img/hair-invertedTriangle.jpg</figcaption></figure>
+            </div>
+            </div>
+
+            <div data-gender="m">
+            <div class="block-label rec">✓ <span lang="en">Flattering</span><span lang="ko">추천 스타일</span><span lang="ja">おすすめ</span><span lang="zh-CN">推荐</span><span lang="zh-TW">推薦</span></div>
+            <ul class="tips rec">
+                <li><span lang="en">Open the forehead naturally for a fresh look — an as-perm side part or soft two-block.</span><span lang="ko">이마를 자연스럽게 오픈해 시원한 인상 — 애즈 가르마·소프트 투블럭.</span><span lang="ja">額を自然に出して爽やかな印象 — エズの七三・ソフトツーブロック。</span><span lang="zh-CN">自然露出额头、清爽干练 — 随性偏分、柔和two-block。</span><span lang="zh-TW">自然露出額頭、清爽俐落 — 隨性偏分、柔和two-block。</span></li>
+                <li><span lang="en">Add side volume to balance the narrow chin — a dandy perm or natural comma bang.</span><span lang="ko">옆머리에 볼륨을 줘 좁은 턱을 보완 — 댄디펌·내추럴 쉼표펌.</span><span lang="ja">サイドにボリュームを足して細い顎を補う — ダンディパーマ・ナチュラルコンマ前髪。</span><span lang="zh-CN">侧边增加蓬松、补足较窄下巴 — 丹迪烫、自然逗号刘海。</span><span lang="zh-TW">側邊增加蓬鬆、補足較窄下巴 — 丹迪燙、自然逗號瀏海。</span></li>
+                <li><span lang="en">Keep top volume moderate for an overall balance.</span><span lang="ko">윗볼륨은 너무 높지 않게 균형감 있게.</span><span lang="ja">トップは高くしすぎず、全体のバランスを。</span><span lang="zh-CN">顶部蓬松适中、保持整体平衡。</span><span lang="zh-TW">頂部蓬鬆適中、保持整體平衡。</span></li>
+            </ul>
+            <div class="block-label avoid">✕ <span lang="en">Go easy on</span><span lang="ko">주의할 점</span><span lang="ja">注意</span><span lang="zh-CN">需注意</span><span lang="zh-TW">需注意</span></div>
+            <ul class="tips avoid">
+                <li><span lang="en">A tall pompadour or buzzed-tight sides — they emphasize the top-heavy shape.</span><span lang="ko">정수리만 높이 세운 스타일·옆을 바짝 민 컷 — 상부를 강조해요.</span><span lang="ja">トップだけ高いスタイルやサイドの刈り込みは上部を強調。</span><span lang="zh-CN">只在头顶拔高、两侧推光会强调上重下轻。</span><span lang="zh-TW">只在頭頂拔高、兩側推光會強調上重下輕。</span></li>
+            </ul>
+            <div class="img-row">
+                <!-- IMAGE: 역삼각형(남) 추천컷 · img/hair-m-invertedTriangle.jpg -->
+                <figure class="hair-img"><img src="img/hair-m-invertedTriangle.jpg" alt="Inverted Triangle men's style" loading="lazy" width="400" height="500" onerror="this.closest('.hair-img').classList.add('pending')"><figcaption>img/hair-m-invertedTriangle.jpg</figcaption></figure>
+            </div>
             </div>
         </section>
 
@@ -374,6 +546,7 @@
                 <span lang="zh-CN">下颌较宽、向额头收窄，下颌线鲜明有个性（与倒三角相反）。重点是在上半部增加蓬松以平衡偏宽的下半部。</span>
                 <span lang="zh-TW">下顎較寬、向額頭收窄，下顎線鮮明有個性（與倒三角相反）。重點是在上半部增加蓬鬆以平衡偏寬的下半部。</span>
             </p>
+            <div data-gender="f">
             <div class="block-label rec">✓ <span lang="en">Flattering</span><span lang="ko">추천 스타일</span><span lang="ja">おすすめ</span><span lang="zh-CN">推荐</span><span lang="zh-TW">推薦</span></div>
             <ul class="tips rec">
                 <li><span lang="en">Volume at the temples and crown to widen the upper face.</span><span lang="ko">관자놀이·정수리 볼륨으로 얼굴 상부를 넓혀줘요.</span><span lang="ja">こめかみ・トップのボリュームで上半分に幅を。</span><span lang="zh-CN">在太阳穴与头顶增加蓬松，拓宽上半张脸。</span><span lang="zh-TW">在太陽穴與頭頂增加蓬鬆，拓寬上半張臉。</span></li>
@@ -385,8 +558,26 @@
                 <li><span lang="en">Heavy, blunt cuts that add weight right at the jaw.</span><span lang="ko">턱선에 무게가 실리는 무거운 일자 단발.</span><span lang="ja">顎にボリュームが集まる重めのワンレンボブ。</span><span lang="zh-CN">在下颌堆积分量的厚重直发短发。</span><span lang="zh-TW">在下顎堆積分量的厚重直髮短髮。</span></li>
             </ul>
             <div class="img-row">
-                <!-- IMAGE: 삼각형 추천컷 1장 · 파일명 img/hair-triangle.jpg · 권장 세로 4:5 -->
+                <!-- IMAGE: 삼각형(여) 추천컷 · img/hair-triangle.jpg -->
                 <figure class="hair-img"><img src="img/hair-triangle.jpg" alt="Triangle recommended style" loading="lazy" width="400" height="500" onerror="this.closest('.hair-img').classList.add('pending')"><figcaption>img/hair-triangle.jpg</figcaption></figure>
+            </div>
+            </div>
+
+            <div data-gender="m">
+            <div class="block-label rec">✓ <span lang="en">Flattering</span><span lang="ko">추천 스타일</span><span lang="ja">おすすめ</span><span lang="zh-CN">推荐</span><span lang="zh-TW">推薦</span></div>
+            <ul class="tips rec">
+                <li><span lang="en">Add volume up top and at the temples to widen the upper face — a volume dandy perm or mushroom cut.</span><span lang="ko">윗머리·관자놀이에 볼륨을 줘 상부를 넓혀요 — 볼륨 댄디펌·마쉬룸컷.</span><span lang="ja">トップ・こめかみにボリュームを出して上半分に幅を — ボリュームダンディパーマ・マッシュ。</span><span lang="zh-CN">在头顶与太阳穴增加蓬松、拓宽上半部 — 蓬松丹迪烫、蘑菇头。</span><span lang="zh-TW">在頭頂與太陽穴增加蓬鬆、拓寬上半部 — 蓬鬆丹迪燙、蘑菇頭。</span></li>
+                <li><span lang="en">Draw the eye upward to ease a wide jaw — a two-block side part.</span><span lang="ko">시선을 위로 끌어올려 넓은 턱을 완화 — 투블럭 가르마.</span><span lang="ja">視線を上へ引き上げて広い顎を緩和 — ツーブロックの七三。</span><span lang="zh-CN">把视线上引、缓和偏宽下颌 — two-block偏分。</span><span lang="zh-TW">把視線上引、緩和偏寬下顎 — two-block偏分。</span></li>
+                <li><span lang="en">A soft texture keeps the look natural — a natural dandy cut.</span><span lang="ko">부드러운 질감으로 자연스러운 인상 — 내추럴 댄디컷.</span><span lang="ja">柔らかな質感で自然な印象 — ナチュラルダンディカット。</span><span lang="zh-CN">柔和质感、自然印象 — 自然丹迪剪。</span><span lang="zh-TW">柔和質感、自然印象 — 自然丹迪剪。</span></li>
+            </ul>
+            <div class="block-label avoid">✕ <span lang="en">Go easy on</span><span lang="ko">주의할 점</span><span lang="ja">注意</span><span lang="zh-CN">需注意</span><span lang="zh-TW">需注意</span></div>
+            <ul class="tips avoid">
+                <li><span lang="en">Heavy weight or volume right at the jaw — it widens the lower face.</span><span lang="ko">턱선에 무게·볼륨이 실리는 컷 — 아랫부분이 더 넓어 보여요.</span><span lang="ja">顎に重さやボリュームが集まるカットは下半分を広く見せる。</span><span lang="zh-CN">在下颌堆积分量或蓬松会让下半部更宽。</span><span lang="zh-TW">在下顎堆積分量或蓬鬆會讓下半部更寬。</span></li>
+            </ul>
+            <div class="img-row">
+                <!-- IMAGE: 삼각형(남) 추천컷 · img/hair-m-triangle.jpg -->
+                <figure class="hair-img"><img src="img/hair-m-triangle.jpg" alt="Triangle men's style" loading="lazy" width="400" height="500" onerror="this.closest('.hair-img').classList.add('pending')"><figcaption>img/hair-m-triangle.jpg</figcaption></figure>
+            </div>
             </div>
         </section>
 
@@ -400,16 +591,29 @@
     </div>
 
     <script>
+        // 언어 — classList 조작 (gender class와 공존)
         function setLang(lang) { setLangSilent(lang); rejumpToHash(); }
         function setLangSilent(lang) {
-            document.body.className = 'lang-' + lang;
+            ['lang-en','lang-ko','lang-ja','lang-zh-CN','lang-zh-TW'].forEach(c => document.body.classList.remove(c));
+            document.body.classList.add('lang-' + lang);
             document.querySelectorAll('.lang-btn').forEach(btn => {
                 btn.classList.remove('active');
                 if (btn.getAttribute('onclick').includes("'" + lang + "'")) btn.classList.add('active');
             });
             localStorage.setItem('preferred-lang', lang);
         }
-        // 언어 토글로 페이지 높이가 바뀌면 앵커 위치가 어긋나므로 재점프
+        // 성별 — 앱 딥링크의 ?gender=f|m 으로도 전달됨
+        function setGender(g) { setGenderSilent(g); rejumpToHash(); }
+        function setGenderSilent(g) {
+            document.body.classList.remove('gender-f', 'gender-m');
+            document.body.classList.add('gender-' + g);
+            document.querySelectorAll('.gender-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('onclick').includes("'" + g + "'")) btn.classList.add('active');
+            });
+            localStorage.setItem('preferred-gender', g);
+        }
+        // 언어/성별 토글로 페이지 높이가 바뀌면 앵커 위치가 어긋나므로 재점프
         function rejumpToHash() {
             if (!window.location.hash) return;
             const id = decodeURIComponent(window.location.hash.slice(1));
@@ -425,6 +629,13 @@
             } else {
                 const saved = localStorage.getItem('preferred-lang');
                 if (saved && supportedLangs.includes(saved)) setLangSilent(saved);
+            }
+            const genderParam = urlParams.get('gender');
+            if (genderParam === 'm' || genderParam === 'f') {
+                setGenderSilent(genderParam);
+            } else {
+                const sg = localStorage.getItem('preferred-gender');
+                if (sg === 'm' || sg === 'f') setGenderSilent(sg);
             }
             rejumpToHash();
         });
