@@ -41,9 +41,9 @@
         ul.tips.avoid li::before { background: #e0ad5f; }
 
         /* 이미지 (얼굴형당 1장) → 사진 넣으면 자동 표시 */
-        .img-row { display: flex; gap: 10px; margin-top: 16px; }
-        .hair-img { width: 200px; max-width: 56%; margin: 0; }
-        .hair-img img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 14px; display: block; background: #eef3e6; }
+        .img-row { display: flex; gap: 10px; margin-top: 16px; justify-content: center; }
+        .hair-img { width: 240px; max-width: 70%; margin: 0; }
+        .hair-img img { width: 100%; height: auto; border-radius: 14px; display: block; background: #eef3e6; }
         .hair-img figcaption { display: none; }
         .hair-img.pending img { display: none; }
         .hair-img.pending { aspect-ratio: 4 / 5; border: 1.5px dashed #b9d49a; border-radius: 14px; display: flex; align-items: center; justify-content: center; text-align: center; background: rgba(255,255,255,0.5); }
