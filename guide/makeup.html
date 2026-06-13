@@ -57,7 +57,9 @@
         .face-img.pending { aspect-ratio: 4 / 5; border: 1.5px dashed #b9d49a; border-radius: 14px; display: flex; align-items: center; justify-content: center; text-align: center; background: rgba(255,255,255,0.5); }
         .face-img.pending figcaption { display: block; font-size: 11px; color: #8aa372; line-height: 1.5; padding: 8px; }
 
-        .footer-note { margin-top: 28px; font-size: 12px; color: #87937c; text-align: center; line-height: 1.7; }
+        .adapt-note { margin-top: 26px; font-size: 12.5px; color: #5e6d54; line-height: 1.7; background: rgba(255,255,255,0.45); border: 1px solid rgba(255,255,255,0.6); border-radius: 12px; padding: 14px 16px; }
+        body.lang-en .adapt-note .en-extra { display: block; margin-top: 8px; color: #6b7a60; }
+        .footer-note { margin-top: 18px; font-size: 12px; color: #87937c; text-align: center; line-height: 1.7; }
 
         /* ===== 다국어 표시 제어 (기존 사이트와 동일 메커니즘) ===== */
         [lang]:not([lang="en"]) { display: none; }
@@ -212,6 +214,15 @@
                 <figure class="face-img"><img src="img/makeup-long.jpg" alt="Long midface makeup" loading="lazy" width="400" height="500" onerror="this.closest('.face-img').classList.add('pending')"><figcaption>img/makeup-long.jpg</figcaption></figure>
             </div>
         </section>
+
+        <div class="adapt-note">
+            <span lang="en">This guide is based on Korean &amp; East Asian makeup techniques. The balancing principles work for everyone — just adjust the intensity to your eye shape, facial depth, and skin tone.</span>
+            <span lang="ko">이 가이드는 한국·동아시아 메이크업 기법을 바탕으로 해요. 보정 원리는 누구에게나 통하지만, 눈매·이목구비 입체감·피부톤에 따라 강약을 조절하세요.</span>
+            <span lang="ja">本ガイドは韓国・東アジアのメイク技法をベースにしています。補正の考え方は誰にでも通用しますが、目の形・顔の立体感・肌色に合わせて強弱を調整してください。</span>
+            <span lang="zh-CN">本指南以韩国及东亚妆容技法为基础。修饰原理人人适用，但请根据眼型、五官立体度与肤色调整强弱。</span>
+            <span lang="zh-TW">本指南以韓國及東亞妝容技法為基礎。修飾原理人人適用，但請根據眼型、五官立體度與膚色調整強弱。</span>
+            <span class="en-extra" lang="en">If your eyes are deep-set or your features are more three-dimensional, go lighter on the undereye / aegyo-sal and philtrum techniques, and match shade depth to your skin tone — the concept (filling vertical space) still applies.</span>
+        </div>
 
         <p class="footer-note">
             <span lang="en">This guide is general reference, not a strict rule. Skin tone, features, and personal taste all matter — use it as a starting point.</span>
