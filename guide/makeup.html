@@ -45,7 +45,7 @@
         ul.tips.rec.numbered { counter-reset: pt; }
         ul.tips.rec.numbered li { counter-increment: pt; padding-left: 26px; }
         ul.tips.rec.numbered li::before { content: counter(pt); width: 17px; height: 17px; left: 0; top: 3px; background: #7cb342; color: #fff; font-size: 10px; font-weight: 800; line-height: 17px; text-align: center; border-radius: 50%; }
-        ul.tips.rec.numbered li.no-num { counter-increment: 0; }
+        ul.tips.rec.numbered li.no-num { counter-increment: none; }
         ul.tips.rec.numbered li.no-num::before { content: ''; width: 6px; height: 6px; left: 2px; top: 10px; line-height: 0; }
 
         /* 이미지 (분류당 1장) → 사진 넣으면 자동 표시 */

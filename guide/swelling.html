@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face De-puffing Guide - Renka</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Apple SD Gothic Neo', sans-serif; background: linear-gradient(160deg, #f2fae8 0%, #e2f3d0 100%); background-attachment: fixed; color: #33402d; line-height: 1.75; }
+        .container { max-width: 700px; margin: 0 auto; padding: 36px 20px 80px; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 22px; flex-wrap: wrap; gap: 12px; }
+        .back-link { display: inline-flex; align-items: center; gap: 6px; color: #4e8a2c; text-decoration: none; font-size: 14px; font-weight: 600; }
+        .back-link:hover { text-decoration: underline; }
+        .lang-switcher { display: flex; gap: 6px; flex-wrap: wrap; }
+        .lang-btn { background: rgba(255,255,255,0.7); border: 1px solid #cfe6b5; border-radius: 8px; padding: 7px 10px; font-size: 18px; cursor: pointer; transition: all 0.2s; }
+        .lang-btn:hover { background: #fff; }
+        .lang-btn.active { background: #fff; border-color: #7cb342; box-shadow: 0 1px 5px rgba(124,179,66,0.35); }
+
+        h1 { font-size: 28px; font-weight: 800; margin-bottom: 8px; color: #fff; letter-spacing: -0.3px; text-shadow: 0 1px 0 #6aa83a, 0 2px 0 #5d9931, 2px 3px 7px rgba(80,140,40,0.35); }
+        .subtitle { font-size: 14px; color: #6b7a60; margin-bottom: 18px; }
+
+        /* 심각도 배너 (앱 측정 severity로 표시) */
+        .severity-banner { border-radius: 14px; padding: 13px 16px; margin-bottom: 22px; }
+        .severity-banner .sev-row { display: none; gap: 10px; align-items: flex-start; font-size: 13.5px; }
+        .severity-banner .sev-row.active { display: flex; }
+        .severity-banner .sev-icon { font-size: 19px; line-height: 1.4; }
+        .severity-banner.sev-none, .severity-banner.sev-mild { background: rgba(124,179,66,0.13); border: 1px solid rgba(124,179,66,0.34); }
+        .severity-banner.sev-moderate { background: rgba(224,173,95,0.15); border: 1px solid rgba(224,173,95,0.55); }
+        .severity-banner.sev-severe { background: rgba(214,120,90,0.14); border: 1px solid rgba(214,120,90,0.5); }
+        .severity-banner strong { color: #3d6b1f; }
+        .severity-banner.sev-moderate strong { color: #b5772a; }
+        .severity-banner.sev-severe strong { color: #c0562f; }
+
+        /* 빠른 이동 칩 */
+        .section-nav { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 30px; }
+        .section-chip { display: inline-block; padding: 7px 13px; font-size: 13px; font-weight: 600; color: #4e6b39; background: rgba(255,255,255,0.75); border: 1px solid #d4e8bd; border-radius: 20px; text-decoration: none; transition: all 0.2s; }
+        .section-chip:hover { background: #fff; border-color: #7cb342; color: #3d6b1f; }
+        .section-chip.active { background: #fff; border-color: #7cb342; color: #3d6b1f; box-shadow: 0 1px 5px rgba(124,179,66,0.35); }
+
+        .guide-card { scroll-margin-top: 16px; background: rgba(255,255,255,0.5); border: 1px solid rgba(255,255,255,0.65); border-radius: 18px; padding: 24px 22px; margin-bottom: 18px; box-shadow: 0 2px 12px rgba(99,150,55,0.1); }
+        .guide-card h2 { font-size: 22px; font-weight: 800; margin-bottom: 4px; display: flex; align-items: baseline; gap: 8px; color: #3d6b1f; flex-wrap: wrap; }
+        .guide-card h2 .en-name { font-size: 13px; color: #6aa83a; font-weight: 600; }
+        .feature { font-size: 14.5px; color: #56624e; margin: 10px 0 18px; }
+
+        .block-label { font-size: 13px; font-weight: 800; letter-spacing: 0.2px; margin: 16px 0 8px; display: inline-flex; align-items: center; gap: 6px; }
+        .block-label.rec { color: #4e8a2c; }
+        .block-label.avoid { color: #c4882f; }
+        ul.tips { list-style: none; }
+        ul.tips li { position: relative; padding-left: 18px; margin-bottom: 7px; font-size: 14.5px; color: #3f4a39; }
+        ul.tips li::before { content: ''; position: absolute; left: 2px; top: 10px; width: 6px; height: 6px; border-radius: 50%; }
+        ul.tips.rec li::before { background: #7cb342; }
+        ul.tips.avoid li::before { background: #e0ad5f; }
+        /* 번호 단계 (마사지 순서) */
+        ul.tips.steps { counter-reset: st; }
+        ul.tips.steps li { counter-increment: st; padding-left: 28px; margin-bottom: 9px; }
+        ul.tips.steps li::before { content: counter(st); width: 18px; height: 18px; left: 0; top: 3px; background: #7cb342; color: #fff; font-size: 10px; font-weight: 800; line-height: 18px; text-align: center; border-radius: 50%; }
+        ul.tips.steps li.no-num { counter-increment: none; padding-left: 18px; }
+        ul.tips.steps li.no-num::before { content: ''; width: 6px; height: 6px; left: 2px; top: 10px; line-height: 0; background: #aac98a; }
+
+        /* 기본 루틴으로 이동하는 링크 (부위 섹션 안) */
+        .routine-link { display: inline-block; margin: 2px 0 14px; font-size: 13px; color: #4e8a2c; text-decoration: none; font-weight: 600; background: rgba(124,179,66,0.13); padding: 6px 13px; border-radius: 20px; transition: all 0.2s; }
+        .routine-link:hover { background: rgba(124,179,66,0.22); }
+        /* 마사지 시연 영상 (섹션당 1개) */
+        .vid-row { display: flex; justify-content: center; margin: 6px 0 8px; }
+        .routine-video { width: 300px; max-width: 88%; border-radius: 14px; display: block; background: #eef3e6; }
+        /* 루틴 도식 이미지 (섹션당 1장) */
+        .img-row { display: flex; justify-content: center; margin: 6px 0 16px; }
+        .img-cap { text-align: center; font-size: 11.5px; color: #8aa372; margin: -8px 0 14px; }
+        .routine-img { width: 300px; max-width: 88%; margin: 0; }
+        .routine-img img { width: 100%; height: auto; border-radius: 14px; display: block; background: #eef3e6; }
+        .routine-img figcaption { display: none; }
+        .routine-img.pending img { display: none; }
+        .routine-img.pending { aspect-ratio: 4 / 5; border: 1.5px dashed #b9d49a; border-radius: 14px; display: flex; align-items: center; justify-content: center; text-align: center; background: rgba(255,255,255,0.5); }
+        .routine-img.pending figcaption { display: block; font-size: 11px; color: #8aa372; line-height: 1.5; padding: 8px; }
+
+        .footer-note { margin-top: 22px; font-size: 12px; color: #87937c; text-align: center; line-height: 1.7; }
+        .med-note { margin-top: 24px; font-size: 12.5px; color: #5e6d54; line-height: 1.7; background: rgba(255,255,255,0.45); border: 1px solid rgba(255,255,255,0.6); border-radius: 12px; padding: 14px 16px; }
+
+        /* ===== 다국어 표시 제어 ===== */
+        [lang]:not([lang="en"]) { display: none; }
+        body.lang-ko [lang="ko"] { display: block; }
+        body.lang-ko [lang="en"], body.lang-ko [lang="ja"], body.lang-ko [lang="zh-CN"], body.lang-ko [lang="zh-TW"] { display: none; }
+        body.lang-ja [lang="ja"] { display: block; }
+        body.lang-ja [lang="en"], body.lang-ja [lang="ko"], body.lang-ja [lang="zh-CN"], body.lang-ja [lang="zh-TW"] { display: none; }
+        body.lang-en [lang="en"] { display: block; }
+        body.lang-en [lang="ko"], body.lang-en [lang="ja"], body.lang-en [lang="zh-CN"], body.lang-en [lang="zh-TW"] { display: none; }
+        body.lang-zh-CN [lang="zh-CN"] { display: block; }
+        body.lang-zh-CN [lang="en"], body.lang-zh-CN [lang="ko"], body.lang-zh-CN [lang="ja"], body.lang-zh-CN [lang="zh-TW"] { display: none; }
+        body.lang-zh-TW [lang="zh-TW"] { display: block; }
+        body.lang-zh-TW [lang="en"], body.lang-zh-TW [lang="ko"], body.lang-zh-TW [lang="ja"], body.lang-zh-TW [lang="zh-CN"] { display: none; }
+        span[lang] { display: none; }
+        body.lang-en span[lang="en"] { display: inline; }
+        body.lang-ko span[lang="ko"] { display: inline; }
+        body.lang-ja span[lang="ja"] { display: inline; }
+        body.lang-zh-CN span[lang="zh-CN"] { display: inline; }
+        body.lang-zh-TW span[lang="zh-TW"] { display: inline; }
+    </style>
+</head>
+<body class="lang-en">
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="back-link">← <span lang="en">Style Guide</span><span lang="ko">스타일 가이드</span><span lang="ja">スタイルガイド</span><span lang="zh-CN">风格指南</span><span lang="zh-TW">風格指南</span></a>
+            <div class="lang-switcher">
+                <button class="lang-btn active" onclick="setLang('en')" title="English">🇺🇸</button>
+                <button class="lang-btn" onclick="setLang('ko')" title="한국어">🇰🇷</button>
+                <button class="lang-btn" onclick="setLang('ja')" title="日本語">🇯🇵</button>
+                <button class="lang-btn" onclick="setLang('zh-CN')" title="简体中文">🇨🇳</button>
+                <button class="lang-btn" onclick="setLang('zh-TW')" title="繁體中文">🇹🇼</button>
+            </div>
+        </div>
+
+        <h1>
+            <span lang="en">Face De-puffing Guide</span>
+            <span lang="ko">붓기 빼는 페이스 케어</span>
+            <span lang="ja">むくみ取りフェイスケア</span>
+            <span lang="zh-CN">面部消肿护理指南</span>
+            <span lang="zh-TW">面部消腫護理指南</span>
+        </h1>
+        <p class="subtitle">
+            <span lang="en">Drain the puffiness behind a bigger-looking face. Lymph massage by area, plus diet &amp; habits. A guide, not medical advice.</span>
+            <span lang="ko">얼굴을 커 보이게 하는 붓기를 빼보세요. 부위별 림프 마사지와 식이·생활 습관까지. 의료 조언이 아닌 참고용 가이드입니다.</span>
+            <span lang="ja">顔を大きく見せるむくみを流しましょう。部位別リンパマッサージと食事・習慣まで。医療アドバイスではなく参考ガイドです。</span>
+            <span lang="zh-CN">排走让脸显大的浮肿。分部位淋巴按摩，加饮食与习惯。仅供参考，非医疗建议。</span>
+            <span lang="zh-TW">排走讓臉顯大的浮腫。分部位淋巴按摩，加飲食與習慣。僅供參考，非醫療建議。</span>
+        </p>
+
+        <!-- 심각도 배너 (앱 측정 severity로 자동) -->
+        <div class="severity-banner" id="sevBanner" hidden>
+            <div class="sev-row" data-sev="none">
+                <span class="sev-icon">👍</span>
+                <p><strong><span lang="en">Almost no swelling.</span><span lang="ko">붓기 거의 없음.</span><span lang="ja">むくみはほぼなし。</span><span lang="zh-CN">几乎没有浮肿。</span><span lang="zh-TW">幾乎沒有浮腫。</span></strong>
+                <span lang="en"> A light prevention routine is all you need.</span><span lang="ko"> 가벼운 예방 루틴이면 충분해요.</span><span lang="ja"> 軽い予防ケアで十分です。</span><span lang="zh-CN"> 保持轻度预防即可。</span><span lang="zh-TW"> 保持輕度預防即可。</span></p>
+            </div>
+            <div class="sev-row" data-sev="mild">
+                <span class="sev-icon">💧</span>
+                <p><strong><span lang="en">Mild puffiness.</span><span lang="ko">약간의 붓기.</span><span lang="ja">軽いむくみ。</span><span lang="zh-CN">轻度浮肿。</span><span lang="zh-TW">輕度浮腫。</span></strong>
+                <span lang="en"> A 3-minute morning massage clears it quickly.</span><span lang="ko"> 아침 3분 마사지로 금방 빠져요.</span><span lang="ja"> 朝3分のマッサージですぐ流れます。</span><span lang="zh-CN"> 早晨3分钟按摩就能消。</span><span lang="zh-TW"> 早晨3分鐘按摩就能消。</span></p>
+            </div>
+            <div class="sev-row" data-sev="moderate">
+                <span class="sev-icon">💧</span>
+                <p><strong><span lang="en">Noticeable swelling.</span><span lang="ko">붓기가 보여요.</span><span lang="ja">むくみが目立ちます。</span><span lang="zh-CN">浮肿较明显。</span><span lang="zh-TW">浮腫較明顯。</span></strong>
+                <span lang="en"> Pair the massage with the diet &amp; habit tips below.</span><span lang="ko"> 마사지와 아래 식이·생활 습관을 함께 챙기세요.</span><span lang="ja"> マッサージと下の食事・習慣を併せて。</span><span lang="zh-CN"> 按摩搭配下方饮食与习惯一起做。</span><span lang="zh-TW"> 按摩搭配下方飲食與習慣一起做。</span></p>
+            </div>
+            <div class="sev-row" data-sev="severe">
+                <span class="sev-icon">⚠️</span>
+                <p><strong><span lang="en">Pronounced swelling.</span><span lang="ko">붓기가 뚜렷해요.</span><span lang="ja">むくみが顕著です。</span><span lang="zh-CN">浮肿明显。</span><span lang="zh-TW">浮腫明顯。</span></strong>
+                <span lang="en"> Keep it up daily — and if it persists or is one-sided, review your habits or see a professional.</span><span lang="ko"> 꾸준히 관리하고, 오래가거나 한쪽만 부으면 생활습관 점검이나 전문가 상담을 권해요.</span><span lang="ja"> 毎日続け、長引く・片側だけの場合は習慣の見直しや専門家へ。</span><span lang="zh-CN"> 坚持每天护理；若持续或单侧浮肿，请检查习惯或就医。</span><span lang="zh-TW"> 堅持每天護理；若持續或單側浮腫，請檢查習慣或就醫。</span></p>
+            </div>
+        </div>
+
+        <!-- 빠른 이동 -->
+        <nav class="section-nav">
+            <a class="section-chip" href="#basic"><span lang="en">Basic routine</span><span lang="ko">기본 루틴</span><span lang="ja">基本ルーティン</span><span lang="zh-CN">基础流程</span><span lang="zh-TW">基礎流程</span></a>
+            <a class="section-chip" href="#eye"><span lang="en">Eyes</span><span lang="ko">눈가</span><span lang="ja">目元</span><span lang="zh-CN">眼周</span><span lang="zh-TW">眼周</span></a>
+            <a class="section-chip" href="#cheek"><span lang="en">Cheeks</span><span lang="ko">볼·광대</span><span lang="ja">頬</span><span lang="zh-CN">脸颊</span><span lang="zh-TW">臉頰</span></a>
+            <a class="section-chip" href="#jaw"><span lang="en">Jawline</span><span lang="ko">턱·라인</span><span lang="ja">フェイスライン</span><span lang="zh-CN">下颌线</span><span lang="zh-TW">下顎線</span></a>
+            <a class="section-chip" href="#diet"><span lang="en">Diet &amp; habits</span><span lang="ko">식이·생활</span><span lang="ja">食事・習慣</span><span lang="zh-CN">饮食与习惯</span><span lang="zh-TW">飲食與習慣</span></a>
+        </nav>
+
+        <!-- =================== 기본 림프 루틴 (basic) =================== -->
+        <section class="guide-card" id="basic">
+            <h2>
+                <span lang="en">Basic Lymph Routine</span><span lang="ko">기본 림프 루틴</span><span lang="ja">基本のリンパルーティン</span><span lang="zh-CN">基础淋巴流程</span><span lang="zh-TW">基礎淋巴流程</span>
+                <span class="en-name" lang="ko">Basic Routine</span><span class="en-name" lang="ja">Basic Routine</span><span class="en-name" lang="zh-CN">Basic Routine</span><span class="en-name" lang="zh-TW">Basic Routine</span>
+            </h2>
+            <p class="feature">
+                <span lang="en">Puffiness is stalled lymph fluid. Don't start at the face — first open the "drains" (collarbone, underarms), then sweep face → ears → neck → collarbone. Lymph sits just under the skin, so press gently; hard rubbing backfires.</span>
+                <span lang="ko">붓기는 정체된 림프액이에요. 얼굴부터 만지지 말고 막힌 곳(쇄골·겨드랑이)을 먼저 열고, 얼굴 → 귀 → 목 → 쇄골 순으로 흘려보내요. 림프관은 피부 바로 아래라 약하게 — 세게 문지르면 역효과예요.</span>
+                <span lang="ja">むくみは滞ったリンパ液。顔から始めず、まず出口（鎖骨・脇）を開け、顔→耳→首→鎖骨へ流します。リンパは皮膚のすぐ下にあるので優しく、強くこするのは逆効果。</span>
+                <span lang="zh-CN">浮肿是淤滞的淋巴液。别从脸开始——先打开"出口"（锁骨、腋下），再按脸→耳→颈→锁骨方向疏导。淋巴就在皮肤下方，要轻柔；用力揉反而适得其反。</span>
+                <span lang="zh-TW">浮腫是淤滯的淋巴液。別從臉開始——先打開「出口」（鎖骨、腋下），再按臉→耳→頸→鎖骨方向疏導。淋巴就在皮膚下方，要輕柔；用力揉反而適得其反。</span>
+            </p>
+            <div class="vid-row">
+                <video class="routine-video" autoplay muted loop playsinline preload="metadata" poster="img/swell-basic.jpg">
+                    <source src="media/swell-basic.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="img-row">
+                <!-- IMAGE: 기본 림프 루틴 도식 · img/swell-basic.jpg -->
+                <figure class="routine-img"><img src="img/swell-basic.jpg" alt="Basic lymph routine" loading="lazy" width="400" height="500" onerror="this.closest('.routine-img').classList.add('pending')"><figcaption>img/swell-basic.jpg</figcaption></figure>
+            </div>
+            <div class="block-label rec">✓ <span lang="en">Steps</span><span lang="ko">순서</span><span lang="ja">手順</span><span lang="zh-CN">步骤</span><span lang="zh-TW">步驟</span></div>
+            <ul class="tips rec steps">
+                <li><span lang="en">Warm the face and neck first — a warm towel or your palms wakes up circulation.</span><span lang="ko">먼저 따뜻한 타월이나 손바닥으로 얼굴·목을 데워 순환을 깨워요.</span><span lang="ja">まず蒸しタオルや手のひらで顔・首を温め、巡りを起こす。</span><span lang="zh-CN">先用热毛巾或手掌温热脸与颈，唤醒循环。</span><span lang="zh-TW">先用熱毛巾或手掌溫熱臉與頸，喚醒循環。</span></li>
+                <li><span lang="en">Lightly knead the underarms to open the lymph exit.</span><span lang="ko">겨드랑이를 가볍게 주물러 림프 출구를 열어요.</span><span lang="ja">脇の下を軽くもみ、リンパの出口を開く。</span><span lang="zh-CN">轻揉腋下，打开淋巴出口。</span><span lang="zh-TW">輕揉腋下，打開淋巴出口。</span></li>
+                <li><span lang="en">Sweep along the collarbone, inside to outside, with soft fingertips.</span><span lang="ko">쇄골 위아래를 안에서 밖으로 손가락 배로 부드럽게 쓸어요.</span><span lang="ja">鎖骨を内から外へ、指の腹で優しく流す。</span><span lang="zh-CN">用指腹沿锁骨由内向外轻扫。</span><span lang="zh-TW">用指腹沿鎖骨由內向外輕掃。</span></li>
+                <li><span lang="en">Stroke the neck downward, from below the ear to the collarbone — build the drainage path.</span><span lang="ko">귀 아래에서 쇄골로 목을 쓸어내려 배수로를 만들어요.</span><span lang="ja">耳の下から鎖骨へ首を流し、排水路をつくる。</span><span lang="zh-CN">从耳下向锁骨向下推颈部，建立"排水道"。</span><span lang="zh-TW">從耳下向鎖骨向下推頸部，建立「排水道」。</span></li>
+                <li><span lang="en">Only now the face — always inside → out to the ears → down the neck → collarbone.</span><span lang="ko">그다음 얼굴 — 항상 안 → 밖(귀) → 목 → 쇄골 방향으로 흘려보내요.</span><span lang="ja">最後に顔 — 必ず内→外（耳）→首→鎖骨へ流す。</span><span lang="zh-CN">最后才是脸——始终由内→外（耳）→颈→锁骨疏导。</span><span lang="zh-TW">最後才是臉——始終由內→外（耳）→頸→鎖骨疏導。</span></li>
+            </ul>
+            <div class="block-label avoid">✕ <span lang="en">Go easy on</span><span lang="ko">주의할 점</span><span lang="ja">注意</span><span lang="zh-CN">需注意</span><span lang="zh-TW">需注意</span></div>
+            <ul class="tips avoid">
+                <li><span lang="en">Hard rubbing or pulling — lymph is shallow, so light pressure works; force irritates skin and can cause sagging.</span><span lang="ko">세게 문지르거나 당기기 — 림프는 얕아서 약한 압이 효과적이에요. 강한 자극은 피부 자극·처짐을 유발해요.</span><span lang="ja">強くこする・引っぱる — リンパは浅く、弱い圧が有効。強い刺激は肌荒れ・たるみの元。</span><span lang="zh-CN">用力揉搓或拉扯——淋巴很浅，轻压才有效；用力会刺激皮肤、导致松弛。</span><span lang="zh-TW">用力揉搓或拉扯——淋巴很淺，輕壓才有效；用力會刺激皮膚、導致鬆弛。</span></li>
+                <li><span lang="en">Dry skin — use a little oil or cream so you don't drag the skin.</span><span lang="ko">크림 없이 마른 피부에 마찰 — 오일이나 크림을 살짝 발라 끌리지 않게 해요.</span><span lang="ja">乾いた肌での摩擦 — オイルやクリームを少し使い、引っぱらない。</span><span lang="zh-CN">干燥皮肤上摩擦——抹点油或面霜，避免拉扯。</span><span lang="zh-TW">乾燥皮膚上摩擦——抹點油或面霜，避免拉扯。</span></li>
+            </ul>
+        </section>
+
+        <!-- =================== 눈가 (eye) =================== -->
+        <section class="guide-card" id="eye">
+            <h2>
+                <span lang="en">Eye Area</span><span lang="ko">눈가 붓기</span><span lang="ja">目元のむくみ</span><span lang="zh-CN">眼周浮肿</span><span lang="zh-TW">眼周浮腫</span>
+                <span class="en-name" lang="ko">Eyes</span><span class="en-name" lang="ja">Eyes</span><span class="en-name" lang="zh-CN">Eyes</span><span class="en-name" lang="zh-TW">Eyes</span>
+            </h2>
+            <p class="feature">
+                <span lang="en">Lids look puffy in the morning. The skin here is the thinnest on the face, so be especially gentle and never press the eyeball.</span>
+                <span lang="ko">아침에 눈두덩이 붓는 타입이에요. 눈가는 얼굴에서 가장 얇은 피부라 특히 부드럽게, 안구는 절대 누르지 않아요.</span>
+                <span lang="ja">朝にまぶたがむくむタイプ。目元は顔で最も皮膚が薄いので特に優しく、眼球は絶対に押さない。</span>
+                <span lang="zh-CN">早晨眼皮浮肿型。眼周是全脸最薄的皮肤，要格外轻柔，绝不按压眼球。</span>
+                <span lang="zh-TW">早晨眼皮浮腫型。眼周是全臉最薄的皮膚，要格外輕柔，絕不按壓眼球。</span>
+            </p>
+            <a class="routine-link" href="#basic">💡 <span lang="en">Open the flow with the basic lymph routine first →</span><span lang="ko">먼저 기본 림프 루틴으로 흐름을 열어주세요 →</span><span lang="ja">まず基本のリンパルーティンで流れを作る →</span><span lang="zh-CN">先用基础淋巴流程打开通道 →</span><span lang="zh-TW">先用基礎淋巴流程打開通道 →</span></a>
+            <div class="vid-row">
+                <video class="routine-video" autoplay muted loop playsinline preload="metadata" poster="img/swell-eye.jpg">
+                    <source src="media/swell-eye.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="img-row">
+                <!-- IMAGE: 눈가 마사지 도식 · img/swell-eye.jpg -->
+                <figure class="routine-img"><img src="img/swell-eye.jpg" alt="Eye-area massage" loading="lazy" width="400" height="500" onerror="this.closest('.routine-img').classList.add('pending')"><figcaption>img/swell-eye.jpg</figcaption></figure>
+            </div>
+            <div class="block-label rec">✓ <span lang="en">Steps</span><span lang="ko">순서</span><span lang="ja">手順</span><span lang="zh-CN">步骤</span><span lang="zh-TW">步驟</span></div>
+            <ul class="tips rec steps">
+                <li><span lang="en">Eyes closed, press the inner edge of the brow with your thumb pad for about 5 seconds.</span><span lang="ko">눈을 감고, 눈썹 안쪽(찬죽)을 엄지 배로 약 5초간 지그시 눌러요.</span><span lang="ja">目を閉じ、眉頭のツボ（攅竹）を親指の腹で約5秒押す。</span><span lang="zh-CN">闭眼，用拇指腹按眉头内侧（攒竹）约5秒。</span><span lang="zh-TW">閉眼，用拇指腹按眉頭內側（攢竹）約5秒。</span></li>
+                <li><span lang="en">Glide along the brow bone out to the temple — repeat 3 times.</span><span lang="ko">눈썹뼈를 따라 관자놀이(태양)까지 쓸어요 — 3회 반복.</span><span lang="ja">眉骨に沿ってこめかみ（太陽）まで流す — 3回。</span><span lang="zh-CN">沿眉骨滑向太阳穴——重复3次。</span><span lang="zh-TW">沿眉骨滑向太陽穴——重複3次。</span></li>
+                <li><span lang="en">Lightly press just above the inner corner of the eye to wake circulation.</span><span lang="ko">눈머리 위(정명)를 가볍게 눌러 순환을 깨워요.</span><span lang="ja">目頭の上（晴明）を軽く押し、巡りを促す。</span><span lang="zh-CN">轻按内眼角上方（睛明）促进循环。</span><span lang="zh-TW">輕按內眼角上方（睛明）促進循環。</span></li>
+                <li><span lang="en">Lay a warm towel over the eyes for about 10 minutes — warmth releases congestion.</span><span lang="ko">따뜻한 타월을 눈에 약 10분 — 혈행이 풀려요.</span><span lang="ja">蒸しタオルを目元に約10分 — 血行がほぐれる。</span><span lang="zh-CN">热毛巾敷眼约10分钟——化开淤堵。</span><span lang="zh-TW">熱毛巾敷眼約10分鐘——化開淤堵。</span></li>
+            </ul>
+            <div class="block-label avoid">✕ <span lang="en">Go easy on</span><span lang="ko">주의할 점</span><span lang="ja">注意</span><span lang="zh-CN">需注意</span><span lang="zh-TW">需注意</span></div>
+            <ul class="tips avoid">
+                <li><span lang="en">Pressing or rubbing the eyeball, or dragging the under-eye skin.</span><span lang="ko">안구를 누르거나 비비기, 눈밑 피부를 세게 당기기.</span><span lang="ja">眼球を押す・こする、目の下を強く引っぱる。</span><span lang="zh-CN">按压或揉搓眼球，拉扯眼下皮肤。</span><span lang="zh-TW">按壓或揉搓眼球，拉扯眼下皮膚。</span></li>
+            </ul>
+        </section>
+
+        <!-- =================== 볼·광대 (cheek) =================== -->
+        <section class="guide-card" id="cheek">
+            <h2>
+                <span lang="en">Cheeks</span><span lang="ko">볼·광대 붓기</span><span lang="ja">頬のむくみ</span><span lang="zh-CN">脸颊浮肿</span><span lang="zh-TW">臉頰浮腫</span>
+                <span class="en-name" lang="ko">Cheeks</span><span class="en-name" lang="ja">Cheeks</span><span class="en-name" lang="zh-CN">Cheeks</span><span class="en-name" lang="zh-TW">Cheeks</span>
+            </h2>
+            <p class="feature">
+                <span lang="en">Puffy cheeks and cheekbones make the face look wider. Move the fluid up and out toward the ear, then down the neck.</span>
+                <span lang="ko">볼·광대가 부어 얼굴이 넓어 보이는 타입이에요. 수분을 위·바깥(귀) 쪽으로 보낸 뒤 목으로 내려보내요.</span>
+                <span lang="ja">頬・頬骨がむくんで顔が広く見えるタイプ。水分を上・外（耳）へ送り、首へ流す。</span>
+                <span lang="zh-CN">脸颊、颧骨浮肿让脸显宽。把水分向上、向外（耳）推，再向下导入颈部。</span>
+                <span lang="zh-TW">臉頰、顴骨浮腫讓臉顯寬。把水分向上、向外（耳）推，再向下導入頸部。</span>
+            </p>
+            <a class="routine-link" href="#basic">💡 <span lang="en">Open the flow with the basic lymph routine first →</span><span lang="ko">먼저 기본 림프 루틴으로 흐름을 열어주세요 →</span><span lang="ja">まず基本のリンパルーティンで流れを作る →</span><span lang="zh-CN">先用基础淋巴流程打开通道 →</span><span lang="zh-TW">先用基礎淋巴流程打開通道 →</span></a>
+            <div class="vid-row">
+                <video class="routine-video" autoplay muted loop playsinline preload="metadata" poster="img/swell-cheek.jpg">
+                    <source src="media/swell-cheek.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="img-row">
+                <!-- IMAGE: 볼·광대 마사지 도식 · img/swell-cheek.jpg -->
+                <figure class="routine-img"><img src="img/swell-cheek.jpg" alt="Cheek massage" loading="lazy" width="400" height="500" onerror="this.closest('.routine-img').classList.add('pending')"><figcaption>img/swell-cheek.jpg</figcaption></figure>
+            </div>
+            <div class="block-label rec">✓ <span lang="en">Steps</span><span lang="ko">순서</span><span lang="ja">手順</span><span lang="zh-CN">步骤</span><span lang="zh-TW">步驟</span></div>
+            <ul class="tips rec steps">
+                <li><span lang="en">Sweep from beside the nose, across the cheek, up toward the ear.</span><span lang="ko">코 옆에서 볼을 지나 귀 쪽으로 쓸어 올려요.</span><span lang="ja">小鼻の横から頬を通って耳の方へ引き上げる。</span><span lang="zh-CN">从鼻翼旁经脸颊向耳朵方向上推。</span><span lang="zh-TW">從鼻翼旁經臉頰向耳朵方向上推。</span></li>
+                <li><span lang="en">Press along under the cheekbone out to the front of the ear.</span><span lang="ko">광대뼈 아래를 따라 귀 앞까지 밀어줘요.</span><span lang="ja">頬骨の下に沿って耳の前まで押し流す。</span><span lang="zh-CN">沿颧骨下缘推向耳前。</span><span lang="zh-TW">沿顴骨下緣推向耳前。</span></li>
+                <li><span lang="en">Finish: front of ear → below the ear → down the neck to the collarbone.</span><span lang="ko">마무리: 귀 앞 → 귀 아래 → 목 → 쇄골로 흘려보내요.</span><span lang="ja">仕上げ：耳前→耳下→首→鎖骨へ流す。</span><span lang="zh-CN">收尾：耳前→耳下→颈→锁骨疏导。</span><span lang="zh-TW">收尾：耳前→耳下→頸→鎖骨疏導。</span></li>
+            </ul>
+            <div class="block-label avoid">✕ <span lang="en">Go easy on</span><span lang="ko">주의할 점</span><span lang="ja">注意</span><span lang="zh-CN">需注意</span><span lang="zh-TW">需注意</span></div>
+            <ul class="tips avoid">
+                <li><span lang="en">Dragging the cheek downward, or pressing too hard — both can encourage sagging.</span><span lang="ko">볼을 아래로 당기는 방향, 너무 강한 압 — 처짐을 부를 수 있어요.</span><span lang="ja">頬を下へ引く方向や強すぎる圧 — たるみの原因に。</span><span lang="zh-CN">把脸颊向下拉或用力过猛——都可能导致松弛。</span><span lang="zh-TW">把臉頰向下拉或用力過猛——都可能導致鬆弛。</span></li>
+            </ul>
+        </section>
+
+        <!-- =================== 턱·라인 (jaw) =================== -->
+        <section class="guide-card" id="jaw">
+            <h2>
+                <span lang="en">Jaw &amp; Face Line</span><span lang="ko">턱·얼굴라인 붓기</span><span lang="ja">フェイスラインのむくみ</span><span lang="zh-CN">下颌线浮肿</span><span lang="zh-TW">下顎線浮腫</span>
+                <span class="en-name" lang="ko">Jawline</span><span class="en-name" lang="ja">Jawline</span><span class="en-name" lang="zh-CN">Jawline</span><span class="en-name" lang="zh-TW">Jawline</span>
+            </h2>
+            <p class="feature">
+                <span lang="en">A puffy jaw and under-chin can read as a double chin. Clearing the lymph here sharpens the face line.</span>
+                <span lang="ko">턱 아래·얼굴선이 부어 이중턱처럼 보이는 타입이에요. 이 부위 림프를 풀면 얼굴선이 또렷해져요.</span>
+                <span lang="ja">あご下・フェイスラインがむくんで二重あごに見えるタイプ。ここのリンパを流すと輪郭がすっきり。</span>
+                <span lang="zh-CN">下巴下方、脸线浮肿会显双下巴。疏通此处淋巴可让脸线更清晰。</span>
+                <span lang="zh-TW">下巴下方、臉線浮腫會顯雙下巴。疏通此處淋巴可讓臉線更清晰。</span>
+            </p>
+            <a class="routine-link" href="#basic">💡 <span lang="en">Open the flow with the basic lymph routine first →</span><span lang="ko">먼저 기본 림프 루틴으로 흐름을 열어주세요 →</span><span lang="ja">まず基本のリンパルーティンで流れを作る →</span><span lang="zh-CN">先用基础淋巴流程打开通道 →</span><span lang="zh-TW">先用基礎淋巴流程打開通道 →</span></a>
+            <div class="vid-row">
+                <video class="routine-video" autoplay muted loop playsinline preload="metadata" poster="img/swell-jaw.jpg">
+                    <source src="media/swell-jaw.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="img-row">
+                <!-- IMAGE: 턱·라인 마사지 도식 · img/swell-jaw.jpg -->
+                <figure class="routine-img"><img src="img/swell-jaw.jpg" alt="Jawline massage" loading="lazy" width="400" height="500" onerror="this.closest('.routine-img').classList.add('pending')"><figcaption>img/swell-jaw.jpg</figcaption></figure>
+            </div>
+            <div class="block-label rec">✓ <span lang="en">Steps</span><span lang="ko">순서</span><span lang="ja">手順</span><span lang="zh-CN">步骤</span><span lang="zh-TW">步驟</span></div>
+            <ul class="tips rec steps">
+                <li><span lang="en">Place a bent knuckle under the chin and slide from the chin out to below the ear.</span><span lang="ko">손가락 둘째 관절을 턱 아래에 대고 턱끝 → 귀 아래로 밀어요.</span><span lang="ja">人差し指の第二関節をあご下に当て、あご先→耳の下へ滑らせる。</span><span lang="zh-CN">用食指第二关节抵住下巴下方，从下巴滑向耳下。</span><span lang="zh-TW">用食指第二關節抵住下巴下方，從下巴滑向耳下。</span></li>
+                <li><span lang="en">From below the ear, slide straight down to the collarbone — repeat 3 times.</span><span lang="ko">귀 아래 → 쇄골로 직선으로 내려요 — 3회 반복.</span><span lang="ja">耳の下→鎖骨へまっすぐ下ろす — 3回。</span><span lang="zh-CN">从耳下直推到锁骨——重复3次。</span><span lang="zh-TW">從耳下直推到鎖骨——重複3次。</span></li>
+                <li><span lang="en">Knead the base of the ears, up and down, about 8 times to boost flow.</span><span lang="ko">귀 뿌리를 두 손가락으로 상하 8회 풀어 혈행을 깨워요.</span><span lang="ja">耳の付け根を上下に約8回ほぐし、巡りを促す。</span><span lang="zh-CN">揉耳根上下约8次，促进流动。</span><span lang="zh-TW">揉耳根上下約8次，促進流動。</span></li>
+            </ul>
+            <div class="block-label avoid">✕ <span lang="en">Go easy on</span><span lang="ko">주의할 점</span><span lang="ja">注意</span><span lang="zh-CN">需注意</span><span lang="zh-TW">需注意</span></div>
+            <ul class="tips avoid">
+                <li><span lang="en">Pinching or twisting the jawline hard — keep the pressure light and gliding.</span><span lang="ko">턱선을 세게 꼬집거나 비틀기 — 압은 가볍게 미끄러지듯.</span><span lang="ja">フェイスラインを強くつまむ・ねじる — 圧は軽く滑らせるように。</span><span lang="zh-CN">用力捏或扭下颌线——保持轻柔滑动。</span><span lang="zh-TW">用力捏或扭下顎線——保持輕柔滑動。</span></li>
+            </ul>
+        </section>
+
+        <!-- =================== 식이·생활 (diet) =================== -->
+        <section class="guide-card" id="diet">
+            <h2>
+                <span lang="en">Diet &amp; Habits</span><span lang="ko">식이·생활 습관</span><span lang="ja">食事・習慣</span><span lang="zh-CN">饮食与习惯</span><span lang="zh-TW">飲食與習慣</span>
+                <span class="en-name" lang="ko">Common</span><span class="en-name" lang="ja">Common</span><span class="en-name" lang="zh-CN">Common</span><span class="en-name" lang="zh-TW">Common</span>
+            </h2>
+            <p class="feature">
+                <span lang="en">Massage drains today's puffiness, but habits decide tomorrow's. Sodium, water, and sleep matter most.</span>
+                <span lang="ko">마사지로 오늘 붓기를 빼도, 내일 붓기는 습관이 좌우해요. 나트륨·수분·수면이 가장 중요해요.</span>
+                <span lang="ja">マッサージで今日のむくみは流せても、明日は習慣次第。塩分・水分・睡眠が要。</span>
+                <span lang="zh-CN">按摩能消今天的肿，但明天靠习惯。钠、水分、睡眠最关键。</span>
+                <span lang="zh-TW">按摩能消今天的腫，但明天靠習慣。鈉、水分、睡眠最關鍵。</span>
+            </p>
+            <div class="block-label rec">✓ <span lang="en">Helps</span><span lang="ko">도움이 돼요</span><span lang="ja">役立つこと</span><span lang="zh-CN">有帮助</span><span lang="zh-TW">有幫助</span></div>
+            <ul class="tips rec">
+                <li><span lang="en">Potassium foods flush out sodium — banana, red bean, pumpkin, seaweed, spinach, avocado.</span><span lang="ko">칼륨 식품으로 나트륨 배출 — 바나나·팥·호박·미역·다시마·시금치·아보카도.</span><span lang="ja">カリウムの多い食品で塩分排出 — バナナ・小豆・かぼちゃ・わかめ・ほうれん草・アボカド。</span><span lang="zh-CN">高钾食物帮助排钠——香蕉、红豆、南瓜、海带、菠菜、牛油果。</span><span lang="zh-TW">高鉀食物幫助排鈉——香蕉、紅豆、南瓜、海帶、菠菜、酪梨。</span></li>
+                <li><span lang="en">Eat lighter on salt — late-night salty food, instant noodles, and alcohol are the top causes of morning puffiness.</span><span lang="ko">저염식 — 자기 전 짠 음식·라면·음주가 아침 붓기의 주범이에요.</span><span lang="ja">減塩 — 寝る前の塩辛い食事・ラーメン・飲酒が朝むくみの主因。</span><span lang="zh-CN">少盐——睡前咸食、泡面、饮酒是早晨浮肿的元凶。</span><span lang="zh-TW">少鹽——睡前鹹食、泡麵、飲酒是早晨浮腫的元凶。</span></li>
+                <li><span lang="en">Drink enough water — when you're under-hydrated, the body holds onto fluid instead.</span><span lang="ko">수분 충분히 — 물이 부족하면 몸이 오히려 수분을 가둬요.</span><span lang="ja">水分はしっかり — 不足すると体は逆に水をため込む。</span><span lang="zh-CN">喝足水——缺水时身体反而会储水。</span><span lang="zh-TW">喝足水——缺水時身體反而會儲水。</span></li>
+                <li><span lang="en">Sleep deep and enough — poor sleep stalls the lymph system and you wake up puffy.</span><span lang="ko">깊은 수면 — 잠이 부족하면 림프가 안 돌아 아침에 부어요.</span><span lang="ja">しっかり深く眠る — 睡眠不足はリンパを滞らせ、朝むくむ。</span><span lang="zh-CN">睡得深而足——睡眠差会让淋巴停滞、早晨浮肿。</span><span lang="zh-TW">睡得深而足——睡眠差會讓淋巴停滯、早晨浮腫。</span></li>
+                <li><span lang="en">Mind your pillow height — too flat lets fluid pool in the face; keep your head slightly raised.</span><span lang="ko">베개 높이 — 너무 낮으면 얼굴로 체액이 몰려요. 약간 높게.</span><span lang="ja">枕の高さ — 低すぎると顔に水分が溜まる。少し高めに。</span><span lang="zh-CN">注意枕头高度——太低会让体液积在脸上；稍微垫高。</span><span lang="zh-TW">注意枕頭高度——太低會讓體液積在臉上；稍微墊高。</span></li>
+            </ul>
+            <div class="block-label avoid">✕ <span lang="en">Go easy on</span><span lang="ko">주의할 점</span><span lang="ja">注意</span><span lang="zh-CN">需注意</span><span lang="zh-TW">需注意</span></div>
+            <ul class="tips avoid">
+                <li><span lang="en">Heavy drinking, salty late-night snacks, or chugging a lot of water right before bed.</span><span lang="ko">자기 직전 과음·짠 야식·과도한 물 — 아침 붓기를 키워요.</span><span lang="ja">寝る直前の深酒・塩辛い夜食・大量の水 — 朝むくみを招く。</span><span lang="zh-CN">睡前大量饮酒、咸夜宵或猛灌水——加重早晨浮肿。</span><span lang="zh-TW">睡前大量飲酒、鹹宵夜或猛灌水——加重早晨浮腫。</span></li>
+            </ul>
+        </section>
+
+        <div class="med-note">
+            <span lang="en">⚕️ This is a beauty-care guide, not medical advice. Sudden, one-sided, or painful swelling — or puffiness that won't go away — can signal a medical issue; please see a professional.</span>
+            <span lang="ko">⚕️ 본 가이드는 뷰티 케어용이며 의료 조언이 아닙니다. 갑작스럽거나 한쪽만, 통증을 동반하거나, 가라앉지 않는 붓기는 질환의 신호일 수 있으니 전문가와 상담하세요.</span>
+            <span lang="ja">⚕️ 本ガイドは美容ケア用で医療アドバイスではありません。急な・片側だけ・痛みを伴う、または引かないむくみは病気のサインの可能性があるため、専門家にご相談ください。</span>
+            <span lang="zh-CN">⚕️ 本指南为美容护理用途，非医疗建议。突然、单侧或伴疼痛、以及久不消退的浮肿可能是疾病信号，请咨询专业人士。</span>
+            <span lang="zh-TW">⚕️ 本指南為美容護理用途，非醫療建議。突然、單側或伴疼痛、以及久不消退的浮腫可能是疾病信號，請諮詢專業人士。</span>
+        </div>
+
+        <p class="footer-note">
+            <span lang="en">A guide, not a rule — results vary with body, habits, and consistency.</span>
+            <span lang="ko">정답이 아닌 참고용 가이드 — 체질·습관·꾸준함에 따라 결과가 달라요.</span>
+            <span lang="ja">参考ガイドです — 体質・習慣・継続によって結果は変わります。</span>
+            <span lang="zh-CN">仅供参考——效果因体质、习惯与坚持而异。</span>
+            <span lang="zh-TW">僅供參考——效果因體質、習慣與堅持而異。</span>
+        </p>
+    </div>
+
+    <script>
+        var VALID_LANGS = ['en','ko','ja','zh-CN','zh-TW'];
+        var VALID_REGIONS = ['eye','cheek','jaw'];
+        var VALID_SEV = ['none','mild','moderate','severe'];
+
+        function setLang(lang) {
+            VALID_LANGS.forEach(function(c){ document.body.classList.remove('lang-' + c); });
+            document.body.classList.add('lang-' + lang);
+            document.querySelectorAll('.lang-btn').forEach(function(b){
+                b.classList.toggle('active', b.getAttribute('onclick').indexOf("'" + lang + "'") !== -1);
+            });
+            try { localStorage.setItem('preferred-lang', lang); } catch (e) {}
+        }
+
+        function showBanner(sev) {
+            var banner = document.getElementById('sevBanner');
+            VALID_SEV.forEach(function(s){ banner.classList.remove('sev-' + s); });
+            banner.querySelectorAll('.sev-row').forEach(function(r){
+                r.classList.toggle('active', r.getAttribute('data-sev') === sev);
+            });
+            banner.classList.add('sev-' + sev);
+            banner.hidden = false;
+        }
+
+        function markActiveChip(id) {
+            document.querySelectorAll('.section-chip').forEach(function(c){
+                c.classList.toggle('active', c.getAttribute('href') === '#' + id);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var params = new URLSearchParams(location.search);
+
+            var lang = params.get('lang') || (function(){ try { return localStorage.getItem('preferred-lang'); } catch (e) { return null; } })() || 'en';
+            if (VALID_LANGS.indexOf(lang) === -1) lang = 'en';
+            setLang(lang);
+
+            var sev = params.get('severity');
+            if (sev && VALID_SEV.indexOf(sev) !== -1) showBanner(sev);
+
+            var target = null;
+            var hash = (location.hash || '').replace('#', '');
+            if (['basic','eye','cheek','jaw','diet'].indexOf(hash) !== -1) {
+                target = hash;
+            } else {
+                var region = params.get('region');
+                if (region && VALID_REGIONS.indexOf(region) !== -1) target = region;
+            }
+
+            if (target) {
+                markActiveChip(target);
+                var el = document.getElementById(target);
+                if (el) { setTimeout(function(){ el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 120); }
+            }
+        });
+    </script>
+</body>
+</html>
