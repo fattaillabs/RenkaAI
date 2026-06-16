@@ -82,15 +82,17 @@
         /* ===== 다국어 표시 제어 ===== */
         [lang]:not([lang="en"]) { display: none; }
         body.lang-ko [lang="ko"] { display: block; }
-        body.lang-ko [lang="en"], body.lang-ko [lang="ja"], body.lang-ko [lang="zh-CN"], body.lang-ko [lang="zh-TW"] { display: none; }
+        body.lang-ko [lang="en"], body.lang-ko [lang="ja"], body.lang-ko [lang="zh-CN"], body.lang-ko [lang="zh-TW"], body.lang-ko [lang="es"] { display: none; }
         body.lang-ja [lang="ja"] { display: block; }
-        body.lang-ja [lang="en"], body.lang-ja [lang="ko"], body.lang-ja [lang="zh-CN"], body.lang-ja [lang="zh-TW"] { display: none; }
+        body.lang-ja [lang="en"], body.lang-ja [lang="ko"], body.lang-ja [lang="zh-CN"], body.lang-ja [lang="zh-TW"], body.lang-ja [lang="es"] { display: none; }
         body.lang-en [lang="en"] { display: block; }
-        body.lang-en [lang="ko"], body.lang-en [lang="ja"], body.lang-en [lang="zh-CN"], body.lang-en [lang="zh-TW"] { display: none; }
+        body.lang-en [lang="ko"], body.lang-en [lang="ja"], body.lang-en [lang="zh-CN"], body.lang-en [lang="zh-TW"], body.lang-en [lang="es"] { display: none; }
         body.lang-zh-CN [lang="zh-CN"] { display: block; }
-        body.lang-zh-CN [lang="en"], body.lang-zh-CN [lang="ko"], body.lang-zh-CN [lang="ja"], body.lang-zh-CN [lang="zh-TW"] { display: none; }
+        body.lang-zh-CN [lang="en"], body.lang-zh-CN [lang="ko"], body.lang-zh-CN [lang="ja"], body.lang-zh-CN [lang="zh-TW"], body.lang-zh-CN [lang="es"] { display: none; }
         body.lang-zh-TW [lang="zh-TW"] { display: block; }
-        body.lang-zh-TW [lang="en"], body.lang-zh-TW [lang="ko"], body.lang-zh-TW [lang="ja"], body.lang-zh-TW [lang="zh-CN"] { display: none; }
+        body.lang-zh-TW [lang="en"], body.lang-zh-TW [lang="ko"], body.lang-zh-TW [lang="ja"], body.lang-zh-TW [lang="zh-CN"], body.lang-zh-TW [lang="es"] { display: none; }
+        body.lang-es [lang="es"] { display: block; }
+        body.lang-es [lang="en"], body.lang-es [lang="ko"], body.lang-es [lang="ja"], body.lang-es [lang="zh-CN"], body.lang-es [lang="zh-TW"] { display: none; }
         /* inline 요소용 */
         span[lang] { display: none; }
         body.lang-en span[lang="en"] { display: inline; }
@@ -98,18 +100,20 @@
         body.lang-ja span[lang="ja"] { display: inline; }
         body.lang-zh-CN span[lang="zh-CN"] { display: inline; }
         body.lang-zh-TW span[lang="zh-TW"] { display: inline; }
+        body.lang-es span[lang="es"] { display: inline; }
     </style>
 </head>
 <body class="lang-en">
     <div class="container">
         <div class="header">
-            <a href="index.html" class="back-link">← <span lang="en">Style Guide</span><span lang="ko">스타일 가이드</span><span lang="ja">スタイルガイド</span><span lang="zh-CN">风格指南</span><span lang="zh-TW">風格指南</span></a>
+            <a href="index.html" class="back-link">← <span lang="en">Style Guide</span><span lang="ko">스타일 가이드</span><span lang="ja">スタイルガイド</span><span lang="zh-CN">风格指南</span><span lang="zh-TW">風格指南</span><span lang="es">Guía de estilo</span></a>
             <div class="lang-switcher">
                 <button class="lang-btn active" onclick="setLang('en')" title="English">🇺🇸</button>
                 <button class="lang-btn" onclick="setLang('ko')" title="한국어">🇰🇷</button>
                 <button class="lang-btn" onclick="setLang('ja')" title="日本語">🇯🇵</button>
                 <button class="lang-btn" onclick="setLang('zh-CN')" title="简体中文">🇨🇳</button>
                 <button class="lang-btn" onclick="setLang('zh-TW')" title="繁體中文">🇹🇼</button>
+                <button class="lang-btn" onclick="setLang('es')" title="Español">🇪🇸</button>
             </div>
         </div>
 
@@ -119,6 +123,7 @@
             <span lang="ja">横顔タイプ別スタイルガイド</span>
             <span lang="zh-CN">侧脸类型造型指南</span>
             <span lang="zh-TW">側臉類型造型指南</span>
+            <span lang="es">Guía de estilo según el perfil</span>
         </h1>
         <p class="subtitle">
             <span lang="en">Your profile shape comes from bone structure and won't change with styling — but hair and makeup can balance how the side view reads. A guide, not a rule.</span>
@@ -126,6 +131,7 @@
             <span lang="ja">横顔タイプは骨格によるもので、スタイリングでは変わりません。ただ、髪とメイクで横顔の印象バランスは整えられます。あくまで参考ガイドです。</span>
             <span lang="zh-CN">侧脸类型源于骨骼，造型无法改变它——但发型与妆容可以平衡侧脸给人的印象。仅供参考，并非定式。</span>
             <span lang="zh-TW">側臉類型源於骨骼，造型無法改變它——但髮型與妝容可以平衡側臉給人的印象。僅供參考，並非定式。</span>
+            <span lang="es">La forma de tu perfil viene de la estructura ósea y no cambia con el estilismo, pero el cabello y el maquillaje pueden equilibrar cómo se percibe de lado. Una guía, no una regla.</span>
         </p>
         <p class="auto-note">
             <span lang="en">You'll jump to your measured profile type automatically — feel free to check the other one too.</span>
@@ -133,25 +139,26 @@
             <span lang="ja">測定結果に応じて自分の横顔タイプへ自動で移動します。他のタイプのコツも自由にどうぞ。</span>
             <span lang="zh-CN">会根据测量结果自动跳到你的侧脸类型，另一种类型的技巧也欢迎查看。</span>
             <span lang="zh-TW">會根據測量結果自動跳到你的側臉類型，另一種類型的技巧也歡迎查看。</span>
+            <span lang="es">Saltarás automáticamente al tipo de perfil que se midió; también puedes consultar el otro.</span>
         </p>
 
         <!-- 직선형 안내 (측정값이 167°–177° 일 때만 JS로 표시) -->
         <div class="straight-note" id="straightNote">
-            <strong><span lang="en">Your profile is Straight (ideal range).</span><span lang="ko">당신의 옆얼굴은 직선형(이상 범위)이에요.</span><span lang="ja">あなたの横顔は直線型（理想範囲）です。</span><span lang="zh-CN">你的侧脸是直线型（理想范围）。</span><span lang="zh-TW">你的側臉是直線型（理想範圍）。</span></strong>
-            <span class="sub"><span lang="en">A straight profile is already well-balanced, so no corrective styling is needed. Below are tips for the convex and concave types for reference.</span><span lang="ko">직선형은 이미 균형이 잘 잡혀 있어 보정 스타일링이 필요 없어요. 아래 볼록형·오목형 팁은 참고용이에요.</span><span lang="ja">直線型はすでにバランスが取れているため、補正スタイリングは不要です。下の凸型・凹型のコツは参考用です。</span><span lang="zh-CN">直线型本就均衡，无需修饰造型。下方凸面型与凹面型的技巧仅供参考。</span><span lang="zh-TW">直線型本就均衡，無需修飾造型。下方凸面型與凹面型的技巧僅供參考。</span></span>
+            <strong><span lang="en">Your profile is Straight (ideal range).</span><span lang="ko">당신의 옆얼굴은 직선형(이상 범위)이에요.</span><span lang="ja">あなたの横顔は直線型（理想範囲）です。</span><span lang="zh-CN">你的侧脸是直线型（理想范围）。</span><span lang="zh-TW">你的側臉是直線型（理想範圍）。</span><span lang="es">Tu perfil es recto (rango ideal).</span></strong>
+            <span class="sub"><span lang="en">A straight profile is already well-balanced, so no corrective styling is needed. Below are tips for the convex and concave types for reference.</span><span lang="ko">직선형은 이미 균형이 잘 잡혀 있어 보정 스타일링이 필요 없어요. 아래 볼록형·오목형 팁은 참고용이에요.</span><span lang="ja">直線型はすでにバランスが取れているため、補正スタイリングは不要です。下の凸型・凹型のコツは参考用です。</span><span lang="zh-CN">直线型本就均衡，无需修饰造型。下方凸面型与凹面型的技巧仅供参考。</span><span lang="zh-TW">直線型本就均衡，無需修飾造型。下方凸面型與凹面型的技巧僅供參考。</span><span lang="es">Un perfil recto ya está bien equilibrado, así que no necesita estilismo correctivo. Abajo tienes consejos para los tipos convexo y cóncavo a modo de referencia.</span></span>
         </div>
 
         <!-- 분류 빠른 이동 -->
         <nav class="section-nav">
-            <a class="section-chip" href="#convex"><span lang="en">Convex profile</span><span lang="ko">볼록형</span><span lang="ja">凸型</span><span lang="zh-CN">凸面型</span><span lang="zh-TW">凸面型</span></a>
-            <a class="section-chip" href="#concave"><span lang="en">Concave profile</span><span lang="ko">오목형</span><span lang="ja">凹型</span><span lang="zh-CN">凹面型</span><span lang="zh-TW">凹面型</span></a>
+            <a class="section-chip" href="#convex"><span lang="en">Convex profile</span><span lang="ko">볼록형</span><span lang="ja">凸型</span><span lang="zh-CN">凸面型</span><span lang="zh-TW">凸面型</span><span lang="es">Perfil convexo</span></a>
+            <a class="section-chip" href="#concave"><span lang="en">Concave profile</span><span lang="ko">오목형</span><span lang="ja">凹型</span><span lang="zh-CN">凹面型</span><span lang="zh-TW">凹面型</span><span lang="es">Perfil cóncavo</span></a>
         </nav>
 
         <!-- =================== 볼록형 (convex) =================== -->
         <section class="guide-card" id="convex">
             <h2>
-                <span lang="en">Convex Profile</span><span lang="ko">볼록형</span><span lang="ja">凸型</span><span lang="zh-CN">凸面型</span><span lang="zh-TW">凸面型</span>
-                <span class="en-name" lang="ko">Convex Profile</span><span class="en-name" lang="ja">Convex Profile</span><span class="en-name" lang="zh-CN">Convex Profile</span><span class="en-name" lang="zh-TW">Convex Profile</span>
+                <span lang="en">Convex Profile</span><span lang="ko">볼록형</span><span lang="ja">凸型</span><span lang="zh-CN">凸面型</span><span lang="zh-TW">凸面型</span><span lang="es">Perfil convexo</span>
+                <span class="en-name" lang="ko">Convex Profile</span><span class="en-name" lang="ja">Convex Profile</span><span class="en-name" lang="zh-CN">Convex Profile</span><span class="en-name" lang="zh-TW">Convex Profile</span><span class="en-name" lang="es">Convex Profile</span>
                 <span class="angle-tag">&lt; 167°</span>
             </h2>
             <p class="feature">
@@ -160,6 +167,7 @@
                 <span lang="ja">横顔で口元・鼻まわりが前に出て、あごが後ろへ引っ込みがちなタイプ。Eライン基準で唇が前に出やすいです。髪とメイクであご・フェイスラインを補い、横顔のバランスを整えるのがポイント。</span>
                 <span lang="zh-CN">侧脸时口鼻区域偏前、下巴容易后缩——嘴唇可能超出E线。重点是用发型和妆容补足下颌与下巴，让侧脸看起来更平衡。</span>
                 <span lang="zh-TW">側臉時口鼻區域偏前、下巴容易後縮——嘴唇可能超出E線。重點是用髮型和妝容補足下顎與下巴，讓側臉看起來更平衡。</span>
+                <span lang="es">Visto de lado, la zona de la boca y la nariz queda hacia delante mientras el mentón tiende a retraerse; los labios pueden sobresalir de la línea E. El objetivo: reforzar la mandíbula y el mentón con cabello y maquillaje para que el perfil se vea más equilibrado.</span>
             </p>
 
             <div class="angle-diagram">
@@ -177,33 +185,34 @@
                     <span lang="ja"><b>凸型</b> — あごが後ろに、口元が前に出るため、顔面角（眉間–鼻下–あご）が鋭くなります（167°未満）。</span>
                     <span lang="zh-CN"><b>凸面型</b> — 下巴后缩、嘴部前突，面角（眉间–鼻底–下巴）更锐（小于167°）。</span>
                     <span lang="zh-TW"><b>凸面型</b> — 下巴後縮、嘴部前突，面角（眉間–鼻底–下巴）更銳（小於167°）。</span>
+                    <span lang="es"><b>Convexo</b> — el mentón queda atrás mientras la boca avanza, por lo que el ángulo G–Sn–Pog es más cerrado (menos de 167°).</span>
                 </div>
             </div>
 
-            <div class="block-label hair">💇 <span lang="en">Hair</span><span lang="ko">헤어 추천</span><span lang="ja">ヘア</span><span lang="zh-CN">发型推荐</span><span lang="zh-TW">髮型推薦</span></div>
+            <div class="block-label hair">💇 <span lang="en">Hair</span><span lang="ko">헤어 추천</span><span lang="ja">ヘア</span><span lang="zh-CN">发型推荐</span><span lang="zh-TW">髮型推薦</span><span lang="es">Cabello</span></div>
             <ul class="tips numbered hair">
-                <li><span lang="en">Add volume and length around the jaw and nape to support the receding chin — a chin-length bob, jaw-skimming layers, or a soft inward (C-curl) flick that hugs toward the jaw.</span><span lang="ko">턱선~목덜미에 볼륨과 길이를 둬 물러난 턱을 보강 — 턱 길이 보브, 턱선을 스치는 레이어, 또는 턱 쪽으로 살짝 안으로 감기는 C컬.</span><span lang="ja">あご～えり足にボリュームと長さを出して、引っ込んだあごを補う — あご下ボブ、フェイスラインに沿うレイヤー、内に入るCカール。</span><span lang="zh-CN">在下颌到颈后增加蓬松与长度来补足后缩的下巴——齐下巴波波头、贴合下颌的层次，或向内微卷的C形发尾。</span><span lang="zh-TW">在下顎到頸後增加蓬鬆與長度來補足後縮的下巴——齊下巴波波頭、貼合下顎的層次，或向內微捲的C形髮尾。</span></li>
-                <li><span lang="en">Balance the upper face with fringe or a defined part — airy see-through or side bangs put a little weight up top so the forward mid-face isn't the only focus.</span><span lang="ko">앞머리·가르마로 윗부분 균형 — 시스루뱅이나 사이드뱅으로 윗쪽에 무게를 줘, 앞으로 나온 중안부에만 시선이 쏠리지 않게 해요.</span><span lang="ja">前髪・分け目で上部のバランスを — シースルーバングやサイドバングでトップに重みを置き、前に出た中顔面だけが目立たないように。</span><span lang="zh-CN">用刘海或清晰分缝平衡上半部——空气刘海或侧分让顶部有点分量，避免视线只集中在前突的中庭。</span><span lang="zh-TW">用瀏海或清晰分縫平衡上半部——空氣瀏海或側分讓頂部有點分量，避免視線只集中在前突的中庭。</span></li>
-                <li class="no-num"><span lang="en">Men: keep some length and shape along the jawline rather than a tight back-and-sides — a slightly fuller lower section makes the chin read stronger.</span><span lang="ko">남성: 턱선을 바짝 치는 컷보다 턱 주변에 약간의 길이·형태를 남겨요 — 하단이 살짝 도톰하면 턱이 더 또렷해 보여요.</span><span lang="ja">メンズ：サイドを刈り上げすぎず、あご周りに少し長さと形を残す — 下側に少しボリュームがあるとあごが強く見えます。</span><span lang="zh-CN">男士：别把两侧推得太短，在下颌周围留点长度和形状——下半部略丰满会让下巴更有存在感。</span><span lang="zh-TW">男士：別把兩側推得太短，在下顎周圍留點長度和形狀——下半部略豐滿會讓下巴更有存在感。</span></li>
+                <li><span lang="en">Add volume and length around the jaw and nape to support the receding chin — a chin-length bob, jaw-skimming layers, or a soft inward (C-curl) flick that hugs toward the jaw.</span><span lang="ko">턱선~목덜미에 볼륨과 길이를 둬 물러난 턱을 보강 — 턱 길이 보브, 턱선을 스치는 레이어, 또는 턱 쪽으로 살짝 안으로 감기는 C컬.</span><span lang="ja">あご～えり足にボリュームと長さを出して、引っ込んだあごを補う — あご下ボブ、フェイスラインに沿うレイヤー、内に入るCカール。</span><span lang="zh-CN">在下颌到颈后增加蓬松与长度来补足后缩的下巴——齐下巴波波头、贴合下颌的层次，或向内微卷的C形发尾。</span><span lang="zh-TW">在下顎到頸後增加蓬鬆與長度來補足後縮的下巴——齊下巴波波頭、貼合下顎的層次，或向內微捲的C形髮尾。</span><span lang="es">Añade volumen y longitud alrededor de la mandíbula y la nuca para apoyar el mentón retraído: un bob a la altura del mentón, capas que rocen la mandíbula o un suave giro hacia dentro (rizo en C) que abrace hacia la mandíbula.</span></li>
+                <li><span lang="en">Balance the upper face with fringe or a defined part — airy see-through or side bangs put a little weight up top so the forward mid-face isn't the only focus.</span><span lang="ko">앞머리·가르마로 윗부분 균형 — 시스루뱅이나 사이드뱅으로 윗쪽에 무게를 줘, 앞으로 나온 중안부에만 시선이 쏠리지 않게 해요.</span><span lang="ja">前髪・分け目で上部のバランスを — シースルーバングやサイドバングでトップに重みを置き、前に出た中顔面だけが目立たないように。</span><span lang="zh-CN">用刘海或清晰分缝平衡上半部——空气刘海或侧分让顶部有点分量，避免视线只集中在前突的中庭。</span><span lang="zh-TW">用瀏海或清晰分縫平衡上半部——空氣瀏海或側分讓頂部有點分量，避免視線只集中在前突的中庭。</span><span lang="es">Equilibra la parte superior del rostro con flequillo o una raya definida: un flequillo airoso y translúcido o de lado aporta algo de peso arriba para que el centro del rostro adelantado no sea el único foco.</span></li>
+                <li class="no-num"><span lang="en">Men: keep some length and shape along the jawline rather than a tight back-and-sides — a slightly fuller lower section makes the chin read stronger.</span><span lang="ko">남성: 턱선을 바짝 치는 컷보다 턱 주변에 약간의 길이·형태를 남겨요 — 하단이 살짝 도톰하면 턱이 더 또렷해 보여요.</span><span lang="ja">メンズ：サイドを刈り上げすぎず、あご周りに少し長さと形を残す — 下側に少しボリュームがあるとあごが強く見えます。</span><span lang="zh-CN">男士：别把两侧推得太短，在下颌周围留点长度和形状——下半部略丰满会让下巴更有存在感。</span><span lang="zh-TW">男士：別把兩側推得太短，在下顎周圍留點長度和形狀——下半部略豐滿會讓下巴更有存在感。</span><span lang="es">Hombres: conserva algo de longitud y forma a lo largo de la mandíbula en lugar de un corte muy apurado en los lados; una parte inferior algo más llena hace que el mentón se vea más marcado.</span></li>
             </ul>
-            <div class="block-label avoid">✕ <span lang="en">Go easy on</span><span lang="ko">주의할 점</span><span lang="ja">注意</span><span lang="zh-CN">需注意</span><span lang="zh-TW">需注意</span></div>
+            <div class="block-label avoid">✕ <span lang="en">Go easy on</span><span lang="ko">주의할 점</span><span lang="ja">注意</span><span lang="zh-CN">需注意</span><span lang="zh-TW">需注意</span><span lang="es">Modera</span></div>
             <ul class="tips avoid">
-                <li><span lang="en">Slicked-back styles or a buzzed jawline that fully expose the chin — they make the recede more obvious.</span><span lang="ko">턱을 완전히 드러내는 올백·턱선 바짝 친 컷 — 후퇴한 턱이 더 도드라져요.</span><span lang="ja">あごを完全に見せるオールバックや刈り込み — 引っ込んだあごが目立ちます。</span><span lang="zh-CN">完全露出下巴的全后梳或推光下颌——会让后缩更明显。</span><span lang="zh-TW">完全露出下巴的全後梳或推光下顎——會讓後縮更明顯。</span></li>
+                <li><span lang="en">Slicked-back styles or a buzzed jawline that fully expose the chin — they make the recede more obvious.</span><span lang="ko">턱을 완전히 드러내는 올백·턱선 바짝 친 컷 — 후퇴한 턱이 더 도드라져요.</span><span lang="ja">あごを完全に見せるオールバックや刈り込み — 引っ込んだあごが目立ちます。</span><span lang="zh-CN">完全露出下巴的全后梳或推光下颌——会让后缩更明显。</span><span lang="zh-TW">完全露出下巴的全後梳或推光下顎——會讓後縮更明顯。</span><span lang="es">Peinados hacia atrás o una mandíbula rapada que dejen el mentón totalmente al descubierto: acentúan la retracción.</span></li>
             </ul>
             <div class="img-row">
                 <!-- IMAGE: 볼록형 헤어 · img/profile-convex-hair.jpg -->
                 <figure class="face-img"><img src="img/profile-convex-hair.jpg" alt="Convex profile hair" loading="lazy" width="400" height="500" onerror="this.closest('.face-img').classList.add('pending')"><figcaption>img/profile-convex-hair.jpg</figcaption></figure>
             </div>
 
-            <div class="block-label makeup">💄 <span lang="en">Makeup</span><span lang="ko">메이크업 추천</span><span lang="ja">メイク</span><span lang="zh-CN">妆容推荐</span><span lang="zh-TW">妝容推薦</span></div>
+            <div class="block-label makeup">💄 <span lang="en">Makeup</span><span lang="ko">메이크업 추천</span><span lang="ja">メイク</span><span lang="zh-CN">妆容推荐</span><span lang="zh-TW">妝容推薦</span><span lang="es">Maquillaje</span></div>
             <ul class="tips numbered makeup">
-                <li><span lang="en">Dab highlight on the chin tip to bring it forward and lengthen the lower face slightly. (champagne / ivory pearl)</span><span lang="ko">턱끝에 하이라이트를 톡톡 — 턱을 앞으로 당겨 보이게 하고 하안부에 살짝 길이감을. (샴페인·아이보리 펄)</span><span lang="ja">あご先にハイライトをトントン — あごを前に見せ、下顔面に少し長さを。（シャンパン・アイボリーパール）</span><span lang="zh-CN">在下巴尖点上高光——让下巴前移、下庭略显长。（香槟·象牙珠光）</span><span lang="zh-TW">在下巴尖點上高光——讓下巴前移、下庭略顯長。（香檳·象牙珠光）</span></li>
-                <li><span lang="en">Keep the mouth area calm — a muted lip color and minimal gloss, and skip heavy over-lining so the forward mouth doesn't stand out more. (MLBB / muted rose)</span><span lang="ko">입 주변은 차분하게 — 뮤트한 립 컬러와 절제된 글로스, 과한 오버립은 피해 앞으로 나온 입가가 더 강조되지 않게. (MLBB·뮤트 로즈)</span><span lang="ja">口元は落ち着かせる — マットめのリップと控えめなツヤ、やりすぎオーバーリップは避けて前に出た口元を強調しない。（MLBB・くすみローズ）</span><span lang="zh-CN">让口部沉静——选哑光感唇色、少量唇釉，避免过度扩唇，以免前突的嘴更突出。（MLBB·灰调玫瑰）</span><span lang="zh-TW">讓口部沉靜——選霧面感唇色、少量唇釉，避免過度擴唇，以免前突的嘴更突出。（MLBB·灰調玫瑰）</span></li>
-                <li><span lang="en">Go light with highlight on the nose tip and forehead — too much there pushes the mid-face even further forward.</span><span lang="ko">코끝·이마 하이라이트는 가볍게 — 과하면 중안부가 더 앞으로 튀어나와 보여요.</span><span lang="ja">鼻先・額のハイライトは軽く — 入れすぎると中顔面がさらに前へ出て見えます。</span><span lang="zh-CN">鼻尖与额头的高光要轻——过多会让中庭更往前突。</span><span lang="zh-TW">鼻尖與額頭的高光要輕——過多會讓中庭更往前突。</span></li>
+                <li><span lang="en">Dab highlight on the chin tip to bring it forward and lengthen the lower face slightly. (champagne / ivory pearl)</span><span lang="ko">턱끝에 하이라이트를 톡톡 — 턱을 앞으로 당겨 보이게 하고 하안부에 살짝 길이감을. (샴페인·아이보리 펄)</span><span lang="ja">あご先にハイライトをトントン — あごを前に見せ、下顔面に少し長さを。（シャンパン・アイボリーパール）</span><span lang="zh-CN">在下巴尖点上高光——让下巴前移、下庭略显长。（香槟·象牙珠光）</span><span lang="zh-TW">在下巴尖點上高光——讓下巴前移、下庭略顯長。（香檳·象牙珠光）</span><span lang="es">Aplica con toques un iluminador en la punta del mentón para llevarlo hacia delante y alargar ligeramente la parte inferior del rostro. (champán / perla marfil)</span></li>
+                <li><span lang="en">Keep the mouth area calm — a muted lip color and minimal gloss, and skip heavy over-lining so the forward mouth doesn't stand out more. (MLBB / muted rose)</span><span lang="ko">입 주변은 차분하게 — 뮤트한 립 컬러와 절제된 글로스, 과한 오버립은 피해 앞으로 나온 입가가 더 강조되지 않게. (MLBB·뮤트 로즈)</span><span lang="ja">口元は落ち着かせる — マットめのリップと控えめなツヤ、やりすぎオーバーリップは避けて前に出た口元を強調しない。（MLBB・くすみローズ）</span><span lang="zh-CN">让口部沉静——选哑光感唇色、少量唇釉，避免过度扩唇，以免前突的嘴更突出。（MLBB·灰调玫瑰）</span><span lang="zh-TW">讓口部沉靜——選霧面感唇色、少量唇釉，避免過度擴唇，以免前突的嘴更突出。（MLBB·灰調玫瑰）</span><span lang="es">Mantén la zona de la boca discreta: un color de labios apagado y poco brillo, y evita sobredelinear en exceso para que la boca adelantada no destaque más. (MLBB / rosa apagado)</span></li>
+                <li><span lang="en">Go light with highlight on the nose tip and forehead — too much there pushes the mid-face even further forward.</span><span lang="ko">코끝·이마 하이라이트는 가볍게 — 과하면 중안부가 더 앞으로 튀어나와 보여요.</span><span lang="ja">鼻先・額のハイライトは軽く — 入れすぎると中顔面がさらに前へ出て見えます。</span><span lang="zh-CN">鼻尖与额头的高光要轻——过多会让中庭更往前突。</span><span lang="zh-TW">鼻尖與額頭的高光要輕——過多會讓中庭更往前突。</span><span lang="es">Sé moderada con el iluminador en la punta de la nariz y la frente: en exceso empuja el centro del rostro aún más hacia delante.</span></li>
             </ul>
-            <div class="block-label avoid">✕ <span lang="en">Go easy on</span><span lang="ko">주의할 점</span><span lang="ja">注意</span><span lang="zh-CN">需注意</span><span lang="zh-TW">需注意</span></div>
+            <div class="block-label avoid">✕ <span lang="en">Go easy on</span><span lang="ko">주의할 점</span><span lang="ja">注意</span><span lang="zh-CN">需注意</span><span lang="zh-TW">需注意</span><span lang="es">Modera</span></div>
             <ul class="tips avoid">
-                <li><span lang="en">Shading under the chin tip — it pushes the already-receding chin even further back.</span><span lang="ko">턱끝 아래 셰이딩 — 이미 물러난 턱을 더 뒤로 보이게 해요.</span><span lang="ja">あご先の下のシェーディング — すでに引っ込んだあごをさらに後ろに見せます。</span><span lang="zh-CN">下巴尖下方的修容——会让本就后缩的下巴更往后。</span><span lang="zh-TW">下巴尖下方的修容——會讓本就後縮的下巴更往後。</span></li>
+                <li><span lang="en">Shading under the chin tip — it pushes the already-receding chin even further back.</span><span lang="ko">턱끝 아래 셰이딩 — 이미 물러난 턱을 더 뒤로 보이게 해요.</span><span lang="ja">あご先の下のシェーディング — すでに引っ込んだあごをさらに後ろに見せます。</span><span lang="zh-CN">下巴尖下方的修容——会让本就后缩的下巴更往后。</span><span lang="zh-TW">下巴尖下方的修容——會讓本就後縮的下巴更往後。</span><span lang="es">Sombreado bajo la punta del mentón: empuja aún más atrás el mentón ya retraído.</span></li>
             </ul>
             <div class="img-row">
                 <!-- IMAGE: 볼록형 메이크업 · img/profile-convex-makeup.jpg -->
@@ -214,8 +223,8 @@
         <!-- =================== 오목형 (concave) =================== -->
         <section class="guide-card" id="concave">
             <h2>
-                <span lang="en">Concave Profile</span><span lang="ko">오목형</span><span lang="ja">凹型</span><span lang="zh-CN">凹面型</span><span lang="zh-TW">凹面型</span>
-                <span class="en-name" lang="ko">Concave Profile</span><span class="en-name" lang="ja">Concave Profile</span><span class="en-name" lang="zh-CN">Concave Profile</span><span class="en-name" lang="zh-TW">Concave Profile</span>
+                <span lang="en">Concave Profile</span><span lang="ko">오목형</span><span lang="ja">凹型</span><span lang="zh-CN">凹面型</span><span lang="zh-TW">凹面型</span><span lang="es">Perfil cóncavo</span>
+                <span class="en-name" lang="ko">Concave Profile</span><span class="en-name" lang="ja">Concave Profile</span><span class="en-name" lang="zh-CN">Concave Profile</span><span class="en-name" lang="zh-TW">Concave Profile</span><span class="en-name" lang="es">Concave Profile</span>
                 <span class="angle-tag">&gt; 177°</span>
             </h2>
             <p class="feature">
@@ -224,6 +233,7 @@
                 <span lang="ja">横顔であごが前に出て（しゃくれ気味）、中顔面が引っ込んで見えるタイプ。トップのボリュームと中顔面の立体感で整え、メイクであごの出っ張りをやわらげるのがポイント。</span>
                 <span lang="zh-CN">侧脸时下巴前突（偏翘/地包感）、中庭显得后缩。重点是用顶部蓬松和中庭立体来平衡，再用妆容弱化下巴的突出。</span>
                 <span lang="zh-TW">側臉時下巴前突、中庭顯得後縮。重點是用頂部蓬鬆和中庭立體來平衡，再用妝容弱化下巴的突出。</span>
+                <span lang="es">De lado, el mentón sobresale hacia delante (prognatismo) mientras el centro del rostro parece retraído. El objetivo: aportar volumen en la parte alta y dar dimensión al centro del rostro para equilibrarlo, y suavizar la proyección del mentón con maquillaje.</span>
             </p>
 
             <div class="angle-diagram">
@@ -241,33 +251,34 @@
                     <span lang="ja"><b>凹型</b> — あごが前に出て中顔面が引っ込むため、顔面角（眉間–鼻下–あご）が平坦になります（177°超）。</span>
                     <span lang="zh-CN"><b>凹面型</b> — 下巴前突、中庭后缩，面角（眉间–鼻底–下巴）更平（大于177°）。</span>
                     <span lang="zh-TW"><b>凹面型</b> — 下巴前突、中庭後縮，面角（眉間–鼻底–下巴）更平（大於177°）。</span>
+                    <span lang="es"><b>Cóncavo</b> — el mentón sobresale mientras el centro del rostro queda atrás, por lo que el ángulo G–Sn–Pog es más plano (más de 177°).</span>
                 </div>
             </div>
 
-            <div class="block-label hair">💇 <span lang="en">Hair</span><span lang="ko">헤어 추천</span><span lang="ja">ヘア</span><span lang="zh-CN">发型推荐</span><span lang="zh-TW">髮型推薦</span></div>
+            <div class="block-label hair">💇 <span lang="en">Hair</span><span lang="ko">헤어 추천</span><span lang="ja">ヘア</span><span lang="zh-CN">发型推荐</span><span lang="zh-TW">髮型推薦</span><span lang="es">Cabello</span></div>
             <ul class="tips numbered hair">
-                <li><span lang="en">Go for a layered cut worn down — shoulder-length with soft layers and volume through the top and crown, lifting the upper face and drawing the eye up, away from the projecting chin.</span><span lang="ko">내린 머리 레이어드컷 — 어깨 길이에 윗머리·정수리로 층과 볼륨을 줘 상안부를 띄우고, 시선을 위로 올려 앞으로 나온 턱에서 분산해요.</span><span lang="ja">おろしたレイヤーカット — 肩までの長さでトップ・頭頂に動きとボリュームを出し、上顔面を持ち上げて視線を上へ、出たあごから分散。</span><span lang="zh-CN">披发的层次剪——齐肩长度，在头顶与上部做出层次和蓬松，抬高上庭、把视线引向上方，从前突的下巴分散。</span><span lang="zh-TW">披髮的層次剪——齊肩長度，在頭頂與上部做出層次和蓬鬆，抬高上庭、把視線引向上方，從前突的下巴分散。</span></li>
-                <li><span lang="en">Use see-through or side bangs to cover a little forehead — softening the upper face balances it against the strong chin and spreads the focus.</span><span lang="ko">시스루뱅·사이드뱅으로 이마를 살짝 덮어요 — 윗부분을 부드럽게 해 또렷한 턱과 균형을 맞추고 시선을 분산해요.</span><span lang="ja">シースルーバング・サイドバングで額を少し隠す — 上部をやわらげて強いあごとバランスを取り、視線を分散。</span><span lang="zh-CN">用空气刘海或侧分稍微遮额——柔化上半部，与有力的下巴取得平衡并分散视线。</span><span lang="zh-TW">用空氣瀏海或側分稍微遮額——柔化上半部，與有力的下巴取得平衡並分散視線。</span></li>
-                <li class="no-num"><span lang="en">Keep the jaw area light — let the lower length fall softly instead of flicking volume out at the chin, so it isn't emphasized.</span><span lang="ko">턱 주변은 가볍게 — 턱 끝에서 바깥으로 뻗치는 볼륨 대신 하단을 부드럽게 떨어뜨려 턱이 강조되지 않게 해요.</span><span lang="ja">あご周りは軽く — あご先で外へはねるボリュームを避け、下側はやわらかく落としてあごを強調しない。</span><span lang="zh-CN">下颌周围保持轻盈——别在下巴处向外翘出体积，让下半部柔顺垂落，避免强调下巴。</span><span lang="zh-TW">下顎周圍保持輕盈——別在下巴處向外翹出體積，讓下半部柔順垂落，避免強調下巴。</span></li>
+                <li><span lang="en">Go for a layered cut worn down — shoulder-length with soft layers and volume through the top and crown, lifting the upper face and drawing the eye up, away from the projecting chin.</span><span lang="ko">내린 머리 레이어드컷 — 어깨 길이에 윗머리·정수리로 층과 볼륨을 줘 상안부를 띄우고, 시선을 위로 올려 앞으로 나온 턱에서 분산해요.</span><span lang="ja">おろしたレイヤーカット — 肩までの長さでトップ・頭頂に動きとボリュームを出し、上顔面を持ち上げて視線を上へ、出たあごから分散。</span><span lang="zh-CN">披发的层次剪——齐肩长度，在头顶与上部做出层次和蓬松，抬高上庭、把视线引向上方，从前突的下巴分散。</span><span lang="zh-TW">披髮的層次剪——齊肩長度，在頭頂與上部做出層次和蓬鬆，抬高上庭、把視線引向上方，從前突的下巴分散。</span><span lang="es">Opta por un corte en capas llevado suelto: a la altura de los hombros, con capas suaves y volumen en la parte alta y la coronilla, elevando la parte superior del rostro y llevando la mirada hacia arriba, lejos del mentón saliente.</span></li>
+                <li><span lang="en">Use see-through or side bangs to cover a little forehead — softening the upper face balances it against the strong chin and spreads the focus.</span><span lang="ko">시스루뱅·사이드뱅으로 이마를 살짝 덮어요 — 윗부분을 부드럽게 해 또렷한 턱과 균형을 맞추고 시선을 분산해요.</span><span lang="ja">シースルーバング・サイドバングで額を少し隠す — 上部をやわらげて強いあごとバランスを取り、視線を分散。</span><span lang="zh-CN">用空气刘海或侧分稍微遮额——柔化上半部，与有力的下巴取得平衡并分散视线。</span><span lang="zh-TW">用空氣瀏海或側分稍微遮額——柔化上半部，與有力的下巴取得平衡並分散視線。</span><span lang="es">Usa un flequillo translúcido o de lado para cubrir un poco la frente: suavizar la parte superior del rostro la equilibra frente al mentón marcado y reparte el foco.</span></li>
+                <li class="no-num"><span lang="en">Keep the jaw area light — let the lower length fall softly instead of flicking volume out at the chin, so it isn't emphasized.</span><span lang="ko">턱 주변은 가볍게 — 턱 끝에서 바깥으로 뻗치는 볼륨 대신 하단을 부드럽게 떨어뜨려 턱이 강조되지 않게 해요.</span><span lang="ja">あご周りは軽く — あご先で外へはねるボリュームを避け、下側はやわらかく落としてあごを強調しない。</span><span lang="zh-CN">下颌周围保持轻盈——别在下巴处向外翘出体积，让下半部柔顺垂落，避免强调下巴。</span><span lang="zh-TW">下顎周圍保持輕盈——別在下巴處向外翹出體積，讓下半部柔順垂落，避免強調下巴。</span><span lang="es">Mantén ligera la zona de la mandíbula: deja que la longitud inferior caiga con suavidad en lugar de proyectar volumen hacia fuera en el mentón, para no acentuarlo.</span></li>
             </ul>
-            <div class="block-label avoid">✕ <span lang="en">Go easy on</span><span lang="ko">주의할 점</span><span lang="ja">注意</span><span lang="zh-CN">需注意</span><span lang="zh-TW">需注意</span></div>
+            <div class="block-label avoid">✕ <span lang="en">Go easy on</span><span lang="ko">주의할 점</span><span lang="ja">注意</span><span lang="zh-CN">需注意</span><span lang="zh-TW">需注意</span><span lang="es">Modera</span></div>
             <ul class="tips avoid">
-                <li><span lang="en">Volume or flicks that flare out at the chin — they pull the projecting chin even further forward.</span><span lang="ko">턱 끝에서 바깥으로 뻗치는 볼륨·플립 — 나온 턱을 더 앞으로 끌어내요.</span><span lang="ja">あご先で外にはねるボリューム・フリップ — 出たあごをさらに前に強調します。</span><span lang="zh-CN">在下巴处向外翘的体积或外翻——会把前突的下巴更往前带。</span><span lang="zh-TW">在下巴處向外翹的體積或外翻——會把前突的下巴更往前帶。</span></li>
+                <li><span lang="en">Volume or flicks that flare out at the chin — they pull the projecting chin even further forward.</span><span lang="ko">턱 끝에서 바깥으로 뻗치는 볼륨·플립 — 나온 턱을 더 앞으로 끌어내요.</span><span lang="ja">あご先で外にはねるボリューム・フリップ — 出たあごをさらに前に強調します。</span><span lang="zh-CN">在下巴处向外翘的体积或外翻——会把前突的下巴更往前带。</span><span lang="zh-TW">在下巴處向外翹的體積或外翻——會把前突的下巴更往前帶。</span><span lang="es">Volumen o puntas que se abran hacia fuera en el mentón: llevan el mentón saliente aún más hacia delante.</span></li>
             </ul>
             <div class="img-row">
                 <!-- IMAGE: 오목형 헤어 · img/profile-concave-hair.jpg -->
                 <figure class="face-img"><img src="img/profile-concave-hair.jpg" alt="Concave profile hair" loading="lazy" width="400" height="500" onerror="this.closest('.face-img').classList.add('pending')"><figcaption>img/profile-concave-hair.jpg</figcaption></figure>
             </div>
 
-            <div class="block-label makeup">💄 <span lang="en">Makeup</span><span lang="ko">메이크업 추천</span><span lang="ja">メイク</span><span lang="zh-CN">妆容推荐</span><span lang="zh-TW">妝容推薦</span></div>
+            <div class="block-label makeup">💄 <span lang="en">Makeup</span><span lang="ko">메이크업 추천</span><span lang="ja">メイク</span><span lang="zh-CN">妆容推荐</span><span lang="zh-TW">妝容推薦</span><span lang="es">Maquillaje</span></div>
             <ul class="tips numbered makeup">
-                <li><span lang="en">Soften the chin's projection with shading along the chin tip and jaw — 1–2 shades deeper than skin, well blended. (grey-brown)</span><span lang="ko">턱끝~턱선에 셰이딩으로 돌출을 완화 — 피부보다 1~2톤 어둡게, 자연스럽게 펴 발라요. (그레이 브라운)</span><span lang="ja">あご先～フェイスラインのシェーディングで出っ張りをやわらげる — 肌より1〜2トーン暗く、しっかりぼかす。（グレーブラウン）</span><span lang="zh-CN">用修容在下巴尖到下颌弱化突出——比肤色深1~2号，自然晕开。（灰棕色）</span><span lang="zh-TW">用修容在下巴尖到下顎弱化突出——比膚色深1~2號，自然暈開。（灰棕色）</span></li>
-                <li><span lang="en">Add highlight on the forehead and nose bridge to bring the set-back mid-face forward and give it dimension. (champagne pearl)</span><span lang="ko">이마·콧대에 하이라이트로 들어가 보이는 중안부를 앞으로, 입체감을 더해요. (샴페인 펄)</span><span lang="ja">額・鼻筋にハイライトで、引っ込んだ中顔面を前に出して立体感を。（シャンパンパール）</span><span lang="zh-CN">在额头与鼻梁加高光，把后缩的中庭往前提、增加立体。（香槟珠光）</span><span lang="zh-TW">在額頭與鼻樑加高光，把後縮的中庭往前提、增加立體。（香檳珠光）</span></li>
-                <li><span lang="en">Define the lips with a clear, healthy color to give the mid-face presence and even out the balance. (coral / rose)</span><span lang="ko">입술은 또렷하고 혈색 있는 컬러로 — 중안부에 존재감을 줘 균형을 맞춰요. (코랄·로즈)</span><span lang="ja">リップははっきり血色のある色で — 中顔面に存在感を出してバランスを整える。（コーラル・ローズ）</span><span lang="zh-CN">用清晰有气色的唇色勾勒嘴唇——给中庭存在感、让整体更均衡。（珊瑚色·玫瑰色）</span><span lang="zh-TW">用清晰有氣色的唇色勾勒嘴唇——給中庭存在感、讓整體更均衡。（珊瑚色·玫瑰色）</span></li>
+                <li><span lang="en">Soften the chin's projection with shading along the chin tip and jaw — 1–2 shades deeper than skin, well blended. (grey-brown)</span><span lang="ko">턱끝~턱선에 셰이딩으로 돌출을 완화 — 피부보다 1~2톤 어둡게, 자연스럽게 펴 발라요. (그레이 브라운)</span><span lang="ja">あご先～フェイスラインのシェーディングで出っ張りをやわらげる — 肌より1〜2トーン暗く、しっかりぼかす。（グレーブラウン）</span><span lang="zh-CN">用修容在下巴尖到下颌弱化突出——比肤色深1~2号，自然晕开。（灰棕色）</span><span lang="zh-TW">用修容在下巴尖到下顎弱化突出——比膚色深1~2號，自然暈開。（灰棕色）</span><span lang="es">Suaviza la proyección del mentón con sombreado a lo largo de la punta del mentón y la mandíbula: 1–2 tonos más oscuro que la piel, bien difuminado. (gris-marrón)</span></li>
+                <li><span lang="en">Add highlight on the forehead and nose bridge to bring the set-back mid-face forward and give it dimension. (champagne pearl)</span><span lang="ko">이마·콧대에 하이라이트로 들어가 보이는 중안부를 앞으로, 입체감을 더해요. (샴페인 펄)</span><span lang="ja">額・鼻筋にハイライトで、引っ込んだ中顔面を前に出して立体感を。（シャンパンパール）</span><span lang="zh-CN">在额头与鼻梁加高光，把后缩的中庭往前提、增加立体。（香槟珠光）</span><span lang="zh-TW">在額頭與鼻樑加高光，把後縮的中庭往前提、增加立體。（香檳珠光）</span><span lang="es">Añade iluminador en la frente y el puente de la nariz para llevar hacia delante el centro del rostro retraído y darle dimensión. (perla champán)</span></li>
+                <li><span lang="en">Define the lips with a clear, healthy color to give the mid-face presence and even out the balance. (coral / rose)</span><span lang="ko">입술은 또렷하고 혈색 있는 컬러로 — 중안부에 존재감을 줘 균형을 맞춰요. (코랄·로즈)</span><span lang="ja">リップははっきり血色のある色で — 中顔面に存在感を出してバランスを整える。（コーラル・ローズ）</span><span lang="zh-CN">用清晰有气色的唇色勾勒嘴唇——给中庭存在感、让整体更均衡。（珊瑚色·玫瑰色）</span><span lang="zh-TW">用清晰有氣色的唇色勾勒嘴唇——給中庭存在感、讓整體更均衡。（珊瑚色·玫瑰色）</span><span lang="es">Define los labios con un color nítido y saludable para dar presencia al centro del rostro y nivelar el equilibrio. (coral / rosa)</span></li>
             </ul>
-            <div class="block-label avoid">✕ <span lang="en">Go easy on</span><span lang="ko">주의할 점</span><span lang="ja">注意</span><span lang="zh-CN">需注意</span><span lang="zh-TW">需注意</span></div>
+            <div class="block-label avoid">✕ <span lang="en">Go easy on</span><span lang="ko">주의할 점</span><span lang="ja">注意</span><span lang="zh-CN">需注意</span><span lang="zh-TW">需注意</span><span lang="es">Modera</span></div>
             <ul class="tips avoid">
-                <li><span lang="en">Highlight on the chin tip — it emphasizes the projection you're trying to soften.</span><span lang="ko">턱끝 하이라이트 — 완화하려는 돌출을 오히려 강조해요.</span><span lang="ja">あご先のハイライト — やわらげたい出っ張りを逆に強調します。</span><span lang="zh-CN">下巴尖的高光——会强调你想弱化的突出。</span><span lang="zh-TW">下巴尖的高光——會強調你想弱化的突出。</span></li>
+                <li><span lang="en">Highlight on the chin tip — it emphasizes the projection you're trying to soften.</span><span lang="ko">턱끝 하이라이트 — 완화하려는 돌출을 오히려 강조해요.</span><span lang="ja">あご先のハイライト — やわらげたい出っ張りを逆に強調します。</span><span lang="zh-CN">下巴尖的高光——会强调你想弱化的突出。</span><span lang="zh-TW">下巴尖的高光——會強調你想弱化的突出。</span><span lang="es">Iluminador en la punta del mentón: acentúa la proyección que intentas suavizar.</span></li>
             </ul>
             <div class="img-row">
                 <!-- IMAGE: 오목형 메이크업 · img/profile-concave-makeup.jpg -->
@@ -281,6 +292,7 @@
             <span lang="ja">本ガイドは韓国・東アジアのヘア＆メイク技法をベースにしています。スタイリングで骨格自体は変えられず、横顔の印象バランスを整えるだけです。目鼻立ち・髪質・肌色に合わせて強弱を調整してください。</span>
             <span lang="zh-CN">本指南以韩国及东亚发型与妆容技法为基础。造型无法改变骨骼本身，只能平衡侧脸的观感。请根据五官、发质与肤色调整强弱。</span>
             <span lang="zh-TW">本指南以韓國及東亞髮型與妝容技法為基礎。造型無法改變骨骼本身，只能平衡側臉的觀感。請根據五官、髮質與膚色調整強弱。</span>
+            <span lang="es">Esta guía se basa en técnicas de cabello y maquillaje coreanas y del este de Asia. El estilismo no puede cambiar la estructura ósea de base; solo equilibra cómo se percibe el perfil. Ajusta la intensidad a tus rasgos, la textura de tu cabello y tu tono de piel.</span>
         </div>
 
         <p class="footer-note">
@@ -289,11 +301,12 @@
             <span lang="ja">本ガイドは一般的な参考であり、絶対的なルールではありません。骨格・目鼻立ち・好みによって変わります。</span>
             <span lang="zh-CN">本指南仅供参考，并非严格定式。骨骼、五官与个人喜好都会影响效果，请作为起点参考。</span>
             <span lang="zh-TW">本指南僅供參考，並非嚴格定式。骨骼、五官與個人喜好都會影響效果，請作為起點參考。</span>
+            <span lang="es">Esta guía es una referencia general, no una regla estricta. La estructura ósea, los rasgos y el gusto personal influyen; úsala como punto de partida.</span>
         </p>
     </div>
 
     <script>
-        var VALID_LANGS = ['en','ko','ja','zh-CN','zh-TW'];
+        var VALID_LANGS = ['en','ko','ja','zh-CN','zh-TW','es'];
         var VALID_SECTIONS = ['convex','concave'];
 
         function setLang(lang) {

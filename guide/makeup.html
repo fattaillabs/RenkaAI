@@ -66,15 +66,17 @@
         /* ===== 다국어 표시 제어 (기존 사이트와 동일 메커니즘) ===== */
         [lang]:not([lang="en"]) { display: none; }
         body.lang-ko [lang="ko"] { display: block; }
-        body.lang-ko [lang="en"], body.lang-ko [lang="ja"], body.lang-ko [lang="zh-CN"], body.lang-ko [lang="zh-TW"] { display: none; }
+        body.lang-ko [lang="en"], body.lang-ko [lang="ja"], body.lang-ko [lang="zh-CN"], body.lang-ko [lang="zh-TW"], body.lang-ko [lang="es"] { display: none; }
         body.lang-ja [lang="ja"] { display: block; }
-        body.lang-ja [lang="en"], body.lang-ja [lang="ko"], body.lang-ja [lang="zh-CN"], body.lang-ja [lang="zh-TW"] { display: none; }
+        body.lang-ja [lang="en"], body.lang-ja [lang="ko"], body.lang-ja [lang="zh-CN"], body.lang-ja [lang="zh-TW"], body.lang-ja [lang="es"] { display: none; }
         body.lang-en [lang="en"] { display: block; }
-        body.lang-en [lang="ko"], body.lang-en [lang="ja"], body.lang-en [lang="zh-CN"], body.lang-en [lang="zh-TW"] { display: none; }
+        body.lang-en [lang="ko"], body.lang-en [lang="ja"], body.lang-en [lang="zh-CN"], body.lang-en [lang="zh-TW"], body.lang-en [lang="es"] { display: none; }
         body.lang-zh-CN [lang="zh-CN"] { display: block; }
-        body.lang-zh-CN [lang="en"], body.lang-zh-CN [lang="ko"], body.lang-zh-CN [lang="ja"], body.lang-zh-CN [lang="zh-TW"] { display: none; }
+        body.lang-zh-CN [lang="en"], body.lang-zh-CN [lang="ko"], body.lang-zh-CN [lang="ja"], body.lang-zh-CN [lang="zh-TW"], body.lang-zh-CN [lang="es"] { display: none; }
         body.lang-zh-TW [lang="zh-TW"] { display: block; }
-        body.lang-zh-TW [lang="en"], body.lang-zh-TW [lang="ko"], body.lang-zh-TW [lang="ja"], body.lang-zh-TW [lang="zh-CN"] { display: none; }
+        body.lang-zh-TW [lang="en"], body.lang-zh-TW [lang="ko"], body.lang-zh-TW [lang="ja"], body.lang-zh-TW [lang="zh-CN"], body.lang-zh-TW [lang="es"] { display: none; }
+        body.lang-es [lang="es"] { display: block; }
+        body.lang-es [lang="en"], body.lang-es [lang="ko"], body.lang-es [lang="ja"], body.lang-es [lang="zh-CN"], body.lang-es [lang="zh-TW"] { display: none; }
         /* inline 요소용 */
         span[lang] { display: none; }
         body.lang-en span[lang="en"] { display: inline; }
@@ -82,18 +84,20 @@
         body.lang-ja span[lang="ja"] { display: inline; }
         body.lang-zh-CN span[lang="zh-CN"] { display: inline; }
         body.lang-zh-TW span[lang="zh-TW"] { display: inline; }
+        body.lang-es span[lang="es"] { display: inline; }
     </style>
 </head>
 <body class="lang-en">
     <div class="container">
         <div class="header">
-            <a href="index.html" class="back-link">← <span lang="en">Style Guide</span><span lang="ko">스타일 가이드</span><span lang="ja">スタイルガイド</span><span lang="zh-CN">风格指南</span><span lang="zh-TW">風格指南</span></a>
+            <a href="index.html" class="back-link">← <span lang="en">Style Guide</span><span lang="ko">스타일 가이드</span><span lang="ja">スタイルガイド</span><span lang="zh-CN">风格指南</span><span lang="zh-TW">風格指南</span><span lang="es">Guía de estilo</span></a>
             <div class="lang-switcher">
                 <button class="lang-btn active" onclick="setLang('en')" title="English">🇺🇸</button>
                 <button class="lang-btn" onclick="setLang('ko')" title="한국어">🇰🇷</button>
                 <button class="lang-btn" onclick="setLang('ja')" title="日本語">🇯🇵</button>
                 <button class="lang-btn" onclick="setLang('zh-CN')" title="简体中文">🇨🇳</button>
                 <button class="lang-btn" onclick="setLang('zh-TW')" title="繁體中文">🇹🇼</button>
+                <button class="lang-btn" onclick="setLang('es')" title="Español">🇪🇸</button>
             </div>
         </div>
 
@@ -103,6 +107,7 @@
             <span lang="ja">中顔面の長さ別メイクガイド</span>
             <span lang="zh-CN">中庭比例对应妆容指南</span>
             <span lang="zh-TW">中庭比例對應妝容指南</span>
+            <span lang="es">Guía de maquillaje según la proporción del tercio medio</span>
         </h1>
         <p class="subtitle">
             <span lang="en">Balance your measured midface (brow to nose base) with makeup. A guide, not a rule — your features come first.</span>
@@ -110,6 +115,7 @@
             <span lang="ja">測定された中顔面（眉～鼻の下）の長さに合わせて、メイクでバランスを。あくまで参考ガイドです。</span>
             <span lang="zh-CN">根据测得的中庭（眉到鼻底）比例，用妆容找到平衡。仅供参考，并非定式。</span>
             <span lang="zh-TW">根據測得的中庭（眉到鼻底）比例，用妝容找到平衡。僅供參考，並非定式。</span>
+            <span lang="es">Equilibra tu tercio medio medido (de las cejas a la base de la nariz) con el maquillaje. Es una guía, no una regla: tus rasgos van primero.</span>
         </p>
         <p class="auto-note">
             <span lang="en">You'll jump to your measured ratio automatically — feel free to check the other sections too.</span>
@@ -117,20 +123,21 @@
             <span lang="ja">測定結果に応じて自分の比率へ自動で移動します。他の比率のコツも自由にどうぞ。</span>
             <span lang="zh-CN">会根据测量结果自动跳到你的比例，其他比例的技巧也欢迎查看。</span>
             <span lang="zh-TW">會根據測量結果自動跳到你的比例，其他比例的技巧也歡迎查看。</span>
+            <span lang="es">Saltarás automáticamente a tu proporción medida; también puedes consultar las otras secciones cuando quieras.</span>
         </p>
 
         <!-- 중안부 분류 빠른 이동 -->
         <nav class="section-nav">
-            <a class="section-chip" href="#short"><span lang="en">Short midface</span><span lang="ko">짧은 중안부</span><span lang="ja">中顔面が短い</span><span lang="zh-CN">中庭偏短</span><span lang="zh-TW">中庭偏短</span></a>
-            <a class="section-chip" href="#balanced"><span lang="en">Balanced</span><span lang="ko">균형 중안부</span><span lang="ja">バランス型</span><span lang="zh-CN">比例均衡</span><span lang="zh-TW">比例均衡</span></a>
-            <a class="section-chip" href="#long"><span lang="en">Long midface</span><span lang="ko">긴 중안부</span><span lang="ja">中顔面が長い</span><span lang="zh-CN">中庭偏长</span><span lang="zh-TW">中庭偏長</span></a>
+            <a class="section-chip" href="#short"><span lang="en">Short midface</span><span lang="ko">짧은 중안부</span><span lang="ja">中顔面が短い</span><span lang="zh-CN">中庭偏短</span><span lang="zh-TW">中庭偏短</span><span lang="es">Tercio medio corto</span></a>
+            <a class="section-chip" href="#balanced"><span lang="en">Balanced</span><span lang="ko">균형 중안부</span><span lang="ja">バランス型</span><span lang="zh-CN">比例均衡</span><span lang="zh-TW">比例均衡</span><span lang="es">Equilibrado</span></a>
+            <a class="section-chip" href="#long"><span lang="en">Long midface</span><span lang="ko">긴 중안부</span><span lang="ja">中顔面が長い</span><span lang="zh-CN">中庭偏长</span><span lang="zh-TW">中庭偏長</span><span lang="es">Tercio medio largo</span></a>
         </nav>
 
         <!-- =================== 짧은 중안부 (short) =================== -->
         <section class="guide-card" id="short">
             <h2>
-                <span lang="en">Short Midface</span><span lang="ko">짧은 중안부</span><span lang="ja">中顔面が短い</span><span lang="zh-CN">中庭偏短</span><span lang="zh-TW">中庭偏短</span>
-                <span class="en-name" lang="ko">Short Midface</span><span class="en-name" lang="ja">Short Midface</span><span class="en-name" lang="zh-CN">Short Midface</span><span class="en-name" lang="zh-TW">Short Midface</span>
+                <span lang="en">Short Midface</span><span lang="ko">짧은 중안부</span><span lang="ja">中顔面が短い</span><span lang="zh-CN">中庭偏短</span><span lang="zh-TW">中庭偏短</span><span lang="es">Tercio medio corto</span>
+                <span class="en-name" lang="ko">Short Midface</span><span class="en-name" lang="ja">Short Midface</span><span class="en-name" lang="zh-CN">Short Midface</span><span class="en-name" lang="zh-TW">Short Midface</span><span class="en-name" lang="es">Short Midface</span>
             </h2>
             <p class="feature">
                 <span lang="en">Your midface (brow to nose base) is shorter than average, giving a youthful, cute impression. This is a sought-after ratio — play up the strength rather than "correcting" it.</span>
@@ -138,17 +145,18 @@
                 <span lang="ja">中顔面（眉～鼻の下）が平均より短く、若々しく可愛い印象。今っぽい好バランスなので、補正より強みを活かして。</span>
                 <span lang="zh-CN">中庭（眉到鼻底）比平均偏短，显得年轻可爱。这是当下受欢迎的比例，重点在发挥优势而非"修饰"。</span>
                 <span lang="zh-TW">中庭（眉到鼻底）比平均偏短，顯得年輕可愛。這是當下受歡迎的比例，重點在發揮優勢而非"修飾"。</span>
+                <span lang="es">Tu tercio medio (de las cejas a la base de la nariz) es más corto que el promedio, lo que da una impresión juvenil y dulce. Es una proporción muy deseada: realza esa ventaja en lugar de "corregirla".</span>
             </p>
-            <div class="block-label rec">✓ <span lang="en">Play it up</span><span lang="ko">장점 살리기</span><span lang="ja">強みを活かす</span><span lang="zh-CN">发挥优势</span><span lang="zh-TW">發揮優勢</span></div>
+            <div class="block-label rec">✓ <span lang="en">Play it up</span><span lang="ko">장점 살리기</span><span lang="ja">強みを活かす</span><span lang="zh-CN">发挥优势</span><span lang="zh-TW">發揮優勢</span><span lang="es">Realza tu ventaja</span></div>
             <ul class="tips rec numbered">
-                <li><span lang="en">Keep undereye fullness — don't bury aegyo-sal under heavy concealer; a touch of shadow keeps it dimensional. (soft brown shadow)</span><span lang="ko">애교살은 살리되 누르지 않기 — 컨실러를 눈밑까지 과하게 올리지 말고, 옅은 섀도로 입체만 더해요. (옅은 브라운 섀도)</span><span lang="ja">涙袋は活かして潰さない — コンシーラーを塗りすぎず、影色で立体感だけプラス。（淡いブラウンの影色）</span><span lang="zh-CN">保留卧蚕——别用厚遮瑕压平，用浅影色保留立体感。（浅棕色影色）</span><span lang="zh-TW">保留臥蠶——別用厚遮瑕壓平，用淺影色保留立體感。（淺棕色影色）</span></li>
-                <li><span lang="en">Lean into clear features — define the eyes with liner and mascara, add a flush of color on the lips. (vivid coral or rose)</span><span lang="ko">또렷한 이목구비를 강조 — 아이라인·마스카라로 눈매를, 화사한 컬러 립으로 생기를. (선명한 코랄·로즈)</span><span lang="ja">はっきりした目鼻立ちを強調 — アイライン・マスカラで目元を、血色リップで華やかさを。（鮮やかなコーラル・ローズ）</span><span lang="zh-CN">强化清晰五官——用眼线和睫毛膏勾勒眼神，用气色唇色提亮。（鲜艳的珊瑚色·玫瑰色）</span><span lang="zh-TW">強化清晰五官——用眼線和睫毛膏勾勒眼神，用氣色唇色提亮。（鮮豔的珊瑚色·玫瑰色）</span></li>
-                <li><span lang="en">Blush wherever suits your mood — you're not bound by "filling the gap."</span><span lang="ko">블러셔는 원하는 무드대로 — 여백 채우기에 얽매일 필요 없어요.</span><span lang="ja">チークは好みのムードで — 余白埋めにこだわらなくてOK。</span><span lang="zh-CN">腮红随你的风格——不必拘泥于"填补留白"。</span><span lang="zh-TW">腮紅隨你的風格——不必拘泥於"填補留白"。</span></li>
+                <li><span lang="en">Keep undereye fullness — don't bury aegyo-sal under heavy concealer; a touch of shadow keeps it dimensional. (soft brown shadow)</span><span lang="ko">애교살은 살리되 누르지 않기 — 컨실러를 눈밑까지 과하게 올리지 말고, 옅은 섀도로 입체만 더해요. (옅은 브라운 섀도)</span><span lang="ja">涙袋は活かして潰さない — コンシーラーを塗りすぎず、影色で立体感だけプラス。（淡いブラウンの影色）</span><span lang="zh-CN">保留卧蚕——别用厚遮瑕压平，用浅影色保留立体感。（浅棕色影色）</span><span lang="zh-TW">保留臥蠶——別用厚遮瑕壓平，用淺影色保留立體感。（淺棕色影色）</span><span lang="es">Conserva el volumen bajo el ojo: no entierres el aegyo-sal bajo correctores pesados; un toque de sombra le da dimensión. (sombra marrón suave)</span></li>
+                <li><span lang="en">Lean into clear features — define the eyes with liner and mascara, add a flush of color on the lips. (vivid coral or rose)</span><span lang="ko">또렷한 이목구비를 강조 — 아이라인·마스카라로 눈매를, 화사한 컬러 립으로 생기를. (선명한 코랄·로즈)</span><span lang="ja">はっきりした目鼻立ちを強調 — アイライン・マスカラで目元を、血色リップで華やかさを。（鮮やかなコーラル・ローズ）</span><span lang="zh-CN">强化清晰五官——用眼线和睫毛膏勾勒眼神，用气色唇色提亮。（鲜艳的珊瑚色·玫瑰色）</span><span lang="zh-TW">強化清晰五官——用眼線和睫毛膏勾勒眼神，用氣色唇色提亮。（鮮豔的珊瑚色·玫瑰色）</span><span lang="es">Aprovecha tus rasgos definidos: marca los ojos con delineador y máscara, y aporta un toque de color a los labios. (coral o rosa vivo)</span></li>
+                <li><span lang="en">Blush wherever suits your mood — you're not bound by "filling the gap."</span><span lang="ko">블러셔는 원하는 무드대로 — 여백 채우기에 얽매일 필요 없어요.</span><span lang="ja">チークは好みのムードで — 余白埋めにこだわらなくてOK。</span><span lang="zh-CN">腮红随你的风格——不必拘泥于"填补留白"。</span><span lang="zh-TW">腮紅隨你的風格——不必拘泥於"填補留白"。</span><span lang="es">Aplica el rubor donde le venga bien a tu estilo: no estás obligada a "rellenar el espacio".</span></li>
             </ul>
-            <div class="block-label avoid">✕ <span lang="en">Makes it look longer</span><span lang="ko">길어 보이는 실수</span><span lang="ja">長く見える注意点</span><span lang="zh-CN">会显长的做法</span><span lang="zh-TW">會顯長的做法</span></div>
+            <div class="block-label avoid">✕ <span lang="en">Makes it look longer</span><span lang="ko">길어 보이는 실수</span><span lang="ja">長く見える注意点</span><span lang="zh-CN">会显长的做法</span><span lang="zh-TW">會顯長的做法</span><span lang="es">Lo hace parecer más largo</span></div>
             <ul class="tips avoid">
-                <li><span lang="en">A nose shadow drawn vertically down to the tip — it lengthens the face.</span><span lang="ko">코끝까지 세로로 길게 내린 노즈 섀도우 — 얼굴이 길어 보여요.</span><span lang="ja">鼻先まで縦に長いノーズシャドウ — 顔が長く見えます。</span><span lang="zh-CN">一直拉到鼻尖的竖向鼻影——会显脸长。</span><span lang="zh-TW">一直拉到鼻尖的豎向鼻影——會顯臉長。</span></li>
-                <li><span lang="en">A sharply drawn lip line — it emphasizes the philtrum and nose; a blurred lip looks softer.</span><span lang="ko">또렷하게 그린 립라인 — 인중·코가 강조돼요. 블러 립이 자연스러워요.</span><span lang="ja">くっきり描いたリップライン — 人中や鼻が強調されます。ぼかしリップが自然。</span><span lang="zh-CN">描得过清的唇线——会强调人中和鼻子；晕染唇更自然。</span><span lang="zh-TW">描得過清的唇線——會強調人中和鼻子；暈染唇更自然。</span></li>
+                <li><span lang="en">A nose shadow drawn vertically down to the tip — it lengthens the face.</span><span lang="ko">코끝까지 세로로 길게 내린 노즈 섀도우 — 얼굴이 길어 보여요.</span><span lang="ja">鼻先まで縦に長いノーズシャドウ — 顔が長く見えます。</span><span lang="zh-CN">一直拉到鼻尖的竖向鼻影——会显脸长。</span><span lang="zh-TW">一直拉到鼻尖的豎向鼻影——會顯臉長。</span><span lang="es">Una sombra de nariz trazada en vertical hasta la punta: alarga el rostro.</span></li>
+                <li><span lang="en">A sharply drawn lip line — it emphasizes the philtrum and nose; a blurred lip looks softer.</span><span lang="ko">또렷하게 그린 립라인 — 인중·코가 강조돼요. 블러 립이 자연스러워요.</span><span lang="ja">くっきり描いたリップライン — 人中や鼻が強調されます。ぼかしリップが自然。</span><span lang="zh-CN">描得过清的唇线——会强调人中和鼻子；晕染唇更自然。</span><span lang="zh-TW">描得過清的唇線——會強調人中和鼻子；暈染唇更自然。</span><span lang="es">Una línea de labios muy marcada: resalta el filtrum y la nariz; unos labios difuminados se ven más suaves.</span></li>
             </ul>
             <div class="img-row">
                 <!-- IMAGE: 짧은 중안부 메이크업 · img/makeup-short.jpg -->
@@ -159,8 +167,8 @@
         <!-- =================== 균형 중안부 (balanced) =================== -->
         <section class="guide-card" id="balanced">
             <h2>
-                <span lang="en">Balanced Midface</span><span lang="ko">균형 중안부</span><span lang="ja">バランス型</span><span lang="zh-CN">比例均衡</span><span lang="zh-TW">比例均衡</span>
-                <span class="en-name" lang="ko">Balanced Midface</span><span class="en-name" lang="ja">Balanced Midface</span><span class="en-name" lang="zh-CN">Balanced Midface</span><span class="en-name" lang="zh-TW">Balanced Midface</span>
+                <span lang="en">Balanced Midface</span><span lang="ko">균형 중안부</span><span lang="ja">バランス型</span><span lang="zh-CN">比例均衡</span><span lang="zh-TW">比例均衡</span><span lang="es">Tercio medio equilibrado</span>
+                <span class="en-name" lang="ko">Balanced Midface</span><span class="en-name" lang="ja">Balanced Midface</span><span class="en-name" lang="zh-CN">Balanced Midface</span><span class="en-name" lang="zh-TW">Balanced Midface</span><span class="en-name" lang="es">Balanced Midface</span>
             </h2>
             <p class="feature">
                 <span lang="en">Your upper, mid, and lower thirds sit close to the ideal 1:1:1. With a well-balanced midface, you can skip ratio-correcting tricks and let your natural proportions shine.</span>
@@ -168,16 +176,17 @@
                 <span lang="ja">上・中・下顔面が理想の1:1:1に近い、バランスの取れた比率。無理な補正なしで、持ち前のバランスを活かせます。</span>
                 <span lang="zh-CN">上庭、中庭、下庭接近理想的1:1:1。比例本就均衡，无需刻意修饰，发挥天生比例即可。</span>
                 <span lang="zh-TW">上庭、中庭、下庭接近理想的1:1:1。比例本就均衡，無需刻意修飾，發揮天生比例即可。</span>
+                <span lang="es">Tus tercios superior, medio e inferior están cerca del ideal 1:1:1. Con un tercio medio bien equilibrado, puedes prescindir de los trucos correctores y dejar que tus proporciones naturales luzcan.</span>
             </p>
-            <div class="block-label rec">✓ <span lang="en">Flattering</span><span lang="ko">추천 포인트</span><span lang="ja">おすすめ</span><span lang="zh-CN">推荐</span><span lang="zh-TW">推薦</span></div>
+            <div class="block-label rec">✓ <span lang="en">Flattering</span><span lang="ko">추천 포인트</span><span lang="ja">おすすめ</span><span lang="zh-CN">推荐</span><span lang="zh-TW">推薦</span><span lang="es">Favorecedor</span></div>
             <ul class="tips rec numbered">
-                <li><span lang="en">Focus on color over correction — pick lip, blush, and shadow shades from your personal-color palette to bring out radiance and mood.</span><span lang="ko">비율 보정보다 색에 집중 — 퍼스널컬러에 맞는 립·블러셔·섀도로 혈색과 분위기를 살려요.</span><span lang="ja">補正より色を楽しんで — パーソナルカラーに合うリップ・チーク・シャドウで血色とムードを。</span><span lang="zh-CN">重点放在颜色而非修饰——按个人色选唇、腮红、眼影，提升气色与氛围。</span><span lang="zh-TW">重點放在顏色而非修飾——按個人色選唇、腮紅、眼影，提升氣色與氛圍。</span></li>
-                <li><span lang="en">Light, even contour and highlight just for dimension — cheekbones, nose bridge, chin, kept subtle. (skin-tone shade + champagne highlight)</span><span lang="ko">자연스러운 음영·하이라이트로 입체감만 — 광대·콧대·턱에 은은하게. (피부톤 셰이딩·샴페인 하이라이트)</span><span lang="ja">陰影とハイライトは立体感づくり程度に — 頬骨・鼻筋・あごへ控えめに。（肌色のシェーディング・シャンパンハイライト）</span><span lang="zh-CN">用淡淡的修容和高光只为立体——颧骨、鼻梁、下巴，点到为止。（肤色修容·香槟高光）</span><span lang="zh-TW">用淡淡的修容和高光只為立體——顴骨、鼻樑、下巴，點到為止。（膚色修容·香檳高光）</span></li>
-                <li class="no-num"><span lang="en">Choose your point feature freely — go for the mood you want, fresh or chic.</span><span lang="ko">원하는 무드(청순·시크 등)에 맞춰 포인트 부위를 자유롭게 선택해요.</span><span lang="ja">なりたい雰囲気（清楚・シックなど）に合わせてポイントを自由に。</span><span lang="zh-CN">自由选择重点部位——想要清纯或高级感都行。</span><span lang="zh-TW">自由選擇重點部位——想要清純或高級感都行。</span></li>
+                <li><span lang="en">Focus on color over correction — pick lip, blush, and shadow shades from your personal-color palette to bring out radiance and mood.</span><span lang="ko">비율 보정보다 색에 집중 — 퍼스널컬러에 맞는 립·블러셔·섀도로 혈색과 분위기를 살려요.</span><span lang="ja">補正より色を楽しんで — パーソナルカラーに合うリップ・チーク・シャドウで血色とムードを。</span><span lang="zh-CN">重点放在颜色而非修饰——按个人色选唇、腮红、眼影，提升气色与氛围。</span><span lang="zh-TW">重點放在顏色而非修飾——按個人色選唇、腮紅、眼影，提升氣色與氛圍。</span><span lang="es">Prioriza el color sobre la corrección: elige tonos de labial, rubor y sombra de tu paleta de color personal para realzar la luminosidad y el ambiente.</span></li>
+                <li><span lang="en">Light, even contour and highlight just for dimension — cheekbones, nose bridge, chin, kept subtle. (skin-tone shade + champagne highlight)</span><span lang="ko">자연스러운 음영·하이라이트로 입체감만 — 광대·콧대·턱에 은은하게. (피부톤 셰이딩·샴페인 하이라이트)</span><span lang="ja">陰影とハイライトは立体感づくり程度に — 頬骨・鼻筋・あごへ控えめに。（肌色のシェーディング・シャンパンハイライト）</span><span lang="zh-CN">用淡淡的修容和高光只为立体——颧骨、鼻梁、下巴，点到为止。（肤色修容·香槟高光）</span><span lang="zh-TW">用淡淡的修容和高光只為立體——顴骨、鼻樑、下巴，點到為止。（膚色修容·香檳高光）</span><span lang="es">Contorno e iluminador ligeros y uniformes solo para dar dimensión: pómulos, puente de la nariz y mentón, siempre sutiles. (tono piel + iluminador champán)</span></li>
+                <li class="no-num"><span lang="en">Choose your point feature freely — go for the mood you want, fresh or chic.</span><span lang="ko">원하는 무드(청순·시크 등)에 맞춰 포인트 부위를 자유롭게 선택해요.</span><span lang="ja">なりたい雰囲気（清楚・シックなど）に合わせてポイントを自由に。</span><span lang="zh-CN">自由选择重点部位——想要清纯或高级感都行。</span><span lang="zh-TW">自由選擇重點部位——想要清純或高級感都行。</span><span lang="es">Elige libremente tu rasgo protagonista: busca el ambiente que quieras, fresco o chic.</span></li>
             </ul>
-            <div class="block-label avoid">✕ <span lang="en">Go easy on</span><span lang="ko">주의할 점</span><span lang="ja">注意</span><span lang="zh-CN">需注意</span><span lang="zh-TW">需注意</span></div>
+            <div class="block-label avoid">✕ <span lang="en">Go easy on</span><span lang="ko">주의할 점</span><span lang="ja">注意</span><span lang="zh-CN">需注意</span><span lang="zh-TW">需注意</span><span lang="es">Modera</span></div>
             <ul class="tips avoid">
-                <li><span lang="en">Strong one-directional correction (heavy shortening or lengthening tricks) — it can throw off a balance you already have.</span><span lang="ko">한쪽으로 치우친 강한 보정(과한 단축·연장 기법) — 이미 갖춘 균형을 오히려 깨뜨려요.</span><span lang="ja">片寄った強い補正（やりすぎの短縮・延長テク） — せっかくのバランスを崩します。</span><span lang="zh-CN">单方向的强修饰（过度缩短或拉长）——会破坏你本有的平衡。</span><span lang="zh-TW">單方向的強修飾（過度縮短或拉長）——會破壞你本有的平衡。</span></li>
+                <li><span lang="en">Strong one-directional correction (heavy shortening or lengthening tricks) — it can throw off a balance you already have.</span><span lang="ko">한쪽으로 치우친 강한 보정(과한 단축·연장 기법) — 이미 갖춘 균형을 오히려 깨뜨려요.</span><span lang="ja">片寄った強い補正（やりすぎの短縮・延長テク） — せっかくのバランスを崩します。</span><span lang="zh-CN">单方向的强修饰（过度缩短或拉长）——会破坏你本有的平衡。</span><span lang="zh-TW">單方向的強修飾（過度縮短或拉長）——會破壞你本有的平衡。</span><span lang="es">Una corrección fuerte en una sola dirección (trucos excesivos para acortar o alargar): puede desequilibrar la armonía que ya tienes.</span></li>
             </ul>
             <div class="img-row">
                 <!-- IMAGE: 균형 중안부 메이크업 · img/makeup-balanced.jpg -->
@@ -188,8 +197,8 @@
         <!-- =================== 긴 중안부 (long) =================== -->
         <section class="guide-card" id="long">
             <h2>
-                <span lang="en">Long Midface</span><span lang="ko">긴 중안부</span><span lang="ja">中顔面が長い</span><span lang="zh-CN">中庭偏长</span><span lang="zh-TW">中庭偏長</span>
-                <span class="en-name" lang="ko">Long Midface</span><span class="en-name" lang="ja">Long Midface</span><span class="en-name" lang="zh-CN">Long Midface</span><span class="en-name" lang="zh-TW">Long Midface</span>
+                <span lang="en">Long Midface</span><span lang="ko">긴 중안부</span><span lang="ja">中顔面が長い</span><span lang="zh-CN">中庭偏长</span><span lang="zh-TW">中庭偏長</span><span lang="es">Tercio medio largo</span>
+                <span class="en-name" lang="ko">Long Midface</span><span class="en-name" lang="ja">Long Midface</span><span class="en-name" lang="zh-CN">Long Midface</span><span class="en-name" lang="zh-TW">Long Midface</span><span class="en-name" lang="es">Long Midface</span>
             </h2>
             <p class="feature">
                 <span lang="en">Your midface (brow to nose base) is longer than average, which can read as mature or elongated. The goal: fill the vertical gaps with makeup so it looks shorter and more compact.</span>
@@ -197,19 +206,20 @@
                 <span lang="ja">中顔面（眉～鼻の下）が平均より長く、大人びて間延びして見えがち。縦の余白をメイクで埋め、短くコンパクトに見せるのがポイント。</span>
                 <span lang="zh-CN">中庭（眉到鼻底）比平均偏长，容易显成熟或"拉长"。重点是用妆容填补纵向留白，让它显短、显紧致。</span>
                 <span lang="zh-TW">中庭（眉到鼻底）比平均偏長，容易顯成熟或"拉長"。重點是用妝容填補縱向留白，讓它顯短、顯緊緻。</span>
+                <span lang="es">Tu tercio medio (de las cejas a la base de la nariz) es más largo que el promedio, lo que puede leerse como maduro o alargado. El objetivo: rellenar los espacios verticales con maquillaje para que se vea más corto y compacto.</span>
             </p>
-            <div class="block-label rec">✓ <span lang="en">Shorten the midface</span><span lang="ko">짧아 보이게</span><span lang="ja">短く見せる</span><span lang="zh-CN">显短技巧</span><span lang="zh-TW">顯短技巧</span></div>
+            <div class="block-label rec">✓ <span lang="en">Shorten the midface</span><span lang="ko">짧아 보이게</span><span lang="ja">短く見せる</span><span lang="zh-CN">显短技巧</span><span lang="zh-TW">顯短技巧</span><span lang="es">Acorta el tercio medio</span></div>
             <ul class="tips rec numbered">
-                <li><span lang="en">Define the undereye (aegyo-sal) — a blood-tone liner and shadow add fullness just under the eye, closing the eye-to-cheek gap. (coral or pink pearl)</span><span lang="ko">애교살을 또렷이 — 혈색 라이너·섀도로 눈밑에 입체를 만들어 눈~볼 여백을 채워요. (코랄·핑크 펄)</span><span lang="ja">涙袋をしっかり — 血色ライナーと影色で目の下にふくらみを作り、目～頬の余白を埋める。（コーラル・ピンクパール）</span><span lang="zh-CN">强调卧蚕——用气色眼线和影色在眼下做出饱满，填补眼到颊的留白。（珊瑚色·粉色珠光）</span><span lang="zh-TW">強調臥蠶——用氣色眼線和影色在眼下做出飽滿，填補眼到頰的留白。（珊瑚色·粉色珠光）</span></li>
-                <li><span lang="en">Sweep blush wide and horizontal — from beside the nostrils out toward the ears, filling the cheek space (avoid a high placement). (coral / peach)</span><span lang="ko">블러셔는 가로로 넓게 — 콧볼 옆에서 귀 쪽으로 타원으로 발라 볼 여백을 메워요. 높은 위치는 피해요. (코랄·피치)</span><span lang="ja">チークは横長に広く — 小鼻の横から耳に向かって楕円に入れ、頬の余白を埋める（高い位置はNG）。（コーラル・ピーチ）</span><span lang="zh-CN">腮红横向大面积——从鼻翼旁向耳朵扫成椭圆，填补颊部留白（避免打太高）。（珊瑚色·蜜桃色）</span><span lang="zh-TW">腮紅橫向大面積——從鼻翼旁向耳朵掃成橢圓，填補頰部留白（避免打太高）。（珊瑚色·蜜桃色）</span></li>
-                <li><span lang="en">Cut the nose shadow horizontally at the nostrils and leave the tip bright — don't draw it long. (brown 1–2 shades deeper than skin)</span><span lang="ko">노즈 섀도우는 콧볼에서 가로로 끊고 코끝은 밝게 — 코를 길게 늘이지 않아요. (피부보다 1~2톤 어두운 브라운)</span><span lang="ja">ノーズシャドウは小鼻で横に止め、鼻先は明るく — 鼻を長く伸ばさない。（肌より1〜2トーン暗いブラウン）</span><span lang="zh-CN">鼻影在鼻翼处横向收住、鼻尖留亮——别画得太长。（比肤色深1~2号的棕色）</span><span lang="zh-TW">鼻影在鼻翼處橫向收住、鼻尖留亮——別畫得太長。（比膚色深1~2號的棕色）</span></li>
-                <li><span lang="en">Shorten the philtrum with an overlip — lift the lip peaks about 1mm and dot highlight above the upper lip. (coral / MLBB)</span><span lang="ko">오버립으로 인중 단축 — 윗입술 산을 1mm 위로 올리고, 윗입술 위에 소량 하이라이트. (코랄·MLBB)</span><span lang="ja">オーバーリップで人中短縮 — 上唇の山を1mm上げ、上唇の上に少量ハイライト。（コーラル・MLBB）</span><span lang="zh-CN">用超出唇线缩短人中——唇峰上提约1mm，上唇上方点少量高光。（珊瑚色·MLBB）</span><span lang="zh-TW">用超出唇線縮短人中——唇峰上提約1mm，上唇上方點少量高光。（珊瑚色·MLBB）</span></li>
-                <li><span lang="en">Place highlight as dots, not lines — cheekbones, nose tip, chin; avoid a vertical stripe down the nose. (champagne pearl)</span><span lang="ko">하이라이트는 점으로 — 광대·코끝·턱끝에 톡톡. 콧대 세로 일직선은 피해요. (샴페인 펄)</span><span lang="ja">ハイライトは点で — 頬骨・鼻先・あご先にトントン。鼻筋の縦線はNG。（シャンパンパール）</span><span lang="zh-CN">高光点状而非线状——颧骨、鼻尖、下巴点上；避免鼻梁竖线。（香槟珠光）</span><span lang="zh-TW">高光點狀而非線狀——顴骨、鼻尖、下巴點上；避免鼻樑豎線。（香檳珠光）</span></li>
+                <li><span lang="en">Define the undereye (aegyo-sal) — a blood-tone liner and shadow add fullness just under the eye, closing the eye-to-cheek gap. (coral or pink pearl)</span><span lang="ko">애교살을 또렷이 — 혈색 라이너·섀도로 눈밑에 입체를 만들어 눈~볼 여백을 채워요. (코랄·핑크 펄)</span><span lang="ja">涙袋をしっかり — 血色ライナーと影色で目の下にふくらみを作り、目～頬の余白を埋める。（コーラル・ピンクパール）</span><span lang="zh-CN">强调卧蚕——用气色眼线和影色在眼下做出饱满，填补眼到颊的留白。（珊瑚色·粉色珠光）</span><span lang="zh-TW">強調臥蠶——用氣色眼線和影色在眼下做出飽滿，填補眼到頰的留白。（珊瑚色·粉色珠光）</span><span lang="es">Define la zona bajo el ojo (aegyo-sal): un delineador y una sombra de tono cálido añaden volumen justo bajo el ojo y cierran el espacio entre el ojo y la mejilla. (coral o perla rosada)</span></li>
+                <li><span lang="en">Sweep blush wide and horizontal — from beside the nostrils out toward the ears, filling the cheek space (avoid a high placement). (coral / peach)</span><span lang="ko">블러셔는 가로로 넓게 — 콧볼 옆에서 귀 쪽으로 타원으로 발라 볼 여백을 메워요. 높은 위치는 피해요. (코랄·피치)</span><span lang="ja">チークは横長に広く — 小鼻の横から耳に向かって楕円に入れ、頬の余白を埋める（高い位置はNG）。（コーラル・ピーチ）</span><span lang="zh-CN">腮红横向大面积——从鼻翼旁向耳朵扫成椭圆，填补颊部留白（避免打太高）。（珊瑚色·蜜桃色）</span><span lang="zh-TW">腮紅橫向大面積——從鼻翼旁向耳朵掃成橢圓，填補頰部留白（避免打太高）。（珊瑚色·蜜桃色）</span><span lang="es">Difumina el rubor ancho y en horizontal: desde junto a las aletas de la nariz hacia las orejas, rellenando el espacio de la mejilla (evita colocarlo muy arriba). (coral / melocotón)</span></li>
+                <li><span lang="en">Cut the nose shadow horizontally at the nostrils and leave the tip bright — don't draw it long. (brown 1–2 shades deeper than skin)</span><span lang="ko">노즈 섀도우는 콧볼에서 가로로 끊고 코끝은 밝게 — 코를 길게 늘이지 않아요. (피부보다 1~2톤 어두운 브라운)</span><span lang="ja">ノーズシャドウは小鼻で横に止め、鼻先は明るく — 鼻を長く伸ばさない。（肌より1〜2トーン暗いブラウン）</span><span lang="zh-CN">鼻影在鼻翼处横向收住、鼻尖留亮——别画得太长。（比肤色深1~2号的棕色）</span><span lang="zh-TW">鼻影在鼻翼處橫向收住、鼻尖留亮——別畫得太長。（比膚色深1~2號的棕色）</span><span lang="es">Corta la sombra de la nariz en horizontal a la altura de las aletas y deja la punta luminosa: no la traces larga. (marrón 1–2 tonos más oscuro que la piel)</span></li>
+                <li><span lang="en">Shorten the philtrum with an overlip — lift the lip peaks about 1mm and dot highlight above the upper lip. (coral / MLBB)</span><span lang="ko">오버립으로 인중 단축 — 윗입술 산을 1mm 위로 올리고, 윗입술 위에 소량 하이라이트. (코랄·MLBB)</span><span lang="ja">オーバーリップで人中短縮 — 上唇の山を1mm上げ、上唇の上に少量ハイライト。（コーラル・MLBB）</span><span lang="zh-CN">用超出唇线缩短人中——唇峰上提约1mm，上唇上方点少量高光。（珊瑚色·MLBB）</span><span lang="zh-TW">用超出唇線縮短人中——唇峰上提約1mm，上唇上方點少量高光。（珊瑚色·MLBB）</span><span lang="es">Acorta el filtrum con un overlip: eleva los picos del labio aproximadamente 1 mm y da un punto de iluminador sobre el labio superior. (coral / MLBB)</span></li>
+                <li><span lang="en">Place highlight as dots, not lines — cheekbones, nose tip, chin; avoid a vertical stripe down the nose. (champagne pearl)</span><span lang="ko">하이라이트는 점으로 — 광대·코끝·턱끝에 톡톡. 콧대 세로 일직선은 피해요. (샴페인 펄)</span><span lang="ja">ハイライトは点で — 頬骨・鼻先・あご先にトントン。鼻筋の縦線はNG。（シャンパンパール）</span><span lang="zh-CN">高光点状而非线状——颧骨、鼻尖、下巴点上；避免鼻梁竖线。（香槟珠光）</span><span lang="zh-TW">高光點狀而非線狀——顴骨、鼻尖、下巴點上；避免鼻樑豎線。（香檳珠光）</span><span lang="es">Coloca el iluminador en puntos, no en líneas: pómulos, punta de la nariz y mentón; evita una franja vertical sobre la nariz. (perla champán)</span></li>
             </ul>
-            <div class="block-label avoid">✕ <span lang="en">Go easy on</span><span lang="ko">주의할 점</span><span lang="ja">注意</span><span lang="zh-CN">需注意</span><span lang="zh-TW">需注意</span></div>
+            <div class="block-label avoid">✕ <span lang="en">Go easy on</span><span lang="ko">주의할 점</span><span lang="ja">注意</span><span lang="zh-CN">需注意</span><span lang="zh-TW">需注意</span><span lang="es">Modera</span></div>
             <ul class="tips avoid">
-                <li><span lang="en">A vertical line of contour or highlight down the nose bridge — it stretches the face longer.</span><span lang="ko">콧대를 따라 세로로 긴 셰이딩·하이라이트 — 얼굴이 더 길어 보여요.</span><span lang="ja">鼻筋に沿った縦長のシェーディング・ハイライト — 顔がさらに長く見えます。</span><span lang="zh-CN">沿鼻梁的竖向修容或高光——会让脸更长。</span><span lang="zh-TW">沿鼻樑的豎向修容或高光——會讓臉更長。</span></li>
-                <li><span lang="en">High, round blush and a sharp vertical lip line — both pull the eye downward and lengthen.</span><span lang="ko">높은 위치의 동그란 블러셔, 또렷한 세로 립라인 — 시선을 아래로 끌어 길어 보여요.</span><span lang="ja">高い位置の丸いチークや、くっきり縦のリップライン — 視線が下がり長く見えます。</span><span lang="zh-CN">打太高的圆形腮红、清晰的竖向唇线——都会把视线下拉、显长。</span><span lang="zh-TW">打太高的圓形腮紅、清晰的豎向唇線——都會把視線下拉、顯長。</span></li>
+                <li><span lang="en">A vertical line of contour or highlight down the nose bridge — it stretches the face longer.</span><span lang="ko">콧대를 따라 세로로 긴 셰이딩·하이라이트 — 얼굴이 더 길어 보여요.</span><span lang="ja">鼻筋に沿った縦長のシェーディング・ハイライト — 顔がさらに長く見えます。</span><span lang="zh-CN">沿鼻梁的竖向修容或高光——会让脸更长。</span><span lang="zh-TW">沿鼻樑的豎向修容或高光——會讓臉更長。</span><span lang="es">Una línea vertical de contorno o iluminador a lo largo del puente de la nariz: estira el rostro y lo alarga.</span></li>
+                <li><span lang="en">High, round blush and a sharp vertical lip line — both pull the eye downward and lengthen.</span><span lang="ko">높은 위치의 동그란 블러셔, 또렷한 세로 립라인 — 시선을 아래로 끌어 길어 보여요.</span><span lang="ja">高い位置の丸いチークや、くっきり縦のリップライン — 視線が下がり長く見えます。</span><span lang="zh-CN">打太高的圆形腮红、清晰的竖向唇线——都会把视线下拉、显长。</span><span lang="zh-TW">打太高的圓形腮紅、清晰的豎向唇線——都會把視線下拉、顯長。</span><span lang="es">Un rubor alto y redondo y una línea de labios vertical muy marcada: ambos atraen la mirada hacia abajo y alargan.</span></li>
             </ul>
             <div class="img-row">
                 <!-- IMAGE: 긴 중안부 메이크업 · img/makeup-long.jpg -->
@@ -223,6 +233,7 @@
             <span lang="ja">本ガイドは韓国・東アジアのメイク技法をベースにしています。補正の考え方は誰にでも通用しますが、目の形・顔の立体感・肌色に合わせて強弱を調整してください。</span>
             <span lang="zh-CN">本指南以韩国及东亚妆容技法为基础。修饰原理人人适用，但请根据眼型、五官立体度与肤色调整强弱。</span>
             <span lang="zh-TW">本指南以韓國及東亞妝容技法為基礎。修飾原理人人適用，但請根據眼型、五官立體度與膚色調整強弱。</span>
+            <span lang="es">Esta guía se basa en técnicas de maquillaje coreano y de Asia Oriental. Los principios de equilibrio sirven para todo el mundo; solo ajusta la intensidad según la forma de tus ojos, la profundidad de tu rostro y tu tono de piel.</span>
             <span class="en-extra" lang="en">If your eyes are deep-set or your features are more three-dimensional, go lighter on the undereye / aegyo-sal and philtrum techniques, and match shade depth to your skin tone — the concept (filling vertical space) still applies.</span>
         </div>
 
@@ -232,11 +243,12 @@
             <span lang="ja">本ガイドは一般的な参考であり、絶対的なルールではありません。肌色・目鼻立ち・好みによって変わります。</span>
             <span lang="zh-CN">本指南仅供参考，并非严格定式。肤色、五官与个人喜好都会影响效果，请作为起点参考。</span>
             <span lang="zh-TW">本指南僅供參考，並非嚴格定式。膚色、五官與個人喜好都會影響效果，請作為起點參考。</span>
+            <span lang="es">Esta guía es una referencia general, no una regla estricta. El tono de piel, los rasgos y el gusto personal influyen: úsala como punto de partida.</span>
         </p>
     </div>
 
     <script>
-        var VALID_LANGS = ['en','ko','ja','zh-CN','zh-TW'];
+        var VALID_LANGS = ['en','ko','ja','zh-CN','zh-TW','es'];
         var VALID_SECTIONS = ['short','balanced','long'];
 
         function setLang(lang) {

@@ -81,33 +81,37 @@
         /* ===== 다국어 표시 제어 ===== */
         [lang]:not([lang="en"]) { display: none; }
         body.lang-ko [lang="ko"] { display: block; }
-        body.lang-ko [lang="en"], body.lang-ko [lang="ja"], body.lang-ko [lang="zh-CN"], body.lang-ko [lang="zh-TW"] { display: none; }
+        body.lang-ko [lang="en"], body.lang-ko [lang="ja"], body.lang-ko [lang="zh-CN"], body.lang-ko [lang="zh-TW"], body.lang-ko [lang="es"] { display: none; }
         body.lang-ja [lang="ja"] { display: block; }
-        body.lang-ja [lang="en"], body.lang-ja [lang="ko"], body.lang-ja [lang="zh-CN"], body.lang-ja [lang="zh-TW"] { display: none; }
+        body.lang-ja [lang="en"], body.lang-ja [lang="ko"], body.lang-ja [lang="zh-CN"], body.lang-ja [lang="zh-TW"], body.lang-ja [lang="es"] { display: none; }
         body.lang-en [lang="en"] { display: block; }
-        body.lang-en [lang="ko"], body.lang-en [lang="ja"], body.lang-en [lang="zh-CN"], body.lang-en [lang="zh-TW"] { display: none; }
+        body.lang-en [lang="ko"], body.lang-en [lang="ja"], body.lang-en [lang="zh-CN"], body.lang-en [lang="zh-TW"], body.lang-en [lang="es"] { display: none; }
         body.lang-zh-CN [lang="zh-CN"] { display: block; }
-        body.lang-zh-CN [lang="en"], body.lang-zh-CN [lang="ko"], body.lang-zh-CN [lang="ja"], body.lang-zh-CN [lang="zh-TW"] { display: none; }
+        body.lang-zh-CN [lang="en"], body.lang-zh-CN [lang="ko"], body.lang-zh-CN [lang="ja"], body.lang-zh-CN [lang="zh-TW"], body.lang-zh-CN [lang="es"] { display: none; }
         body.lang-zh-TW [lang="zh-TW"] { display: block; }
-        body.lang-zh-TW [lang="en"], body.lang-zh-TW [lang="ko"], body.lang-zh-TW [lang="ja"], body.lang-zh-TW [lang="zh-CN"] { display: none; }
+        body.lang-zh-TW [lang="en"], body.lang-zh-TW [lang="ko"], body.lang-zh-TW [lang="ja"], body.lang-zh-TW [lang="zh-CN"], body.lang-zh-TW [lang="es"] { display: none; }
+        body.lang-es [lang="es"] { display: block; }
+        body.lang-es [lang="en"], body.lang-es [lang="ko"], body.lang-es [lang="ja"], body.lang-es [lang="zh-CN"], body.lang-es [lang="zh-TW"] { display: none; }
         span[lang] { display: none; }
         body.lang-en span[lang="en"] { display: inline; }
         body.lang-ko span[lang="ko"] { display: inline; }
         body.lang-ja span[lang="ja"] { display: inline; }
         body.lang-zh-CN span[lang="zh-CN"] { display: inline; }
         body.lang-zh-TW span[lang="zh-TW"] { display: inline; }
+        body.lang-es span[lang="es"] { display: inline; }
     </style>
 </head>
 <body class="lang-en">
     <div class="container">
         <div class="header">
-            <a href="index.html" class="back-link">← <span lang="en">Style Guide</span><span lang="ko">스타일 가이드</span><span lang="ja">スタイルガイド</span><span lang="zh-CN">风格指南</span><span lang="zh-TW">風格指南</span></a>
+            <a href="index.html" class="back-link">← <span lang="en">Style Guide</span><span lang="ko">스타일 가이드</span><span lang="ja">スタイルガイド</span><span lang="zh-CN">风格指南</span><span lang="zh-TW">風格指南</span><span lang="es">Guía de estilo</span></a>
             <div class="lang-switcher">
                 <button class="lang-btn active" onclick="setLang('en')" title="English">🇺🇸</button>
                 <button class="lang-btn" onclick="setLang('ko')" title="한국어">🇰🇷</button>
                 <button class="lang-btn" onclick="setLang('ja')" title="日本語">🇯🇵</button>
                 <button class="lang-btn" onclick="setLang('zh-CN')" title="简体中文">🇨🇳</button>
                 <button class="lang-btn" onclick="setLang('zh-TW')" title="繁體中文">🇹🇼</button>
+                <button class="lang-btn" onclick="setLang('es')" title="Español">🇪🇸</button>
             </div>
         </div>
 
@@ -117,6 +121,7 @@
             <span lang="ja">むくみ取りフェイスケア</span>
             <span lang="zh-CN">面部消肿护理指南</span>
             <span lang="zh-TW">面部消腫護理指南</span>
+            <span lang="es">Guía para desinflamar el rostro</span>
         </h1>
         <p class="subtitle">
             <span lang="en">Drain the puffiness behind a bigger-looking face. Lymph massage by area, plus diet &amp; habits. A guide, not medical advice.</span>
@@ -124,46 +129,47 @@
             <span lang="ja">顔を大きく見せるむくみを流しましょう。部位別リンパマッサージと食事・習慣まで。医療アドバイスではなく参考ガイドです。</span>
             <span lang="zh-CN">排走让脸显大的浮肿。分部位淋巴按摩，加饮食与习惯。仅供参考，非医疗建议。</span>
             <span lang="zh-TW">排走讓臉顯大的浮腫。分部位淋巴按摩，加飲食與習慣。僅供參考，非醫療建議。</span>
+            <span lang="es">Drena la hinchazón que hace que tu cara parezca más grande. Masaje linfático por zonas, más dieta y hábitos. Una guía, no un consejo médico.</span>
         </p>
 
         <!-- 심각도 배너 (앱 측정 severity로 자동) -->
         <div class="severity-banner" id="sevBanner" hidden>
             <div class="sev-row" data-sev="none">
                 <span class="sev-icon">👍</span>
-                <p><strong><span lang="en">Almost no swelling.</span><span lang="ko">붓기 거의 없음.</span><span lang="ja">むくみはほぼなし。</span><span lang="zh-CN">几乎没有浮肿。</span><span lang="zh-TW">幾乎沒有浮腫。</span></strong>
-                <span lang="en"> A light prevention routine is all you need.</span><span lang="ko"> 가벼운 예방 루틴이면 충분해요.</span><span lang="ja"> 軽い予防ケアで十分です。</span><span lang="zh-CN"> 保持轻度预防即可。</span><span lang="zh-TW"> 保持輕度預防即可。</span></p>
+                <p><strong><span lang="en">Almost no swelling.</span><span lang="ko">붓기 거의 없음.</span><span lang="ja">むくみはほぼなし。</span><span lang="zh-CN">几乎没有浮肿。</span><span lang="zh-TW">幾乎沒有浮腫。</span><span lang="es">Casi sin hinchazón.</span></strong>
+                <span lang="en"> A light prevention routine is all you need.</span><span lang="ko"> 가벼운 예방 루틴이면 충분해요.</span><span lang="ja"> 軽い予防ケアで十分です。</span><span lang="zh-CN"> 保持轻度预防即可。</span><span lang="zh-TW"> 保持輕度預防即可。</span><span lang="es"> Con una rutina ligera de prevención es suficiente.</span></p>
             </div>
             <div class="sev-row" data-sev="mild">
                 <span class="sev-icon">💧</span>
-                <p><strong><span lang="en">Mild puffiness.</span><span lang="ko">약간의 붓기.</span><span lang="ja">軽いむくみ。</span><span lang="zh-CN">轻度浮肿。</span><span lang="zh-TW">輕度浮腫。</span></strong>
-                <span lang="en"> A 3-minute morning massage clears it quickly.</span><span lang="ko"> 아침 3분 마사지로 금방 빠져요.</span><span lang="ja"> 朝3分のマッサージですぐ流れます。</span><span lang="zh-CN"> 早晨3分钟按摩就能消。</span><span lang="zh-TW"> 早晨3分鐘按摩就能消。</span></p>
+                <p><strong><span lang="en">Mild puffiness.</span><span lang="ko">약간의 붓기.</span><span lang="ja">軽いむくみ。</span><span lang="zh-CN">轻度浮肿。</span><span lang="zh-TW">輕度浮腫。</span><span lang="es">Hinchazón leve.</span></strong>
+                <span lang="en"> A 3-minute morning massage clears it quickly.</span><span lang="ko"> 아침 3분 마사지로 금방 빠져요.</span><span lang="ja"> 朝3分のマッサージですぐ流れます。</span><span lang="zh-CN"> 早晨3分钟按摩就能消。</span><span lang="zh-TW"> 早晨3分鐘按摩就能消。</span><span lang="es"> Un masaje de 3 minutos por la mañana la elimina rápido.</span></p>
             </div>
             <div class="sev-row" data-sev="moderate">
                 <span class="sev-icon">💧</span>
-                <p><strong><span lang="en">Noticeable swelling.</span><span lang="ko">붓기가 보여요.</span><span lang="ja">むくみが目立ちます。</span><span lang="zh-CN">浮肿较明显。</span><span lang="zh-TW">浮腫較明顯。</span></strong>
-                <span lang="en"> Pair the massage with the diet &amp; habit tips below.</span><span lang="ko"> 마사지와 아래 식이·생활 습관을 함께 챙기세요.</span><span lang="ja"> マッサージと下の食事・習慣を併せて。</span><span lang="zh-CN"> 按摩搭配下方饮食与习惯一起做。</span><span lang="zh-TW"> 按摩搭配下方飲食與習慣一起做。</span></p>
+                <p><strong><span lang="en">Noticeable swelling.</span><span lang="ko">붓기가 보여요.</span><span lang="ja">むくみが目立ちます。</span><span lang="zh-CN">浮肿较明显。</span><span lang="zh-TW">浮腫較明顯。</span><span lang="es">Hinchazón visible.</span></strong>
+                <span lang="en"> Pair the massage with the diet &amp; habit tips below.</span><span lang="ko"> 마사지와 아래 식이·생활 습관을 함께 챙기세요.</span><span lang="ja"> マッサージと下の食事・習慣を併せて。</span><span lang="zh-CN"> 按摩搭配下方饮食与习惯一起做。</span><span lang="zh-TW"> 按摩搭配下方飲食與習慣一起做。</span><span lang="es"> Combina el masaje con los consejos de dieta y hábitos de abajo.</span></p>
             </div>
             <div class="sev-row" data-sev="severe">
                 <span class="sev-icon">⚠️</span>
-                <p><strong><span lang="en">Pronounced swelling.</span><span lang="ko">붓기가 뚜렷해요.</span><span lang="ja">むくみが顕著です。</span><span lang="zh-CN">浮肿明显。</span><span lang="zh-TW">浮腫明顯。</span></strong>
-                <span lang="en"> Keep it up daily — and if it persists or is one-sided, review your habits or see a professional.</span><span lang="ko"> 꾸준히 관리하고, 오래가거나 한쪽만 부으면 생활습관 점검이나 전문가 상담을 권해요.</span><span lang="ja"> 毎日続け、長引く・片側だけの場合は習慣の見直しや専門家へ。</span><span lang="zh-CN"> 坚持每天护理；若持续或单侧浮肿，请检查习惯或就医。</span><span lang="zh-TW"> 堅持每天護理；若持續或單側浮腫，請檢查習慣或就醫。</span></p>
+                <p><strong><span lang="en">Pronounced swelling.</span><span lang="ko">붓기가 뚜렷해요.</span><span lang="ja">むくみが顕著です。</span><span lang="zh-CN">浮肿明显。</span><span lang="zh-TW">浮腫明顯。</span><span lang="es">Hinchazón pronunciada.</span></strong>
+                <span lang="en"> Keep it up daily — and if it persists or is one-sided, review your habits or see a professional.</span><span lang="ko"> 꾸준히 관리하고, 오래가거나 한쪽만 부으면 생활습관 점검이나 전문가 상담을 권해요.</span><span lang="ja"> 毎日続け、長引く・片側だけの場合は習慣の見直しや専門家へ。</span><span lang="zh-CN"> 坚持每天护理；若持续或单侧浮肿，请检查习惯或就医。</span><span lang="zh-TW"> 堅持每天護理；若持續或單側浮腫，請檢查習慣或就醫。</span><span lang="es"> Manténlo a diario; si persiste o es de un solo lado, revisa tus hábitos o consulta a un profesional.</span></p>
             </div>
         </div>
 
         <!-- 빠른 이동 -->
         <nav class="section-nav">
-            <a class="section-chip" href="#basic"><span lang="en">Basic routine</span><span lang="ko">기본 루틴</span><span lang="ja">基本ルーティン</span><span lang="zh-CN">基础流程</span><span lang="zh-TW">基礎流程</span></a>
-            <a class="section-chip" href="#eye"><span lang="en">Eyes</span><span lang="ko">눈가</span><span lang="ja">目元</span><span lang="zh-CN">眼周</span><span lang="zh-TW">眼周</span></a>
-            <a class="section-chip" href="#cheek"><span lang="en">Cheeks</span><span lang="ko">볼·광대</span><span lang="ja">頬</span><span lang="zh-CN">脸颊</span><span lang="zh-TW">臉頰</span></a>
-            <a class="section-chip" href="#jaw"><span lang="en">Jawline</span><span lang="ko">턱·라인</span><span lang="ja">フェイスライン</span><span lang="zh-CN">下颌线</span><span lang="zh-TW">下顎線</span></a>
-            <a class="section-chip" href="#diet"><span lang="en">Diet &amp; habits</span><span lang="ko">식이·생활</span><span lang="ja">食事・習慣</span><span lang="zh-CN">饮食与习惯</span><span lang="zh-TW">飲食與習慣</span></a>
+            <a class="section-chip" href="#basic"><span lang="en">Basic routine</span><span lang="ko">기본 루틴</span><span lang="ja">基本ルーティン</span><span lang="zh-CN">基础流程</span><span lang="zh-TW">基礎流程</span><span lang="es">Rutina básica</span></a>
+            <a class="section-chip" href="#eye"><span lang="en">Eyes</span><span lang="ko">눈가</span><span lang="ja">目元</span><span lang="zh-CN">眼周</span><span lang="zh-TW">眼周</span><span lang="es">Ojos</span></a>
+            <a class="section-chip" href="#cheek"><span lang="en">Cheeks</span><span lang="ko">볼·광대</span><span lang="ja">頬</span><span lang="zh-CN">脸颊</span><span lang="zh-TW">臉頰</span><span lang="es">Mejillas</span></a>
+            <a class="section-chip" href="#jaw"><span lang="en">Jawline</span><span lang="ko">턱·라인</span><span lang="ja">フェイスライン</span><span lang="zh-CN">下颌线</span><span lang="zh-TW">下顎線</span><span lang="es">Mandíbula</span></a>
+            <a class="section-chip" href="#diet"><span lang="en">Diet &amp; habits</span><span lang="ko">식이·생활</span><span lang="ja">食事・習慣</span><span lang="zh-CN">饮食与习惯</span><span lang="zh-TW">飲食與習慣</span><span lang="es">Dieta y hábitos</span></a>
         </nav>
 
         <!-- =================== 기본 림프 루틴 (basic) =================== -->
         <section class="guide-card" id="basic">
             <h2>
-                <span lang="en">Basic Lymph Routine</span><span lang="ko">기본 림프 루틴</span><span lang="ja">基本のリンパルーティン</span><span lang="zh-CN">基础淋巴流程</span><span lang="zh-TW">基礎淋巴流程</span>
-                <span class="en-name" lang="ko">Basic Routine</span><span class="en-name" lang="ja">Basic Routine</span><span class="en-name" lang="zh-CN">Basic Routine</span><span class="en-name" lang="zh-TW">Basic Routine</span>
+                <span lang="en">Basic Lymph Routine</span><span lang="ko">기본 림프 루틴</span><span lang="ja">基本のリンパルーティン</span><span lang="zh-CN">基础淋巴流程</span><span lang="zh-TW">基礎淋巴流程</span><span lang="es">Rutina linfática básica</span>
+                <span class="en-name" lang="ko">Basic Routine</span><span class="en-name" lang="ja">Basic Routine</span><span class="en-name" lang="zh-CN">Basic Routine</span><span class="en-name" lang="zh-TW">Basic Routine</span><span class="en-name" lang="es">Basic Routine</span>
             </h2>
             <p class="feature">
                 <span lang="en">Puffiness is stalled lymph fluid. Don't start at the face — first open the "drains" (collarbone, underarms), then sweep face → ears → neck → collarbone. Lymph sits just under the skin, so press gently; hard rubbing backfires.</span>
@@ -171,6 +177,7 @@
                 <span lang="ja">むくみは滞ったリンパ液。顔から始めず、まず出口（鎖骨・脇）を開け、顔→耳→首→鎖骨へ流します。リンパは皮膚のすぐ下にあるので優しく、強くこするのは逆効果。</span>
                 <span lang="zh-CN">浮肿是淤滞的淋巴液。别从脸开始——先打开"出口"（锁骨、腋下），再按脸→耳→颈→锁骨方向疏导。淋巴就在皮肤下方，要轻柔；用力揉反而适得其反。</span>
                 <span lang="zh-TW">浮腫是淤滯的淋巴液。別從臉開始——先打開「出口」（鎖骨、腋下），再按臉→耳→頸→鎖骨方向疏導。淋巴就在皮膚下方，要輕柔；用力揉反而適得其反。</span>
+                <span lang="es">La hinchazón es líquido linfático estancado. No empieces por la cara: abre primero los "desagües" (clavícula, axilas) y luego dirige el flujo cara → orejas → cuello → clavícula. La linfa está justo bajo la piel, así que presiona con suavidad; frotar fuerte es contraproducente.</span>
             </p>
             <div class="vid-row">
                 <video class="routine-video" autoplay muted loop playsinline preload="metadata" poster="img/swell-basic.jpg">
@@ -181,26 +188,26 @@
                 <!-- IMAGE: 기본 림프 루틴 도식 · img/swell-basic.jpg -->
                 <figure class="routine-img"><img src="img/swell-basic.jpg" alt="Basic lymph routine" loading="lazy" width="400" height="500" onerror="this.closest('.routine-img').classList.add('pending')"><figcaption>img/swell-basic.jpg</figcaption></figure>
             </div>
-            <div class="block-label rec">✓ <span lang="en">Steps</span><span lang="ko">순서</span><span lang="ja">手順</span><span lang="zh-CN">步骤</span><span lang="zh-TW">步驟</span></div>
+            <div class="block-label rec">✓ <span lang="en">Steps</span><span lang="ko">순서</span><span lang="ja">手順</span><span lang="zh-CN">步骤</span><span lang="zh-TW">步驟</span><span lang="es">Pasos</span></div>
             <ul class="tips rec steps">
-                <li><span lang="en">Warm the face and neck first — a warm towel or your palms wakes up circulation.</span><span lang="ko">먼저 따뜻한 타월이나 손바닥으로 얼굴·목을 데워 순환을 깨워요.</span><span lang="ja">まず蒸しタオルや手のひらで顔・首を温め、巡りを起こす。</span><span lang="zh-CN">先用热毛巾或手掌温热脸与颈，唤醒循环。</span><span lang="zh-TW">先用熱毛巾或手掌溫熱臉與頸，喚醒循環。</span></li>
-                <li><span lang="en">Lightly knead the underarms to open the lymph exit.</span><span lang="ko">겨드랑이를 가볍게 주물러 림프 출구를 열어요.</span><span lang="ja">脇の下を軽くもみ、リンパの出口を開く。</span><span lang="zh-CN">轻揉腋下，打开淋巴出口。</span><span lang="zh-TW">輕揉腋下，打開淋巴出口。</span></li>
-                <li><span lang="en">Sweep along the collarbone, inside to outside, with soft fingertips.</span><span lang="ko">쇄골 위아래를 안에서 밖으로 손가락 배로 부드럽게 쓸어요.</span><span lang="ja">鎖骨を内から外へ、指の腹で優しく流す。</span><span lang="zh-CN">用指腹沿锁骨由内向外轻扫。</span><span lang="zh-TW">用指腹沿鎖骨由內向外輕掃。</span></li>
-                <li><span lang="en">Stroke the neck downward, from below the ear to the collarbone — build the drainage path.</span><span lang="ko">귀 아래에서 쇄골로 목을 쓸어내려 배수로를 만들어요.</span><span lang="ja">耳の下から鎖骨へ首を流し、排水路をつくる。</span><span lang="zh-CN">从耳下向锁骨向下推颈部，建立"排水道"。</span><span lang="zh-TW">從耳下向鎖骨向下推頸部，建立「排水道」。</span></li>
-                <li><span lang="en">Only now the face — always inside → out to the ears → down the neck → collarbone.</span><span lang="ko">그다음 얼굴 — 항상 안 → 밖(귀) → 목 → 쇄골 방향으로 흘려보내요.</span><span lang="ja">最後に顔 — 必ず内→外（耳）→首→鎖骨へ流す。</span><span lang="zh-CN">最后才是脸——始终由内→外（耳）→颈→锁骨疏导。</span><span lang="zh-TW">最後才是臉——始終由內→外（耳）→頸→鎖骨疏導。</span></li>
+                <li><span lang="en">Warm the face and neck first — a warm towel or your palms wakes up circulation.</span><span lang="ko">먼저 따뜻한 타월이나 손바닥으로 얼굴·목을 데워 순환을 깨워요.</span><span lang="ja">まず蒸しタオルや手のひらで顔・首を温め、巡りを起こす。</span><span lang="zh-CN">先用热毛巾或手掌温热脸与颈，唤醒循环。</span><span lang="zh-TW">先用熱毛巾或手掌溫熱臉與頸，喚醒循環。</span><span lang="es">Calienta primero la cara y el cuello: una toalla tibia o tus palmas activan la circulación.</span></li>
+                <li><span lang="en">Lightly knead the underarms to open the lymph exit.</span><span lang="ko">겨드랑이를 가볍게 주물러 림프 출구를 열어요.</span><span lang="ja">脇の下を軽くもみ、リンパの出口を開く。</span><span lang="zh-CN">轻揉腋下，打开淋巴出口。</span><span lang="zh-TW">輕揉腋下，打開淋巴出口。</span><span lang="es">Amasa suavemente las axilas para abrir la salida linfática.</span></li>
+                <li><span lang="en">Sweep along the collarbone, inside to outside, with soft fingertips.</span><span lang="ko">쇄골 위아래를 안에서 밖으로 손가락 배로 부드럽게 쓸어요.</span><span lang="ja">鎖骨を内から外へ、指の腹で優しく流す。</span><span lang="zh-CN">用指腹沿锁骨由内向外轻扫。</span><span lang="zh-TW">用指腹沿鎖骨由內向外輕掃。</span><span lang="es">Desliza a lo largo de la clavícula, de dentro hacia fuera, con las yemas suaves.</span></li>
+                <li><span lang="en">Stroke the neck downward, from below the ear to the collarbone — build the drainage path.</span><span lang="ko">귀 아래에서 쇄골로 목을 쓸어내려 배수로를 만들어요.</span><span lang="ja">耳の下から鎖骨へ首を流し、排水路をつくる。</span><span lang="zh-CN">从耳下向锁骨向下推颈部，建立"排水道"。</span><span lang="zh-TW">從耳下向鎖骨向下推頸部，建立「排水道」。</span><span lang="es">Desliza el cuello hacia abajo, de debajo de la oreja a la clavícula, para crear la vía de drenaje.</span></li>
+                <li><span lang="en">Only now the face — always inside → out to the ears → down the neck → collarbone.</span><span lang="ko">그다음 얼굴 — 항상 안 → 밖(귀) → 목 → 쇄골 방향으로 흘려보내요.</span><span lang="ja">最後に顔 — 必ず内→外（耳）→首→鎖骨へ流す。</span><span lang="zh-CN">最后才是脸——始终由内→外（耳）→颈→锁骨疏导。</span><span lang="zh-TW">最後才是臉——始終由內→外（耳）→頸→鎖骨疏導。</span><span lang="es">Solo ahora la cara: siempre de dentro → hacia fuera a las orejas → bajando por el cuello → clavícula.</span></li>
             </ul>
-            <div class="block-label avoid">✕ <span lang="en">Go easy on</span><span lang="ko">주의할 점</span><span lang="ja">注意</span><span lang="zh-CN">需注意</span><span lang="zh-TW">需注意</span></div>
+            <div class="block-label avoid">✕ <span lang="en">Go easy on</span><span lang="ko">주의할 점</span><span lang="ja">注意</span><span lang="zh-CN">需注意</span><span lang="zh-TW">需注意</span><span lang="es">Con cuidado</span></div>
             <ul class="tips avoid">
-                <li><span lang="en">Hard rubbing or pulling — lymph is shallow, so light pressure works; force irritates skin and can cause sagging.</span><span lang="ko">세게 문지르거나 당기기 — 림프는 얕아서 약한 압이 효과적이에요. 강한 자극은 피부 자극·처짐을 유발해요.</span><span lang="ja">強くこする・引っぱる — リンパは浅く、弱い圧が有効。強い刺激は肌荒れ・たるみの元。</span><span lang="zh-CN">用力揉搓或拉扯——淋巴很浅，轻压才有效；用力会刺激皮肤、导致松弛。</span><span lang="zh-TW">用力揉搓或拉扯——淋巴很淺，輕壓才有效；用力會刺激皮膚、導致鬆弛。</span></li>
-                <li><span lang="en">Dry skin — use a little oil or cream so you don't drag the skin.</span><span lang="ko">크림 없이 마른 피부에 마찰 — 오일이나 크림을 살짝 발라 끌리지 않게 해요.</span><span lang="ja">乾いた肌での摩擦 — オイルやクリームを少し使い、引っぱらない。</span><span lang="zh-CN">干燥皮肤上摩擦——抹点油或面霜，避免拉扯。</span><span lang="zh-TW">乾燥皮膚上摩擦——抹點油或面霜，避免拉扯。</span></li>
+                <li><span lang="en">Hard rubbing or pulling — lymph is shallow, so light pressure works; force irritates skin and can cause sagging.</span><span lang="ko">세게 문지르거나 당기기 — 림프는 얕아서 약한 압이 효과적이에요. 강한 자극은 피부 자극·처짐을 유발해요.</span><span lang="ja">強くこする・引っぱる — リンパは浅く、弱い圧が有効。強い刺激は肌荒れ・たるみの元。</span><span lang="zh-CN">用力揉搓或拉扯——淋巴很浅，轻压才有效；用力会刺激皮肤、导致松弛。</span><span lang="zh-TW">用力揉搓或拉扯——淋巴很淺，輕壓才有效；用力會刺激皮膚、導致鬆弛。</span><span lang="es">Frotar o tirar con fuerza: la linfa es superficial, así que una presión ligera funciona; la fuerza irrita la piel y puede provocar flacidez.</span></li>
+                <li><span lang="en">Dry skin — use a little oil or cream so you don't drag the skin.</span><span lang="ko">크림 없이 마른 피부에 마찰 — 오일이나 크림을 살짝 발라 끌리지 않게 해요.</span><span lang="ja">乾いた肌での摩擦 — オイルやクリームを少し使い、引っぱらない。</span><span lang="zh-CN">干燥皮肤上摩擦——抹点油或面霜，避免拉扯。</span><span lang="zh-TW">乾燥皮膚上摩擦——抹點油或面霜，避免拉扯。</span><span lang="es">Piel seca: usa un poco de aceite o crema para no arrastrar la piel.</span></li>
             </ul>
         </section>
 
         <!-- =================== 눈가 (eye) =================== -->
         <section class="guide-card" id="eye">
             <h2>
-                <span lang="en">Eye Area</span><span lang="ko">눈가 붓기</span><span lang="ja">目元のむくみ</span><span lang="zh-CN">眼周浮肿</span><span lang="zh-TW">眼周浮腫</span>
-                <span class="en-name" lang="ko">Eyes</span><span class="en-name" lang="ja">Eyes</span><span class="en-name" lang="zh-CN">Eyes</span><span class="en-name" lang="zh-TW">Eyes</span>
+                <span lang="en">Eye Area</span><span lang="ko">눈가 붓기</span><span lang="ja">目元のむくみ</span><span lang="zh-CN">眼周浮肿</span><span lang="zh-TW">眼周浮腫</span><span lang="es">Zona de los ojos</span>
+                <span class="en-name" lang="ko">Eyes</span><span class="en-name" lang="ja">Eyes</span><span class="en-name" lang="zh-CN">Eyes</span><span class="en-name" lang="zh-TW">Eyes</span><span class="en-name" lang="es">Eyes</span>
             </h2>
             <p class="feature">
                 <span lang="en">Lids look puffy in the morning. The skin here is the thinnest on the face, so be especially gentle and never press the eyeball.</span>
@@ -208,8 +215,9 @@
                 <span lang="ja">朝にまぶたがむくむタイプ。目元は顔で最も皮膚が薄いので特に優しく、眼球は絶対に押さない。</span>
                 <span lang="zh-CN">早晨眼皮浮肿型。眼周是全脸最薄的皮肤，要格外轻柔，绝不按压眼球。</span>
                 <span lang="zh-TW">早晨眼皮浮腫型。眼周是全臉最薄的皮膚，要格外輕柔，絕不按壓眼球。</span>
+                <span lang="es">Los párpados se ven hinchados por la mañana. La piel de aquí es la más fina del rostro, así que sé especialmente suave y nunca presiones el globo ocular.</span>
             </p>
-            <a class="routine-link" href="#basic">💡 <span lang="en">Open the flow with the basic lymph routine first →</span><span lang="ko">먼저 기본 림프 루틴으로 흐름을 열어주세요 →</span><span lang="ja">まず基本のリンパルーティンで流れを作る →</span><span lang="zh-CN">先用基础淋巴流程打开通道 →</span><span lang="zh-TW">先用基礎淋巴流程打開通道 →</span></a>
+            <a class="routine-link" href="#basic">💡 <span lang="en">Open the flow with the basic lymph routine first →</span><span lang="ko">먼저 기본 림프 루틴으로 흐름을 열어주세요 →</span><span lang="ja">まず基本のリンパルーティンで流れを作る →</span><span lang="zh-CN">先用基础淋巴流程打开通道 →</span><span lang="zh-TW">先用基礎淋巴流程打開通道 →</span><span lang="es">Abre el flujo primero con la rutina linfática básica →</span></a>
             <div class="vid-row">
                 <video class="routine-video" autoplay muted loop playsinline preload="metadata" poster="img/swell-eye.jpg">
                     <source src="media/swell-eye.mp4" type="video/mp4">
@@ -219,24 +227,24 @@
                 <!-- IMAGE: 눈가 마사지 도식 · img/swell-eye.jpg -->
                 <figure class="routine-img"><img src="img/swell-eye.jpg" alt="Eye-area massage" loading="lazy" width="400" height="500" onerror="this.closest('.routine-img').classList.add('pending')"><figcaption>img/swell-eye.jpg</figcaption></figure>
             </div>
-            <div class="block-label rec">✓ <span lang="en">Steps</span><span lang="ko">순서</span><span lang="ja">手順</span><span lang="zh-CN">步骤</span><span lang="zh-TW">步驟</span></div>
+            <div class="block-label rec">✓ <span lang="en">Steps</span><span lang="ko">순서</span><span lang="ja">手順</span><span lang="zh-CN">步骤</span><span lang="zh-TW">步驟</span><span lang="es">Pasos</span></div>
             <ul class="tips rec steps">
-                <li><span lang="en">Eyes closed, press the inner edge of the brow with your thumb pad for about 5 seconds.</span><span lang="ko">눈을 감고, 눈썹 안쪽(찬죽)을 엄지 배로 약 5초간 지그시 눌러요.</span><span lang="ja">目を閉じ、眉頭のツボ（攅竹）を親指の腹で約5秒押す。</span><span lang="zh-CN">闭眼，用拇指腹按眉头内侧（攒竹）约5秒。</span><span lang="zh-TW">閉眼，用拇指腹按眉頭內側（攢竹）約5秒。</span></li>
-                <li><span lang="en">Glide along the brow bone out to the temple — repeat 3 times.</span><span lang="ko">눈썹뼈를 따라 관자놀이(태양)까지 쓸어요 — 3회 반복.</span><span lang="ja">眉骨に沿ってこめかみ（太陽）まで流す — 3回。</span><span lang="zh-CN">沿眉骨滑向太阳穴——重复3次。</span><span lang="zh-TW">沿眉骨滑向太陽穴——重複3次。</span></li>
-                <li><span lang="en">Lightly press just above the inner corner of the eye to wake circulation.</span><span lang="ko">눈머리 위(정명)를 가볍게 눌러 순환을 깨워요.</span><span lang="ja">目頭の上（晴明）を軽く押し、巡りを促す。</span><span lang="zh-CN">轻按内眼角上方（睛明）促进循环。</span><span lang="zh-TW">輕按內眼角上方（睛明）促進循環。</span></li>
-                <li><span lang="en">Lay a warm towel over the eyes for about 10 minutes — warmth releases congestion.</span><span lang="ko">따뜻한 타월을 눈에 약 10분 — 혈행이 풀려요.</span><span lang="ja">蒸しタオルを目元に約10分 — 血行がほぐれる。</span><span lang="zh-CN">热毛巾敷眼约10分钟——化开淤堵。</span><span lang="zh-TW">熱毛巾敷眼約10分鐘——化開淤堵。</span></li>
+                <li><span lang="en">Eyes closed, press the inner edge of the brow with your thumb pad for about 5 seconds.</span><span lang="ko">눈을 감고, 눈썹 안쪽(찬죽)을 엄지 배로 약 5초간 지그시 눌러요.</span><span lang="ja">目を閉じ、眉頭のツボ（攅竹）を親指の腹で約5秒押す。</span><span lang="zh-CN">闭眼，用拇指腹按眉头内侧（攒竹）约5秒。</span><span lang="zh-TW">閉眼，用拇指腹按眉頭內側（攢竹）約5秒。</span><span lang="es">Con los ojos cerrados, presiona el borde interno de la ceja con la yema del pulgar unos 5 segundos.</span></li>
+                <li><span lang="en">Glide along the brow bone out to the temple — repeat 3 times.</span><span lang="ko">눈썹뼈를 따라 관자놀이(태양)까지 쓸어요 — 3회 반복.</span><span lang="ja">眉骨に沿ってこめかみ（太陽）まで流す — 3回。</span><span lang="zh-CN">沿眉骨滑向太阳穴——重复3次。</span><span lang="zh-TW">沿眉骨滑向太陽穴——重複3次。</span><span lang="es">Desliza a lo largo del hueso de la ceja hacia la sien: repite 3 veces.</span></li>
+                <li><span lang="en">Lightly press just above the inner corner of the eye to wake circulation.</span><span lang="ko">눈머리 위(정명)를 가볍게 눌러 순환을 깨워요.</span><span lang="ja">目頭の上（晴明）を軽く押し、巡りを促す。</span><span lang="zh-CN">轻按内眼角上方（睛明）促进循环。</span><span lang="zh-TW">輕按內眼角上方（睛明）促進循環。</span><span lang="es">Presiona ligeramente justo encima del lagrimal para activar la circulación.</span></li>
+                <li><span lang="en">Lay a warm towel over the eyes for about 10 minutes — warmth releases congestion.</span><span lang="ko">따뜻한 타월을 눈에 약 10분 — 혈행이 풀려요.</span><span lang="ja">蒸しタオルを目元に約10分 — 血行がほぐれる。</span><span lang="zh-CN">热毛巾敷眼约10分钟——化开淤堵。</span><span lang="zh-TW">熱毛巾敷眼約10分鐘——化開淤堵。</span><span lang="es">Coloca una toalla tibia sobre los ojos unos 10 minutos: el calor libera la congestión.</span></li>
             </ul>
-            <div class="block-label avoid">✕ <span lang="en">Go easy on</span><span lang="ko">주의할 점</span><span lang="ja">注意</span><span lang="zh-CN">需注意</span><span lang="zh-TW">需注意</span></div>
+            <div class="block-label avoid">✕ <span lang="en">Go easy on</span><span lang="ko">주의할 점</span><span lang="ja">注意</span><span lang="zh-CN">需注意</span><span lang="zh-TW">需注意</span><span lang="es">Con cuidado</span></div>
             <ul class="tips avoid">
-                <li><span lang="en">Pressing or rubbing the eyeball, or dragging the under-eye skin.</span><span lang="ko">안구를 누르거나 비비기, 눈밑 피부를 세게 당기기.</span><span lang="ja">眼球を押す・こする、目の下を強く引っぱる。</span><span lang="zh-CN">按压或揉搓眼球，拉扯眼下皮肤。</span><span lang="zh-TW">按壓或揉搓眼球，拉扯眼下皮膚。</span></li>
+                <li><span lang="en">Pressing or rubbing the eyeball, or dragging the under-eye skin.</span><span lang="ko">안구를 누르거나 비비기, 눈밑 피부를 세게 당기기.</span><span lang="ja">眼球を押す・こする、目の下を強く引っぱる。</span><span lang="zh-CN">按压或揉搓眼球，拉扯眼下皮肤。</span><span lang="zh-TW">按壓或揉搓眼球，拉扯眼下皮膚。</span><span lang="es">Presionar o frotar el globo ocular, o tirar de la piel bajo los ojos.</span></li>
             </ul>
         </section>
 
         <!-- =================== 볼·광대 (cheek) =================== -->
         <section class="guide-card" id="cheek">
             <h2>
-                <span lang="en">Cheeks</span><span lang="ko">볼·광대 붓기</span><span lang="ja">頬のむくみ</span><span lang="zh-CN">脸颊浮肿</span><span lang="zh-TW">臉頰浮腫</span>
-                <span class="en-name" lang="ko">Cheeks</span><span class="en-name" lang="ja">Cheeks</span><span class="en-name" lang="zh-CN">Cheeks</span><span class="en-name" lang="zh-TW">Cheeks</span>
+                <span lang="en">Cheeks</span><span lang="ko">볼·광대 붓기</span><span lang="ja">頬のむくみ</span><span lang="zh-CN">脸颊浮肿</span><span lang="zh-TW">臉頰浮腫</span><span lang="es">Mejillas</span>
+                <span class="en-name" lang="ko">Cheeks</span><span class="en-name" lang="ja">Cheeks</span><span class="en-name" lang="zh-CN">Cheeks</span><span class="en-name" lang="zh-TW">Cheeks</span><span class="en-name" lang="es">Cheeks</span>
             </h2>
             <p class="feature">
                 <span lang="en">Puffy cheeks and cheekbones make the face look wider. Move the fluid up and out toward the ear, then down the neck.</span>
@@ -244,8 +252,9 @@
                 <span lang="ja">頬・頬骨がむくんで顔が広く見えるタイプ。水分を上・外（耳）へ送り、首へ流す。</span>
                 <span lang="zh-CN">脸颊、颧骨浮肿让脸显宽。把水分向上、向外（耳）推，再向下导入颈部。</span>
                 <span lang="zh-TW">臉頰、顴骨浮腫讓臉顯寬。把水分向上、向外（耳）推，再向下導入頸部。</span>
+                <span lang="es">Las mejillas y los pómulos hinchados hacen que la cara parezca más ancha. Lleva el líquido hacia arriba y hacia fuera, en dirección a la oreja, y luego bájalo por el cuello.</span>
             </p>
-            <a class="routine-link" href="#basic">💡 <span lang="en">Open the flow with the basic lymph routine first →</span><span lang="ko">먼저 기본 림프 루틴으로 흐름을 열어주세요 →</span><span lang="ja">まず基本のリンパルーティンで流れを作る →</span><span lang="zh-CN">先用基础淋巴流程打开通道 →</span><span lang="zh-TW">先用基礎淋巴流程打開通道 →</span></a>
+            <a class="routine-link" href="#basic">💡 <span lang="en">Open the flow with the basic lymph routine first →</span><span lang="ko">먼저 기본 림프 루틴으로 흐름을 열어주세요 →</span><span lang="ja">まず基本のリンパルーティンで流れを作る →</span><span lang="zh-CN">先用基础淋巴流程打开通道 →</span><span lang="zh-TW">先用基礎淋巴流程打開通道 →</span><span lang="es">Abre el flujo primero con la rutina linfática básica →</span></a>
             <div class="vid-row">
                 <video class="routine-video" autoplay muted loop playsinline preload="metadata" poster="img/swell-cheek.jpg">
                     <source src="media/swell-cheek.mp4" type="video/mp4">
@@ -255,23 +264,23 @@
                 <!-- IMAGE: 볼·광대 마사지 도식 · img/swell-cheek.jpg -->
                 <figure class="routine-img"><img src="img/swell-cheek.jpg" alt="Cheek massage" loading="lazy" width="400" height="500" onerror="this.closest('.routine-img').classList.add('pending')"><figcaption>img/swell-cheek.jpg</figcaption></figure>
             </div>
-            <div class="block-label rec">✓ <span lang="en">Steps</span><span lang="ko">순서</span><span lang="ja">手順</span><span lang="zh-CN">步骤</span><span lang="zh-TW">步驟</span></div>
+            <div class="block-label rec">✓ <span lang="en">Steps</span><span lang="ko">순서</span><span lang="ja">手順</span><span lang="zh-CN">步骤</span><span lang="zh-TW">步驟</span><span lang="es">Pasos</span></div>
             <ul class="tips rec steps">
-                <li><span lang="en">Sweep from beside the nose, across the cheek, up toward the ear.</span><span lang="ko">코 옆에서 볼을 지나 귀 쪽으로 쓸어 올려요.</span><span lang="ja">小鼻の横から頬を通って耳の方へ引き上げる。</span><span lang="zh-CN">从鼻翼旁经脸颊向耳朵方向上推。</span><span lang="zh-TW">從鼻翼旁經臉頰向耳朵方向上推。</span></li>
-                <li><span lang="en">Press along under the cheekbone out to the front of the ear.</span><span lang="ko">광대뼈 아래를 따라 귀 앞까지 밀어줘요.</span><span lang="ja">頬骨の下に沿って耳の前まで押し流す。</span><span lang="zh-CN">沿颧骨下缘推向耳前。</span><span lang="zh-TW">沿顴骨下緣推向耳前。</span></li>
-                <li><span lang="en">Finish: front of ear → below the ear → down the neck to the collarbone.</span><span lang="ko">마무리: 귀 앞 → 귀 아래 → 목 → 쇄골로 흘려보내요.</span><span lang="ja">仕上げ：耳前→耳下→首→鎖骨へ流す。</span><span lang="zh-CN">收尾：耳前→耳下→颈→锁骨疏导。</span><span lang="zh-TW">收尾：耳前→耳下→頸→鎖骨疏導。</span></li>
+                <li><span lang="en">Sweep from beside the nose, across the cheek, up toward the ear.</span><span lang="ko">코 옆에서 볼을 지나 귀 쪽으로 쓸어 올려요.</span><span lang="ja">小鼻の横から頬を通って耳の方へ引き上げる。</span><span lang="zh-CN">从鼻翼旁经脸颊向耳朵方向上推。</span><span lang="zh-TW">從鼻翼旁經臉頰向耳朵方向上推。</span><span lang="es">Desliza desde el lateral de la nariz, por la mejilla, subiendo hacia la oreja.</span></li>
+                <li><span lang="en">Press along under the cheekbone out to the front of the ear.</span><span lang="ko">광대뼈 아래를 따라 귀 앞까지 밀어줘요.</span><span lang="ja">頬骨の下に沿って耳の前まで押し流す。</span><span lang="zh-CN">沿颧骨下缘推向耳前。</span><span lang="zh-TW">沿顴骨下緣推向耳前。</span><span lang="es">Presiona por debajo del pómulo hacia delante de la oreja.</span></li>
+                <li><span lang="en">Finish: front of ear → below the ear → down the neck to the collarbone.</span><span lang="ko">마무리: 귀 앞 → 귀 아래 → 목 → 쇄골로 흘려보내요.</span><span lang="ja">仕上げ：耳前→耳下→首→鎖骨へ流す。</span><span lang="zh-CN">收尾：耳前→耳下→颈→锁骨疏导。</span><span lang="zh-TW">收尾：耳前→耳下→頸→鎖骨疏導。</span><span lang="es">Termina: delante de la oreja → debajo de la oreja → bajando por el cuello hasta la clavícula.</span></li>
             </ul>
-            <div class="block-label avoid">✕ <span lang="en">Go easy on</span><span lang="ko">주의할 점</span><span lang="ja">注意</span><span lang="zh-CN">需注意</span><span lang="zh-TW">需注意</span></div>
+            <div class="block-label avoid">✕ <span lang="en">Go easy on</span><span lang="ko">주의할 점</span><span lang="ja">注意</span><span lang="zh-CN">需注意</span><span lang="zh-TW">需注意</span><span lang="es">Con cuidado</span></div>
             <ul class="tips avoid">
-                <li><span lang="en">Dragging the cheek downward, or pressing too hard — both can encourage sagging.</span><span lang="ko">볼을 아래로 당기는 방향, 너무 강한 압 — 처짐을 부를 수 있어요.</span><span lang="ja">頬を下へ引く方向や強すぎる圧 — たるみの原因に。</span><span lang="zh-CN">把脸颊向下拉或用力过猛——都可能导致松弛。</span><span lang="zh-TW">把臉頰向下拉或用力過猛——都可能導致鬆弛。</span></li>
+                <li><span lang="en">Dragging the cheek downward, or pressing too hard — both can encourage sagging.</span><span lang="ko">볼을 아래로 당기는 방향, 너무 강한 압 — 처짐을 부를 수 있어요.</span><span lang="ja">頬を下へ引く方向や強すぎる圧 — たるみの原因に。</span><span lang="zh-CN">把脸颊向下拉或用力过猛——都可能导致松弛。</span><span lang="zh-TW">把臉頰向下拉或用力過猛——都可能導致鬆弛。</span><span lang="es">Arrastrar la mejilla hacia abajo o presionar demasiado fuerte: ambos pueden favorecer la flacidez.</span></li>
             </ul>
         </section>
 
         <!-- =================== 턱·라인 (jaw) =================== -->
         <section class="guide-card" id="jaw">
             <h2>
-                <span lang="en">Jaw &amp; Face Line</span><span lang="ko">턱·얼굴라인 붓기</span><span lang="ja">フェイスラインのむくみ</span><span lang="zh-CN">下颌线浮肿</span><span lang="zh-TW">下顎線浮腫</span>
-                <span class="en-name" lang="ko">Jawline</span><span class="en-name" lang="ja">Jawline</span><span class="en-name" lang="zh-CN">Jawline</span><span class="en-name" lang="zh-TW">Jawline</span>
+                <span lang="en">Jaw &amp; Face Line</span><span lang="ko">턱·얼굴라인 붓기</span><span lang="ja">フェイスラインのむくみ</span><span lang="zh-CN">下颌线浮肿</span><span lang="zh-TW">下顎線浮腫</span><span lang="es">Mandíbula y contorno facial</span>
+                <span class="en-name" lang="ko">Jawline</span><span class="en-name" lang="ja">Jawline</span><span class="en-name" lang="zh-CN">Jawline</span><span class="en-name" lang="zh-TW">Jawline</span><span class="en-name" lang="es">Jawline</span>
             </h2>
             <p class="feature">
                 <span lang="en">A puffy jaw and under-chin can read as a double chin. Clearing the lymph here sharpens the face line.</span>
@@ -279,8 +288,9 @@
                 <span lang="ja">あご下・フェイスラインがむくんで二重あごに見えるタイプ。ここのリンパを流すと輪郭がすっきり。</span>
                 <span lang="zh-CN">下巴下方、脸线浮肿会显双下巴。疏通此处淋巴可让脸线更清晰。</span>
                 <span lang="zh-TW">下巴下方、臉線浮腫會顯雙下巴。疏通此處淋巴可讓臉線更清晰。</span>
+                <span lang="es">Una mandíbula y un mentón hinchados pueden parecer papada. Drenar la linfa de esta zona define el contorno del rostro.</span>
             </p>
-            <a class="routine-link" href="#basic">💡 <span lang="en">Open the flow with the basic lymph routine first →</span><span lang="ko">먼저 기본 림프 루틴으로 흐름을 열어주세요 →</span><span lang="ja">まず基本のリンパルーティンで流れを作る →</span><span lang="zh-CN">先用基础淋巴流程打开通道 →</span><span lang="zh-TW">先用基礎淋巴流程打開通道 →</span></a>
+            <a class="routine-link" href="#basic">💡 <span lang="en">Open the flow with the basic lymph routine first →</span><span lang="ko">먼저 기본 림프 루틴으로 흐름을 열어주세요 →</span><span lang="ja">まず基本のリンパルーティンで流れを作る →</span><span lang="zh-CN">先用基础淋巴流程打开通道 →</span><span lang="zh-TW">先用基礎淋巴流程打開通道 →</span><span lang="es">Abre el flujo primero con la rutina linfática básica →</span></a>
             <div class="vid-row">
                 <video class="routine-video" autoplay muted loop playsinline preload="metadata" poster="img/swell-jaw.jpg">
                     <source src="media/swell-jaw.mp4" type="video/mp4">
@@ -290,23 +300,23 @@
                 <!-- IMAGE: 턱·라인 마사지 도식 · img/swell-jaw.jpg -->
                 <figure class="routine-img"><img src="img/swell-jaw.jpg" alt="Jawline massage" loading="lazy" width="400" height="500" onerror="this.closest('.routine-img').classList.add('pending')"><figcaption>img/swell-jaw.jpg</figcaption></figure>
             </div>
-            <div class="block-label rec">✓ <span lang="en">Steps</span><span lang="ko">순서</span><span lang="ja">手順</span><span lang="zh-CN">步骤</span><span lang="zh-TW">步驟</span></div>
+            <div class="block-label rec">✓ <span lang="en">Steps</span><span lang="ko">순서</span><span lang="ja">手順</span><span lang="zh-CN">步骤</span><span lang="zh-TW">步驟</span><span lang="es">Pasos</span></div>
             <ul class="tips rec steps">
-                <li><span lang="en">Place a bent knuckle under the chin and slide from the chin out to below the ear.</span><span lang="ko">손가락 둘째 관절을 턱 아래에 대고 턱끝 → 귀 아래로 밀어요.</span><span lang="ja">人差し指の第二関節をあご下に当て、あご先→耳の下へ滑らせる。</span><span lang="zh-CN">用食指第二关节抵住下巴下方，从下巴滑向耳下。</span><span lang="zh-TW">用食指第二關節抵住下巴下方，從下巴滑向耳下。</span></li>
-                <li><span lang="en">From below the ear, slide straight down to the collarbone — repeat 3 times.</span><span lang="ko">귀 아래 → 쇄골로 직선으로 내려요 — 3회 반복.</span><span lang="ja">耳の下→鎖骨へまっすぐ下ろす — 3回。</span><span lang="zh-CN">从耳下直推到锁骨——重复3次。</span><span lang="zh-TW">從耳下直推到鎖骨——重複3次。</span></li>
-                <li><span lang="en">Knead the base of the ears, up and down, about 8 times to boost flow.</span><span lang="ko">귀 뿌리를 두 손가락으로 상하 8회 풀어 혈행을 깨워요.</span><span lang="ja">耳の付け根を上下に約8回ほぐし、巡りを促す。</span><span lang="zh-CN">揉耳根上下约8次，促进流动。</span><span lang="zh-TW">揉耳根上下約8次，促進流動。</span></li>
+                <li><span lang="en">Place a bent knuckle under the chin and slide from the chin out to below the ear.</span><span lang="ko">손가락 둘째 관절을 턱 아래에 대고 턱끝 → 귀 아래로 밀어요.</span><span lang="ja">人差し指の第二関節をあご下に当て、あご先→耳の下へ滑らせる。</span><span lang="zh-CN">用食指第二关节抵住下巴下方，从下巴滑向耳下。</span><span lang="zh-TW">用食指第二關節抵住下巴下方，從下巴滑向耳下。</span><span lang="es">Coloca el nudillo doblado bajo el mentón y desliza desde el mentón hacia debajo de la oreja.</span></li>
+                <li><span lang="en">From below the ear, slide straight down to the collarbone — repeat 3 times.</span><span lang="ko">귀 아래 → 쇄골로 직선으로 내려요 — 3회 반복.</span><span lang="ja">耳の下→鎖骨へまっすぐ下ろす — 3回。</span><span lang="zh-CN">从耳下直推到锁骨——重复3次。</span><span lang="zh-TW">從耳下直推到鎖骨——重複3次。</span><span lang="es">Desde debajo de la oreja, baja recto hasta la clavícula: repite 3 veces.</span></li>
+                <li><span lang="en">Knead the base of the ears, up and down, about 8 times to boost flow.</span><span lang="ko">귀 뿌리를 두 손가락으로 상하 8회 풀어 혈행을 깨워요.</span><span lang="ja">耳の付け根を上下に約8回ほぐし、巡りを促す。</span><span lang="zh-CN">揉耳根上下约8次，促进流动。</span><span lang="zh-TW">揉耳根上下約8次，促進流動。</span><span lang="es">Amasa la base de las orejas, arriba y abajo, unas 8 veces para activar el flujo.</span></li>
             </ul>
-            <div class="block-label avoid">✕ <span lang="en">Go easy on</span><span lang="ko">주의할 점</span><span lang="ja">注意</span><span lang="zh-CN">需注意</span><span lang="zh-TW">需注意</span></div>
+            <div class="block-label avoid">✕ <span lang="en">Go easy on</span><span lang="ko">주의할 점</span><span lang="ja">注意</span><span lang="zh-CN">需注意</span><span lang="zh-TW">需注意</span><span lang="es">Con cuidado</span></div>
             <ul class="tips avoid">
-                <li><span lang="en">Pinching or twisting the jawline hard — keep the pressure light and gliding.</span><span lang="ko">턱선을 세게 꼬집거나 비틀기 — 압은 가볍게 미끄러지듯.</span><span lang="ja">フェイスラインを強くつまむ・ねじる — 圧は軽く滑らせるように。</span><span lang="zh-CN">用力捏或扭下颌线——保持轻柔滑动。</span><span lang="zh-TW">用力捏或扭下顎線——保持輕柔滑動。</span></li>
+                <li><span lang="en">Pinching or twisting the jawline hard — keep the pressure light and gliding.</span><span lang="ko">턱선을 세게 꼬집거나 비틀기 — 압은 가볍게 미끄러지듯.</span><span lang="ja">フェイスラインを強くつまむ・ねじる — 圧は軽く滑らせるように。</span><span lang="zh-CN">用力捏或扭下颌线——保持轻柔滑动。</span><span lang="zh-TW">用力捏或扭下顎線——保持輕柔滑動。</span><span lang="es">Pellizcar o retorcer la mandíbula con fuerza: mantén una presión ligera y deslizante.</span></li>
             </ul>
         </section>
 
         <!-- =================== 식이·생활 (diet) =================== -->
         <section class="guide-card" id="diet">
             <h2>
-                <span lang="en">Diet &amp; Habits</span><span lang="ko">식이·생활 습관</span><span lang="ja">食事・習慣</span><span lang="zh-CN">饮食与习惯</span><span lang="zh-TW">飲食與習慣</span>
-                <span class="en-name" lang="ko">Common</span><span class="en-name" lang="ja">Common</span><span class="en-name" lang="zh-CN">Common</span><span class="en-name" lang="zh-TW">Common</span>
+                <span lang="en">Diet &amp; Habits</span><span lang="ko">식이·생활 습관</span><span lang="ja">食事・習慣</span><span lang="zh-CN">饮食与习惯</span><span lang="zh-TW">飲食與習慣</span><span lang="es">Dieta y hábitos</span>
+                <span class="en-name" lang="ko">Common</span><span class="en-name" lang="ja">Common</span><span class="en-name" lang="zh-CN">Common</span><span class="en-name" lang="zh-TW">Common</span><span class="en-name" lang="es">Common</span>
             </h2>
             <p class="feature">
                 <span lang="en">Massage drains today's puffiness, but habits decide tomorrow's. Sodium, water, and sleep matter most.</span>
@@ -314,18 +324,19 @@
                 <span lang="ja">マッサージで今日のむくみは流せても、明日は習慣次第。塩分・水分・睡眠が要。</span>
                 <span lang="zh-CN">按摩能消今天的肿，但明天靠习惯。钠、水分、睡眠最关键。</span>
                 <span lang="zh-TW">按摩能消今天的腫，但明天靠習慣。鈉、水分、睡眠最關鍵。</span>
+                <span lang="es">El masaje drena la hinchazón de hoy, pero los hábitos deciden la de mañana. El sodio, el agua y el sueño son lo que más importa.</span>
             </p>
-            <div class="block-label rec">✓ <span lang="en">Helps</span><span lang="ko">도움이 돼요</span><span lang="ja">役立つこと</span><span lang="zh-CN">有帮助</span><span lang="zh-TW">有幫助</span></div>
+            <div class="block-label rec">✓ <span lang="en">Helps</span><span lang="ko">도움이 돼요</span><span lang="ja">役立つこと</span><span lang="zh-CN">有帮助</span><span lang="zh-TW">有幫助</span><span lang="es">Ayuda</span></div>
             <ul class="tips rec">
-                <li><span lang="en">Potassium foods flush out sodium — banana, red bean, pumpkin, seaweed, spinach, avocado.</span><span lang="ko">칼륨 식품으로 나트륨 배출 — 바나나·팥·호박·미역·다시마·시금치·아보카도.</span><span lang="ja">カリウムの多い食品で塩分排出 — バナナ・小豆・かぼちゃ・わかめ・ほうれん草・アボカド。</span><span lang="zh-CN">高钾食物帮助排钠——香蕉、红豆、南瓜、海带、菠菜、牛油果。</span><span lang="zh-TW">高鉀食物幫助排鈉——香蕉、紅豆、南瓜、海帶、菠菜、酪梨。</span></li>
-                <li><span lang="en">Eat lighter on salt — late-night salty food, instant noodles, and alcohol are the top causes of morning puffiness.</span><span lang="ko">저염식 — 자기 전 짠 음식·라면·음주가 아침 붓기의 주범이에요.</span><span lang="ja">減塩 — 寝る前の塩辛い食事・ラーメン・飲酒が朝むくみの主因。</span><span lang="zh-CN">少盐——睡前咸食、泡面、饮酒是早晨浮肿的元凶。</span><span lang="zh-TW">少鹽——睡前鹹食、泡麵、飲酒是早晨浮腫的元凶。</span></li>
-                <li><span lang="en">Drink enough water — when you're under-hydrated, the body holds onto fluid instead.</span><span lang="ko">수분 충분히 — 물이 부족하면 몸이 오히려 수분을 가둬요.</span><span lang="ja">水分はしっかり — 不足すると体は逆に水をため込む。</span><span lang="zh-CN">喝足水——缺水时身体反而会储水。</span><span lang="zh-TW">喝足水——缺水時身體反而會儲水。</span></li>
-                <li><span lang="en">Sleep deep and enough — poor sleep stalls the lymph system and you wake up puffy.</span><span lang="ko">깊은 수면 — 잠이 부족하면 림프가 안 돌아 아침에 부어요.</span><span lang="ja">しっかり深く眠る — 睡眠不足はリンパを滞らせ、朝むくむ。</span><span lang="zh-CN">睡得深而足——睡眠差会让淋巴停滞、早晨浮肿。</span><span lang="zh-TW">睡得深而足——睡眠差會讓淋巴停滯、早晨浮腫。</span></li>
-                <li><span lang="en">Mind your pillow height — too flat lets fluid pool in the face; keep your head slightly raised.</span><span lang="ko">베개 높이 — 너무 낮으면 얼굴로 체액이 몰려요. 약간 높게.</span><span lang="ja">枕の高さ — 低すぎると顔に水分が溜まる。少し高めに。</span><span lang="zh-CN">注意枕头高度——太低会让体液积在脸上；稍微垫高。</span><span lang="zh-TW">注意枕頭高度——太低會讓體液積在臉上；稍微墊高。</span></li>
+                <li><span lang="en">Potassium foods flush out sodium — banana, red bean, pumpkin, seaweed, spinach, avocado.</span><span lang="ko">칼륨 식품으로 나트륨 배출 — 바나나·팥·호박·미역·다시마·시금치·아보카도.</span><span lang="ja">カリウムの多い食品で塩分排出 — バナナ・小豆・かぼちゃ・わかめ・ほうれん草・アボカド。</span><span lang="zh-CN">高钾食物帮助排钠——香蕉、红豆、南瓜、海带、菠菜、牛油果。</span><span lang="zh-TW">高鉀食物幫助排鈉——香蕉、紅豆、南瓜、海帶、菠菜、酪梨。</span><span lang="es">Los alimentos ricos en potasio ayudan a eliminar el sodio: plátano, frijol rojo, calabaza, algas, espinaca, aguacate.</span></li>
+                <li><span lang="en">Eat lighter on salt — late-night salty food, instant noodles, and alcohol are the top causes of morning puffiness.</span><span lang="ko">저염식 — 자기 전 짠 음식·라면·음주가 아침 붓기의 주범이에요.</span><span lang="ja">減塩 — 寝る前の塩辛い食事・ラーメン・飲酒が朝むくみの主因。</span><span lang="zh-CN">少盐——睡前咸食、泡面、饮酒是早晨浮肿的元凶。</span><span lang="zh-TW">少鹽——睡前鹹食、泡麵、飲酒是早晨浮腫的元凶。</span><span lang="es">Reduce la sal: la comida salada de noche, los fideos instantáneos y el alcohol son las principales causas de hinchazón matutina.</span></li>
+                <li><span lang="en">Drink enough water — when you're under-hydrated, the body holds onto fluid instead.</span><span lang="ko">수분 충분히 — 물이 부족하면 몸이 오히려 수분을 가둬요.</span><span lang="ja">水分はしっかり — 不足すると体は逆に水をため込む。</span><span lang="zh-CN">喝足水——缺水时身体反而会储水。</span><span lang="zh-TW">喝足水——缺水時身體反而會儲水。</span><span lang="es">Bebe suficiente agua: cuando estás poco hidratado, el cuerpo retiene líquido en su lugar.</span></li>
+                <li><span lang="en">Sleep deep and enough — poor sleep stalls the lymph system and you wake up puffy.</span><span lang="ko">깊은 수면 — 잠이 부족하면 림프가 안 돌아 아침에 부어요.</span><span lang="ja">しっかり深く眠る — 睡眠不足はリンパを滞らせ、朝むくむ。</span><span lang="zh-CN">睡得深而足——睡眠差会让淋巴停滞、早晨浮肿。</span><span lang="zh-TW">睡得深而足——睡眠差會讓淋巴停滯、早晨浮腫。</span><span lang="es">Duerme profundo y lo suficiente: dormir mal estanca el sistema linfático y amaneces hinchado.</span></li>
+                <li><span lang="en">Mind your pillow height — too flat lets fluid pool in the face; keep your head slightly raised.</span><span lang="ko">베개 높이 — 너무 낮으면 얼굴로 체액이 몰려요. 약간 높게.</span><span lang="ja">枕の高さ — 低すぎると顔に水分が溜まる。少し高めに。</span><span lang="zh-CN">注意枕头高度——太低会让体液积在脸上；稍微垫高。</span><span lang="zh-TW">注意枕頭高度——太低會讓體液積在臉上；稍微墊高。</span><span lang="es">Cuida la altura de la almohada: si es muy baja, el líquido se acumula en la cara; mantén la cabeza algo elevada.</span></li>
             </ul>
-            <div class="block-label avoid">✕ <span lang="en">Go easy on</span><span lang="ko">주의할 점</span><span lang="ja">注意</span><span lang="zh-CN">需注意</span><span lang="zh-TW">需注意</span></div>
+            <div class="block-label avoid">✕ <span lang="en">Go easy on</span><span lang="ko">주의할 점</span><span lang="ja">注意</span><span lang="zh-CN">需注意</span><span lang="zh-TW">需注意</span><span lang="es">Con cuidado</span></div>
             <ul class="tips avoid">
-                <li><span lang="en">Heavy drinking, salty late-night snacks, or chugging a lot of water right before bed.</span><span lang="ko">자기 직전 과음·짠 야식·과도한 물 — 아침 붓기를 키워요.</span><span lang="ja">寝る直前の深酒・塩辛い夜食・大量の水 — 朝むくみを招く。</span><span lang="zh-CN">睡前大量饮酒、咸夜宵或猛灌水——加重早晨浮肿。</span><span lang="zh-TW">睡前大量飲酒、鹹宵夜或猛灌水——加重早晨浮腫。</span></li>
+                <li><span lang="en">Heavy drinking, salty late-night snacks, or chugging a lot of water right before bed.</span><span lang="ko">자기 직전 과음·짠 야식·과도한 물 — 아침 붓기를 키워요.</span><span lang="ja">寝る直前の深酒・塩辛い夜食・大量の水 — 朝むくみを招く。</span><span lang="zh-CN">睡前大量饮酒、咸夜宵或猛灌水——加重早晨浮肿。</span><span lang="zh-TW">睡前大量飲酒、鹹宵夜或猛灌水——加重早晨浮腫。</span><span lang="es">Beber mucho alcohol, picar comida salada de noche o tragar mucha agua justo antes de dormir.</span></li>
             </ul>
         </section>
 
@@ -335,6 +346,7 @@
             <span lang="ja">⚕️ 本ガイドは美容ケア用で医療アドバイスではありません。急な・片側だけ・痛みを伴う、または引かないむくみは病気のサインの可能性があるため、専門家にご相談ください。</span>
             <span lang="zh-CN">⚕️ 本指南为美容护理用途，非医疗建议。突然、单侧或伴疼痛、以及久不消退的浮肿可能是疾病信号，请咨询专业人士。</span>
             <span lang="zh-TW">⚕️ 本指南為美容護理用途，非醫療建議。突然、單側或伴疼痛、以及久不消退的浮腫可能是疾病信號，請諮詢專業人士。</span>
+            <span lang="es">⚕️ Esta es una guía de cuidado estético, no un consejo médico. Una hinchazón repentina, de un solo lado o dolorosa, o que no desaparece, puede indicar un problema médico; consulta a un profesional.</span>
         </div>
 
         <p class="footer-note">
@@ -343,11 +355,12 @@
             <span lang="ja">参考ガイドです — 体質・習慣・継続によって結果は変わります。</span>
             <span lang="zh-CN">仅供参考——效果因体质、习惯与坚持而异。</span>
             <span lang="zh-TW">僅供參考——效果因體質、習慣與堅持而異。</span>
+            <span lang="es">Una guía, no una regla: los resultados varían según el cuerpo, los hábitos y la constancia.</span>
         </p>
     </div>
 
     <script>
-        var VALID_LANGS = ['en','ko','ja','zh-CN','zh-TW'];
+        var VALID_LANGS = ['en','ko','ja','zh-CN','zh-TW','es'];
         var VALID_REGIONS = ['eye','cheek','jaw'];
         var VALID_SEV = ['none','mild','moderate','severe'];
 

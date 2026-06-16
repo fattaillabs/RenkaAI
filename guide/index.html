@@ -27,21 +27,24 @@
 
         [lang]:not([lang="en"]) { display: none; }
         body.lang-ko [lang="ko"] { display: block; }
-        body.lang-ko [lang="en"], body.lang-ko [lang="ja"], body.lang-ko [lang="zh-CN"], body.lang-ko [lang="zh-TW"] { display: none; }
+        body.lang-ko [lang="en"], body.lang-ko [lang="ja"], body.lang-ko [lang="zh-CN"], body.lang-ko [lang="zh-TW"], body.lang-ko [lang="es"] { display: none; }
         body.lang-ja [lang="ja"] { display: block; }
-        body.lang-ja [lang="en"], body.lang-ja [lang="ko"], body.lang-ja [lang="zh-CN"], body.lang-ja [lang="zh-TW"] { display: none; }
+        body.lang-ja [lang="en"], body.lang-ja [lang="ko"], body.lang-ja [lang="zh-CN"], body.lang-ja [lang="zh-TW"], body.lang-ja [lang="es"] { display: none; }
         body.lang-en [lang="en"] { display: block; }
-        body.lang-en [lang="ko"], body.lang-en [lang="ja"], body.lang-en [lang="zh-CN"], body.lang-en [lang="zh-TW"] { display: none; }
+        body.lang-en [lang="ko"], body.lang-en [lang="ja"], body.lang-en [lang="zh-CN"], body.lang-en [lang="zh-TW"], body.lang-en [lang="es"] { display: none; }
         body.lang-zh-CN [lang="zh-CN"] { display: block; }
-        body.lang-zh-CN [lang="en"], body.lang-zh-CN [lang="ko"], body.lang-zh-CN [lang="ja"], body.lang-zh-CN [lang="zh-TW"] { display: none; }
+        body.lang-zh-CN [lang="en"], body.lang-zh-CN [lang="ko"], body.lang-zh-CN [lang="ja"], body.lang-zh-CN [lang="zh-TW"], body.lang-zh-CN [lang="es"] { display: none; }
         body.lang-zh-TW [lang="zh-TW"] { display: block; }
-        body.lang-zh-TW [lang="en"], body.lang-zh-TW [lang="ko"], body.lang-zh-TW [lang="ja"], body.lang-zh-TW [lang="zh-CN"] { display: none; }
+        body.lang-zh-TW [lang="en"], body.lang-zh-TW [lang="ko"], body.lang-zh-TW [lang="ja"], body.lang-zh-TW [lang="zh-CN"], body.lang-zh-TW [lang="es"] { display: none; }
+        body.lang-es [lang="es"] { display: block; }
+        body.lang-es [lang="en"], body.lang-es [lang="ko"], body.lang-es [lang="ja"], body.lang-es [lang="zh-CN"], body.lang-es [lang="zh-TW"] { display: none; }
         span[lang] { display: none; }
         body.lang-en span[lang="en"] { display: inline; }
         body.lang-ko span[lang="ko"] { display: inline; }
         body.lang-ja span[lang="ja"] { display: inline; }
         body.lang-zh-CN span[lang="zh-CN"] { display: inline; }
         body.lang-zh-TW span[lang="zh-TW"] { display: inline; }
+        body.lang-es span[lang="es"] { display: inline; }
     </style>
 </head>
 <body class="lang-en">
@@ -53,11 +56,12 @@
                 <button class="lang-btn" onclick="setLang('ja')" title="日本語">🇯🇵</button>
                 <button class="lang-btn" onclick="setLang('zh-CN')" title="简体中文">🇨🇳</button>
                 <button class="lang-btn" onclick="setLang('zh-TW')" title="繁體中文">🇹🇼</button>
+                <button class="lang-btn" onclick="setLang('es')" title="Español">🇪🇸</button>
             </div>
         </div>
 
         <h1>
-            <span lang="en">Style Guide</span><span lang="ko">스타일 가이드</span><span lang="ja">スタイルガイド</span><span lang="zh-CN">风格指南</span><span lang="zh-TW">風格指南</span>
+            <span lang="en">Style Guide</span><span lang="ko">스타일 가이드</span><span lang="ja">スタイルガイド</span><span lang="zh-CN">风格指南</span><span lang="zh-TW">風格指南</span><span lang="es">Guía de Estilo</span>
         </h1>
         <p class="subtitle">
             <span lang="en">Styling tips matched to your measured features.</span>
@@ -65,34 +69,35 @@
             <span lang="ja">測定したあなたの顔データに合わせたスタイリングのヒント。</span>
             <span lang="zh-CN">根据您测得的面部数据量身定制的造型建议。</span>
             <span lang="zh-TW">根據您測得的面部資料量身定制的造型建議。</span>
+            <span lang="es">Consejos de estilo adaptados a tus rasgos faciales medidos.</span>
         </p>
 
         <!-- 헤어 (활성) -->
         <a class="cat-card active" href="hair.html">
             <span class="cat-arrow">›</span>
-            <div class="cat-title">💇 <span lang="en">Hairstyles by Face Shape</span><span lang="ko">얼굴형별 헤어스타일</span><span lang="ja">顔型別ヘアスタイル</span><span lang="zh-CN">脸型对应发型</span><span lang="zh-TW">臉型對應髮型</span></div>
-            <div class="cat-desc"><span lang="en">Cuts that suit your face shape, and what to avoid.</span><span lang="ko">내 얼굴형에 어울리는 컷과 피해야 할 스타일.</span><span lang="ja">顔型に似合うカットと避けたいスタイル。</span><span lang="zh-CN">适合您脸型的发型与应避免的造型。</span><span lang="zh-TW">適合您臉型的髮型與應避免的造型。</span></div>
+            <div class="cat-title">💇 <span lang="en">Hairstyles by Face Shape</span><span lang="ko">얼굴형별 헤어스타일</span><span lang="ja">顔型別ヘアスタイル</span><span lang="zh-CN">脸型对应发型</span><span lang="zh-TW">臉型對應髮型</span><span lang="es">Peinados según la forma del rostro</span></div>
+            <div class="cat-desc"><span lang="en">Cuts that suit your face shape, and what to avoid.</span><span lang="ko">내 얼굴형에 어울리는 컷과 피해야 할 스타일.</span><span lang="ja">顔型に似合うカットと避けたいスタイル。</span><span lang="zh-CN">适合您脸型的发型与应避免的造型。</span><span lang="zh-TW">適合您臉型的髮型與應避免的造型。</span><span lang="es">Cortes que favorecen la forma de tu rostro y los que conviene evitar.</span></div>
         </a>
 
         <!-- 중안부 메이크업 (활성) -->
         <a class="cat-card active" href="makeup.html">
             <span class="cat-arrow">›</span>
-            <div class="cat-title">💄 <span lang="en">Makeup by Midface Ratio</span><span lang="ko">중안부 메이크업 가이드</span><span lang="ja">中顔面メイクガイド</span><span lang="zh-CN">中庭妆容指南</span><span lang="zh-TW">中庭妝容指南</span></div>
-            <div class="cat-desc"><span lang="en">Makeup tips tuned to your measured midface length.</span><span lang="ko">측정된 중안부 길이에 맞춘 메이크업 보정 팁.</span><span lang="ja">測定された中顔面の長さに合わせたメイクのコツ。</span><span lang="zh-CN">针对测得的中庭长度的妆容修饰技巧。</span><span lang="zh-TW">針對測得的中庭長度的妝容修飾技巧。</span></div>
+            <div class="cat-title">💄 <span lang="en">Makeup by Midface Ratio</span><span lang="ko">중안부 메이크업 가이드</span><span lang="ja">中顔面メイクガイド</span><span lang="zh-CN">中庭妆容指南</span><span lang="zh-TW">中庭妝容指南</span><span lang="es">Maquillaje según la proporción del tercio medio</span></div>
+            <div class="cat-desc"><span lang="en">Makeup tips tuned to your measured midface length.</span><span lang="ko">측정된 중안부 길이에 맞춘 메이크업 보정 팁.</span><span lang="ja">測定された中顔面の長さに合わせたメイクのコツ。</span><span lang="zh-CN">针对测得的中庭长度的妆容修饰技巧。</span><span lang="zh-TW">針對測得的中庭長度的妝容修飾技巧。</span><span lang="es">Consejos de maquillaje ajustados a la longitud medida de tu tercio medio.</span></div>
         </a>
 
         <!-- 붓기 케어 (활성) -->
         <a class="cat-card active" href="swelling.html">
             <span class="cat-arrow">›</span>
-            <div class="cat-title">💧 <span lang="en">Face De-puffing Care</span><span lang="ko">붓기 빼는 페이스 케어</span><span lang="ja">むくみ取りケア</span><span lang="zh-CN">面部消肿护理</span><span lang="zh-TW">面部消腫護理</span></div>
-            <div class="cat-desc"><span lang="en">Area-by-area lymph massage and habits, matched to your measured swelling.</span><span lang="ko">측정된 붓기에 맞춘 부위별 림프 마사지와 식이·생활 습관.</span><span lang="ja">測定されたむくみに合わせた部位別リンパマッサージと習慣。</span><span lang="zh-CN">针对测得浮肿的分部位淋巴按摩与生活习惯。</span><span lang="zh-TW">針對測得浮腫的分部位淋巴按摩與生活習慣。</span></div>
+            <div class="cat-title">💧 <span lang="en">Face De-puffing Care</span><span lang="ko">붓기 빼는 페이스 케어</span><span lang="ja">むくみ取りケア</span><span lang="zh-CN">面部消肿护理</span><span lang="zh-TW">面部消腫護理</span><span lang="es">Cuidado facial antihinchazón</span></div>
+            <div class="cat-desc"><span lang="en">Area-by-area lymph massage and habits, matched to your measured swelling.</span><span lang="ko">측정된 붓기에 맞춘 부위별 림프 마사지와 식이·생활 습관.</span><span lang="ja">測定されたむくみに合わせた部位別リンパマッサージと習慣。</span><span lang="zh-CN">针对测得浮肿的分部位淋巴按摩与生活习惯。</span><span lang="zh-TW">針對測得浮腫的分部位淋巴按摩與生活習慣。</span><span lang="es">Masaje linfático por zonas y hábitos, adaptados a la hinchazón medida.</span></div>
         </a>
 
         <!-- 옆얼굴 스타일링 (활성) -->
         <a class="cat-card active" href="profile.html">
             <span class="cat-arrow">›</span>
-            <div class="cat-title">🧍 <span lang="en">Side-Profile Styling</span><span lang="ko">옆얼굴형별 스타일링</span><span lang="ja">横顔タイプ別スタイリング</span><span lang="zh-CN">侧脸类型造型</span><span lang="zh-TW">側臉類型造型</span></div>
-            <div class="cat-desc"><span lang="en">Hair &amp; makeup to balance your measured profile (convex / concave).</span><span lang="ko">측정된 옆얼굴형(볼록·오목)에 맞춘 헤어·메이크업 균형 팁.</span><span lang="ja">測定された横顔タイプ（凸・凹）に合わせたヘア・メイクのバランス。</span><span lang="zh-CN">针对测得的侧脸类型（凸/凹）的发型与妆容平衡技巧。</span><span lang="zh-TW">針對測得的側臉類型（凸/凹）的髮型與妝容平衡技巧。</span></div>
+            <div class="cat-title">🧍 <span lang="en">Side-Profile Styling</span><span lang="ko">옆얼굴형별 스타일링</span><span lang="ja">横顔タイプ別スタイリング</span><span lang="zh-CN">侧脸类型造型</span><span lang="zh-TW">側臉類型造型</span><span lang="es">Estilismo según el perfil lateral</span></div>
+            <div class="cat-desc"><span lang="en">Hair &amp; makeup to balance your measured profile (convex / concave).</span><span lang="ko">측정된 옆얼굴형(볼록·오목)에 맞춘 헤어·메이크업 균형 팁.</span><span lang="ja">測定された横顔タイプ（凸・凹）に合わせたヘア・メイクのバランス。</span><span lang="zh-CN">针对测得的侧脸类型（凸/凹）的发型与妆容平衡技巧。</span><span lang="zh-TW">針對測得的側臉類型（凸/凹）的髮型與妝容平衡技巧。</span><span lang="es">Peinado y maquillaje para equilibrar tu perfil medido (convexo / cóncavo).</span></div>
         </a>
     </div>
 
@@ -109,7 +114,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             const urlParams = new URLSearchParams(window.location.search);
             const langParam = urlParams.get('lang');
-            const supportedLangs = ['en', 'ko', 'ja', 'zh-CN', 'zh-TW'];
+            const supportedLangs = ['en', 'ko', 'ja', 'zh-CN', 'zh-TW', 'es'];
             if (langParam && supportedLangs.includes(langParam)) {
                 setLangSilent(langParam);
             } else {

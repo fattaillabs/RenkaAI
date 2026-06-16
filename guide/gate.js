@@ -22,6 +22,7 @@
     if (lang.indexOf('ko') === 0) m = { t: 'Renka 앱 전용 가이드', d: '이 스타일 가이드는 Renka 앱의 측정 결과에서 열어볼 수 있어요.' };
     else if (lang.indexOf('ja') === 0) m = { t: 'Renkaアプリ専用ガイド', d: 'このスタイルガイドはRenkaアプリの測定結果から開けます。' };
     else if (lang.indexOf('zh') === 0) m = { t: 'Renka 应用专属指南', d: '此造型指南可在 Renka 应用的测量结果中打开。' };
+    else if (lang.indexOf('es') === 0) m = { t: 'Guía exclusiva de la app Renka', d: 'Esta guía de estilo se abre desde tus resultados de medición en la app Renka.' };
     else m = { t: 'Renka app only', d: 'This style guide opens from your measurement results in the Renka app.' };
     document.title = m.t;
     document.body.innerHTML =
