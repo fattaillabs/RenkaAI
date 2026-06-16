@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Side-Profile Styling Guide - Renka</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Apple SD Gothic Neo', sans-serif; background: linear-gradient(160deg, #f2fae8 0%, #e2f3d0 100%); background-attachment: fixed; color: #33402d; line-height: 1.75; }
+        .container { max-width: 700px; margin: 0 auto; padding: 36px 20px 80px; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 22px; flex-wrap: wrap; gap: 12px; }
+        .back-link { display: inline-flex; align-items: center; gap: 6px; color: #4e8a2c; text-decoration: none; font-size: 14px; font-weight: 600; }
+        .back-link:hover { text-decoration: underline; }
+        .lang-switcher { display: flex; gap: 6px; flex-wrap: wrap; }
+        .lang-btn { background: rgba(255,255,255,0.7); border: 1px solid #cfe6b5; border-radius: 8px; padding: 7px 10px; font-size: 18px; cursor: pointer; transition: all 0.2s; }
+        .lang-btn:hover { background: #fff; }
+        .lang-btn.active { background: #fff; border-color: #7cb342; box-shadow: 0 1px 5px rgba(124,179,66,0.35); }
+
+        h1 { font-size: 28px; font-weight: 800; margin-bottom: 8px; color: #fff; letter-spacing: -0.3px; text-shadow: 0 1px 0 #6aa83a, 0 2px 0 #5d9931, 2px 3px 7px rgba(80,140,40,0.35); }
+        .subtitle { font-size: 14px; color: #6b7a60; margin-bottom: 14px; }
+        .auto-note { font-size: 12.5px; color: #87937c; margin-bottom: 24px; }
+
+        /* 직선형 안내 배너 (측정값이 이상 범위일 때만 표시) */
+        .straight-note { display: none; background: rgba(255,255,255,0.6); border: 1px solid #cfe6b5; border-radius: 14px; padding: 16px 18px; margin-bottom: 24px; font-size: 14px; color: #3d6b1f; }
+        .straight-note strong { font-weight: 800; }
+        .straight-note .sub { display: block; margin-top: 5px; font-size: 12.5px; color: #6b7a60; font-weight: 400; }
+
+        /* 분류 빠른 이동 칩 */
+        .section-nav { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px; }
+        .section-chip { display: inline-block; padding: 7px 13px; font-size: 13px; font-weight: 600; color: #4e6b39; background: rgba(255,255,255,0.75); border: 1px solid #d4e8bd; border-radius: 20px; text-decoration: none; transition: all 0.2s; }
+        .section-chip:hover { background: #fff; border-color: #7cb342; color: #3d6b1f; }
+        .section-chip.active { background: #fff; border-color: #7cb342; color: #3d6b1f; box-shadow: 0 1px 5px rgba(124,179,66,0.35); }
+
+        .guide-card { scroll-margin-top: 16px; background: rgba(255,255,255,0.5); border: 1px solid rgba(255,255,255,0.65); border-radius: 18px; padding: 24px 22px; margin-bottom: 18px; box-shadow: 0 2px 12px rgba(99,150,55,0.1); }
+        .guide-card h2 { font-size: 22px; font-weight: 800; margin-bottom: 4px; display: flex; align-items: baseline; gap: 8px; color: #3d6b1f; flex-wrap: wrap; }
+        .guide-card h2 .en-name { font-size: 13px; color: #6aa83a; font-weight: 600; }
+        .guide-card h2 .angle-tag { font-size: 12px; color: #87937c; font-weight: 600; }
+        .feature { font-size: 14.5px; color: #56624e; margin: 10px 0 18px; }
+
+        .block-label { font-size: 13px; font-weight: 800; letter-spacing: 0.2px; margin: 20px 0 8px; display: inline-flex; align-items: center; gap: 6px; }
+        .block-label.hair { color: #4e8a2c; }
+        .block-label.makeup { color: #b5639a; }
+        .block-label.avoid { color: #c4882f; }
+        ul.tips { list-style: none; }
+        ul.tips li { position: relative; padding-left: 18px; margin-bottom: 7px; font-size: 14.5px; color: #3f4a39; }
+        ul.tips li::before { content: ''; position: absolute; left: 2px; top: 10px; width: 6px; height: 6px; border-radius: 50%; }
+        ul.tips.avoid li::before { background: #e0ad5f; }
+        /* 번호 매기는 추천 리스트 (이미지의 ①②③ 원과 매칭) */
+        ul.tips.numbered { counter-reset: pt; }
+        ul.tips.numbered li { counter-increment: pt; padding-left: 26px; }
+        ul.tips.numbered li::before { content: counter(pt); width: 17px; height: 17px; left: 0; top: 3px; color: #fff; font-size: 10px; font-weight: 800; line-height: 17px; text-align: center; border-radius: 50%; }
+        ul.tips.numbered.hair li::before { background: #7cb342; }
+        ul.tips.numbered.makeup li::before { background: #c47fae; }
+        ul.tips.numbered li.no-num { counter-increment: none; }
+        ul.tips.numbered li.no-num::before { content: ''; width: 6px; height: 6px; left: 2px; top: 10px; line-height: 0; background: #b9cda0; }
+
+        /* 이미지 (블록당 1장) → 사진 넣으면 자동 표시 */
+        .img-row { display: flex; gap: 10px; margin-top: 14px; justify-content: center; }
+        .face-img { width: 240px; max-width: 70%; margin: 0; }
+        .face-img img { width: 100%; height: auto; border-radius: 14px; display: block; background: #eef3e6; }
+        .face-img figcaption { display: none; }
+        .face-img.pending img { display: none; }
+        .face-img.pending { aspect-ratio: 4 / 5; border: 1.5px dashed #b9d49a; border-radius: 14px; display: flex; align-items: center; justify-content: center; text-align: center; background: rgba(255,255,255,0.5); }
+        .face-img.pending figcaption { display: block; font-size: 11px; color: #8aa372; line-height: 1.5; padding: 8px; }
+
+        /* 옆얼굴 각도 다이어그램 (골격 차이 — 사진이 못 보여주는 부분을 선으로) */
+        .angle-diagram { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 4px 0 18px; padding: 12px; background: rgba(255,255,255,0.45); border: 1px solid rgba(255,255,255,0.6); border-radius: 14px; }
+        .angle-diagram svg { width: 132px; height: auto; flex: none; }
+        .angle-diagram .silhouette { fill: none; stroke: #3d6b1f; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+        .angle-diagram .angle-line { fill: none; stroke: #c47fae; stroke-width: 1.8; stroke-dasharray: 4 3; }
+        .angle-diagram .pt { fill: #4e8a2c; }
+        .angle-diagram .pt.pog { fill: #c4882f; }
+        .angle-diagram .ang-label { fill: #5d7a3e; font-size: 16px; font-weight: 800; font-family: sans-serif; }
+        .angle-diagram .dia-caption { font-size: 12px; color: #5e6d54; line-height: 1.6; max-width: 210px; }
+        .angle-diagram .dia-caption b { color: #3d6b1f; }
+
+        .adapt-note { margin-top: 26px; font-size: 12.5px; color: #5e6d54; line-height: 1.7; background: rgba(255,255,255,0.45); border: 1px solid rgba(255,255,255,0.6); border-radius: 12px; padding: 14px 16px; }
+        .footer-note { margin-top: 18px; font-size: 12px; color: #87937c; text-align: center; line-height: 1.7; }
+
+        /* ===== 다국어 표시 제어 ===== */
+        [lang]:not([lang="en"]) { display: none; }
+        body.lang-ko [lang="ko"] { display: block; }
+        body.lang-ko [lang="en"], body.lang-ko [lang="ja"], body.lang-ko [lang="zh-CN"], body.lang-ko [lang="zh-TW"] { display: none; }
+        body.lang-ja [lang="ja"] { display: block; }
+        body.lang-ja [lang="en"], body.lang-ja [lang="ko"], body.lang-ja [lang="zh-CN"], body.lang-ja [lang="zh-TW"] { display: none; }
+        body.lang-en [lang="en"] { display: block; }
+        body.lang-en [lang="ko"], body.lang-en [lang="ja"], body.lang-en [lang="zh-CN"], body.lang-en [lang="zh-TW"] { display: none; }
+        body.lang-zh-CN [lang="zh-CN"] { display: block; }
+        body.lang-zh-CN [lang="en"], body.lang-zh-CN [lang="ko"], body.lang-zh-CN [lang="ja"], body.lang-zh-CN [lang="zh-TW"] { display: none; }
+        body.lang-zh-TW [lang="zh-TW"] { display: block; }
+        body.lang-zh-TW [lang="en"], body.lang-zh-TW [lang="ko"], body.lang-zh-TW [lang="ja"], body.lang-zh-TW [lang="zh-CN"] { display: none; }
+        /* inline 요소용 */
+        span[lang] { display: none; }
+        body.lang-en span[lang="en"] { display: inline; }
+        body.lang-ko span[lang="ko"] { display: inline; }
+        body.lang-ja span[lang="ja"] { display: inline; }
+        body.lang-zh-CN span[lang="zh-CN"] { display: inline; }
+        body.lang-zh-TW span[lang="zh-TW"] { display: inline; }
+    </style>
+</head>
+<body class="lang-en">
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="back-link">← <span lang="en">Style Guide</span><span lang="ko">스타일 가이드</span><span lang="ja">スタイルガイド</span><span lang="zh-CN">风格指南</span><span lang="zh-TW">風格指南</span></a>
+            <div class="lang-switcher">
+                <button class="lang-btn active" onclick="setLang('en')" title="English">🇺🇸</button>
+                <button class="lang-btn" onclick="setLang('ko')" title="한국어">🇰🇷</button>
+                <button class="lang-btn" onclick="setLang('ja')" title="日本語">🇯🇵</button>
+                <button class="lang-btn" onclick="setLang('zh-CN')" title="简体中文">🇨🇳</button>
+                <button class="lang-btn" onclick="setLang('zh-TW')" title="繁體中文">🇹🇼</button>
+            </div>
+        </div>
+
+        <h1>
+            <span lang="en">Side-Profile Styling Guide</span>
+            <span lang="ko">옆얼굴형별 스타일 가이드</span>
+            <span lang="ja">横顔タイプ別スタイルガイド</span>
+            <span lang="zh-CN">侧脸类型造型指南</span>
+            <span lang="zh-TW">側臉類型造型指南</span>
+        </h1>
+        <p class="subtitle">
+            <span lang="en">Your profile shape comes from bone structure and won't change with styling — but hair and makeup can balance how the side view reads. A guide, not a rule.</span>
+            <span lang="ko">옆얼굴형은 골격에서 비롯되어 스타일링으로 바뀌지 않아요. 다만 헤어와 메이크업으로 옆모습 인상의 균형은 잡을 수 있어요. 정답이 아닌 참고용 가이드입니다.</span>
+            <span lang="ja">横顔タイプは骨格によるもので、スタイリングでは変わりません。ただ、髪とメイクで横顔の印象バランスは整えられます。あくまで参考ガイドです。</span>
+            <span lang="zh-CN">侧脸类型源于骨骼，造型无法改变它——但发型与妆容可以平衡侧脸给人的印象。仅供参考，并非定式。</span>
+            <span lang="zh-TW">側臉類型源於骨骼，造型無法改變它——但髮型與妝容可以平衡側臉給人的印象。僅供參考，並非定式。</span>
+        </p>
+        <p class="auto-note">
+            <span lang="en">You'll jump to your measured profile type automatically — feel free to check the other one too.</span>
+            <span lang="ko">측정 결과에 따라 내 옆얼굴형 섹션으로 자동 이동해요. 다른 유형의 팁도 자유롭게 확인하세요.</span>
+            <span lang="ja">測定結果に応じて自分の横顔タイプへ自動で移動します。他のタイプのコツも自由にどうぞ。</span>
+            <span lang="zh-CN">会根据测量结果自动跳到你的侧脸类型，另一种类型的技巧也欢迎查看。</span>
+            <span lang="zh-TW">會根據測量結果自動跳到你的側臉類型，另一種類型的技巧也歡迎查看。</span>
+        </p>
+
+        <!-- 직선형 안내 (측정값이 167°–177° 일 때만 JS로 표시) -->
+        <div class="straight-note" id="straightNote">
+            <strong><span lang="en">Your profile is Straight (ideal range).</span><span lang="ko">당신의 옆얼굴은 직선형(이상 범위)이에요.</span><span lang="ja">あなたの横顔は直線型（理想範囲）です。</span><span lang="zh-CN">你的侧脸是直线型（理想范围）。</span><span lang="zh-TW">你的側臉是直線型（理想範圍）。</span></strong>
+            <span class="sub"><span lang="en">A straight profile is already well-balanced, so no corrective styling is needed. Below are tips for the convex and concave types for reference.</span><span lang="ko">직선형은 이미 균형이 잘 잡혀 있어 보정 스타일링이 필요 없어요. 아래 볼록형·오목형 팁은 참고용이에요.</span><span lang="ja">直線型はすでにバランスが取れているため、補正スタイリングは不要です。下の凸型・凹型のコツは参考用です。</span><span lang="zh-CN">直线型本就均衡，无需修饰造型。下方凸面型与凹面型的技巧仅供参考。</span><span lang="zh-TW">直線型本就均衡，無需修飾造型。下方凸面型與凹面型的技巧僅供參考。</span></span>
+        </div>
+
+        <!-- 분류 빠른 이동 -->
+        <nav class="section-nav">
+            <a class="section-chip" href="#convex"><span lang="en">Convex profile</span><span lang="ko">볼록형</span><span lang="ja">凸型</span><span lang="zh-CN">凸面型</span><span lang="zh-TW">凸面型</span></a>
+            <a class="section-chip" href="#concave"><span lang="en">Concave profile</span><span lang="ko">오목형</span><span lang="ja">凹型</span><span lang="zh-CN">凹面型</span><span lang="zh-TW">凹面型</span></a>
+        </nav>
+
+        <!-- =================== 볼록형 (convex) =================== -->
+        <section class="guide-card" id="convex">
+            <h2>
+                <span lang="en">Convex Profile</span><span lang="ko">볼록형</span><span lang="ja">凸型</span><span lang="zh-CN">凸面型</span><span lang="zh-TW">凸面型</span>
+                <span class="en-name" lang="ko">Convex Profile</span><span class="en-name" lang="ja">Convex Profile</span><span class="en-name" lang="zh-CN">Convex Profile</span><span class="en-name" lang="zh-TW">Convex Profile</span>
+                <span class="angle-tag">&lt; 167°</span>
+            </h2>
+            <p class="feature">
+                <span lang="en">Seen from the side, the mouth and nose area sits forward while the chin tends to recede — lips may sit ahead of the E-line. The aim: build up the jaw/chin with hair and makeup so the side view reads more balanced.</span>
+                <span lang="ko">옆모습에서 입·코 주변이 앞으로 나오고 턱은 뒤로 물러나 보이는 형이에요. E라인 기준으로 입술이 도드라질 수 있어요. 헤어와 메이크업으로 턱·턱선을 보강해 옆모습 균형을 잡는 게 핵심이에요.</span>
+                <span lang="ja">横顔で口元・鼻まわりが前に出て、あごが後ろへ引っ込みがちなタイプ。Eライン基準で唇が前に出やすいです。髪とメイクであご・フェイスラインを補い、横顔のバランスを整えるのがポイント。</span>
+                <span lang="zh-CN">侧脸时口鼻区域偏前、下巴容易后缩——嘴唇可能超出E线。重点是用发型和妆容补足下颌与下巴，让侧脸看起来更平衡。</span>
+                <span lang="zh-TW">側臉時口鼻區域偏前、下巴容易後縮——嘴唇可能超出E線。重點是用髮型和妝容補足下顎與下巴，讓側臉看起來更平衡。</span>
+            </p>
+
+            <div class="angle-diagram">
+                <svg viewBox="0 0 175 205" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Convex profile angle diagram">
+                    <path class="silhouette" d="M88,26 C108,24 121,38 121,60 C121,72 122,82 130,93 L137,103 L123,107 C120,111 119,114 122,117 C128,120 128,126 121,129 C118,134 116,140 114,147 C111,154 109,160 108,168 L106,188"/>
+                    <polyline class="angle-line" points="121,60 122,107 108,168"/>
+                    <circle class="pt" cx="121" cy="60" r="3.6"/>
+                    <circle class="pt" cx="122" cy="107" r="3.6"/>
+                    <circle class="pt pog" cx="108" cy="168" r="3.6"/>
+                    <text class="ang-label" x="130" y="150">&lt;167°</text>
+                </svg>
+                <div class="dia-caption">
+                    <span lang="en"><b>Convex</b> — the chin sits back while the mouth comes forward, so the G–Sn–Pog angle is sharper (under 167°).</span>
+                    <span lang="ko"><b>볼록형</b> — 턱이 뒤로 물러나고 입이 앞으로 나와, 안면각(미간–코밑–턱)이 더 좁아요 (167° 미만).</span>
+                    <span lang="ja"><b>凸型</b> — あごが後ろに、口元が前に出るため、顔面角（眉間–鼻下–あご）が鋭くなります（167°未満）。</span>
+                    <span lang="zh-CN"><b>凸面型</b> — 下巴后缩、嘴部前突，面角（眉间–鼻底–下巴）更锐（小于167°）。</span>
+                    <span lang="zh-TW"><b>凸面型</b> — 下巴後縮、嘴部前突，面角（眉間–鼻底–下巴）更銳（小於167°）。</span>
+                </div>
+            </div>
+
+            <div class="block-label hair">💇 <span lang="en">Hair</span><span lang="ko">헤어 추천</span><span lang="ja">ヘア</span><span lang="zh-CN">发型推荐</span><span lang="zh-TW">髮型推薦</span></div>
+            <ul class="tips numbered hair">
+                <li><span lang="en">Add volume and length around the jaw and nape to support the receding chin — a chin-length bob, jaw-skimming layers, or a soft inward (C-curl) flick that hugs toward the jaw.</span><span lang="ko">턱선~목덜미에 볼륨과 길이를 둬 물러난 턱을 보강 — 턱 길이 보브, 턱선을 스치는 레이어, 또는 턱 쪽으로 살짝 안으로 감기는 C컬.</span><span lang="ja">あご～えり足にボリュームと長さを出して、引っ込んだあごを補う — あご下ボブ、フェイスラインに沿うレイヤー、内に入るCカール。</span><span lang="zh-CN">在下颌到颈后增加蓬松与长度来补足后缩的下巴——齐下巴波波头、贴合下颌的层次，或向内微卷的C形发尾。</span><span lang="zh-TW">在下顎到頸後增加蓬鬆與長度來補足後縮的下巴——齊下巴波波頭、貼合下顎的層次，或向內微捲的C形髮尾。</span></li>
+                <li><span lang="en">Balance the upper face with fringe or a defined part — airy see-through or side bangs put a little weight up top so the forward mid-face isn't the only focus.</span><span lang="ko">앞머리·가르마로 윗부분 균형 — 시스루뱅이나 사이드뱅으로 윗쪽에 무게를 줘, 앞으로 나온 중안부에만 시선이 쏠리지 않게 해요.</span><span lang="ja">前髪・分け目で上部のバランスを — シースルーバングやサイドバングでトップに重みを置き、前に出た中顔面だけが目立たないように。</span><span lang="zh-CN">用刘海或清晰分缝平衡上半部——空气刘海或侧分让顶部有点分量，避免视线只集中在前突的中庭。</span><span lang="zh-TW">用瀏海或清晰分縫平衡上半部——空氣瀏海或側分讓頂部有點分量，避免視線只集中在前突的中庭。</span></li>
+                <li class="no-num"><span lang="en">Men: keep some length and shape along the jawline rather than a tight back-and-sides — a slightly fuller lower section makes the chin read stronger.</span><span lang="ko">남성: 턱선을 바짝 치는 컷보다 턱 주변에 약간의 길이·형태를 남겨요 — 하단이 살짝 도톰하면 턱이 더 또렷해 보여요.</span><span lang="ja">メンズ：サイドを刈り上げすぎず、あご周りに少し長さと形を残す — 下側に少しボリュームがあるとあごが強く見えます。</span><span lang="zh-CN">男士：别把两侧推得太短，在下颌周围留点长度和形状——下半部略丰满会让下巴更有存在感。</span><span lang="zh-TW">男士：別把兩側推得太短，在下顎周圍留點長度和形狀——下半部略豐滿會讓下巴更有存在感。</span></li>
+            </ul>
+            <div class="block-label avoid">✕ <span lang="en">Go easy on</span><span lang="ko">주의할 점</span><span lang="ja">注意</span><span lang="zh-CN">需注意</span><span lang="zh-TW">需注意</span></div>
+            <ul class="tips avoid">
+                <li><span lang="en">Slicked-back styles or a buzzed jawline that fully expose the chin — they make the recede more obvious.</span><span lang="ko">턱을 완전히 드러내는 올백·턱선 바짝 친 컷 — 후퇴한 턱이 더 도드라져요.</span><span lang="ja">あごを完全に見せるオールバックや刈り込み — 引っ込んだあごが目立ちます。</span><span lang="zh-CN">完全露出下巴的全后梳或推光下颌——会让后缩更明显。</span><span lang="zh-TW">完全露出下巴的全後梳或推光下顎——會讓後縮更明顯。</span></li>
+            </ul>
+            <div class="img-row">
+                <!-- IMAGE: 볼록형 헤어 · img/profile-convex-hair.jpg -->
+                <figure class="face-img"><img src="img/profile-convex-hair.jpg" alt="Convex profile hair" loading="lazy" width="400" height="500" onerror="this.closest('.face-img').classList.add('pending')"><figcaption>img/profile-convex-hair.jpg</figcaption></figure>
+            </div>
+
+            <div class="block-label makeup">💄 <span lang="en">Makeup</span><span lang="ko">메이크업 추천</span><span lang="ja">メイク</span><span lang="zh-CN">妆容推荐</span><span lang="zh-TW">妝容推薦</span></div>
+            <ul class="tips numbered makeup">
+                <li><span lang="en">Dab highlight on the chin tip to bring it forward and lengthen the lower face slightly. (champagne / ivory pearl)</span><span lang="ko">턱끝에 하이라이트를 톡톡 — 턱을 앞으로 당겨 보이게 하고 하안부에 살짝 길이감을. (샴페인·아이보리 펄)</span><span lang="ja">あご先にハイライトをトントン — あごを前に見せ、下顔面に少し長さを。（シャンパン・アイボリーパール）</span><span lang="zh-CN">在下巴尖点上高光——让下巴前移、下庭略显长。（香槟·象牙珠光）</span><span lang="zh-TW">在下巴尖點上高光——讓下巴前移、下庭略顯長。（香檳·象牙珠光）</span></li>
+                <li><span lang="en">Keep the mouth area calm — a muted lip color and minimal gloss, and skip heavy over-lining so the forward mouth doesn't stand out more. (MLBB / muted rose)</span><span lang="ko">입 주변은 차분하게 — 뮤트한 립 컬러와 절제된 글로스, 과한 오버립은 피해 앞으로 나온 입가가 더 강조되지 않게. (MLBB·뮤트 로즈)</span><span lang="ja">口元は落ち着かせる — マットめのリップと控えめなツヤ、やりすぎオーバーリップは避けて前に出た口元を強調しない。（MLBB・くすみローズ）</span><span lang="zh-CN">让口部沉静——选哑光感唇色、少量唇釉，避免过度扩唇，以免前突的嘴更突出。（MLBB·灰调玫瑰）</span><span lang="zh-TW">讓口部沉靜——選霧面感唇色、少量唇釉，避免過度擴唇，以免前突的嘴更突出。（MLBB·灰調玫瑰）</span></li>
+                <li><span lang="en">Go light with highlight on the nose tip and forehead — too much there pushes the mid-face even further forward.</span><span lang="ko">코끝·이마 하이라이트는 가볍게 — 과하면 중안부가 더 앞으로 튀어나와 보여요.</span><span lang="ja">鼻先・額のハイライトは軽く — 入れすぎると中顔面がさらに前へ出て見えます。</span><span lang="zh-CN">鼻尖与额头的高光要轻——过多会让中庭更往前突。</span><span lang="zh-TW">鼻尖與額頭的高光要輕——過多會讓中庭更往前突。</span></li>
+            </ul>
+            <div class="block-label avoid">✕ <span lang="en">Go easy on</span><span lang="ko">주의할 점</span><span lang="ja">注意</span><span lang="zh-CN">需注意</span><span lang="zh-TW">需注意</span></div>
+            <ul class="tips avoid">
+                <li><span lang="en">Shading under the chin tip — it pushes the already-receding chin even further back.</span><span lang="ko">턱끝 아래 셰이딩 — 이미 물러난 턱을 더 뒤로 보이게 해요.</span><span lang="ja">あご先の下のシェーディング — すでに引っ込んだあごをさらに後ろに見せます。</span><span lang="zh-CN">下巴尖下方的修容——会让本就后缩的下巴更往后。</span><span lang="zh-TW">下巴尖下方的修容——會讓本就後縮的下巴更往後。</span></li>
+            </ul>
+            <div class="img-row">
+                <!-- IMAGE: 볼록형 메이크업 · img/profile-convex-makeup.jpg -->
+                <figure class="face-img"><img src="img/profile-convex-makeup.jpg" alt="Convex profile makeup" loading="lazy" width="400" height="500" onerror="this.closest('.face-img').classList.add('pending')"><figcaption>img/profile-convex-makeup.jpg</figcaption></figure>
+            </div>
+        </section>
+
+        <!-- =================== 오목형 (concave) =================== -->
+        <section class="guide-card" id="concave">
+            <h2>
+                <span lang="en">Concave Profile</span><span lang="ko">오목형</span><span lang="ja">凹型</span><span lang="zh-CN">凹面型</span><span lang="zh-TW">凹面型</span>
+                <span class="en-name" lang="ko">Concave Profile</span><span class="en-name" lang="ja">Concave Profile</span><span class="en-name" lang="zh-CN">Concave Profile</span><span class="en-name" lang="zh-TW">Concave Profile</span>
+                <span class="angle-tag">&gt; 177°</span>
+            </h2>
+            <p class="feature">
+                <span lang="en">From the side, the chin juts forward (prognathic) while the mid-face looks set back. The aim: lift volume up top and add mid-face dimension to balance it, and soften the chin's projection with makeup.</span>
+                <span lang="ko">옆모습에서 턱이 앞으로 나오고(주걱 인상) 중안부가 들어가 보이는 형이에요. 상안부 볼륨과 중안부 입체로 균형을 잡고, 메이크업으로 턱 돌출을 완화하는 게 핵심이에요.</span>
+                <span lang="ja">横顔であごが前に出て（しゃくれ気味）、中顔面が引っ込んで見えるタイプ。トップのボリュームと中顔面の立体感で整え、メイクであごの出っ張りをやわらげるのがポイント。</span>
+                <span lang="zh-CN">侧脸时下巴前突（偏翘/地包感）、中庭显得后缩。重点是用顶部蓬松和中庭立体来平衡，再用妆容弱化下巴的突出。</span>
+                <span lang="zh-TW">側臉時下巴前突、中庭顯得後縮。重點是用頂部蓬鬆和中庭立體來平衡，再用妝容弱化下巴的突出。</span>
+            </p>
+
+            <div class="angle-diagram">
+                <svg viewBox="0 0 175 205" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Concave profile angle diagram">
+                    <path class="silhouette" d="M88,26 C108,24 121,38 121,60 C121,72 122,82 130,93 L137,103 L123,107 C120,111 119,114 122,117 C128,120 128,126 121,129 C121,135 122,141 124,148 C127,155 129,161 129,170 L114,189"/>
+                    <polyline class="angle-line" points="121,60 122,107 129,170"/>
+                    <circle class="pt" cx="121" cy="60" r="3.6"/>
+                    <circle class="pt" cx="122" cy="107" r="3.6"/>
+                    <circle class="pt pog" cx="129" cy="170" r="3.6"/>
+                    <text class="ang-label" x="92" y="150">&gt;177°</text>
+                </svg>
+                <div class="dia-caption">
+                    <span lang="en"><b>Concave</b> — the chin juts forward while the mid-face sits back, so the G–Sn–Pog angle is flatter (over 177°).</span>
+                    <span lang="ko"><b>오목형</b> — 턱이 앞으로 나오고 중안부가 들어가, 안면각(미간–코밑–턱)이 더 펴져요 (177° 초과).</span>
+                    <span lang="ja"><b>凹型</b> — あごが前に出て中顔面が引っ込むため、顔面角（眉間–鼻下–あご）が平坦になります（177°超）。</span>
+                    <span lang="zh-CN"><b>凹面型</b> — 下巴前突、中庭后缩，面角（眉间–鼻底–下巴）更平（大于177°）。</span>
+                    <span lang="zh-TW"><b>凹面型</b> — 下巴前突、中庭後縮，面角（眉間–鼻底–下巴）更平（大於177°）。</span>
+                </div>
+            </div>
+
+            <div class="block-label hair">💇 <span lang="en">Hair</span><span lang="ko">헤어 추천</span><span lang="ja">ヘア</span><span lang="zh-CN">发型推荐</span><span lang="zh-TW">髮型推薦</span></div>
+            <ul class="tips numbered hair">
+                <li><span lang="en">Go for a layered cut worn down — shoulder-length with soft layers and volume through the top and crown, lifting the upper face and drawing the eye up, away from the projecting chin.</span><span lang="ko">내린 머리 레이어드컷 — 어깨 길이에 윗머리·정수리로 층과 볼륨을 줘 상안부를 띄우고, 시선을 위로 올려 앞으로 나온 턱에서 분산해요.</span><span lang="ja">おろしたレイヤーカット — 肩までの長さでトップ・頭頂に動きとボリュームを出し、上顔面を持ち上げて視線を上へ、出たあごから分散。</span><span lang="zh-CN">披发的层次剪——齐肩长度，在头顶与上部做出层次和蓬松，抬高上庭、把视线引向上方，从前突的下巴分散。</span><span lang="zh-TW">披髮的層次剪——齊肩長度，在頭頂與上部做出層次和蓬鬆，抬高上庭、把視線引向上方，從前突的下巴分散。</span></li>
+                <li><span lang="en">Use see-through or side bangs to cover a little forehead — softening the upper face balances it against the strong chin and spreads the focus.</span><span lang="ko">시스루뱅·사이드뱅으로 이마를 살짝 덮어요 — 윗부분을 부드럽게 해 또렷한 턱과 균형을 맞추고 시선을 분산해요.</span><span lang="ja">シースルーバング・サイドバングで額を少し隠す — 上部をやわらげて強いあごとバランスを取り、視線を分散。</span><span lang="zh-CN">用空气刘海或侧分稍微遮额——柔化上半部，与有力的下巴取得平衡并分散视线。</span><span lang="zh-TW">用空氣瀏海或側分稍微遮額——柔化上半部，與有力的下巴取得平衡並分散視線。</span></li>
+                <li class="no-num"><span lang="en">Keep the jaw area light — let the lower length fall softly instead of flicking volume out at the chin, so it isn't emphasized.</span><span lang="ko">턱 주변은 가볍게 — 턱 끝에서 바깥으로 뻗치는 볼륨 대신 하단을 부드럽게 떨어뜨려 턱이 강조되지 않게 해요.</span><span lang="ja">あご周りは軽く — あご先で外へはねるボリュームを避け、下側はやわらかく落としてあごを強調しない。</span><span lang="zh-CN">下颌周围保持轻盈——别在下巴处向外翘出体积，让下半部柔顺垂落，避免强调下巴。</span><span lang="zh-TW">下顎周圍保持輕盈——別在下巴處向外翹出體積，讓下半部柔順垂落，避免強調下巴。</span></li>
+            </ul>
+            <div class="block-label avoid">✕ <span lang="en">Go easy on</span><span lang="ko">주의할 점</span><span lang="ja">注意</span><span lang="zh-CN">需注意</span><span lang="zh-TW">需注意</span></div>
+            <ul class="tips avoid">
+                <li><span lang="en">Volume or flicks that flare out at the chin — they pull the projecting chin even further forward.</span><span lang="ko">턱 끝에서 바깥으로 뻗치는 볼륨·플립 — 나온 턱을 더 앞으로 끌어내요.</span><span lang="ja">あご先で外にはねるボリューム・フリップ — 出たあごをさらに前に強調します。</span><span lang="zh-CN">在下巴处向外翘的体积或外翻——会把前突的下巴更往前带。</span><span lang="zh-TW">在下巴處向外翹的體積或外翻——會把前突的下巴更往前帶。</span></li>
+            </ul>
+            <div class="img-row">
+                <!-- IMAGE: 오목형 헤어 · img/profile-concave-hair.jpg -->
+                <figure class="face-img"><img src="img/profile-concave-hair.jpg" alt="Concave profile hair" loading="lazy" width="400" height="500" onerror="this.closest('.face-img').classList.add('pending')"><figcaption>img/profile-concave-hair.jpg</figcaption></figure>
+            </div>
+
+            <div class="block-label makeup">💄 <span lang="en">Makeup</span><span lang="ko">메이크업 추천</span><span lang="ja">メイク</span><span lang="zh-CN">妆容推荐</span><span lang="zh-TW">妝容推薦</span></div>
+            <ul class="tips numbered makeup">
+                <li><span lang="en">Soften the chin's projection with shading along the chin tip and jaw — 1–2 shades deeper than skin, well blended. (grey-brown)</span><span lang="ko">턱끝~턱선에 셰이딩으로 돌출을 완화 — 피부보다 1~2톤 어둡게, 자연스럽게 펴 발라요. (그레이 브라운)</span><span lang="ja">あご先～フェイスラインのシェーディングで出っ張りをやわらげる — 肌より1〜2トーン暗く、しっかりぼかす。（グレーブラウン）</span><span lang="zh-CN">用修容在下巴尖到下颌弱化突出——比肤色深1~2号，自然晕开。（灰棕色）</span><span lang="zh-TW">用修容在下巴尖到下顎弱化突出——比膚色深1~2號，自然暈開。（灰棕色）</span></li>
+                <li><span lang="en">Add highlight on the forehead and nose bridge to bring the set-back mid-face forward and give it dimension. (champagne pearl)</span><span lang="ko">이마·콧대에 하이라이트로 들어가 보이는 중안부를 앞으로, 입체감을 더해요. (샴페인 펄)</span><span lang="ja">額・鼻筋にハイライトで、引っ込んだ中顔面を前に出して立体感を。（シャンパンパール）</span><span lang="zh-CN">在额头与鼻梁加高光，把后缩的中庭往前提、增加立体。（香槟珠光）</span><span lang="zh-TW">在額頭與鼻樑加高光，把後縮的中庭往前提、增加立體。（香檳珠光）</span></li>
+                <li><span lang="en">Define the lips with a clear, healthy color to give the mid-face presence and even out the balance. (coral / rose)</span><span lang="ko">입술은 또렷하고 혈색 있는 컬러로 — 중안부에 존재감을 줘 균형을 맞춰요. (코랄·로즈)</span><span lang="ja">リップははっきり血色のある色で — 中顔面に存在感を出してバランスを整える。（コーラル・ローズ）</span><span lang="zh-CN">用清晰有气色的唇色勾勒嘴唇——给中庭存在感、让整体更均衡。（珊瑚色·玫瑰色）</span><span lang="zh-TW">用清晰有氣色的唇色勾勒嘴唇——給中庭存在感、讓整體更均衡。（珊瑚色·玫瑰色）</span></li>
+            </ul>
+            <div class="block-label avoid">✕ <span lang="en">Go easy on</span><span lang="ko">주의할 점</span><span lang="ja">注意</span><span lang="zh-CN">需注意</span><span lang="zh-TW">需注意</span></div>
+            <ul class="tips avoid">
+                <li><span lang="en">Highlight on the chin tip — it emphasizes the projection you're trying to soften.</span><span lang="ko">턱끝 하이라이트 — 완화하려는 돌출을 오히려 강조해요.</span><span lang="ja">あご先のハイライト — やわらげたい出っ張りを逆に強調します。</span><span lang="zh-CN">下巴尖的高光——会强调你想弱化的突出。</span><span lang="zh-TW">下巴尖的高光——會強調你想弱化的突出。</span></li>
+            </ul>
+            <div class="img-row">
+                <!-- IMAGE: 오목형 메이크업 · img/profile-concave-makeup.jpg -->
+                <figure class="face-img"><img src="img/profile-concave-makeup.jpg" alt="Concave profile makeup" loading="lazy" width="400" height="500" onerror="this.closest('.face-img').classList.add('pending')"><figcaption>img/profile-concave-makeup.jpg</figcaption></figure>
+            </div>
+        </section>
+
+        <div class="adapt-note">
+            <span lang="en">This guide is based on Korean &amp; East Asian hair and makeup techniques. Styling can't change the underlying bone structure — it only balances how the side view reads. Adjust the intensity to your features, hair texture, and skin tone.</span>
+            <span lang="ko">이 가이드는 한국·동아시아 헤어·메이크업 기법을 바탕으로 해요. 스타일링은 골격 자체를 바꾸지 못하고, 옆모습 인상의 균형만 잡아줘요. 이목구비·모발·피부톤에 따라 강약을 조절하세요.</span>
+            <span lang="ja">本ガイドは韓国・東アジアのヘア＆メイク技法をベースにしています。スタイリングで骨格自体は変えられず、横顔の印象バランスを整えるだけです。目鼻立ち・髪質・肌色に合わせて強弱を調整してください。</span>
+            <span lang="zh-CN">本指南以韩国及东亚发型与妆容技法为基础。造型无法改变骨骼本身，只能平衡侧脸的观感。请根据五官、发质与肤色调整强弱。</span>
+            <span lang="zh-TW">本指南以韓國及東亞髮型與妝容技法為基礎。造型無法改變骨骼本身，只能平衡側臉的觀感。請根據五官、髮質與膚色調整強弱。</span>
+        </div>
+
+        <p class="footer-note">
+            <span lang="en">This guide is general reference, not a strict rule. Bone structure, features, and personal taste all matter — use it as a starting point.</span>
+            <span lang="ko">본 가이드는 일반적 참고용이며 절대적 기준이 아닙니다. 골격·이목구비·취향에 따라 달라질 수 있어요.</span>
+            <span lang="ja">本ガイドは一般的な参考であり、絶対的なルールではありません。骨格・目鼻立ち・好みによって変わります。</span>
+            <span lang="zh-CN">本指南仅供参考，并非严格定式。骨骼、五官与个人喜好都会影响效果，请作为起点参考。</span>
+            <span lang="zh-TW">本指南僅供參考，並非嚴格定式。骨骼、五官與個人喜好都會影響效果，請作為起點參考。</span>
+        </p>
+    </div>
+
+    <script>
+        var VALID_LANGS = ['en','ko','ja','zh-CN','zh-TW'];
+        var VALID_SECTIONS = ['convex','concave'];
+
+        function setLang(lang) {
+            VALID_LANGS.forEach(function(c){ document.body.classList.remove('lang-' + c); });
+            document.body.classList.add('lang-' + lang);
+            document.querySelectorAll('.lang-btn').forEach(function(b){
+                b.classList.toggle('active', b.getAttribute('onclick').indexOf("'" + lang + "'") !== -1);
+            });
+            try { localStorage.setItem('preferred-lang', lang); } catch (e) {}
+        }
+
+        function markActiveChip(id) {
+            document.querySelectorAll('.section-chip').forEach(function(c){
+                c.classList.toggle('active', c.getAttribute('href') === '#' + id);
+            });
+        }
+
+        // 측정 안면각(°) → 분류 (앱과 동일: <167 볼록 / 167–177 직선 / >177 오목)
+        function classifyAngle(angle) {
+            if (angle < 167) return 'convex';
+            if (angle > 177) return 'concave';
+            return 'straight';
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var params = new URLSearchParams(location.search);
+
+            // 언어: ?lang= → localStorage → 기본 en
+            var lang = params.get('lang') || (function(){ try { return localStorage.getItem('preferred-lang'); } catch (e) { return null; } })() || 'en';
+            if (VALID_LANGS.indexOf(lang) === -1) lang = 'en';
+            setLang(lang);
+
+            // 분류: #hash > ?type= > ?angle= 자동 분류
+            var target = null;
+            var hash = (location.hash || '').replace('#', '');
+            if (VALID_SECTIONS.indexOf(hash) !== -1) {
+                target = hash;
+            } else {
+                var typeParam = params.get('type');
+                if (typeParam === 'convex' || typeParam === 'concave') {
+                    target = typeParam;
+                } else if (typeParam === 'straight') {
+                    target = 'straight';
+                } else {
+                    var angleParam = params.get('angle');
+                    if (angleParam !== null) {
+                        var angle = parseFloat(angleParam);
+                        if (!isNaN(angle)) target = classifyAngle(angle);
+                    }
+                }
+            }
+
+            if (target === 'straight') {
+                // 직선형: 안내 배너만 표시하고 점프하지 않음
+                var note = document.getElementById('straightNote');
+                if (note) note.style.display = 'block';
+            } else if (target) {
+                markActiveChip(target);
+                var el = document.getElementById(target);
+                if (el) { setTimeout(function(){ el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 120); }
+            }
+        });
+    </script>
+</body>
+</html>
