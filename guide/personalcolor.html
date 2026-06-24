@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <script src="gate.js"></script>
+    <title>Personal Color Guide - Renka</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Apple SD Gothic Neo', sans-serif; background: linear-gradient(160deg, #f2fae8 0%, #e2f3d0 100%); background-attachment: fixed; color: #33402d; line-height: 1.75; }
+        .container { max-width: 700px; margin: 0 auto; padding: 36px 20px 80px; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 22px; flex-wrap: wrap; gap: 12px; }
+        .back-link { display: inline-flex; align-items: center; gap: 6px; color: #4e8a2c; text-decoration: none; font-size: 14px; font-weight: 600; }
+        .back-link:hover { text-decoration: underline; }
+        .lang-switcher { display: flex; gap: 6px; flex-wrap: wrap; }
+        .lang-btn { background: rgba(255,255,255,0.7); border: 1px solid #cfe6b5; border-radius: 8px; padding: 7px 10px; font-size: 18px; cursor: pointer; transition: all 0.2s; }
+        .lang-btn:hover { background: #fff; }
+        .lang-btn.active { background: #fff; border-color: #7cb342; box-shadow: 0 1px 5px rgba(124,179,66,0.35); }
+
+        h1 { font-size: 28px; font-weight: 800; margin-bottom: 8px; color: #fff; letter-spacing: -0.3px; text-shadow: 0 1px 0 #6aa83a, 0 2px 0 #5d9931, 2px 3px 7px rgba(80,140,40,0.35); }
+        .subtitle { font-size: 14px; color: #6b7a60; margin-bottom: 14px; }
+        .auto-note { font-size: 12.5px; color: #87937c; margin-bottom: 24px; }
+
+        .section-nav { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px; }
+        .section-chip { display: inline-block; padding: 7px 13px; font-size: 13px; font-weight: 600; color: #4e6b39; background: rgba(255,255,255,0.75); border: 1px solid #d4e8bd; border-radius: 20px; text-decoration: none; transition: all 0.2s; }
+        .section-chip:hover { background: #fff; border-color: #7cb342; color: #3d6b1f; }
+        .section-chip.active { background: #fff; border-color: #7cb342; color: #3d6b1f; box-shadow: 0 1px 5px rgba(124,179,66,0.35); }
+
+        .guide-card { scroll-margin-top: 16px; background: rgba(255,255,255,0.5); border: 1px solid rgba(255,255,255,0.65); border-radius: 18px; padding: 24px 22px; margin-bottom: 18px; box-shadow: 0 2px 12px rgba(99,150,55,0.1); }
+        .guide-card h2 { font-size: 22px; font-weight: 800; margin-bottom: 4px; display: flex; align-items: baseline; gap: 8px; color: #3d6b1f; flex-wrap: wrap; }
+        .guide-card h2 .en-name { font-size: 13px; color: #6aa83a; font-weight: 600; }
+        .feature { font-size: 14.5px; color: #56624e; margin: 10px 0 16px; }
+
+        .block-label { font-size: 13px; font-weight: 800; letter-spacing: 0.2px; margin: 16px 0 8px; display: inline-flex; align-items: center; gap: 6px; }
+        .block-label.rec { color: #4e8a2c; }
+        .block-label.avoid { color: #c4882f; }
+
+        /* ===== 색상 스와치 (CSS 박스) ===== */
+        .swatches { display: flex; flex-wrap: wrap; gap: 10px; margin: 4px 0 10px; }
+        .swatch { display: flex; flex-direction: column; align-items: center; gap: 5px; width: 58px; text-align: center; }
+        .swatch .chip { width: 46px; height: 46px; border-radius: 11px; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.07), 0 1px 4px rgba(0,0,0,0.10); }
+        .swatch .name { font-size: 10.5px; color: #5e6d54; line-height: 1.3; }
+        .swatches.small .chip { width: 38px; height: 38px; border-radius: 9px; }
+        .swatches.small .swatch { width: 48px; }
+
+        /* 파운데이션 톤 박스 */
+        .foundation { font-size: 13.5px; color: #3f4a39; background: rgba(255,255,255,0.5); border: 1px solid rgba(255,255,255,0.65); border-radius: 12px; padding: 11px 14px; margin: 8px 0 6px; }
+        .foundation b { color: #3d6b1f; }
+
+        /* ===== 카테고리별 메이크업 ===== */
+        .makeup-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 14px; }
+        @media (max-width: 520px) { .makeup-grid { grid-template-columns: 1fr; } }
+        .makeup-cat { background: rgba(255,255,255,0.45); border: 1px solid rgba(255,255,255,0.6); border-radius: 14px; padding: 14px; }
+        .cat-head { display: flex; align-items: center; gap: 8px; font-weight: 800; font-size: 14.5px; color: #3d6b1f; margin-bottom: 9px; }
+        .cat-tip { font-size: 12.5px; color: #56624e; margin-top: 7px; line-height: 1.55; }
+
+        /* 카테고리 아이콘 슬롯 — 이미지 넣으면 자동 표시, 없으면 점선 플레이스홀더 + 이모지 힌트.
+           실제 아이콘 경로: img/cosmetic/{lip|blush|eyeshadow|highlighter}.png (드롭만 하면 됨) */
+        .cat-icon { width: 26px; height: 26px; flex: 0 0 26px; display: inline-flex; align-items: center; justify-content: center; }
+        .cat-icon img { width: 100%; height: 100%; object-fit: contain; }
+        .cat-icon i { display: none; font-style: normal; font-size: 16px; line-height: 1; }
+        .cat-icon.ph { border: 1.5px dashed #b9d49a; border-radius: 7px; background: rgba(255,255,255,0.55); }
+        .cat-icon.ph img { display: none; }
+        .cat-icon.ph i { display: block; }
+
+        .footer-note { margin-top: 22px; font-size: 12px; color: #87937c; text-align: center; line-height: 1.7; }
+
+        /* ===== 다국어 표시 제어 (기존 가이드와 동일 메커니즘) ===== */
+        [lang]:not([lang="en"]) { display: none; }
+        body.lang-ko [lang="ko"] { display: block; }
+        body.lang-ko [lang="en"], body.lang-ko [lang="ja"], body.lang-ko [lang="zh-CN"], body.lang-ko [lang="zh-TW"], body.lang-ko [lang="es"] { display: none; }
+        body.lang-ja [lang="ja"] { display: block; }
+        body.lang-ja [lang="en"], body.lang-ja [lang="ko"], body.lang-ja [lang="zh-CN"], body.lang-ja [lang="zh-TW"], body.lang-ja [lang="es"] { display: none; }
+        body.lang-en [lang="en"] { display: block; }
+        body.lang-en [lang="ko"], body.lang-en [lang="ja"], body.lang-en [lang="zh-CN"], body.lang-en [lang="zh-TW"], body.lang-en [lang="es"] { display: none; }
+        body.lang-zh-CN [lang="zh-CN"] { display: block; }
+        body.lang-zh-CN [lang="en"], body.lang-zh-CN [lang="ko"], body.lang-zh-CN [lang="ja"], body.lang-zh-CN [lang="zh-TW"], body.lang-zh-CN [lang="es"] { display: none; }
+        body.lang-zh-TW [lang="zh-TW"] { display: block; }
+        body.lang-zh-TW [lang="en"], body.lang-zh-TW [lang="ko"], body.lang-zh-TW [lang="ja"], body.lang-zh-TW [lang="zh-CN"], body.lang-zh-TW [lang="es"] { display: none; }
+        body.lang-es [lang="es"] { display: block; }
+        body.lang-es [lang="en"], body.lang-es [lang="ko"], body.lang-es [lang="ja"], body.lang-es [lang="zh-CN"], body.lang-es [lang="zh-TW"] { display: none; }
+        /* inline 요소용 */
+        span[lang] { display: none; }
+        body.lang-en span[lang="en"] { display: inline; }
+        body.lang-ko span[lang="ko"] { display: inline; }
+        body.lang-ja span[lang="ja"] { display: inline; }
+        body.lang-zh-CN span[lang="zh-CN"] { display: inline; }
+        body.lang-zh-TW span[lang="zh-TW"] { display: inline; }
+        body.lang-es span[lang="es"] { display: inline; }
+    </style>
+</head>
+<body class="lang-en">
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="back-link">← <span lang="en">Style Guide</span><span lang="ko">스타일 가이드</span><span lang="ja">スタイルガイド</span><span lang="zh-CN">风格指南</span><span lang="zh-TW">風格指南</span><span lang="es">Guía de estilo</span></a>
+            <div class="lang-switcher">
+                <button class="lang-btn active" onclick="setLang('en')" title="English">🇺🇸</button>
+                <button class="lang-btn" onclick="setLang('ko')" title="한국어">🇰🇷</button>
+                <button class="lang-btn" onclick="setLang('ja')" title="日本語">🇯🇵</button>
+                <button class="lang-btn" onclick="setLang('zh-CN')" title="简体中文">🇨🇳</button>
+                <button class="lang-btn" onclick="setLang('zh-TW')" title="繁體中文">🇹🇼</button>
+                <button class="lang-btn" onclick="setLang('es')" title="Español">🇪🇸</button>
+            </div>
+        </div>
+
+        <h1>
+            <span lang="en">Personal Color Guide</span>
+            <span lang="ko">퍼스널 컬러 가이드</span>
+            <span lang="ja">パーソナルカラーガイド</span>
+            <span lang="zh-CN">个人色彩指南</span>
+            <span lang="zh-TW">個人色彩指南</span>
+            <span lang="es">Guía de color personal</span>
+        </h1>
+        <p class="subtitle">
+            <span lang="en">Colors that flatter your skin, eyes and hair — based on your measured warm/cool tone. A guide, not a rule.</span>
+            <span lang="ko">피부·눈동자·모발 톤에 어울리는 색을 분석 결과(웜/쿨)에 맞춰 안내해요. 정답이 아닌 참고용 가이드입니다.</span>
+            <span lang="ja">肌・瞳・髪のトーン（ウォーム/クール）の判定に基づき、似合う色をご案内します。あくまで参考ガイドです。</span>
+            <span lang="zh-CN">根据你的肤色、瞳色与发色（暖/冷）判定，推荐适合你的色彩。仅供参考，并非定式。</span>
+            <span lang="zh-TW">根據你的膚色、瞳色與髮色（暖/冷）判定，推薦適合你的色彩。僅供參考，並非定式。</span>
+            <span lang="es">Colores que favorecen tu piel, ojos y cabello, según tu tono cálido/frío medido. Es una guía, no una regla.</span>
+        </p>
+        <p class="auto-note">
+            <span lang="en">You'll jump to your analyzed season automatically — feel free to explore the others too.</span>
+            <span lang="ko">분석된 내 시즌으로 자동 이동해요. 다른 시즌도 자유롭게 살펴보세요.</span>
+            <span lang="ja">診断された自分のシーズンへ自動で移動します。他のシーズンも自由にどうぞ。</span>
+            <span lang="zh-CN">会自动跳到你的诊断季型，其他季型也欢迎查看。</span>
+            <span lang="zh-TW">會自動跳到你的診斷季型，其他季型也歡迎查看。</span>
+            <span lang="es">Saltarás automáticamente a tu temporada analizada; también puedes ver las demás.</span>
+        </p>
+
+        <nav class="section-nav">
+            <a href="#spring" class="section-chip"><span lang="en">Spring Warm</span><span lang="ko">봄 웜톤</span><span lang="ja">スプリング</span><span lang="zh-CN">春季暖型</span><span lang="zh-TW">春季暖型</span><span lang="es">Primavera cálida</span></a>
+            <a href="#summer" class="section-chip"><span lang="en">Summer Cool</span><span lang="ko">여름 쿨톤</span><span lang="ja">サマー</span><span lang="zh-CN">夏季冷型</span><span lang="zh-TW">夏季冷型</span><span lang="es">Verano frío</span></a>
+            <a href="#autumn" class="section-chip"><span lang="en">Autumn Warm</span><span lang="ko">가을 웜톤</span><span lang="ja">オータム</span><span lang="zh-CN">秋季暖型</span><span lang="zh-TW">秋季暖型</span><span lang="es">Otoño cálido</span></a>
+            <a href="#winter" class="section-chip"><span lang="en">Winter Cool</span><span lang="ko">겨울 쿨톤</span><span lang="ja">ウィンター</span><span lang="zh-CN">冬季冷型</span><span lang="zh-TW">冬季冷型</span><span lang="es">Invierno frío</span></a>
+        </nav>
+
+        <!-- ============ SPRING WARM ============ -->
+        <section class="guide-card" id="spring">
+            <h2><span lang="en">Spring Warm</span><span lang="ko">봄 웜톤</span><span lang="ja">スプリング（ウォーム）</span><span lang="zh-CN">春季暖型</span><span lang="zh-TW">春季暖型</span><span lang="es">Primavera cálida</span> <span class="en-name">Spring Warm</span></h2>
+            <p class="feature">
+                <span lang="en">Bright, warm and clear. Fresh, youthful colors with a golden glow suit you best.</span>
+                <span lang="ko">밝고 따뜻하며 선명한 톤. 황금빛이 도는 산뜻하고 생기있는 컬러가 가장 잘 어울려요.</span>
+                <span lang="ja">明るく、暖かく、クリア。黄みのある爽やかで生き生きとした色がよく似合います。</span>
+                <span lang="zh-CN">明亮、温暖、清澈。带金调的清新活力色彩最适合你。</span>
+                <span lang="zh-TW">明亮、溫暖、清透。帶金調的清新活力色彩最適合你。</span>
+                <span lang="es">Brillante, cálida y nítida. Te favorecen los colores frescos y juveniles con brillo dorado.</span>
+            </p>
+
+            <div class="block-label rec"><span lang="en">Best colors</span><span lang="ko">베스트 컬러</span><span lang="ja">ベストカラー</span><span lang="zh-CN">最佳色彩</span><span lang="zh-TW">最佳色彩</span><span lang="es">Mejores colores</span></div>
+            <div class="swatches">
+                <div class="swatch"><span class="chip" style="background:#FF6F61"></span><span class="name">Coral</span></div>
+                <div class="swatch"><span class="chip" style="background:#FFB07C"></span><span class="name">Peach</span></div>
+                <div class="swatch"><span class="chip" style="background:#F4E1C1"></span><span class="name">Warm ivory</span></div>
+                <div class="swatch"><span class="chip" style="background:#F0C04E"></span><span class="name">Golden</span></div>
+                <div class="swatch"><span class="chip" style="background:#9CCB5B"></span><span class="name">Fresh green</span></div>
+                <div class="swatch"><span class="chip" style="background:#D2A679"></span><span class="name">Light camel</span></div>
+            </div>
+            <div class="block-label avoid"><span lang="en">Colors to avoid</span><span lang="ko">피할 컬러</span><span lang="ja">避けたい色</span><span lang="zh-CN">应避免</span><span lang="zh-TW">應避免</span><span lang="es">Colores a evitar</span></div>
+            <div class="swatches small">
+                <div class="swatch"><span class="chip" style="background:#1F1F1F"></span><span class="name">Black</span></div>
+                <div class="swatch"><span class="chip" style="background:#8A8F98"></span><span class="name">Cool gray</span></div>
+                <div class="swatch"><span class="chip" style="background:#5E2233"></span><span class="name">Burgundy</span></div>
+                <div class="swatch"><span class="chip" style="background:#B9D0E8"></span><span class="name">Icy blue</span></div>
+            </div>
+
+            <div class="foundation">
+                <b><span lang="en">Foundation</span><span lang="ko">파운데이션</span><span lang="ja">ファンデーション</span><span lang="zh-CN">粉底</span><span lang="zh-TW">粉底</span><span lang="es">Base</span></b> ·
+                <span lang="en">Warm / yellow undertone, light–medium. Keep it fresh; avoid gray or pink-based shades.</span>
+                <span lang="ko">웜·옐로 언더톤, 라이트~미디엄. 산뜻하게. 그레이·핑크 베이스는 피하세요.</span>
+                <span lang="ja">ウォーム/イエロー系、ライト〜ミディアム。グレーやピンク系ベースは避けて。</span>
+                <span lang="zh-CN">暖/黄调，浅至中等。保持清透，避免灰调或粉调粉底。</span>
+                <span lang="zh-TW">暖/黃調，淺至中等。保持清透，避免灰調或粉調粉底。</span>
+                <span lang="es">Subtono cálido / amarillo, claro–medio. Fresca; evita bases grises o rosadas.</span>
+            </div>
+
+            <div class="makeup-grid">
+                <div class="makeup-cat">
+                    <div class="cat-head"><span class="cat-icon"><img src="img/cosmetic/lip.png" alt="" onerror="this.closest('.cat-icon').classList.add('ph')"><i>💄</i></span><span lang="en">Lip</span><span lang="ko">립</span><span lang="ja">リップ</span><span lang="zh-CN">唇彩</span><span lang="zh-TW">唇彩</span><span lang="es">Labios</span></div>
+                    <div class="swatches small">
+                        <div class="swatch"><span class="chip" style="background:#FF6F61"></span><span class="name">Coral</span></div>
+                        <div class="swatch"><span class="chip" style="background:#FFA177"></span><span class="name">Peach</span></div>
+                        <div class="swatch"><span class="chip" style="background:#F4A460"></span><span class="name">Apricot</span></div>
+                    </div>
+                    <p class="cat-tip"><span lang="en">Warm corals and peaches; sheer-to-glossy for a fresh finish.</span><span lang="ko">웜 코랄·피치 계열, 투명~글로시하게 발라 산뜻하게.</span><span lang="ja">ウォームなコーラル・ピーチを、ツヤ感のある軽い質感で。</span><span lang="zh-CN">暖珊瑚、蜜桃色，水润到微光质地更清透。</span><span lang="zh-TW">暖珊瑚、蜜桃色，水潤到微光質地更清透。</span><span lang="es">Corales y melocotones cálidos; acabado translúcido o con brillo.</span></p>
+                </div>
+                <div class="makeup-cat">
+                    <div class="cat-head"><span class="cat-icon"><img src="img/cosmetic/blush.png" alt="" onerror="this.closest('.cat-icon').classList.add('ph')"><i>🌸</i></span><span lang="en">Blush</span><span lang="ko">블러셔</span><span lang="ja">チーク</span><span lang="zh-CN">腮红</span><span lang="zh-TW">腮紅</span><span lang="es">Rubor</span></div>
+                    <div class="swatches small">
+                        <div class="swatch"><span class="chip" style="background:#FFAA7B"></span><span class="name">Peach</span></div>
+                        <div class="swatch"><span class="chip" style="background:#F6B57C"></span><span class="name">Apricot</span></div>
+                        <div class="swatch"><span class="chip" style="background:#FF9E80"></span><span class="name">Warm pink</span></div>
+                    </div>
+                    <p class="cat-tip"><span lang="en">Peach or apricot on the apples of the cheeks.</span><span lang="ko">볼 가운데 사과 부위에 피치·아프리코트로.</span><span lang="ja">頬の高い位置にピーチ・アプリコットを。</span><span lang="zh-CN">蜜桃或杏色，打在笑肌处。</span><span lang="zh-TW">蜜桃或杏色，打在笑肌處。</span><span lang="es">Melocotón o albaricoque en las mejillas.</span></p>
+                </div>
+                <div class="makeup-cat">
+                    <div class="cat-head"><span class="cat-icon"><img src="img/cosmetic/eyeshadow.png" alt="" onerror="this.closest('.cat-icon').classList.add('ph')"><i>👁️</i></span><span lang="en">Eyeshadow</span><span lang="ko">아이섀도</span><span lang="ja">アイシャドウ</span><span lang="zh-CN">眼影</span><span lang="zh-TW">眼影</span><span lang="es">Sombra</span></div>
+                    <div class="swatches small">
+                        <div class="swatch"><span class="chip" style="background:#F3DDB3"></span><span class="name">Champagne</span></div>
+                        <div class="swatch"><span class="chip" style="background:#E6B422"></span><span class="name">Gold</span></div>
+                        <div class="swatch"><span class="chip" style="background:#C68642"></span><span class="name">Warm brown</span></div>
+                    </div>
+                    <p class="cat-tip"><span lang="en">Champagne, gold and light warm brown for a clear-eyed glow.</span><span lang="ko">샴페인·골드·연한 웜브라운으로 화사하게.</span><span lang="ja">シャンパン・ゴールド・明るいウォームブラウンで華やかに。</span><span lang="zh-CN">香槟、金色与浅暖棕，打造透亮眼妆。</span><span lang="zh-TW">香檳、金色與淺暖棕，打造透亮眼妝。</span><span lang="es">Champán, dorado y marrón cálido claro para una mirada luminosa.</span></p>
+                </div>
+                <div class="makeup-cat">
+                    <div class="cat-head"><span class="cat-icon"><img src="img/cosmetic/highlighter.png" alt="" onerror="this.closest('.cat-icon').classList.add('ph')"><i>✨</i></span><span lang="en">Highlighter</span><span lang="ko">하이라이터</span><span lang="ja">ハイライト</span><span lang="zh-CN">高光</span><span lang="zh-TW">高光</span><span lang="es">Iluminador</span></div>
+                    <div class="swatches small">
+                        <div class="swatch"><span class="chip" style="background:#F0D080"></span><span class="name">Warm gold</span></div>
+                        <div class="swatch"><span class="chip" style="background:#F7E7CE"></span><span class="name">Champagne</span></div>
+                    </div>
+                    <p class="cat-tip"><span lang="en">Warm gold or champagne sheen on the high points.</span><span lang="ko">웜골드·샴페인 펄을 얼굴 하이포인트에.</span><span lang="ja">ウォームゴールド・シャンパンを高い位置に。</span><span lang="zh-CN">暖金或香槟光泽，打在面部高点。</span><span lang="zh-TW">暖金或香檳光澤，打在面部高點。</span><span lang="es">Brillo dorado cálido o champán en los puntos altos.</span></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ SUMMER COOL ============ -->
+        <section class="guide-card" id="summer">
+            <h2><span lang="en">Summer Cool</span><span lang="ko">여름 쿨톤</span><span lang="ja">サマー（クール）</span><span lang="zh-CN">夏季冷型</span><span lang="zh-TW">夏季冷型</span><span lang="es">Verano frío</span> <span class="en-name">Summer Cool</span></h2>
+            <p class="feature">
+                <span lang="en">Soft, cool and muted. Gentle rosy and powdery tones flatter you most.</span>
+                <span lang="ko">부드럽고 시원하며 차분한 톤. 은은한 로지·파우더리 컬러가 가장 잘 어울려요.</span>
+                <span lang="ja">柔らかく、涼やかで、くすみのあるトーン。ローズやパウダリーな色がよく似合います。</span>
+                <span lang="zh-CN">柔和、清冷、低饱和。柔粉与雾面调最适合你。</span>
+                <span lang="zh-TW">柔和、清冷、低飽和。柔粉與霧面調最適合你。</span>
+                <span lang="es">Suave, fría y apagada. Te favorecen los tonos rosados y empolvados.</span>
+            </p>
+
+            <div class="block-label rec"><span lang="en">Best colors</span><span lang="ko">베스트 컬러</span><span lang="ja">ベストカラー</span><span lang="zh-CN">最佳色彩</span><span lang="zh-TW">最佳色彩</span><span lang="es">Mejores colores</span></div>
+            <div class="swatches">
+                <div class="swatch"><span class="chip" style="background:#E68FA0"></span><span class="name">Rose pink</span></div>
+                <div class="swatch"><span class="chip" style="background:#C5B4D6"></span><span class="name">Lavender</span></div>
+                <div class="swatch"><span class="chip" style="background:#A7C7E7"></span><span class="name">Powder blue</span></div>
+                <div class="swatch"><span class="chip" style="background:#C08497"></span><span class="name">Mauve</span></div>
+                <div class="swatch"><span class="chip" style="background:#9E7B9B"></span><span class="name">Soft plum</span></div>
+                <div class="swatch"><span class="chip" style="background:#B7BCC4"></span><span class="name">Cool gray</span></div>
+            </div>
+            <div class="block-label avoid"><span lang="en">Colors to avoid</span><span lang="ko">피할 컬러</span><span lang="ja">避けたい色</span><span lang="zh-CN">应避免</span><span lang="zh-TW">應避免</span><span lang="es">Colores a evitar</span></div>
+            <div class="swatches small">
+                <div class="swatch"><span class="chip" style="background:#E8772E"></span><span class="name">Orange</span></div>
+                <div class="swatch"><span class="chip" style="background:#D4A017"></span><span class="name">Mustard</span></div>
+                <div class="swatch"><span class="chip" style="background:#7B4B2A"></span><span class="name">Warm brown</span></div>
+                <div class="swatch"><span class="chip" style="background:#D9402A"></span><span class="name">Tomato red</span></div>
+            </div>
+
+            <div class="foundation">
+                <b><span lang="en">Foundation</span><span lang="ko">파운데이션</span><span lang="ja">ファンデーション</span><span lang="zh-CN">粉底</span><span lang="zh-TW">粉底</span><span lang="es">Base</span></b> ·
+                <span lang="en">Cool / pink undertone, light–medium. Soft and luminous; avoid yellow or orange bases.</span>
+                <span lang="ko">쿨·핑크 언더톤, 라이트~미디엄. 부드럽고 윤기있게. 옐로·오렌지 베이스는 피하세요.</span>
+                <span lang="ja">クール/ピンク系、ライト〜ミディアム。イエローやオレンジ系ベースは避けて。</span>
+                <span lang="zh-CN">冷/粉调，浅至中等。柔润，避免黄调或橘调粉底。</span>
+                <span lang="zh-TW">冷/粉調，淺至中等。柔潤，避免黃調或橘調粉底。</span>
+                <span lang="es">Subtono frío / rosado, claro–medio. Suave; evita bases amarillas o naranjas.</span>
+            </div>
+
+            <div class="makeup-grid">
+                <div class="makeup-cat">
+                    <div class="cat-head"><span class="cat-icon"><img src="img/cosmetic/lip.png" alt="" onerror="this.closest('.cat-icon').classList.add('ph')"><i>💄</i></span><span lang="en">Lip</span><span lang="ko">립</span><span lang="ja">リップ</span><span lang="zh-CN">唇彩</span><span lang="zh-TW">唇彩</span><span lang="es">Labios</span></div>
+                    <div class="swatches small">
+                        <div class="swatch"><span class="chip" style="background:#C96A78"></span><span class="name">Rose</span></div>
+                        <div class="swatch"><span class="chip" style="background:#C08497"></span><span class="name">Mauve</span></div>
+                        <div class="swatch"><span class="chip" style="background:#E6A0B0"></span><span class="name">Soft pink</span></div>
+                    </div>
+                    <p class="cat-tip"><span lang="en">Rosy pinks and mauves; soft MLBB tones suit you.</span><span lang="ko">로지 핑크·모브 계열, 자연스러운 MLBB 톤으로.</span><span lang="ja">ローズピンク・モーヴ系、ナチュラルなMLBBトーンで。</span><span lang="zh-CN">玫瑰粉、藕紫，自然的MLBB色调更显气质。</span><span lang="zh-TW">玫瑰粉、藕紫，自然的MLBB色調更顯氣質。</span><span lang="es">Rosas y malvas suaves; tonos MLBB naturales.</span></p>
+                </div>
+                <div class="makeup-cat">
+                    <div class="cat-head"><span class="cat-icon"><img src="img/cosmetic/blush.png" alt="" onerror="this.closest('.cat-icon').classList.add('ph')"><i>🌸</i></span><span lang="en">Blush</span><span lang="ko">블러셔</span><span lang="ja">チーク</span><span lang="zh-CN">腮红</span><span lang="zh-TW">腮紅</span><span lang="es">Rubor</span></div>
+                    <div class="swatches small">
+                        <div class="swatch"><span class="chip" style="background:#E68FA0"></span><span class="name">Rose pink</span></div>
+                        <div class="swatch"><span class="chip" style="background:#F0A6C0"></span><span class="name">Cool pink</span></div>
+                        <div class="swatch"><span class="chip" style="background:#C98DA6"></span><span class="name">Soft mauve</span></div>
+                    </div>
+                    <p class="cat-tip"><span lang="en">Cool rose or pink, blended softly for a natural flush.</span><span lang="ko">쿨 로즈·핑크를 은은하게 펴 발라 자연스럽게.</span><span lang="ja">クールなローズ・ピンクをふんわりと。</span><span lang="zh-CN">冷玫瑰或粉色，轻柔晕染。</span><span lang="zh-TW">冷玫瑰或粉色，輕柔暈染。</span><span lang="es">Rosa frío difuminado para un rubor natural.</span></p>
+                </div>
+                <div class="makeup-cat">
+                    <div class="cat-head"><span class="cat-icon"><img src="img/cosmetic/eyeshadow.png" alt="" onerror="this.closest('.cat-icon').classList.add('ph')"><i>👁️</i></span><span lang="en">Eyeshadow</span><span lang="ko">아이섀도</span><span lang="ja">アイシャドウ</span><span lang="zh-CN">眼影</span><span lang="zh-TW">眼影</span><span lang="es">Sombra</span></div>
+                    <div class="swatches small">
+                        <div class="swatch"><span class="chip" style="background:#C5B4D6"></span><span class="name">Lavender</span></div>
+                        <div class="swatch"><span class="chip" style="background:#B8A99A"></span><span class="name">Taupe</span></div>
+                        <div class="swatch"><span class="chip" style="background:#B98DA6"></span><span class="name">Cool mauve</span></div>
+                    </div>
+                    <p class="cat-tip"><span lang="en">Lavender, taupe and cool mauve for a soft, hazy eye.</span><span lang="ko">라벤더·토프·쿨모브로 부드럽고 은은하게.</span><span lang="ja">ラベンダー・トープ・クールモーヴで柔らかく。</span><span lang="zh-CN">薰衣草、灰褐与冷藕，打造柔雾眼妆。</span><span lang="zh-TW">薰衣草、灰褐與冷藕，打造柔霧眼妝。</span><span lang="es">Lavanda, topo y malva frío para una mirada suave.</span></p>
+                </div>
+                <div class="makeup-cat">
+                    <div class="cat-head"><span class="cat-icon"><img src="img/cosmetic/highlighter.png" alt="" onerror="this.closest('.cat-icon').classList.add('ph')"><i>✨</i></span><span lang="en">Highlighter</span><span lang="ko">하이라이터</span><span lang="ja">ハイライト</span><span lang="zh-CN">高光</span><span lang="zh-TW">高光</span><span lang="es">Iluminador</span></div>
+                    <div class="swatches small">
+                        <div class="swatch"><span class="chip" style="background:#F3D9DF"></span><span class="name">Pink pearl</span></div>
+                        <div class="swatch"><span class="chip" style="background:#D8DCE0"></span><span class="name">Cool silver</span></div>
+                    </div>
+                    <p class="cat-tip"><span lang="en">Pink-pearl or cool sheen for a soft glow.</span><span lang="ko">핑크펄·쿨 실버로 은은한 윤기.</span><span lang="ja">ピンクパール・クールな艶を控えめに。</span><span lang="zh-CN">粉珠光或冷调光泽，柔和提亮。</span><span lang="zh-TW">粉珠光或冷調光澤，柔和提亮。</span><span lang="es">Perla rosada o brillo frío para un resplandor sutil.</span></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ AUTUMN WARM ============ -->
+        <section class="guide-card" id="autumn">
+            <h2><span lang="en">Autumn Warm</span><span lang="ko">가을 웜톤</span><span lang="ja">オータム（ウォーム）</span><span lang="zh-CN">秋季暖型</span><span lang="zh-TW">秋季暖型</span><span lang="es">Otoño cálido</span> <span class="en-name">Autumn Warm</span></h2>
+            <p class="feature">
+                <span lang="en">Deep, warm and muted. Rich earthy and spicy tones suit you best.</span>
+                <span lang="ko">깊고 따뜻하며 차분한 톤. 풍부한 어시·스파이시 컬러가 가장 잘 어울려요.</span>
+                <span lang="ja">深く、暖かく、くすみのあるトーン。アーシーでスパイシーな色がよく似合います。</span>
+                <span lang="zh-CN">深邃、温暖、低饱和。浓郁的大地与香料色最适合你。</span>
+                <span lang="zh-TW">深邃、溫暖、低飽和。濃郁的大地與香料色最適合你。</span>
+                <span lang="es">Profunda, cálida y apagada. Te favorecen los tonos terrosos y especiados.</span>
+            </p>
+
+            <div class="block-label rec"><span lang="en">Best colors</span><span lang="ko">베스트 컬러</span><span lang="ja">ベストカラー</span><span lang="zh-CN">最佳色彩</span><span lang="zh-TW">最佳色彩</span><span lang="es">Mejores colores</span></div>
+            <div class="swatches">
+                <div class="swatch"><span class="chip" style="background:#C66B3F"></span><span class="name">Terracotta</span></div>
+                <div class="swatch"><span class="chip" style="background:#A6432B"></span><span class="name">Rust</span></div>
+                <div class="swatch"><span class="chip" style="background:#6B7A3F"></span><span class="name">Olive</span></div>
+                <div class="swatch"><span class="chip" style="background:#C9A227"></span><span class="name">Mustard</span></div>
+                <div class="swatch"><span class="chip" style="background:#C19A6B"></span><span class="name">Camel</span></div>
+                <div class="swatch"><span class="chip" style="background:#6F4E2E"></span><span class="name">Deep brown</span></div>
+            </div>
+            <div class="block-label avoid"><span lang="en">Colors to avoid</span><span lang="ko">피할 컬러</span><span lang="ja">避けたい色</span><span lang="zh-CN">应避免</span><span lang="zh-TW">應避免</span><span lang="es">Colores a evitar</span></div>
+            <div class="swatches small">
+                <div class="swatch"><span class="chip" style="background:#C71585"></span><span class="name">Fuchsia</span></div>
+                <div class="swatch"><span class="chip" style="background:#F4C2D7"></span><span class="name">Icy pink</span></div>
+                <div class="swatch"><span class="chip" style="background:#9AA0A8"></span><span class="name">Cool gray</span></div>
+                <div class="swatch"><span class="chip" style="background:#EAF0F6"></span><span class="name">Pure white</span></div>
+            </div>
+
+            <div class="foundation">
+                <b><span lang="en">Foundation</span><span lang="ko">파운데이션</span><span lang="ja">ファンデーション</span><span lang="zh-CN">粉底</span><span lang="zh-TW">粉底</span><span lang="es">Base</span></b> ·
+                <span lang="en">Warm / golden undertone, medium–deep. Avoid pink or cool bases.</span>
+                <span lang="ko">웜·골든 언더톤, 미디엄~딥. 핑크·쿨 베이스는 피하세요.</span>
+                <span lang="ja">ウォーム/ゴールデン系、ミディアム〜ディープ。ピンクやクール系ベースは避けて。</span>
+                <span lang="zh-CN">暖/金调，中至深。避免粉调或冷调粉底。</span>
+                <span lang="zh-TW">暖/金調，中至深。避免粉調或冷調粉底。</span>
+                <span lang="es">Subtono cálido / dorado, medio–profundo. Evita bases rosadas o frías.</span>
+            </div>
+
+            <div class="makeup-grid">
+                <div class="makeup-cat">
+                    <div class="cat-head"><span class="cat-icon"><img src="img/cosmetic/lip.png" alt="" onerror="this.closest('.cat-icon').classList.add('ph')"><i>💄</i></span><span lang="en">Lip</span><span lang="ko">립</span><span lang="ja">リップ</span><span lang="zh-CN">唇彩</span><span lang="zh-TW">唇彩</span><span lang="es">Labios</span></div>
+                    <div class="swatches small">
+                        <div class="swatch"><span class="chip" style="background:#A6432B"></span><span class="name">Brick</span></div>
+                        <div class="swatch"><span class="chip" style="background:#C66B3F"></span><span class="name">Terracotta</span></div>
+                        <div class="swatch"><span class="chip" style="background:#C08862"></span><span class="name">Warm nude</span></div>
+                    </div>
+                    <p class="cat-tip"><span lang="en">Brick, terracotta and warm nude in a velvet or matte finish.</span><span lang="ko">브릭·테라코타·웜누드를 벨벳/매트하게.</span><span lang="ja">ブリック・テラコッタ・ウォームヌードをマットに。</span><span lang="zh-CN">砖红、陶土与暖裸色，丝绒或哑光质地。</span><span lang="zh-TW">磚紅、陶土與暖裸色，絲絨或霧面質地。</span><span lang="es">Ladrillo, terracota y nude cálido en acabado mate o aterciopelado.</span></p>
+                </div>
+                <div class="makeup-cat">
+                    <div class="cat-head"><span class="cat-icon"><img src="img/cosmetic/blush.png" alt="" onerror="this.closest('.cat-icon').classList.add('ph')"><i>🌸</i></span><span lang="en">Blush</span><span lang="ko">블러셔</span><span lang="ja">チーク</span><span lang="zh-CN">腮红</span><span lang="zh-TW">腮紅</span><span lang="es">Rubor</span></div>
+                    <div class="swatches small">
+                        <div class="swatch"><span class="chip" style="background:#CB7B4F"></span><span class="name">Terracotta</span></div>
+                        <div class="swatch"><span class="chip" style="background:#B07050"></span><span class="name">Warm brown</span></div>
+                        <div class="swatch"><span class="chip" style="background:#B05A3C"></span><span class="name">Brick</span></div>
+                    </div>
+                    <p class="cat-tip"><span lang="en">Terracotta or warm brown, kept subtle for a sun-warmed look.</span><span lang="ko">테라코타·웜브라운을 은은하게 햇살 머금은 느낌으로.</span><span lang="ja">テラコッタ・ウォームブラウンを控えめに。</span><span lang="zh-CN">陶土或暖棕，淡淡晕染，似被阳光晒暖。</span><span lang="zh-TW">陶土或暖棕，淡淡暈染，似被陽光曬暖。</span><span lang="es">Terracota o marrón cálido, sutil, como piel asoleada.</span></p>
+                </div>
+                <div class="makeup-cat">
+                    <div class="cat-head"><span class="cat-icon"><img src="img/cosmetic/eyeshadow.png" alt="" onerror="this.closest('.cat-icon').classList.add('ph')"><i>👁️</i></span><span lang="en">Eyeshadow</span><span lang="ko">아이섀도</span><span lang="ja">アイシャドウ</span><span lang="zh-CN">眼影</span><span lang="zh-TW">眼影</span><span lang="es">Sombra</span></div>
+                    <div class="swatches small">
+                        <div class="swatch"><span class="chip" style="background:#A97142"></span><span class="name">Bronze</span></div>
+                        <div class="swatch"><span class="chip" style="background:#B87333"></span><span class="name">Copper</span></div>
+                        <div class="swatch"><span class="chip" style="background:#6B7A3F"></span><span class="name">Olive</span></div>
+                    </div>
+                    <p class="cat-tip"><span lang="en">Bronze, copper and olive for a deep, warm eye.</span><span lang="ko">브론즈·코퍼·올리브로 깊고 따뜻하게.</span><span lang="ja">ブロンズ・カッパー・オリーブで深く暖かく。</span><span lang="zh-CN">古铜、铜色与橄榄，打造深邃暖眼妆。</span><span lang="zh-TW">古銅、銅色與橄欖，打造深邃暖眼妝。</span><span lang="es">Bronce, cobre y oliva para una mirada profunda y cálida.</span></p>
+                </div>
+                <div class="makeup-cat">
+                    <div class="cat-head"><span class="cat-icon"><img src="img/cosmetic/highlighter.png" alt="" onerror="this.closest('.cat-icon').classList.add('ph')"><i>✨</i></span><span lang="en">Highlighter</span><span lang="ko">하이라이터</span><span lang="ja">ハイライト</span><span lang="zh-CN">高光</span><span lang="zh-TW">高光</span><span lang="es">Iluminador</span></div>
+                    <div class="swatches small">
+                        <div class="swatch"><span class="chip" style="background:#C9A05A"></span><span class="name">Bronze</span></div>
+                        <div class="swatch"><span class="chip" style="background:#D4AF37"></span><span class="name">Warm gold</span></div>
+                    </div>
+                    <p class="cat-tip"><span lang="en">Bronze or warm gold, kept subtle and skin-like.</span><span lang="ko">브론즈·웜골드를 피부처럼 은은하게.</span><span lang="ja">ブロンズ・ウォームゴールドを肌なじみよく控えめに。</span><span lang="zh-CN">古铜或暖金，自然贴肤、不过亮。</span><span lang="zh-TW">古銅或暖金，自然貼膚、不過亮。</span><span lang="es">Bronce u oro cálido, sutil y natural.</span></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ WINTER COOL ============ -->
+        <section class="guide-card" id="winter">
+            <h2><span lang="en">Winter Cool</span><span lang="ko">겨울 쿨톤</span><span lang="ja">ウィンター（クール）</span><span lang="zh-CN">冬季冷型</span><span lang="zh-TW">冬季冷型</span><span lang="es">Invierno frío</span> <span class="en-name">Winter Cool</span></h2>
+            <p class="feature">
+                <span lang="en">Clear, cool and vivid. High-contrast jewel and icy tones suit you best.</span>
+                <span lang="ko">선명하고 시원하며 강렬한 톤. 또렷한 보석빛·아이시 컬러가 가장 잘 어울려요.</span>
+                <span lang="ja">クリアで、涼やかで、鮮やか。コントラストのある宝石色やアイシーな色がよく似合います。</span>
+                <span lang="zh-CN">清晰、冷调、鲜明。高对比的宝石色与冰感色最适合你。</span>
+                <span lang="zh-TW">清晰、冷調、鮮明。高對比的寶石色與冰感色最適合你。</span>
+                <span lang="es">Nítida, fría y vívida. Te favorecen los tonos joya y helados de alto contraste.</span>
+            </p>
+
+            <div class="block-label rec"><span lang="en">Best colors</span><span lang="ko">베스트 컬러</span><span lang="ja">ベストカラー</span><span lang="zh-CN">最佳色彩</span><span lang="zh-TW">最佳色彩</span><span lang="es">Mejores colores</span></div>
+            <div class="swatches">
+                <div class="swatch"><span class="chip" style="background:#D11F3C"></span><span class="name">True red</span></div>
+                <div class="swatch"><span class="chip" style="background:#C71585"></span><span class="name">Fuchsia</span></div>
+                <div class="swatch"><span class="chip" style="background:#2B4FA2"></span><span class="name">Royal blue</span></div>
+                <div class="swatch"><span class="chip" style="background:#1E7A5E"></span><span class="name">Emerald</span></div>
+                <div class="swatch"><span class="chip" style="background:#EAEFF5"></span><span class="name">Pure white</span></div>
+                <div class="swatch"><span class="chip" style="background:#1F1F1F"></span><span class="name">Black</span></div>
+            </div>
+            <div class="block-label avoid"><span lang="en">Colors to avoid</span><span lang="ko">피할 컬러</span><span lang="ja">避けたい色</span><span lang="zh-CN">应避免</span><span lang="zh-TW">應避免</span><span lang="es">Colores a evitar</span></div>
+            <div class="swatches small">
+                <div class="swatch"><span class="chip" style="background:#E8772E"></span><span class="name">Orange</span></div>
+                <div class="swatch"><span class="chip" style="background:#C19A6B"></span><span class="name">Camel</span></div>
+                <div class="swatch"><span class="chip" style="background:#6B7A3F"></span><span class="name">Olive</span></div>
+                <div class="swatch"><span class="chip" style="background:#D8B894"></span><span class="name">Warm beige</span></div>
+            </div>
+
+            <div class="foundation">
+                <b><span lang="en">Foundation</span><span lang="ko">파운데이션</span><span lang="ja">ファンデーション</span><span lang="zh-CN">粉底</span><span lang="zh-TW">粉底</span><span lang="es">Base</span></b> ·
+                <span lang="en">Cool / pink or neutral undertone. Clean and bright; avoid muddy or yellow bases.</span>
+                <span lang="ko">쿨·핑크 또는 뉴트럴 언더톤. 깨끗하고 화사하게. 칙칙하거나 옐로한 베이스는 피하세요.</span>
+                <span lang="ja">クール/ピンク〜ニュートラル系。くすみやイエロー系ベースは避けて。</span>
+                <span lang="zh-CN">冷/粉或中性调。干净明亮，避免发黄或浑浊的粉底。</span>
+                <span lang="zh-TW">冷/粉或中性調。乾淨明亮，避免發黃或混濁的粉底。</span>
+                <span lang="es">Subtono frío / rosado o neutro. Limpia y luminosa; evita bases apagadas o amarillas.</span>
+            </div>
+
+            <div class="makeup-grid">
+                <div class="makeup-cat">
+                    <div class="cat-head"><span class="cat-icon"><img src="img/cosmetic/lip.png" alt="" onerror="this.closest('.cat-icon').classList.add('ph')"><i>💄</i></span><span lang="en">Lip</span><span lang="ko">립</span><span lang="ja">リップ</span><span lang="zh-CN">唇彩</span><span lang="zh-TW">唇彩</span><span lang="es">Labios</span></div>
+                    <div class="swatches small">
+                        <div class="swatch"><span class="chip" style="background:#D11F3C"></span><span class="name">True red</span></div>
+                        <div class="swatch"><span class="chip" style="background:#C71585"></span><span class="name">Fuchsia</span></div>
+                        <div class="swatch"><span class="chip" style="background:#6A2C45"></span><span class="name">Plum</span></div>
+                    </div>
+                    <p class="cat-tip"><span lang="en">True red, fuchsia or plum — bold and clear suits you.</span><span lang="ko">트루레드·푸시아·플럼처럼 또렷하고 강한 컬러로.</span><span lang="ja">トゥルーレッド・フューシャ・プラムなど鮮やかな色で。</span><span lang="zh-CN">正红、桃红或梅子色，浓郁清晰更出彩。</span><span lang="zh-TW">正紅、桃紅或梅子色，濃郁清晰更出彩。</span><span lang="es">Rojo puro, fucsia o ciruela: intensos y nítidos.</span></p>
+                </div>
+                <div class="makeup-cat">
+                    <div class="cat-head"><span class="cat-icon"><img src="img/cosmetic/blush.png" alt="" onerror="this.closest('.cat-icon').classList.add('ph')"><i>🌸</i></span><span lang="en">Blush</span><span lang="ko">블러셔</span><span lang="ja">チーク</span><span lang="zh-CN">腮红</span><span lang="zh-TW">腮紅</span><span lang="es">Rubor</span></div>
+                    <div class="swatches small">
+                        <div class="swatch"><span class="chip" style="background:#E0567E"></span><span class="name">Cool pink</span></div>
+                        <div class="swatch"><span class="chip" style="background:#8E4163"></span><span class="name">Plum</span></div>
+                        <div class="swatch"><span class="chip" style="background:#B33A5B"></span><span class="name">Deep rose</span></div>
+                    </div>
+                    <p class="cat-tip"><span lang="en">Cool pink or plum with a light hand to keep it clean.</span><span lang="ko">쿨핑크·플럼을 소량만 발라 깔끔하게.</span><span lang="ja">クールピンク・プラムを少量で清潔感を。</span><span lang="zh-CN">冷粉或梅子色，少量薄扫保持干净。</span><span lang="zh-TW">冷粉或梅子色，少量薄掃保持乾淨。</span><span lang="es">Rosa frío o ciruela en poca cantidad, limpio.</span></p>
+                </div>
+                <div class="makeup-cat">
+                    <div class="cat-head"><span class="cat-icon"><img src="img/cosmetic/eyeshadow.png" alt="" onerror="this.closest('.cat-icon').classList.add('ph')"><i>👁️</i></span><span lang="en">Eyeshadow</span><span lang="ko">아이섀도</span><span lang="ja">アイシャドウ</span><span lang="zh-CN">眼影</span><span lang="zh-TW">眼影</span><span lang="es">Sombra</span></div>
+                    <div class="swatches small">
+                        <div class="swatch"><span class="chip" style="background:#C0C4CC"></span><span class="name">Silver</span></div>
+                        <div class="swatch"><span class="chip" style="background:#3A3A3C"></span><span class="name">Charcoal</span></div>
+                        <div class="swatch"><span class="chip" style="background:#4E2A40"></span><span class="name">Deep plum</span></div>
+                    </div>
+                    <p class="cat-tip"><span lang="en">Silver, charcoal and deep plum for a crisp, defined eye.</span><span lang="ko">실버·차콜·딥플럼으로 또렷하고 시크하게.</span><span lang="ja">シルバー・チャコール・ディーププラムでくっきりと。</span><span lang="zh-CN">银色、炭灰与深梅，打造清晰利落眼妆。</span><span lang="zh-TW">銀色、炭灰與深梅，打造清晰俐落眼妝。</span><span lang="es">Plata, carbón y ciruela profunda para una mirada definida.</span></p>
+                </div>
+                <div class="makeup-cat">
+                    <div class="cat-head"><span class="cat-icon"><img src="img/cosmetic/highlighter.png" alt="" onerror="this.closest('.cat-icon').classList.add('ph')"><i>✨</i></span><span lang="en">Highlighter</span><span lang="ko">하이라이터</span><span lang="ja">ハイライト</span><span lang="zh-CN">高光</span><span lang="zh-TW">高光</span><span lang="es">Iluminador</span></div>
+                    <div class="swatches small">
+                        <div class="swatch"><span class="chip" style="background:#DDE2E6"></span><span class="name">Cool silver</span></div>
+                        <div class="swatch"><span class="chip" style="background:#F0F4F8"></span><span class="name">Icy white</span></div>
+                    </div>
+                    <p class="cat-tip"><span lang="en">Cool silver or icy white for a crystalline glow.</span><span lang="ko">쿨 실버·아이시 화이트로 영롱한 광채.</span><span lang="ja">クールシルバー・アイシーホワイトで透明感のある輝きを。</span><span lang="zh-CN">冷银或冰白，打造剔透光泽。</span><span lang="zh-TW">冷銀或冰白，打造剔透光澤。</span><span lang="es">Plata fría o blanco helado para un brillo cristalino.</span></p>
+                </div>
+            </div>
+        </section>
+
+        <p class="footer-note">
+            <span lang="en">Personal color is a guide to help you choose — trust what makes you feel confident. Lighting and screens can shift how colors look.</span>
+            <span lang="ko">퍼스널 컬러는 선택을 돕는 참고예요. 무엇보다 본인이 좋아하고 자신있는 색을 우선하세요. 조명·화면에 따라 색이 다르게 보일 수 있어요.</span>
+            <span lang="ja">パーソナルカラーは選択を助ける目安です。自分が心地よいと感じる色を大切に。照明や画面で色味は変わって見えます。</span>
+            <span lang="zh-CN">个人色彩只是帮助选择的参考，最重要的是你自己喜欢、自信的颜色。光线与屏幕会影响颜色呈现。</span>
+            <span lang="zh-TW">個人色彩只是幫助選擇的參考，最重要的是你自己喜歡、自信的顏色。光線與螢幕會影響顏色呈現。</span>
+            <span lang="es">El color personal es una guía para ayudarte a elegir; confía en lo que te haga sentir segura. La luz y las pantallas alteran los colores.</span>
+        </p>
+    </div>
+
+    <script>
+        var VALID_LANGS = ['en','ko','ja','zh-CN','zh-TW','es'];
+        var VALID_SECTIONS = ['spring','summer','autumn','winter'];
+
+        function setLang(lang) {
+            VALID_LANGS.forEach(function(c){ document.body.classList.remove('lang-' + c); });
+            document.body.classList.add('lang-' + lang);
+            document.querySelectorAll('.lang-btn').forEach(function(b){
+                b.classList.toggle('active', b.getAttribute('onclick').indexOf("'" + lang + "'") !== -1);
+            });
+            try { localStorage.setItem('preferred-lang', lang); } catch (e) {}
+        }
+
+        function markActiveChip(id) {
+            document.querySelectorAll('.section-chip').forEach(function(c){
+                c.classList.toggle('active', c.getAttribute('href') === '#' + id);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var params = new URLSearchParams(location.search);
+
+            // 언어: ?lang= → localStorage → 기본 en
+            var lang = params.get('lang') || (function(){ try { return localStorage.getItem('preferred-lang'); } catch (e) { return null; } })() || 'en';
+            if (VALID_LANGS.indexOf(lang) === -1) lang = 'en';
+            setLang(lang);
+
+            // 시즌 점프: #hash 우선, 없으면 ?season= 분석값
+            var target = null;
+            var hash = (location.hash || '').replace('#', '');
+            if (VALID_SECTIONS.indexOf(hash) !== -1) {
+                target = hash;
+            } else {
+                var season = (params.get('season') || '').toLowerCase();
+                if (VALID_SECTIONS.indexOf(season) !== -1) target = season;
+            }
+
+            if (target) {
+                markActiveChip(target);
+                var el = document.getElementById(target);
+                if (el) { setTimeout(function(){ el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 120); }
+            }
+        });
+    </script>
+</body>
+</html>
