@@ -99,6 +99,13 @@
         .oy-item a { flex: 1; display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 13px; font-weight: 700; color: #3d6b1f; text-decoration: none; background: rgba(120,180,70,0.12); border: 1px solid rgba(120,180,70,0.25); border-radius: 10px; padding: 9px 12px; transition: background .15s; }
         .oy-item a:hover { background: rgba(120,180,70,0.2); }
         .oy-item a .arr { font-size: 11px; font-weight: 600; color: #6aa83a; white-space: nowrap; }
+            /* 인종 분기 (caucasian, EN/ES 텍스트) */
+        body.lang-en span[lang="en"][data-race="caucasian"] { display: none; }
+        body.lang-en.race-caucasian span[lang="en"][data-race="asian"] { display: none; }
+        body.lang-en.race-caucasian span[lang="en"][data-race="caucasian"] { display: inline; }
+        body.lang-es span[lang="es"][data-race="caucasian"] { display: none; }
+        body.lang-es.race-caucasian span[lang="es"][data-race="asian"] { display: none; }
+        body.lang-es.race-caucasian span[lang="es"][data-race="caucasian"] { display: inline; }
     </style>
 </head>
 <body class="lang-en">
@@ -178,12 +185,12 @@
 
             <div class="foundation">
                 <b><span lang="en">Foundation</span><span lang="ko">파운데이션</span><span lang="ja">ファンデーション</span><span lang="zh-CN">粉底</span><span lang="zh-TW">粉底</span><span lang="es">Base</span></b> ·
-                <span lang="en">Warm / yellow undertone, light–medium. Keep it fresh; avoid gray or pink-based shades.</span>
+                <span lang="en" data-race="asian">Warm / yellow undertone, light–medium. Keep it fresh; avoid gray or pink-based shades.</span><span lang="en" data-race="caucasian">Warm / yellow or peachy undertone — fair to tan. A fresh or lightly sun-kissed base both suit you; avoid gray or pink-based shades.</span>
                 <span lang="ko">웜·옐로 언더톤, 라이트~미디엄. 산뜻하게. 그레이·핑크 베이스는 피하세요.</span>
                 <span lang="ja">ウォーム/イエロー系、ライト〜ミディアム。グレーやピンク系ベースは避けて。</span>
                 <span lang="zh-CN">暖/黄调，浅至中等。保持清透，避免灰调或粉调粉底。</span>
                 <span lang="zh-TW">暖/黃調，淺至中等。保持清透，避免灰調或粉調粉底。</span>
-                <span lang="es">Subtono cálido / amarillo, claro–medio. Fresca; evita bases grises o rosadas.</span>
+                <span lang="es" data-race="asian">Subtono cálido / amarillo, claro–medio. Fresca; evita bases grises o rosadas.</span><span lang="es" data-race="caucasian">Subtono cálido / amarillo o melocotón — de claro a tostado. Te sienta bien una base fresca o ligeramente bronceada; evita bases grises o rosadas.</span>
             </div>
 
             <div class="makeup-grid">
@@ -267,12 +274,12 @@
 
             <div class="foundation">
                 <b><span lang="en">Foundation</span><span lang="ko">파운데이션</span><span lang="ja">ファンデーション</span><span lang="zh-CN">粉底</span><span lang="zh-TW">粉底</span><span lang="es">Base</span></b> ·
-                <span lang="en">Cool / pink undertone, light–medium. Soft and luminous; avoid yellow or orange bases.</span>
+                <span lang="en" data-race="asian">Cool / pink undertone, light–medium. Soft and luminous; avoid yellow or orange bases.</span><span lang="en" data-race="caucasian">Cool / pink or rosy undertone — fair to light tan. Soft and natural; avoid yellow or orange bases.</span>
                 <span lang="ko">쿨·핑크 언더톤, 라이트~미디엄. 부드럽고 윤기있게. 옐로·오렌지 베이스는 피하세요.</span>
                 <span lang="ja">クール/ピンク系、ライト〜ミディアム。イエローやオレンジ系ベースは避けて。</span>
                 <span lang="zh-CN">冷/粉调，浅至中等。柔润，避免黄调或橘调粉底。</span>
                 <span lang="zh-TW">冷/粉調，淺至中等。柔潤，避免黃調或橘調粉底。</span>
-                <span lang="es">Subtono frío / rosado, claro–medio. Suave; evita bases amarillas o naranjas.</span>
+                <span lang="es" data-race="asian">Subtono frío / rosado, claro–medio. Suave; evita bases amarillas o naranjas.</span><span lang="es" data-race="caucasian">Subtono frío / rosado — de claro a ligeramente tostado. Suave y natural; evita bases amarillas o naranjas.</span>
             </div>
 
             <div class="makeup-grid">
@@ -283,7 +290,7 @@
                         <div class="swatch"><span class="chip" style="background:#C08497"></span><span class="name">Mauve</span></div>
                         <div class="swatch"><span class="chip" style="background:#E6A0B0"></span><span class="name">Soft pink</span></div>
                     </div>
-                    <p class="cat-tip"><span lang="en">Rosy pinks and mauves; soft MLBB tones suit you.</span><span lang="ko">로지 핑크·모브 계열, 자연스러운 MLBB 톤으로.</span><span lang="ja">ローズピンク・モーヴ系、ナチュラルなMLBBトーンで。</span><span lang="zh-CN">玫瑰粉、藕紫，自然的MLBB色调更显气质。</span><span lang="zh-TW">玫瑰粉、藕紫，自然的MLBB色調更顯氣質。</span><span lang="es">Rosas y malvas suaves; tonos MLBB naturales.</span></p>
+                    <p class="cat-tip"><span lang="en" data-race="asian">Rosy pinks and mauves; soft MLBB tones suit you.</span><span lang="en" data-race="caucasian">Rosy pinks and mauves — from a natural your-lips-but-better tint to a fuller flush, as you like.</span><span lang="ko">로지 핑크·모브 계열, 자연스러운 MLBB 톤으로.</span><span lang="ja">ローズピンク・モーヴ系、ナチュラルなMLBBトーンで。</span><span lang="zh-CN">玫瑰粉、藕紫，自然的MLBB色调更显气质。</span><span lang="zh-TW">玫瑰粉、藕紫，自然的MLBB色調更顯氣質。</span><span lang="es" data-race="asian">Rosas y malvas suaves; tonos MLBB naturales.</span><span lang="es" data-race="caucasian">Rosas y malvas suaves — desde un tono natural 'tus labios pero mejor' hasta un color más intenso, como prefieras.</span></p>
                 </div>
                 <div class="makeup-cat">
                     <div class="cat-head"><span class="cat-icon"><img src="img/cosmetic/blush.png" alt="" onerror="this.closest('.cat-icon').classList.add('ph')"><i>🌸</i></span><span lang="en">Blush</span><span lang="ko">블러셔</span><span lang="ja">チーク</span><span lang="zh-CN">腮红</span><span lang="zh-TW">腮紅</span><span lang="es">Rubor</span></div>
@@ -356,12 +363,12 @@
 
             <div class="foundation">
                 <b><span lang="en">Foundation</span><span lang="ko">파운데이션</span><span lang="ja">ファンデーション</span><span lang="zh-CN">粉底</span><span lang="zh-TW">粉底</span><span lang="es">Base</span></b> ·
-                <span lang="en">Warm / golden undertone, medium–deep. Avoid pink or cool bases.</span>
+                <span lang="en" data-race="asian">Warm / golden undertone, medium–deep. Avoid pink or cool bases.</span><span lang="en" data-race="caucasian">Warm / golden or olive undertone — medium to deep, bronzed and warm. Avoid pink or cool bases.</span>
                 <span lang="ko">웜·골든 언더톤, 미디엄~딥. 핑크·쿨 베이스는 피하세요.</span>
                 <span lang="ja">ウォーム/ゴールデン系、ミディアム〜ディープ。ピンクやクール系ベースは避けて。</span>
                 <span lang="zh-CN">暖/金调，中至深。避免粉调或冷调粉底。</span>
                 <span lang="zh-TW">暖/金調，中至深。避免粉調或冷調粉底。</span>
-                <span lang="es">Subtono cálido / dorado, medio–profundo. Evita bases rosadas o frías.</span>
+                <span lang="es" data-race="asian">Subtono cálido / dorado, medio–profundo. Evita bases rosadas o frías.</span><span lang="es" data-race="caucasian">Subtono cálido / dorado u oliva — de medio a profundo, bronceado y cálido. Evita bases rosadas o frías.</span>
             </div>
 
             <div class="makeup-grid">
@@ -445,12 +452,12 @@
 
             <div class="foundation">
                 <b><span lang="en">Foundation</span><span lang="ko">파운데이션</span><span lang="ja">ファンデーション</span><span lang="zh-CN">粉底</span><span lang="zh-TW">粉底</span><span lang="es">Base</span></b> ·
-                <span lang="en">Cool / pink or neutral undertone. Clean and bright; avoid muddy or yellow bases.</span>
+                <span lang="en" data-race="asian">Cool / pink or neutral undertone. Clean and bright; avoid muddy or yellow bases.</span><span lang="en" data-race="caucasian">Cool / pink or neutral undertone — fair porcelain to deep, kept clear and clean. Avoid muddy or yellow bases.</span>
                 <span lang="ko">쿨·핑크 또는 뉴트럴 언더톤. 깨끗하고 화사하게. 칙칙하거나 옐로한 베이스는 피하세요.</span>
                 <span lang="ja">クール/ピンク〜ニュートラル系。くすみやイエロー系ベースは避けて。</span>
                 <span lang="zh-CN">冷/粉或中性调。干净明亮，避免发黄或浑浊的粉底。</span>
                 <span lang="zh-TW">冷/粉或中性調。乾淨明亮，避免發黃或混濁的粉底。</span>
-                <span lang="es">Subtono frío / rosado o neutro. Limpia y luminosa; evita bases apagadas o amarillas.</span>
+                <span lang="es" data-race="asian">Subtono frío / rosado o neutro. Limpia y luminosa; evita bases apagadas o amarillas.</span><span lang="es" data-race="caucasian">Subtono frío / rosado o neutro — de muy claro a profundo, limpio y nítido. Evita bases apagadas o amarillas.</span>
             </div>
 
             <div class="makeup-grid">
@@ -524,6 +531,20 @@
                 b.classList.toggle('active', b.getAttribute('onclick').indexOf("'" + lang + "'") !== -1);
             });
             try { localStorage.setItem('preferred-lang', lang); } catch (e) {}
+            applyRaceForLang();
+        }
+
+        // 인종 — ?race=caucasian 명시 우선, 없으면 언어로 추정(en/es=caucasian, 그 외=asian). 저장 안 함.
+        var raceExplicit = false;
+        function setRaceSilent(r) {
+            document.body.classList.remove('race-caucasian');
+            if (r === 'caucasian') document.body.classList.add('race-caucasian');
+        }
+        function applyRaceForLang() {
+            if (raceExplicit) return;
+            var m = document.body.className.match(/\blang-([A-Za-z-]+)\b/);
+            var lng = m ? m[1] : 'en';
+            setRaceSilent((lng === 'en' || lng === 'es') ? 'caucasian' : 'asian');
         }
 
         function markActiveChip(id) {
@@ -539,6 +560,10 @@
             var lang = params.get('lang') || (function(){ try { return localStorage.getItem('preferred-lang'); } catch (e) { return null; } })() || 'en';
             if (VALID_LANGS.indexOf(lang) === -1) lang = 'en';
             setLang(lang);
+
+            // 인종: ?race= 명시 우선 (없으면 setLang이 언어로 추정)
+            var raceParam = params.get('race');
+            if (raceParam) { raceExplicit = true; setRaceSilent(raceParam); }
 
             // 시즌 점프: #hash 우선, 없으면 ?season= 분석값
             var target = null;
