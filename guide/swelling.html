@@ -99,6 +99,13 @@
         body.lang-zh-CN span[lang="zh-CN"] { display: inline; }
         body.lang-zh-TW span[lang="zh-TW"] { display: inline; }
         body.lang-es span[lang="es"] { display: inline; }
+            /* 인종 분기 (caucasian, EN/ES 텍스트) */
+        body.lang-en span[lang="en"][data-race="caucasian"] { display: none; }
+        body.lang-en.race-caucasian span[lang="en"][data-race="asian"] { display: none; }
+        body.lang-en.race-caucasian span[lang="en"][data-race="caucasian"] { display: inline; }
+        body.lang-es span[lang="es"][data-race="caucasian"] { display: none; }
+        body.lang-es.race-caucasian span[lang="es"][data-race="asian"] { display: none; }
+        body.lang-es.race-caucasian span[lang="es"][data-race="caucasian"] { display: inline; }
     </style>
 </head>
 <body class="lang-en">
@@ -124,12 +131,12 @@
             <span lang="es">Guía para desinflamar el rostro</span>
         </h1>
         <p class="subtitle">
-            <span lang="en">Drain the puffiness behind a bigger-looking face. Lymph massage by area, plus diet &amp; habits. A guide, not medical advice.</span>
+            <span lang="en" data-race="asian">Drain the puffiness behind a bigger-looking face. Lymph massage by area, plus diet &amp; habits. A guide, not medical advice.</span><span lang="en" data-race="caucasian">Ease facial puffiness for a fresh, less-tired look — lymph massage by area, plus diet &amp; habits. A guide, not medical advice.</span>
             <span lang="ko">얼굴을 커 보이게 하는 붓기를 빼보세요. 부위별 림프 마사지와 식이·생활 습관까지. 의료 조언이 아닌 참고용 가이드입니다.</span>
             <span lang="ja">顔を大きく見せるむくみを流しましょう。部位別リンパマッサージと食事・習慣まで。医療アドバイスではなく参考ガイドです。</span>
             <span lang="zh-CN">排走让脸显大的浮肿。分部位淋巴按摩，加饮食与习惯。仅供参考，非医疗建议。</span>
             <span lang="zh-TW">排走讓臉顯大的浮腫。分部位淋巴按摩，加飲食與習慣。僅供參考，非醫療建議。</span>
-            <span lang="es">Drena la hinchazón que hace que tu cara parezca más grande. Masaje linfático por zonas, más dieta y hábitos. Una guía, no un consejo médico.</span>
+            <span lang="es" data-race="asian">Drena la hinchazón que hace que tu cara parezca más grande. Masaje linfático por zonas, más dieta y hábitos. Una guía, no un consejo médico.</span><span lang="es" data-race="caucasian">Reduce la hinchazón facial para un aspecto fresco y menos cansado. Masaje linfático por zonas, más dieta y hábitos. Una guía, no un consejo médico.</span>
         </p>
 
         <!-- 심각도 배너 (앱 측정 severity로 자동) -->
@@ -247,12 +254,12 @@
                 <span class="en-name" lang="ko">Cheeks</span><span class="en-name" lang="ja">Cheeks</span><span class="en-name" lang="zh-CN">Cheeks</span><span class="en-name" lang="zh-TW">Cheeks</span><span class="en-name" lang="es">Cheeks</span>
             </h2>
             <p class="feature">
-                <span lang="en">Puffy cheeks and cheekbones make the face look wider. Move the fluid up and out toward the ear, then down the neck.</span>
+                <span lang="en" data-race="asian">Puffy cheeks and cheekbones make the face look wider. Move the fluid up and out toward the ear, then down the neck.</span><span lang="en" data-race="caucasian">Puffy cheeks can look tired or heavy. Move the fluid up and out toward the ear, then down the neck.</span>
                 <span lang="ko">볼·광대가 부어 얼굴이 넓어 보이는 타입이에요. 수분을 위·바깥(귀) 쪽으로 보낸 뒤 목으로 내려보내요.</span>
                 <span lang="ja">頬・頬骨がむくんで顔が広く見えるタイプ。水分を上・外（耳）へ送り、首へ流す。</span>
                 <span lang="zh-CN">脸颊、颧骨浮肿让脸显宽。把水分向上、向外（耳）推，再向下导入颈部。</span>
                 <span lang="zh-TW">臉頰、顴骨浮腫讓臉顯寬。把水分向上、向外（耳）推，再向下導入頸部。</span>
-                <span lang="es">Las mejillas y los pómulos hinchados hacen que la cara parezca más ancha. Lleva el líquido hacia arriba y hacia fuera, en dirección a la oreja, y luego bájalo por el cuello.</span>
+                <span lang="es" data-race="asian">Las mejillas y los pómulos hinchados hacen que la cara parezca más ancha. Lleva el líquido hacia arriba y hacia fuera, en dirección a la oreja, y luego bájalo por el cuello.</span><span lang="es" data-race="caucasian">Las mejillas hinchadas pueden verse cansadas o pesadas. Lleva el líquido hacia arriba y hacia fuera, en dirección a la oreja, y luego bájalo por el cuello.</span>
             </p>
             <a class="routine-link" href="#basic">💡 <span lang="en">Open the flow with the basic lymph routine first →</span><span lang="ko">먼저 기본 림프 루틴으로 흐름을 열어주세요 →</span><span lang="ja">まず基本のリンパルーティンで流れを作る →</span><span lang="zh-CN">先用基础淋巴流程打开通道 →</span><span lang="zh-TW">先用基礎淋巴流程打開通道 →</span><span lang="es">Abre el flujo primero con la rutina linfática básica →</span></a>
             <div class="vid-row">
@@ -283,12 +290,12 @@
                 <span class="en-name" lang="ko">Jawline</span><span class="en-name" lang="ja">Jawline</span><span class="en-name" lang="zh-CN">Jawline</span><span class="en-name" lang="zh-TW">Jawline</span><span class="en-name" lang="es">Jawline</span>
             </h2>
             <p class="feature">
-                <span lang="en">A puffy jaw and under-chin can read as a double chin. Clearing the lymph here sharpens the face line.</span>
+                <span lang="en" data-race="asian">A puffy jaw and under-chin can read as a double chin. Clearing the lymph here sharpens the face line.</span><span lang="en" data-race="caucasian">A puffy jaw and under-chin can blur your jawline. Clearing the lymph here helps your natural jawline show.</span>
                 <span lang="ko">턱 아래·얼굴선이 부어 이중턱처럼 보이는 타입이에요. 이 부위 림프를 풀면 얼굴선이 또렷해져요.</span>
                 <span lang="ja">あご下・フェイスラインがむくんで二重あごに見えるタイプ。ここのリンパを流すと輪郭がすっきり。</span>
                 <span lang="zh-CN">下巴下方、脸线浮肿会显双下巴。疏通此处淋巴可让脸线更清晰。</span>
                 <span lang="zh-TW">下巴下方、臉線浮腫會顯雙下巴。疏通此處淋巴可讓臉線更清晰。</span>
-                <span lang="es">Una mandíbula y un mentón hinchados pueden parecer papada. Drenar la linfa de esta zona define el contorno del rostro.</span>
+                <span lang="es" data-race="asian">Una mandíbula y un mentón hinchados pueden parecer papada. Drenar la linfa de esta zona define el contorno del rostro.</span><span lang="es" data-race="caucasian">Una mandíbula y un mentón hinchados pueden difuminar tu línea mandibular. Drenar la linfa de esta zona ayuda a que tu mandíbula natural se marque.</span>
             </p>
             <a class="routine-link" href="#basic">💡 <span lang="en">Open the flow with the basic lymph routine first →</span><span lang="ko">먼저 기본 림프 루틴으로 흐름을 열어주세요 →</span><span lang="ja">まず基本のリンパルーティンで流れを作る →</span><span lang="zh-CN">先用基础淋巴流程打开通道 →</span><span lang="zh-TW">先用基礎淋巴流程打開通道 →</span><span lang="es">Abre el flujo primero con la rutina linfática básica →</span></a>
             <div class="vid-row">
@@ -328,8 +335,8 @@
             </p>
             <div class="block-label rec">✓ <span lang="en">Helps</span><span lang="ko">도움이 돼요</span><span lang="ja">役立つこと</span><span lang="zh-CN">有帮助</span><span lang="zh-TW">有幫助</span><span lang="es">Ayuda</span></div>
             <ul class="tips rec">
-                <li><span lang="en">Potassium foods flush out sodium — banana, red bean, pumpkin, seaweed, spinach, avocado.</span><span lang="ko">칼륨 식품으로 나트륨 배출 — 바나나·팥·호박·미역·다시마·시금치·아보카도.</span><span lang="ja">カリウムの多い食品で塩分排出 — バナナ・小豆・かぼちゃ・わかめ・ほうれん草・アボカド。</span><span lang="zh-CN">高钾食物帮助排钠——香蕉、红豆、南瓜、海带、菠菜、牛油果。</span><span lang="zh-TW">高鉀食物幫助排鈉——香蕉、紅豆、南瓜、海帶、菠菜、酪梨。</span><span lang="es">Los alimentos ricos en potasio ayudan a eliminar el sodio: plátano, frijol rojo, calabaza, algas, espinaca, aguacate.</span></li>
-                <li><span lang="en">Eat lighter on salt — late-night salty food, instant noodles, and alcohol are the top causes of morning puffiness.</span><span lang="ko">저염식 — 자기 전 짠 음식·라면·음주가 아침 붓기의 주범이에요.</span><span lang="ja">減塩 — 寝る前の塩辛い食事・ラーメン・飲酒が朝むくみの主因。</span><span lang="zh-CN">少盐——睡前咸食、泡面、饮酒是早晨浮肿的元凶。</span><span lang="zh-TW">少鹽——睡前鹹食、泡麵、飲酒是早晨浮腫的元凶。</span><span lang="es">Reduce la sal: la comida salada de noche, los fideos instantáneos y el alcohol son las principales causas de hinchazón matutina.</span></li>
+                <li><span lang="en" data-race="asian">Potassium foods flush out sodium — banana, red bean, pumpkin, seaweed, spinach, avocado.</span><span lang="en" data-race="caucasian">Potassium-rich foods flush out sodium — banana, potato, spinach, avocado, and beans.</span><span lang="ko">칼륨 식품으로 나트륨 배출 — 바나나·팥·호박·미역·다시마·시금치·아보카도.</span><span lang="ja">カリウムの多い食品で塩分排出 — バナナ・小豆・かぼちゃ・わかめ・ほうれん草・アボカド。</span><span lang="zh-CN">高钾食物帮助排钠——香蕉、红豆、南瓜、海带、菠菜、牛油果。</span><span lang="zh-TW">高鉀食物幫助排鈉——香蕉、紅豆、南瓜、海帶、菠菜、酪梨。</span><span lang="es" data-race="asian">Los alimentos ricos en potasio ayudan a eliminar el sodio: plátano, frijol rojo, calabaza, algas, espinaca, aguacate.</span><span lang="es" data-race="caucasian">Los alimentos ricos en potasio ayudan a eliminar el sodio: plátano, patata, espinaca, aguacate y legumbres.</span></li>
+                <li><span lang="en" data-race="asian">Eat lighter on salt — late-night salty food, instant noodles, and alcohol are the top causes of morning puffiness.</span><span lang="en" data-race="caucasian">Eat lighter on salt — late-night salty or processed food, takeout, and alcohol are the top causes of morning puffiness.</span><span lang="ko">저염식 — 자기 전 짠 음식·라면·음주가 아침 붓기의 주범이에요.</span><span lang="ja">減塩 — 寝る前の塩辛い食事・ラーメン・飲酒が朝むくみの主因。</span><span lang="zh-CN">少盐——睡前咸食、泡面、饮酒是早晨浮肿的元凶。</span><span lang="zh-TW">少鹽——睡前鹹食、泡麵、飲酒是早晨浮腫的元凶。</span><span lang="es" data-race="asian">Reduce la sal: la comida salada de noche, los fideos instantáneos y el alcohol son las principales causas de hinchazón matutina.</span><span lang="es" data-race="caucasian">Reduce la sal: la comida salada o procesada de noche, la comida rápida y el alcohol son las principales causas de hinchazón matutina.</span></li>
                 <li><span lang="en">Drink enough water — when you're under-hydrated, the body holds onto fluid instead.</span><span lang="ko">수분 충분히 — 물이 부족하면 몸이 오히려 수분을 가둬요.</span><span lang="ja">水分はしっかり — 不足すると体は逆に水をため込む。</span><span lang="zh-CN">喝足水——缺水时身体反而会储水。</span><span lang="zh-TW">喝足水——缺水時身體反而會儲水。</span><span lang="es">Bebe suficiente agua: cuando estás poco hidratado, el cuerpo retiene líquido en su lugar.</span></li>
                 <li><span lang="en">Sleep deep and enough — poor sleep stalls the lymph system and you wake up puffy.</span><span lang="ko">깊은 수면 — 잠이 부족하면 림프가 안 돌아 아침에 부어요.</span><span lang="ja">しっかり深く眠る — 睡眠不足はリンパを滞らせ、朝むくむ。</span><span lang="zh-CN">睡得深而足——睡眠差会让淋巴停滞、早晨浮肿。</span><span lang="zh-TW">睡得深而足——睡眠差會讓淋巴停滯、早晨浮腫。</span><span lang="es">Duerme profundo y lo suficiente: dormir mal estanca el sistema linfático y amaneces hinchado.</span></li>
                 <li><span lang="en">Mind your pillow height — too flat lets fluid pool in the face; keep your head slightly raised.</span><span lang="ko">베개 높이 — 너무 낮으면 얼굴로 체액이 몰려요. 약간 높게.</span><span lang="ja">枕の高さ — 低すぎると顔に水分が溜まる。少し高めに。</span><span lang="zh-CN">注意枕头高度——太低会让体液积在脸上；稍微垫高。</span><span lang="zh-TW">注意枕頭高度——太低會讓體液積在臉上；稍微墊高。</span><span lang="es">Cuida la altura de la almohada: si es muy baja, el líquido se acumula en la cara; mantén la cabeza algo elevada.</span></li>
@@ -371,6 +378,19 @@
                 b.classList.toggle('active', b.getAttribute('onclick').indexOf("'" + lang + "'") !== -1);
             });
             try { localStorage.setItem('preferred-lang', lang); } catch (e) {}
+            applyRaceForLang();
+        }
+
+        var raceExplicit = false;
+        function setRaceSilent(r) {
+            document.body.classList.remove('race-caucasian');
+            if (r === 'caucasian') document.body.classList.add('race-caucasian');
+        }
+        function applyRaceForLang() {
+            if (raceExplicit) return;
+            var m = document.body.className.match(/\blang-([A-Za-z-]+)\b/);
+            var lng = m ? m[1] : 'en';
+            setRaceSilent((lng === 'en' || lng === 'es') ? 'caucasian' : 'asian');
         }
 
         function showBanner(sev) {
@@ -395,6 +415,9 @@
             var lang = params.get('lang') || (function(){ try { return localStorage.getItem('preferred-lang'); } catch (e) { return null; } })() || 'en';
             if (VALID_LANGS.indexOf(lang) === -1) lang = 'en';
             setLang(lang);
+
+            var raceParam = params.get('race');
+            if (raceParam) { raceExplicit = true; setRaceSilent(raceParam); }
 
             var sev = params.get('severity');
             if (sev && VALID_SEV.indexOf(sev) !== -1) showBanner(sev);
