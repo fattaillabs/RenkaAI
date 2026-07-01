@@ -120,6 +120,9 @@
         body.lang-es span[lang="es"][data-race="caucasian"] { display: none; }
         body.lang-es.race-caucasian span[lang="es"][data-race="asian"] { display: none; }
         body.lang-es.race-caucasian span[lang="es"][data-race="caucasian"] { display: inline; }
+        .face-img[data-race="caucasian"] { display: none; }
+        body.race-caucasian .face-img[data-race="asian"] { display: none; }
+        body.race-caucasian .face-img[data-race="caucasian"] { display: block; }
     </style>
 </head>
 <body class="lang-en">
@@ -210,7 +213,7 @@
 
             <div class="img-row">
                 <!-- IMAGE: 볼록형 헤어 · img/profile-convex-hair.jpg -->
-                <figure class="face-img"><img src="img/profile-convex-hair.jpg" alt="Convex profile hair" loading="lazy" width="400" height="500" onerror="this.closest('.face-img').classList.add('pending')"></figure>
+                <figure class="face-img" data-race="asian"><img src="img/profile-convex-hair.jpg" alt="Convex profile hair" loading="lazy" width="400" height="500" onerror="this.closest('.face-img').classList.add('pending')"></figure><figure class="face-img" data-race="caucasian"><img src="img/profile-convex-hair-c.jpg" alt="Convex profile hair" loading="lazy" width="400" height="500" onerror="this.closest('.face-img').classList.add('pending')"></figure>
             </div>
             <div class="block-label hair">💇 <span lang="en">Hair</span><span lang="ko">헤어 추천</span><span lang="ja">ヘア</span><span lang="zh-CN">发型推荐</span><span lang="zh-TW">髮型推薦</span><span lang="es">Cabello</span></div>
             <ul class="tips numbered hair">
@@ -225,7 +228,7 @@
 
             <div class="img-row">
                 <!-- IMAGE: 볼록형 메이크업 · img/profile-convex-makeup.jpg -->
-                <figure class="face-img"><img src="img/profile-convex-makeup.jpg" alt="Convex profile makeup" loading="lazy" width="400" height="500" onerror="this.closest('.face-img').classList.add('pending')"></figure>
+                <figure class="face-img" data-race="asian"><img src="img/profile-convex-makeup.jpg" alt="Convex profile makeup" loading="lazy" width="400" height="500" onerror="this.closest('.face-img').classList.add('pending')"></figure><figure class="face-img" data-race="caucasian"><img src="img/profile-convex-makeup-c.jpg" alt="Convex profile makeup" loading="lazy" width="400" height="500" onerror="this.closest('.face-img').classList.add('pending')"></figure>
             </div>
             <div class="block-label makeup">💄 <span lang="en">Makeup</span><span lang="ko">메이크업 추천</span><span lang="ja">メイク</span><span lang="zh-CN">妆容推荐</span><span lang="zh-TW">妝容推薦</span><span lang="es">Maquillaje</span></div>
             <ul class="tips numbered makeup">
@@ -286,7 +289,7 @@
 
             <div class="img-row">
                 <!-- IMAGE: 오목형 헤어 · img/profile-concave-hair.jpg -->
-                <figure class="face-img"><img src="img/profile-concave-hair.jpg" alt="Concave profile hair" loading="lazy" width="400" height="500" onerror="this.closest('.face-img').classList.add('pending')"></figure>
+                <figure class="face-img" data-race="asian"><img src="img/profile-concave-hair.jpg" alt="Concave profile hair" loading="lazy" width="400" height="500" onerror="this.closest('.face-img').classList.add('pending')"></figure><figure class="face-img" data-race="caucasian"><img src="img/profile-concave-hair-c.jpg" alt="Concave profile hair" loading="lazy" width="400" height="500" onerror="this.closest('.face-img').classList.add('pending')"></figure>
             </div>
             <div class="block-label hair">💇 <span lang="en">Hair</span><span lang="ko">헤어 추천</span><span lang="ja">ヘア</span><span lang="zh-CN">发型推荐</span><span lang="zh-TW">髮型推薦</span><span lang="es">Cabello</span></div>
             <ul class="tips numbered hair">
@@ -301,7 +304,7 @@
 
             <div class="img-row">
                 <!-- IMAGE: 오목형 메이크업 · img/profile-concave-makeup.jpg -->
-                <figure class="face-img"><img src="img/profile-concave-makeup.jpg" alt="Concave profile makeup" loading="lazy" width="400" height="500" onerror="this.closest('.face-img').classList.add('pending')"></figure>
+                <figure class="face-img" data-race="asian"><img src="img/profile-concave-makeup.jpg" alt="Concave profile makeup" loading="lazy" width="400" height="500" onerror="this.closest('.face-img').classList.add('pending')"></figure><figure class="face-img" data-race="caucasian"><img src="img/profile-concave-makeup-c.jpg" alt="Concave profile makeup" loading="lazy" width="400" height="500" onerror="this.closest('.face-img').classList.add('pending')"></figure>
             </div>
             <div class="block-label makeup">💄 <span lang="en">Makeup</span><span lang="ko">메이크업 추천</span><span lang="ja">メイク</span><span lang="zh-CN">妆容推荐</span><span lang="zh-TW">妝容推薦</span><span lang="es">Maquillaje</span></div>
             <ul class="tips numbered makeup">
