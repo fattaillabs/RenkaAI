@@ -3,525 +3,931 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Renka - 3D Face Scanner & Analyzer</title>
-    <meta name="description" content="World's first real 3D face scanner using IR depth sensor. Analyze golden ratio, symmetry, attractiveness. Plastic surgery simulator. Track puffiness daily.">
+    <title>Renka — True 3D Face Analyzer</title>
+    <meta name="description" content="World's first real 3D face scanner using the iPhone IR depth sensor. Golden ratio, symmetry, contour analysis, plastic surgery simulator, daily puffiness tracking — all on-device.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Renka — True 3D Face Analyzer">
+    <meta property="og:description" content="Golden ratio, symmetry, contour and daily puffiness — measured in true 3D with the iPhone IR depth sensor.">
+    <meta property="og:image" content="https://fattaillabs.com/RenkaAI/assets/og.jpg">
+    <meta property="og:url" content="https://fattaillabs.com/RenkaAI/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://fattaillabs.com/RenkaAI/assets/og.jpg">
     <style>
+        :root {
+            --bg: #FBF7F4;
+            --bg-soft: #F6EEE9;
+            --blush: #F7E4DC;
+            --ink: #23312A;
+            --ink-soft: #5D6B61;
+            --ink-faint: #97A49A;
+            --green: #59A24E;
+            --green-deep: #3E7F38;
+            --green-soft: #EAF4E6;
+            --green-grad: linear-gradient(135deg, #86C972 0%, #4C9A45 100%);
+            --card: #FFFFFF;
+            --line: rgba(35, 49, 42, 0.08);
+            --radius: 24px;
+            --shadow-soft: 0 20px 60px rgba(62, 90, 60, 0.10);
+            --shadow-card: 0 8px 30px rgba(62, 90, 60, 0.07);
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body { 
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
-            background: #0a0a0a;
-            min-height: 100vh; 
-            color: #fff; 
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Apple SD Gothic Neo', 'Hiragino Sans', 'PingFang SC', sans-serif;
+            background: var(--bg);
+            color: var(--ink);
+            line-height: 1.6;
+            overflow-x: hidden;
         }
-        
-        .container { 
-            max-width: 800px; 
-            margin: 0 auto; 
-            padding: 40px 20px; 
-        }
-        
-        /* Language Bar */
-        .lang-bar { 
-            display: flex; 
-            justify-content: flex-end; 
-            gap: 6px; 
-            margin-bottom: 20px; 
-            flex-wrap: wrap; 
-        }
-        
-        .lang-btn { 
-            background: rgba(255,255,255,0.04); 
-            border: 1px solid rgba(255,255,255,0.08); 
-            border-radius: 10px; 
-            padding: 8px 10px; 
-            font-size: 18px; 
-            cursor: pointer; 
-            transition: all 0.25s ease; 
-        }
-        
-        .lang-btn:hover { 
-            background: rgba(255,255,255,0.08); 
-            transform: translateY(-1px);
-        }
-        
-        .lang-btn.active { 
-            background: rgba(76,175,80,0.15); 
-            border-color: rgba(76,175,80,0.4); 
-        }
-        
-        /* Hero Section */
-        .hero { 
-            text-align: center; 
-            padding: 60px 0 80px; 
-        }
-        
-        .app-icon-wrapper {
-            position: relative;
-            width: 180px;
-            margin: 0 auto 40px;
-        }
-        
-        .app-icon { 
-            width: 180px; 
-            height: auto; 
-            display: block; 
-            border-radius: 36px;
-            box-shadow: 
-                0 20px 60px rgba(210,180,140,0.2),
-                0 8px 24px rgba(0,0,0,0.4);
-        }
-        
-        .app-icon-wrapper::after {
-            content: '';
-            position: absolute;
-            inset: -2px;
-            border-radius: 38px;
-            background: linear-gradient(135deg, rgba(212,184,150,0.3), rgba(212,184,150,0.05));
-            z-index: -1;
-        }
-        
-        .hero .tagline { 
-            font-size: 22px; 
-            color: #888; 
-            margin-bottom: 48px;
-            font-weight: 400;
-            letter-spacing: -0.3px;
-        }
-        
-        .download-btn { 
-            display: inline-flex; 
-            align-items: center; 
-            gap: 12px; 
-            background: #fff; 
-            color: #000; 
-            padding: 18px 36px; 
-            border-radius: 16px; 
-            text-decoration: none; 
-            font-weight: 600; 
-            font-size: 17px; 
-            transition: all 0.25s ease; 
-            box-shadow: 0 4px 20px rgba(255,255,255,0.1);
-        }
-        
-        .download-btn:hover { 
-            transform: translateY(-3px); 
-            box-shadow: 0 12px 40px rgba(255,255,255,0.15); 
-        }
-        
-        .download-btn svg { 
-            width: 26px; 
-            height: 26px; 
-        }
-        
-        /* Features Grid */
-        .features { 
-            display: grid; 
-            grid-template-columns: repeat(2, 1fr); 
-            gap: 16px; 
-            margin: 60px 0; 
-        }
-        
-        @media (max-width: 540px) { 
-            .features { grid-template-columns: 1fr; } 
-            .hero .tagline { font-size: 18px; }
-        }
-        
-        .feature { 
-            background: rgba(255,255,255,0.02); 
-            border: 1px solid rgba(255,255,255,0.06); 
-            padding: 28px 24px; 
-            border-radius: 20px; 
-            text-align: center; 
-            transition: all 0.25s ease; 
-        }
-        
-        .feature:hover { 
-            transform: translateY(-4px); 
-            border-color: rgba(76,175,80,0.25);
-            background: rgba(255,255,255,0.03);
-            box-shadow: 0 12px 40px rgba(0,0,0,0.3);
-        }
-        
-        .feature-icon { 
-            font-size: 44px; 
-            margin-bottom: 16px; 
-        }
-        
-        .feature h3 { 
-            font-size: 15px; 
-            font-weight: 600;
-            margin-bottom: 8px; 
-            color: #4CAF50; 
-            letter-spacing: -0.2px;
-        }
-        
-        .feature p { 
-            font-size: 13px; 
-            color: #666; 
-            line-height: 1.6; 
-        }
-        
-        /* Links Section */
-        .links-section { 
-            margin-top: 80px; 
-            padding-top: 40px; 
-            border-top: 1px solid rgba(255,255,255,0.06); 
-        }
-        
-        .links-title { 
-            font-size: 11px; 
-            color: #444; 
-            text-transform: uppercase; 
-            letter-spacing: 3px; 
-            margin-bottom: 24px; 
-            text-align: center;
-            font-weight: 500;
-        }
-        
-        .links { 
-            display: flex; 
-            justify-content: center; 
-            gap: 32px; 
-            flex-wrap: wrap; 
-        }
-        
-        .links a { 
-            color: #666; 
-            text-decoration: none; 
-            font-size: 14px; 
-            transition: color 0.2s ease;
-            font-weight: 450;
-        }
-        
-        .links a:hover { 
-            color: #4CAF50; 
-        }
-        
-        /* Footer */
-        .footer { 
-            text-align: center; 
-            margin-top: 80px; 
-            padding-top: 32px; 
-            border-top: 1px solid rgba(255,255,255,0.04); 
-        }
-        
-        .footer p { 
-            color: #333; 
-            font-size: 12px; 
-            margin-bottom: 8px; 
-        }
-        
-        .footer a { 
-            color: #444; 
-            text-decoration: none; 
-            transition: color 0.2s ease;
-        }
-        
-        .footer a:hover { 
-            color: #4CAF50; 
-        }
-        
-        /* Language Switching */
-        [lang]:not([lang="en"]) { display: none; }
-        body.lang-ko [lang="ko"] { display: block; }
-        body.lang-ko [lang="en"], body.lang-ko [lang="ja"], body.lang-ko [lang="zh-CN"], body.lang-ko [lang="zh-TW"] { display: none; }
-        body.lang-ja [lang="ja"] { display: block; }
-        body.lang-ja [lang="en"], body.lang-ja [lang="ko"], body.lang-ja [lang="zh-CN"], body.lang-ja [lang="zh-TW"] { display: none; }
-        body.lang-en [lang="en"] { display: block; }
-        body.lang-en [lang="ko"], body.lang-en [lang="ja"], body.lang-en [lang="zh-CN"], body.lang-en [lang="zh-TW"] { display: none; }
-        body.lang-zh-CN [lang="zh-CN"] { display: block; }
-        body.lang-zh-CN [lang="en"], body.lang-zh-CN [lang="ko"], body.lang-zh-CN [lang="ja"], body.lang-zh-CN [lang="zh-TW"] { display: none; }
-        body.lang-zh-TW [lang="zh-TW"] { display: block; }
-        body.lang-zh-TW [lang="en"], body.lang-zh-TW [lang="ko"], body.lang-zh-TW [lang="ja"], body.lang-zh-TW [lang="zh-CN"] { display: none; }
+
+        /* 앱 타이틀 폰트(titleSerif = New York)와 통일 — ui-serif는 애플 기기에서 New York으로 렌더 */
+        .serif { font-family: ui-serif, 'New York', 'Palatino', 'Georgia', 'Times New Roman', serif; }
+
+        /* ── Language visibility ───────────────────────── */
         span[lang] { display: none; }
-        body.lang-en span[lang="en"] { display: inline; }
-        body.lang-ko span[lang="ko"] { display: inline; }
-        body.lang-ja span[lang="ja"] { display: inline; }
-        body.lang-zh-CN span[lang="zh-CN"] { display: inline; }
+        body.lang-en span[lang="en"],
+        body.lang-ko span[lang="ko"],
+        body.lang-ja span[lang="ja"],
+        body.lang-zh-CN span[lang="zh-CN"],
         body.lang-zh-TW span[lang="zh-TW"] { display: inline; }
+
+        /* ── Nav ───────────────────────────────────────── */
+        .nav {
+            position: sticky; top: 0; z-index: 100;
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            background: rgba(251, 247, 244, 0.82);
+            border-bottom: 1px solid var(--line);
+        }
+        .nav-inner {
+            max-width: 1080px; margin: 0 auto;
+            display: flex; align-items: center; gap: 14px;
+            padding: 12px 24px;
+        }
+        .nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); margin-right: auto; }
+        .nav-brand img { width: 34px; height: 34px; border-radius: 9px; }
+        .nav-brand strong { font-size: 20px; letter-spacing: 0.2px; font-weight: 700; font-family: ui-serif, 'New York', 'Palatino', 'Georgia', serif; }
+        .lang-bar { display: flex; gap: 4px; }
+        .lang-btn {
+            background: transparent; border: 1px solid transparent; border-radius: 9px;
+            padding: 5px 7px; font-size: 16px; cursor: pointer; transition: all 0.2s ease; line-height: 1;
+        }
+        .lang-btn:hover { background: var(--green-soft); }
+        .lang-btn.active { background: var(--green-soft); border-color: rgba(89, 162, 78, 0.35); }
+        .nav-cta {
+            display: inline-flex; align-items: center; gap: 7px;
+            background: var(--ink); color: #fff; text-decoration: none;
+            font-size: 13.5px; font-weight: 600;
+            padding: 9px 16px; border-radius: 999px; transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+        .nav-cta:hover { background: var(--green-deep); transform: translateY(-1px); }
+        .nav-cta svg { width: 14px; height: 14px; }
+        @media (max-width: 560px) { .nav-cta span { display: none !important; } .nav-cta::after { content: '↓'; } }
+
+        /* ── Hero ──────────────────────────────────────── */
+        .hero {
+            position: relative;
+            max-width: 1080px; margin: 0 auto;
+            padding: 72px 24px 40px;
+            display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px;
+            align-items: center;
+        }
+        @media (max-width: 900px) {
+            .hero { grid-template-columns: 1fr; padding-top: 48px; text-align: center; }
+            .hero-visual { margin: 0 auto; }
+        }
+
+        .hero-bg {
+            position: absolute; inset: -120px -300px auto -300px; height: 720px;
+            background:
+                radial-gradient(560px 420px at 18% 20%, rgba(134, 201, 114, 0.16), transparent 65%),
+                radial-gradient(620px 480px at 85% 12%, rgba(247, 210, 195, 0.5), transparent 65%),
+                radial-gradient(500px 420px at 65% 80%, rgba(89, 162, 78, 0.08), transparent 60%);
+            pointer-events: none; z-index: -1;
+        }
+
+        .eyebrow {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-size: 12px; font-weight: 700; letter-spacing: 2.2px; text-transform: uppercase;
+            color: var(--green-deep);
+            background: var(--green-soft);
+            border: 1px solid rgba(89, 162, 78, 0.25);
+            padding: 7px 14px; border-radius: 999px;
+            margin-bottom: 22px;
+        }
+        .eyebrow::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 4px rgba(89, 162, 78, 0.18); }
+
+        .hero h1 {
+            font-size: clamp(38px, 5.4vw, 58px);
+            line-height: 1.12; letter-spacing: -1.2px; font-weight: 700;
+            margin-bottom: 20px;
+        }
+        .hero h1 em {
+            display: inline-block;
+            font-style: italic;
+            background: var(--green-grad);
+            -webkit-background-clip: text; background-clip: text;
+            -webkit-text-fill-color: transparent; color: transparent;
+            /* 이탤릭 세리프 글리프가 레이아웃 박스 밖으로 기울며 background-clip에 잘리는 것 방지 —
+               패딩으로 클립 영역을 넓히고 마진으로 자간 보정 */
+            padding: 0.06em 0.14em 0.06em 0.05em;
+            margin: -0.06em -0.07em -0.06em -0.05em;
+        }
+        .hero .sub {
+            font-size: 17.5px; color: var(--ink-soft); max-width: 480px;
+            margin-bottom: 32px;
+        }
+        @media (max-width: 900px) { .hero .sub { margin-left: auto; margin-right: auto; } }
+
+        .hero-ctas { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+        @media (max-width: 900px) { .hero-ctas { justify-content: center; } }
+        .store-badge { display: inline-block; transition: transform 0.25s ease, filter 0.25s ease; }
+        .store-badge img { height: 56px; display: block; }
+        .store-badge:hover { transform: translateY(-3px); filter: drop-shadow(0 10px 22px rgba(35,49,42,0.28)); }
+        .hero-note { font-size: 13px; color: var(--ink-faint); }
+
+        /* ── Hero phone mockup ─────────────────────────── */
+        .hero-visual { position: relative; width: min(320px, 82vw); justify-self: center; }
+        .phone {
+            position: relative;
+            border-radius: 46px;
+            background: #101512;
+            padding: 12px;
+            box-shadow: var(--shadow-soft), 0 2px 0 rgba(255,255,255,0.6) inset;
+            animation: float 7s ease-in-out infinite;
+        }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+        .phone-screen {
+            position: relative; overflow: hidden;
+            border-radius: 36px;
+            background: linear-gradient(180deg, #17211B 0%, #0E1511 100%);
+            aspect-ratio: 9 / 19;
+        }
+        .screen-photo {
+            position: absolute; inset: 0; width: 100%; height: 100%;
+            object-fit: cover; display: block;
+        }
+        .scan-face { position: absolute; inset: 0; z-index: 2; }
+        .phone-notch {
+            position: absolute; top: 10px; left: 50%; transform: translateX(-50%);
+            width: 34%; height: 22px; background: #101512; border-radius: 999px; z-index: 5;
+        }
+        .scan-face { position: absolute; inset: 0; width: 100%; height: 100%; }
+        .scanline {
+            position: absolute; left: 6%; right: 6%; height: 68px; z-index: 3;
+            background: linear-gradient(180deg, transparent, rgba(134, 201, 114, 0.22), transparent);
+            border-top: 1px solid rgba(134, 201, 114, 0.55);
+            animation: scan 3.6s ease-in-out infinite;
+        }
+        @keyframes scan { 0%, 100% { top: 14%; } 50% { top: 68%; } }
+        .screen-caption {
+            position: absolute; bottom: 18px; left: 0; right: 0; z-index: 4;
+            text-align: center; font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase;
+            color: rgba(214, 236, 205, 0.85);
+        }
+
+        .chip {
+            position: absolute; z-index: 6;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(89, 162, 78, 0.22);
+            border-radius: 16px;
+            padding: 10px 15px;
+            box-shadow: var(--shadow-card);
+            animation: float 6s ease-in-out infinite;
+        }
+        .chip .k { display: block; font-size: 10.5px; font-weight: 600; letter-spacing: 0.6px; color: var(--ink-faint); text-transform: uppercase; }
+        .chip .v { display: block; font-size: 19px; font-weight: 800; color: var(--green-deep); letter-spacing: -0.3px; }
+        .chip.c1 { top: 13%; left: -17%; animation-delay: 0.6s; }
+        .chip.c2 { top: 44%; right: -19%; animation-delay: 1.4s; }
+        .chip.c3 { bottom: 11%; left: -12%; animation-delay: 2.2s; }
+        .chip .badge-new {
+            display: inline-block; font-size: 8.5px; font-weight: 800; letter-spacing: 1px;
+            background: var(--green-grad); color: #fff;
+            border-radius: 999px; padding: 2px 7px; margin-left: 5px; vertical-align: 2px;
+        }
+        @media (max-width: 900px) {
+            .chip.c1 { left: -6%; } .chip.c2 { right: -6%; } .chip.c3 { left: -2%; }
+        }
+
+        /* ── Trust strip ───────────────────────────────── */
+        .trust {
+            max-width: 1080px; margin: 48px auto 0; padding: 0 24px;
+        }
+        .trust-inner {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+            border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+            padding: 26px 0;
+        }
+        @media (max-width: 760px) { .trust-inner { grid-template-columns: repeat(2, 1fr); row-gap: 22px; } }
+        .trust-item { text-align: center; }
+        .trust-item .t-num { font-size: 20px; font-weight: 800; letter-spacing: -0.4px; color: var(--ink); }
+        .trust-item .t-label { font-size: 12.5px; color: var(--ink-faint); margin-top: 3px; }
+
+        /* ── Section shell ─────────────────────────────── */
+        .section { max-width: 1080px; margin: 0 auto; padding: 88px 24px 0; }
+        .section-head { max-width: 620px; margin-bottom: 52px; }
+        .section-head.center { margin-left: auto; margin-right: auto; text-align: center; }
+        .kicker {
+            font-size: 12px; font-weight: 700; letter-spacing: 2.4px; text-transform: uppercase;
+            color: var(--green-deep); margin-bottom: 12px;
+        }
+        .section-head h2 { font-size: clamp(28px, 3.6vw, 40px); letter-spacing: -0.8px; line-height: 1.18; margin-bottom: 14px; }
+        .section-head p { color: var(--ink-soft); font-size: 16.5px; }
+
+        /* ── Feature rows ──────────────────────────────── */
+        .frow {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 56px;
+            align-items: center; margin-bottom: 84px;
+        }
+        @media (max-width: 860px) { .frow { grid-template-columns: 1fr; gap: 28px; margin-bottom: 64px; } .frow .fvisual { order: -1; } }
+        .frow .fcopy h3 { font-size: 26px; letter-spacing: -0.5px; margin-bottom: 14px; line-height: 1.25; }
+        .frow .fcopy p { color: var(--ink-soft); font-size: 16px; margin-bottom: 18px; }
+        .fpoints { list-style: none; }
+        .fpoints li {
+            position: relative; padding-left: 28px; margin-bottom: 10px;
+            color: var(--ink-soft); font-size: 15px;
+        }
+        .fpoints li::before {
+            content: '✓'; position: absolute; left: 0; top: 0;
+            width: 19px; height: 19px; border-radius: 50%;
+            background: var(--green-soft); color: var(--green-deep);
+            font-size: 11px; font-weight: 800;
+            display: inline-flex; align-items: center; justify-content: center;
+        }
+        .tag-new {
+            display: inline-block; font-size: 10px; font-weight: 800; letter-spacing: 1.2px;
+            background: var(--green-grad); color: #fff;
+            border-radius: 999px; padding: 3px 9px; margin-left: 8px; vertical-align: 3px;
+        }
+
+        .fvisual {
+            border-radius: var(--radius);
+            background: var(--card);
+            border: 1px solid var(--line);
+            box-shadow: var(--shadow-card);
+            overflow: hidden;
+            aspect-ratio: 5 / 4;
+            display: flex; align-items: center; justify-content: center;
+            position: relative;
+        }
+        .fvisual svg { width: 100%; height: 100%; display: block; }
+        .fvisual img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .fvisual .fv-overlay { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+        /* ── Small feature grid ────────────────────────── */
+        .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+        @media (max-width: 960px) { .grid4 { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 520px) { .grid4 { grid-template-columns: 1fr; } }
+        .gcard {
+            background: var(--card); border: 1px solid var(--line);
+            border-radius: 20px; padding: 26px 22px;
+            box-shadow: var(--shadow-card);
+            transition: all 0.25s ease;
+        }
+        .gcard:hover { transform: translateY(-5px); box-shadow: 0 18px 44px rgba(62, 90, 60, 0.13); border-color: rgba(89, 162, 78, 0.3); }
+        .gicon {
+            width: 46px; height: 46px; border-radius: 14px;
+            background: var(--green-soft);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 22px; margin-bottom: 16px;
+        }
+        .gicon img { width: 28px; height: 28px; display: block; }
+        .gcard h4 { font-size: 16px; margin-bottom: 7px; letter-spacing: -0.2px; }
+        .gcard p { font-size: 13.5px; color: var(--ink-soft); line-height: 1.55; }
+        .beta-pill {
+            font-size: 9px; font-weight: 800; letter-spacing: 1px;
+            border: 1px solid rgba(89, 162, 78, 0.4); color: var(--green-deep);
+            border-radius: 999px; padding: 2px 7px; margin-left: 6px; vertical-align: 2px;
+        }
+
+        /* ── Privacy band ──────────────────────────────── */
+        .privacy-band {
+            margin-top: 88px;
+            background:
+                radial-gradient(480px 300px at 8% 0%, rgba(134, 201, 114, 0.18), transparent 60%),
+                radial-gradient(480px 300px at 95% 100%, rgba(247, 210, 195, 0.45), transparent 60%),
+                var(--card);
+            border: 1px solid rgba(89, 162, 78, 0.22);
+            border-radius: 28px;
+            padding: 56px 48px;
+            display: grid; grid-template-columns: auto 1fr; gap: 32px; align-items: center;
+            box-shadow: var(--shadow-card);
+        }
+        @media (max-width: 720px) { .privacy-band { grid-template-columns: 1fr; padding: 40px 28px; text-align: center; } .privacy-band .lock { margin: 0 auto; } }
+        .privacy-band .lock {
+            width: 72px; height: 72px; border-radius: 22px;
+            background: var(--green-soft);
+            border: 1px solid rgba(89, 162, 78, 0.3);
+            display: flex; align-items: center; justify-content: center; font-size: 32px;
+        }
+        .privacy-band h3 { font-size: 24px; letter-spacing: -0.4px; margin-bottom: 8px; color: var(--ink); }
+        .privacy-band p { font-size: 15px; color: var(--ink-soft); max-width: 640px; }
+        .privacy-band .fineprint { font-size: 12.5px; color: var(--ink-faint); margin-top: 10px; }
+
+        /* ── CTA banner ────────────────────────────────── */
+        .cta-banner {
+            margin: 96px auto 0; max-width: 1080px; padding: 0 24px;
+            text-align: center;
+        }
+        .cta-inner {
+            background:
+                radial-gradient(420px 260px at 20% 0%, rgba(134, 201, 114, 0.25), transparent 60%),
+                radial-gradient(420px 260px at 85% 100%, rgba(247, 210, 195, 0.6), transparent 60%),
+                var(--bg-soft);
+            border: 1px solid var(--line);
+            border-radius: 32px;
+            padding: 72px 32px;
+        }
+        .cta-inner img { width: 88px; height: 88px; border-radius: 22px; margin-bottom: 24px; box-shadow: var(--shadow-card); }
+        .cta-inner h2 { font-size: clamp(26px, 3.4vw, 38px); letter-spacing: -0.7px; margin-bottom: 12px; }
+        .cta-inner p { color: var(--ink-soft); margin-bottom: 30px; font-size: 16px; }
+
+        /* ── Footer ────────────────────────────────────── */
+        .footer { max-width: 1080px; margin: 0 auto; padding: 64px 24px 48px; }
+        .footer-links {
+            display: flex; justify-content: center; gap: 28px; flex-wrap: wrap;
+            padding-bottom: 28px; margin-bottom: 28px;
+            border-bottom: 1px solid var(--line);
+        }
+        .footer-links a { color: var(--ink-soft); text-decoration: none; font-size: 14px; transition: color 0.2s ease; }
+        .footer-links a:hover { color: var(--green-deep); }
+        .footer-meta { text-align: center; color: var(--ink-faint); font-size: 12.5px; }
+        .footer-meta a { color: var(--ink-faint); text-decoration: none; }
+        .footer-meta a:hover { color: var(--green-deep); }
+
+        /* ── Scroll reveal ─────────────────────────────── */
+        .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .reveal.on { opacity: 1; transform: none; }
+        @media (prefers-reduced-motion: reduce) {
+            .reveal { opacity: 1; transform: none; transition: none; }
+            .phone, .chip, .scanline { animation: none; }
+        }
     </style>
 </head>
 <body class="lang-en">
-    <div class="container">
-        <div class="lang-bar">
-            <button class="lang-btn active" onclick="setLang('en')" title="English">🇺🇸</button>
-            <button class="lang-btn" onclick="setLang('ko')" title="한국어">🇰🇷</button>
-            <button class="lang-btn" onclick="setLang('ja')" title="日本語">🇯🇵</button>
-            <button class="lang-btn" onclick="setLang('zh-CN')" title="简体中文">🇨🇳</button>
-            <button class="lang-btn" onclick="setLang('zh-TW')" title="繁體中文">🇹🇼</button>
-        </div>
-        
-        <section class="hero">
-            <div class="app-icon-wrapper">
-                <img src="logo.png" alt="Renka" class="app-icon">
-            </div>
-            
-            <p class="tagline">
-                <span lang="en">World's First Real 3D Face Scanner</span>
-                <span lang="ko">세계 최초 진짜 3D 얼굴 스캐너</span>
-                <span lang="ja">世界初の本格3D顔スキャナー</span>
-                <span lang="zh-CN">全球首款真正3D面部扫描仪</span>
-                <span lang="zh-TW">全球首款真正3D臉部掃描儀</span>
-            </p>
-            
-            <a href="https://apps.apple.com/us/app/renka-3d-face-analyzer/id6756908316" class="download-btn">
-                <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
-                </svg>
-                <span lang="en">Download on App Store</span>
-                <span lang="ko">App Store에서 다운로드</span>
-                <span lang="ja">App Storeでダウンロード</span>
-                <span lang="zh-CN">在 App Store 下载</span>
-                <span lang="zh-TW">在 App Store 下載</span>
+
+    <!-- ══ Nav ══ -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a class="nav-brand" href="#">
+                <img src="logo.png" alt="Renka logo">
+                <strong>Renka</strong>
             </a>
-        </section>
-        
-        <!-- Features - English -->
-        <section class="features" lang="en">
-            <div class="feature">
-                <div class="feature-icon">📏</div>
-                <h3>3D Face Measurement</h3>
-                <p>Accurate facial dimensions using IR depth sensor</p>
+            <div class="lang-bar">
+                <button class="lang-btn active" onclick="setLang('en')" title="English">🇺🇸</button>
+                <button class="lang-btn" onclick="setLang('ko')" title="한국어">🇰🇷</button>
+                <button class="lang-btn" onclick="setLang('ja')" title="日本語">🇯🇵</button>
+                <button class="lang-btn" onclick="setLang('zh-CN')" title="简体中文">🇨🇳</button>
+                <button class="lang-btn" onclick="setLang('zh-TW')" title="繁體中文">🇹🇼</button>
             </div>
-            <div class="feature">
-                <div class="feature-icon">💉</div>
-                <h3>Plastic Surgery Simulator</h3>
-                <p>Visualize changes based on real 3D data</p>
+            <a class="nav-cta" href="https://apps.apple.com/us/app/renka-3d-face-analyzer/id6756908316">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                <span lang="en">Download</span><span lang="ko">다운로드</span><span lang="ja">ダウンロード</span><span lang="zh-CN">下载</span><span lang="zh-TW">下載</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- ══ Hero ══ -->
+    <header class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-copy">
+            <div class="eyebrow">
+                <span lang="en">World's first true 3D face analysis</span>
+                <span lang="ko">세계 최초 진짜 3D 얼굴 분석</span>
+                <span lang="ja">世界初の本格3D顔分析</span>
+                <span lang="zh-CN">全球首款真正3D面部分析</span>
+                <span lang="zh-TW">全球首款真正3D臉部分析</span>
             </div>
-            <div class="feature">
-                <div class="feature-icon">✨</div>
-                <h3>Golden Ratio & Symmetry</h3>
-                <p>Analyze facial proportions and attractiveness</p>
-            </div>
-            <div class="feature">
-                <div class="feature-icon">🎨</div>
-                <h3>Personal Color</h3>
-                <p>Discover your seasonal color type</p>
-            </div>
-            <div class="feature">
-                <div class="feature-icon">📊</div>
-                <h3>Puffiness Tracking</h3>
-                <p>Monitor swelling and facial changes daily</p>
-            </div>
-            <div class="feature">
-                <div class="feature-icon">🔒</div>
-                <h3>Privacy First</h3>
-                <p>All data processed on-device only</p>
-            </div>
-        </section>
-        
-        <!-- Features - Korean -->
-        <section class="features" lang="ko">
-            <div class="feature">
-                <div class="feature-icon">📏</div>
-                <h3>3D 얼굴 측정</h3>
-                <p>IR 깊이 센서를 활용한 정밀 얼굴 치수 측정</p>
-            </div>
-            <div class="feature">
-                <div class="feature-icon">💉</div>
-                <h3>성형 시뮬레이터</h3>
-                <p>실제 3D 데이터 기반 변화 미리보기</p>
-            </div>
-            <div class="feature">
-                <div class="feature-icon">✨</div>
-                <h3>황금비 & 대칭</h3>
-                <p>얼굴 비율과 매력도 분석</p>
-            </div>
-            <div class="feature">
-                <div class="feature-icon">🎨</div>
-                <h3>퍼스널 컬러</h3>
-                <p>나만의 계절 컬러 타입 진단</p>
-            </div>
-            <div class="feature">
-                <div class="feature-icon">📊</div>
-                <h3>붓기 추적</h3>
-                <p>매일 붓기와 얼굴 변화 모니터링</p>
-            </div>
-            <div class="feature">
-                <div class="feature-icon">🔒</div>
-                <h3>프라이버시 우선</h3>
-                <p>모든 데이터는 기기 내에서만 처리</p>
-            </div>
-        </section>
-        
-        <!-- Features - Japanese -->
-        <section class="features" lang="ja">
-            <div class="feature">
-                <div class="feature-icon">📏</div>
-                <h3>3D顔測定</h3>
-                <p>IR深度センサーを活用した精密な顔寸法測定</p>
-            </div>
-            <div class="feature">
-                <div class="feature-icon">💉</div>
-                <h3>整形シミュレーター</h3>
-                <p>実際の3Dデータに基づく変化プレビュー</p>
-            </div>
-            <div class="feature">
-                <div class="feature-icon">✨</div>
-                <h3>黄金比 & 対称性</h3>
-                <p>顔の比率と魅力度を分析</p>
-            </div>
-            <div class="feature">
-                <div class="feature-icon">🎨</div>
-                <h3>パーソナルカラー</h3>
-                <p>あなたの季節カラータイプを診断</p>
-            </div>
-            <div class="feature">
-                <div class="feature-icon">📊</div>
-                <h3>むくみ追跡</h3>
-                <p>毎日のむくみと顔の変化をモニタリング</p>
-            </div>
-            <div class="feature">
-                <div class="feature-icon">🔒</div>
-                <h3>プライバシー優先</h3>
-                <p>すべてのデータはデバイス内でのみ処理</p>
-            </div>
-        </section>
-        
-        <!-- Features - Simplified Chinese -->
-        <section class="features" lang="zh-CN">
-            <div class="feature">
-                <div class="feature-icon">📏</div>
-                <h3>3D面部测量</h3>
-                <p>使用IR深度传感器精确测量面部尺寸</p>
-            </div>
-            <div class="feature">
-                <div class="feature-icon">💉</div>
-                <h3>整形模拟器</h3>
-                <p>基于真实3D数据预览变化</p>
-            </div>
-            <div class="feature">
-                <div class="feature-icon">✨</div>
-                <h3>黄金比例 & 对称性</h3>
-                <p>分析面部比例和魅力度</p>
-            </div>
-            <div class="feature">
-                <div class="feature-icon">🎨</div>
-                <h3>个人色彩</h3>
-                <p>发现您的季节色彩类型</p>
-            </div>
-            <div class="feature">
-                <div class="feature-icon">📊</div>
-                <h3>浮肿追踪</h3>
-                <p>每日监测浮肿和面部变化</p>
-            </div>
-            <div class="feature">
-                <div class="feature-icon">🔒</div>
-                <h3>隐私优先</h3>
-                <p>所有数据仅在设备上处理</p>
-            </div>
-        </section>
-        
-        <!-- Features - Traditional Chinese -->
-        <section class="features" lang="zh-TW">
-            <div class="feature">
-                <div class="feature-icon">📏</div>
-                <h3>3D臉部測量</h3>
-                <p>使用IR深度傳感器精確測量臉部尺寸</p>
-            </div>
-            <div class="feature">
-                <div class="feature-icon">💉</div>
-                <h3>整形模擬器</h3>
-                <p>基於真實3D數據預覽變化</p>
-            </div>
-            <div class="feature">
-                <div class="feature-icon">✨</div>
-                <h3>黃金比例 & 對稱性</h3>
-                <p>分析臉部比例和魅力度</p>
-            </div>
-            <div class="feature">
-                <div class="feature-icon">🎨</div>
-                <h3>個人色彩</h3>
-                <p>發現您的季節色彩類型</p>
-            </div>
-            <div class="feature">
-                <div class="feature-icon">📊</div>
-                <h3>浮腫追蹤</h3>
-                <p>每日監測浮腫和臉部變化</p>
-            </div>
-            <div class="feature">
-                <div class="feature-icon">🔒</div>
-                <h3>隱私優先</h3>
-                <p>所有數據僅在裝置上處理</p>
-            </div>
-        </section>
-        
-        <section class="links-section">
-            <p class="links-title">
-                <span lang="en">Information</span>
-                <span lang="ko">안내</span>
-                <span lang="ja">ご案内</span>
-                <span lang="zh-CN">信息</span>
-                <span lang="zh-TW">資訊</span>
+            <h1 class="serif">
+                <span lang="en">Your face,<br>in <em>true 3D</em>.</span>
+                <span lang="ko">내 얼굴,<br><em>진짜 3D</em>로.</span>
+                <span lang="ja">あなたの顔を、<br><em>本物の3D</em>で。</span>
+                <span lang="zh-CN">你的脸，<br><em>真正的3D</em>。</span>
+                <span lang="zh-TW">你的臉，<br><em>真正的3D</em>。</span>
+            </h1>
+            <p class="sub">
+                <span lang="en">Renka scans 1,220 points of your face with the iPhone's IR depth sensor — golden ratio, symmetry, contour and daily puffiness, measured to the millimeter. No photos guessing. Real geometry.</span>
+                <span lang="ko">아이폰 IR 깊이 센서로 얼굴의 1,220개 정점을 스캔합니다. 황금비·대칭·윤곽·붓기까지 밀리미터 단위로 — 사진 추측이 아닌 실제 3D 기하로 측정해요.</span>
+                <span lang="ja">iPhoneのIR深度センサーで顔の1,220点をスキャン。黄金比・対称性・輪郭・むくみまで、ミリ単位で測定します。写真からの推測ではなく、本物の3Dジオメトリで。</span>
+                <span lang="zh-CN">Renka 利用 iPhone 红外深度传感器扫描面部 1,220 个顶点——黄金比例、对称性、轮廓与每日浮肿，以毫米级精度测量。不是照片猜测，而是真实的3D几何。</span>
+                <span lang="zh-TW">Renka 利用 iPhone 紅外深度感測器掃描臉部 1,220 個頂點——黃金比例、對稱性、輪廓與每日浮腫，以毫米級精度測量。不是照片猜測，而是真實的3D幾何。</span>
             </p>
-            <div class="links">
-                <a href="Renka-FAQ.html">
-                    <span lang="en">❓ FAQ</span>
-                    <span lang="ko">❓ 자주 묻는 질문</span>
-                    <span lang="ja">❓ よくある質問</span>
-                    <span lang="zh-CN">❓ 常见问题</span>
-                    <span lang="zh-TW">❓ 常見問題</span>
+            <div class="hero-ctas">
+                <a class="store-badge" href="https://apps.apple.com/us/app/renka-3d-face-analyzer/id6756908316">
+                    <span lang="en"><img src="assets/badges/appstore-en.svg" alt="Download on the App Store"></span>
+                    <span lang="ko"><img src="assets/badges/appstore-ko.svg" alt="App Store에서 다운로드"></span>
+                    <span lang="ja"><img src="assets/badges/appstore-ja.svg" alt="App Storeでダウンロード"></span>
+                    <span lang="zh-CN"><img src="assets/badges/appstore-zh-CN.svg" alt="在 App Store 下载"></span>
+                    <span lang="zh-TW"><img src="assets/badges/appstore-zh-TW.svg" alt="在 App Store 下載"></span>
                 </a>
-                <a href="notices.html">
-                    <span lang="en">📢 Notices</span>
-                    <span lang="ko">📢 공지사항</span>
-                    <span lang="ja">📢 お知らせ</span>
-                    <span lang="zh-CN">📢 公告</span>
-                    <span lang="zh-TW">📢 公告</span>
-                </a>
-                <a href="privacy-policy.html">
-                    <span lang="en">🔒 Privacy Policy</span>
-                    <span lang="ko">🔒 개인정보처리방침</span>
-                    <span lang="ja">🔒 プライバシーポリシー</span>
-                    <span lang="zh-CN">🔒 隐私政策</span>
-                    <span lang="zh-TW">🔒 隱私權政策</span>
-                </a>
-                <a href="terms-of-service.html">
-                    <span lang="en">📋 Terms of Service</span>
-                    <span lang="ko">📋 이용약관</span>
-                    <span lang="ja">📋 利用規約</span>
-                    <span lang="zh-CN">📋 服务条款</span>
-                    <span lang="zh-TW">📋 服務條款</span>
-                </a>
+                <span class="hero-note">
+                    <span lang="en">Free · iPhone with Face ID</span>
+                    <span lang="ko">무료 · Face ID 지원 아이폰</span>
+                    <span lang="ja">無料 · Face ID対応iPhone</span>
+                    <span lang="zh-CN">免费 · 支持 Face ID 的 iPhone</span>
+                    <span lang="zh-TW">免費 · 支援 Face ID 的 iPhone</span>
+                </span>
             </div>
-        </section>
-        
-        <footer class="footer">
-            <p>© 2026 FatTail Labs. All rights reserved.</p>
-            <p><a href="mailto:fattaillabs@gmail.com">fattaillabs@gmail.com</a></p>
-        </footer>
+        </div>
+
+        <div class="hero-visual">
+            <div class="phone">
+                <div class="phone-screen">
+                    <div class="phone-notch"></div>
+                    <!-- 실사 얼굴 + 앱 윤곽 오버레이(틸 턱선·노랑 하악각·주황 턱끝·흰/마젠타 캘리퍼) 합성 -->
+                    <img class="screen-photo" src="assets/hero-face.jpg" alt="">
+                    <svg class="scan-face" viewBox="0 0 200 420" aria-hidden="true">
+                        <defs>
+                            <linearGradient id="meshg" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0" stop-color="#9FDD8B"/><stop offset="1" stop-color="#4C9A45"/>
+                            </linearGradient>
+                        </defs>
+                        <!-- 은은한 메쉬 (사진 위 스캔 느낌) -->
+                        <g stroke="url(#meshg)" stroke-width="0.6" fill="none" opacity="0.4">
+                            <ellipse cx="100" cy="204" rx="50" ry="63"/>
+                            <path d="M52 190 Q100 152 148 190"/>
+                            <path d="M54 222 Q100 258 146 222"/>
+                            <path d="M100 142 L100 264"/>
+                            <path d="M64 160 L57 229 M136 160 L143 229"/>
+                            <path d="M57 229 L100 210 L143 229"/>
+                        </g>
+                        <g fill="#B5E8A3" opacity="0.75">
+                            <circle cx="100" cy="142" r="1.6"/><circle cx="52" cy="190" r="1.6"/><circle cx="148" cy="190" r="1.6"/>
+                            <circle cx="74" cy="174" r="1.6"/><circle cx="126" cy="174" r="1.6"/><circle cx="100" cy="210" r="1.6"/>
+                            <circle cx="64" cy="160" r="1.6"/><circle cx="136" cy="160" r="1.6"/><circle cx="100" cy="264" r="1.6"/>
+                        </g>
+                        <!-- 하단 미니 지표 바: 6대 메트릭 중 플로팅 칩(매력도·윤곽·붓기) 외 나머지 3종 -->
+                        <g font-family="-apple-system, sans-serif">
+                            <rect x="26" y="330" width="148" height="30" rx="9" fill="rgba(10,14,11,0.55)"/>
+                            <text x="38" y="349" font-size="9" fill="rgba(230,244,222,0.9)">Φ 1.61</text>
+                            <text x="84" y="349" font-size="9" fill="#2AC7BD">Sym 91</text>
+                            <text x="130" y="349" font-size="9" fill="#E8C93E">Skin 78</text>
+                        </g>
+                    </svg>
+                    <div class="scanline"></div>
+                    <div class="screen-caption">
+                        <span lang="en">Scanning · 1,220 pts</span>
+                        <span lang="ko">스캔 중 · 1,220 pts</span>
+                        <span lang="ja">スキャン中 · 1,220 pts</span>
+                        <span lang="zh-CN">扫描中 · 1,220 pts</span>
+                        <span lang="zh-TW">掃描中 · 1,220 pts</span>
+                    </div>
+                </div>
+            </div>
+            <div class="chip c1">
+                <span class="k"><span lang="en">Attractiveness</span><span lang="ko">매력도</span><span lang="ja">魅力度</span><span lang="zh-CN">魅力评分</span><span lang="zh-TW">魅力評分</span></span>
+                <span class="v">84</span>
+            </div>
+            <div class="chip c2">
+                <span class="k"><span lang="en">Contour</span><span lang="ko">윤곽 점수</span><span lang="ja">輪郭スコア</span><span lang="zh-CN">轮廓评分</span><span lang="zh-TW">輪廓評分</span><span class="badge-new">NEW</span></span>
+                <span class="v">82</span>
+            </div>
+            <div class="chip c3">
+                <span class="k"><span lang="en">Puffiness</span><span lang="ko">붓기 지수</span><span lang="ja">むくみ指数</span><span lang="zh-CN">浮肿指数</span><span lang="zh-TW">浮腫指數</span></span>
+                <span class="v">3 <small style="font-size:11px;font-weight:700;color:#59A24E;">Low</small></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- ══ Trust strip ══ -->
+    <div class="trust reveal">
+        <div class="trust-inner">
+            <div class="trust-item">
+                <div class="t-num">1,220</div>
+                <div class="t-label"><span lang="en">3D mesh vertices</span><span lang="ko">3D 메쉬 정점</span><span lang="ja">3Dメッシュ頂点</span><span lang="zh-CN">3D网格顶点</span><span lang="zh-TW">3D網格頂點</span></div>
+            </div>
+            <div class="trust-item">
+                <div class="t-num">IR</div>
+                <div class="t-label"><span lang="en">TrueDepth&trade; sensor</span><span lang="ko">TrueDepth&trade; 깊이 센서</span><span lang="ja">TrueDepth&trade;センサー</span><span lang="zh-CN">TrueDepth&trade;传感器</span><span lang="zh-TW">TrueDepth&trade;感測器</span></div>
+            </div>
+            <div class="trust-item">
+                <div class="t-num">mm</div>
+                <div class="t-label"><span lang="en">Millimeter precision</span><span lang="ko">밀리미터 정밀도</span><span lang="ja">ミリ単位の精度</span><span lang="zh-CN">毫米级精度</span><span lang="zh-TW">毫米級精度</span></div>
+            </div>
+            <div class="trust-item">
+                <div class="t-num">100%</div>
+                <div class="t-label"><span lang="en">On-device analysis</span><span lang="ko">온디바이스 분석</span><span lang="ja">オンデバイス分析</span><span lang="zh-CN">端上分析</span><span lang="zh-TW">裝置端分析</span></div>
+            </div>
+        </div>
     </div>
-    
+
+    <!-- ══ Feature rows ══ -->
+    <section class="section">
+        <div class="section-head center reveal">
+            <div class="kicker">
+                <span lang="en">What Renka does</span><span lang="ko">Renka가 하는 일</span><span lang="ja">Renkaができること</span><span lang="zh-CN">Renka 能做什么</span><span lang="zh-TW">Renka 能做什麼</span>
+            </div>
+            <h2 class="serif">
+                <span lang="en">A beauty lab that fits in your pocket</span>
+                <span lang="ko">주머니 속 뷰티 랩</span>
+                <span lang="ja">ポケットの中のビューティーラボ</span>
+                <span lang="zh-CN">装进口袋的美学实验室</span>
+                <span lang="zh-TW">裝進口袋的美學實驗室</span>
+            </h2>
+        </div>
+
+        <!-- Row 1: Analysis report -->
+        <div class="frow reveal">
+            <div class="fcopy">
+                <h3>
+                    <span lang="en">A full report on your face<span class="tag-new">NEW · CONTOUR</span></span>
+                    <span lang="ko">얼굴 종합 분석 리포트<span class="tag-new">NEW · 윤곽 분석</span></span>
+                    <span lang="ja">顔の総合分析レポート<span class="tag-new">NEW · 輪郭分析</span></span>
+                    <span lang="zh-CN">面部综合分析报告<span class="tag-new">NEW · 轮廓分析</span></span>
+                    <span lang="zh-TW">臉部綜合分析報告<span class="tag-new">NEW · 輪廓分析</span></span>
+                </h3>
+                <p>
+                    <span lang="en">Every scan produces a detailed report with visual overlays drawn on your own face.</span>
+                    <span lang="ko">측정 한 번으로 내 얼굴 위에 직접 그려진 오버레이와 함께 상세 리포트가 생성됩니다.</span>
+                    <span lang="ja">1回のスキャンで、自分の顔に直接描かれたオーバーレイ付きの詳細レポートが作成されます。</span>
+                    <span lang="zh-CN">每次扫描都会生成详细报告，并在你自己的脸上绘制可视化叠加图。</span>
+                    <span lang="zh-TW">每次掃描都會生成詳細報告，並在你自己的臉上繪製視覺化疊加圖。</span>
+                </p>
+                <ul class="fpoints">
+                    <li><span lang="en">Golden ratio & facial thirds</span><span lang="ko">황금비율 & 얼굴 3등분</span><span lang="ja">黄金比 & 顔の三分割</span><span lang="zh-CN">黄金比例 & 三庭比例</span><span lang="zh-TW">黃金比例 & 三庭比例</span></li>
+                    <li><span lang="en">Symmetry measured in millimeters</span><span lang="ko">밀리미터 단위 대칭 분석</span><span lang="ja">ミリ単位の対称性分析</span><span lang="zh-CN">毫米级对称性分析</span><span lang="zh-TW">毫米級對稱性分析</span></li>
+                    <li><span lang="en">Contour: jawline, gonial angle, fWHR</span><span lang="ko">윤곽: 턱선·하악각·fWHR</span><span lang="ja">輪郭：フェイスライン・下顎角・fWHR</span><span lang="zh-CN">轮廓：下颌线·下颌角·fWHR</span><span lang="zh-TW">輪廓：下顎線·下顎角·fWHR</span></li>
+                    <li><span lang="en">Attractiveness & profile angle</span><span lang="ko">매력도 & 측면 각도</span><span lang="ja">魅力度 & 横顔の角度</span><span lang="zh-CN">魅力评分 & 侧脸角度</span><span lang="zh-TW">魅力評分 & 側臉角度</span></li>
+                </ul>
+            </div>
+            <div class="fvisual" id="visual-report">
+                <!-- 리포트 콘셉트: 매력도 링 + 구성요소 지표 행 + 윤곽 오버레이 미니 얼굴 -->
+                <svg viewBox="0 0 500 400" aria-hidden="true" font-family="-apple-system, sans-serif">
+                    <defs><linearGradient id="rg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#86C972"/><stop offset="1" stop-color="#4C9A45"/></linearGradient></defs>
+                    <rect width="500" height="400" fill="#F6EEE9"/>
+                    <rect x="40" y="32" width="420" height="336" rx="22" fill="#fff" stroke="rgba(35,49,42,0.08)"/>
+                    <!-- 매력도 히어로 링 -->
+                    <circle cx="118" cy="116" r="46" fill="none" stroke="#E3EFDD" stroke-width="10"/>
+                    <path d="M118 70 A46 46 0 1 1 78 139" fill="none" stroke="url(#rg)" stroke-width="10" stroke-linecap="round"/>
+                    <text x="118" y="118" text-anchor="middle" font-size="26" font-weight="800" fill="#3E7F38">84</text>
+                    <text x="118" y="136" text-anchor="middle" font-size="9.5" font-weight="700" fill="#97A49A" letter-spacing="1">ATTRACTIVE</text>
+                    <!-- 구성요소 행: 라벨 · 값 · 바 -->
+                    <g font-size="12" font-weight="600" fill="#5D6B61">
+                        <text x="196" y="78">Golden Ratio</text>
+                        <text x="196" y="118">Symmetry</text>
+                        <text x="196" y="158">Contour</text>
+                    </g>
+                    <g font-size="12.5" font-weight="800" fill="#3E7F38" text-anchor="end">
+                        <text x="432" y="78">1.61</text>
+                        <text x="432" y="118">91</text>
+                        <text x="432" y="158">82</text>
+                    </g>
+                    <rect x="196" y="86" width="236" height="10" rx="5" fill="#EAF4E6"/>
+                    <rect x="196" y="86" width="212" height="10" rx="5" fill="url(#rg)"/>
+                    <rect x="196" y="126" width="236" height="10" rx="5" fill="#EAF4E6"/>
+                    <rect x="196" y="126" width="215" height="10" rx="5" fill="url(#rg)" opacity="0.85"/>
+                    <rect x="196" y="166" width="236" height="10" rx="5" fill="#EAF4E6"/>
+                    <rect x="196" y="166" width="194" height="10" rx="5" fill="url(#rg)" opacity="0.7"/>
+                    <!-- NEW 배지 (Contour 옆) -->
+                    <rect x="252" y="146" width="34" height="15" rx="7.5" fill="url(#rg)"/>
+                    <text x="269" y="157" text-anchor="middle" font-size="8.5" font-weight="800" fill="#fff" letter-spacing="0.8">NEW</text>
+                    <!-- 구분선 -->
+                    <line x1="64" y1="196" x2="436" y2="196" stroke="rgba(35,49,42,0.08)"/>
+                    <!-- 미니 얼굴 + 윤곽 오버레이 (앱 실제 색) -->
+                    <ellipse cx="148" cy="284" rx="54" ry="64" fill="#FBEFE9"/>
+                    <ellipse cx="148" cy="284" rx="54" ry="64" fill="none" stroke="#D9C4B8" stroke-width="1.4"/>
+                    <g stroke="rgba(151,164,154,0.85)" stroke-width="1.2" stroke-dasharray="5 3.5">
+                        <line x1="100" y1="262" x2="196" y2="262"/>
+                        <line x1="148" y1="238" x2="148" y2="310"/>
+                    </g>
+                    <line x1="106" y1="308" x2="190" y2="308" stroke="#E066AC" stroke-width="1.6" stroke-dasharray="5 3.5"/>
+                    <path d="M106 308 Q112 330 148 344 Q184 330 190 308" fill="none" stroke="#fff" stroke-width="4.4" stroke-linecap="round"/>
+                    <path d="M106 308 Q112 330 148 344 Q184 330 190 308" fill="none" stroke="#2AC7BD" stroke-width="2.6" stroke-linecap="round"/>
+                    <g stroke="#E8C93E" stroke-width="1.5" fill="none">
+                        <path d="M109 266 L106 308 L148 344"/>
+                        <path d="M187 266 L190 308 L148 344"/>
+                    </g>
+                    <circle cx="106" cy="308" r="3" fill="#E8C93E" stroke="#fff" stroke-width="0.8"/>
+                    <circle cx="190" cy="308" r="3" fill="#E8C93E" stroke="#fff" stroke-width="0.8"/>
+                    <path d="M134 338 L148 344 L162 338" fill="none" stroke="#F09A3E" stroke-width="1.8" stroke-linecap="round"/>
+                    <!-- 우측 지표 리스트 -->
+                    <g font-size="11.5" fill="#5D6B61">
+                        <text x="252" y="236">Gonial angle</text>
+                        <text x="252" y="264">Chin angle</text>
+                        <text x="252" y="292">fWHR</text>
+                        <text x="252" y="320">Jaw / cheek</text>
+                        <text x="252" y="348">Profile angle</text>
+                    </g>
+                    <g font-size="11.5" font-weight="800" fill="#23312A" text-anchor="end">
+                        <text x="432" y="236">145°</text>
+                        <text x="432" y="264">168°</text>
+                        <text x="432" y="292">1.69</text>
+                        <text x="432" y="320">75%</text>
+                        <text x="432" y="348">172°</text>
+                    </g>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Row 2: Simulator -->
+        <div class="frow reveal">
+            <div class="fvisual" id="visual-simulator">
+                <!-- 시뮬레이터 콘셉트: 실사 얼굴 + 시술 가이드 마커(쌍커풀·코·V라인) + 시술 선택 칩 + 강도 슬라이더 -->
+                <img src="assets/face-male.jpg" alt="">
+                <svg class="fv-overlay" viewBox="0 0 500 400" aria-hidden="true" font-family="-apple-system, sans-serif">
+                    <!-- 쌍커풀 가이드 (그린 아크) -->
+                    <path d="M178 175 q16 -8 32 0" stroke="#7BC96A" stroke-width="2" fill="none" stroke-linecap="round" stroke-dasharray="4 3"/>
+                    <path d="M248 175 q16 -8 32 0" stroke="#7BC96A" stroke-width="2" fill="none" stroke-linecap="round" stroke-dasharray="4 3"/>
+                    <!-- 코 가이드 (흰 점선 세로) -->
+                    <line x1="229" y1="196" x2="229" y2="244" stroke="rgba(255,255,255,0.8)" stroke-width="1.4" stroke-dasharray="4.5 3.2"/>
+                    <line x1="222" y1="244" x2="236" y2="244" stroke="rgba(255,255,255,0.8)" stroke-width="1.4"/>
+                    <!-- 턱선: 현재(회색 점선) → 목표 V라인(틸 실선) -->
+                    <path d="M152 281 Q170 330 229 344 Q288 330 306 281" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.8" stroke-dasharray="5 4"/>
+                    <path d="M158 283 Q180 322 229 334 Q278 322 300 283" fill="none" stroke="#2AC7BD" stroke-width="2.6" stroke-linecap="round"/>
+                    <!-- 축소 화살표 -->
+                    <path d="M170 310 l10 -6 M288 310 l-10 -6" stroke="#2AC7BD" stroke-width="2" stroke-linecap="round"/>
+                    <!-- 시술 선택 칩 -->
+                    <g font-size="11" font-weight="700">
+                        <rect x="64" y="350" width="112" height="24" rx="12" fill="rgba(89,162,78,0.92)"/>
+                        <text x="120" y="366" text-anchor="middle" fill="#fff">Eyelid ✓</text>
+                        <rect x="184" y="350" width="92" height="24" rx="12" fill="rgba(255,255,255,0.16)" stroke="rgba(255,255,255,0.35)"/>
+                        <text x="230" y="366" text-anchor="middle" fill="rgba(255,255,255,0.85)">Nose</text>
+                        <rect x="284" y="350" width="112" height="24" rx="12" fill="rgba(42,199,189,0.9)"/>
+                        <text x="340" y="366" text-anchor="middle" fill="#fff">V-line ✓</text>
+                    </g>
+                    <!-- 강도 슬라이더 -->
+                    <rect x="64" y="386" width="332" height="6" rx="3" fill="rgba(255,255,255,0.22)"/>
+                    <rect x="64" y="386" width="200" height="6" rx="3" fill="#7BC96A"/>
+                    <circle cx="264" cy="389" r="9" fill="#fff"/>
+                    <text x="284" y="393" font-size="10" font-weight="800" fill="#fff">60%</text>
+                </svg>
+            </div>
+            <div class="fcopy">
+                <h3>
+                    <span lang="en">Preview changes on your real face</span>
+                    <span lang="ko">내 진짜 얼굴로 미리 보는 변화</span>
+                    <span lang="ja">本当の自分の顔で変化をプレビュー</span>
+                    <span lang="zh-CN">在你真实的脸上预览变化</span>
+                    <span lang="zh-TW">在你真實的臉上預覽變化</span>
+                </h3>
+                <p>
+                    <span lang="en">The cosmetic surgery simulator runs on your actual 3D scan — not a filter, not a template.</span>
+                    <span lang="ko">성형 시뮬레이터는 필터도 템플릿도 아닌, 실제 내 3D 스캔 위에서 동작합니다.</span>
+                    <span lang="ja">整形シミュレーターはフィルターでもテンプレートでもなく、実際の3Dスキャン上で動作します。</span>
+                    <span lang="zh-CN">整形模拟器基于你真实的3D扫描运行——不是滤镜，也不是模板。</span>
+                    <span lang="zh-TW">整形模擬器基於你真實的3D掃描運行——不是濾鏡，也不是模板。</span>
+                </p>
+                <ul class="fpoints">
+                    <li><span lang="en">Double eyelid, rhinoplasty, jawline & more</span><span lang="ko">쌍커풀·코성형·턱선 등 다양한 시술</span><span lang="ja">二重・鼻整形・フェイスラインなど</span><span lang="zh-CN">双眼皮、隆鼻、下颌线等多种项目</span><span lang="zh-TW">雙眼皮、隆鼻、下顎線等多種項目</span></li>
+                    <li><span lang="en">Intensity slider for subtle-to-bold looks</span><span lang="ko">강도 슬라이더로 자연스럽게~과감하게</span><span lang="ja">強度スライダーでナチュラル〜大胆まで</span><span lang="zh-CN">强度滑块，从自然到大胆随心调节</span><span lang="zh-TW">強度滑桿，從自然到大膽隨心調節</span></li>
+                    <li><span lang="en">Compare before & after side by side</span><span lang="ko">전후 비교를 한눈에</span><span lang="ja">ビフォーアフターを並べて比較</span><span lang="zh-CN">前后对比一目了然</span><span lang="zh-TW">前後對比一目了然</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Row 3: Puffiness tracking -->
+        <div class="frow reveal">
+            <div class="fcopy">
+                <h3>
+                    <span lang="en">Track your face, morning by morning</span>
+                    <span lang="ko">매일 아침, 얼굴의 변화를 기록</span>
+                    <span lang="ja">毎朝の顔の変化を記録</span>
+                    <span lang="zh-CN">每天早晨，记录脸部变化</span>
+                    <span lang="zh-TW">每天早晨，記錄臉部變化</span>
+                </h3>
+                <p>
+                    <span lang="en">Puffiness comes and goes — Renka puts a number on it. Compare today against your own baseline, region by region.</span>
+                    <span lang="ko">붓기는 왔다가 사라지죠 — Renka는 그걸 숫자로 보여줍니다. 나만의 기준 대비 오늘의 붓기를 부위별로 비교하세요.</span>
+                    <span lang="ja">むくみは現れては消えるもの — Renkaはそれを数値化します。自分のベースラインと比較して、部位ごとにチェック。</span>
+                    <span lang="zh-CN">浮肿来来去去——Renka 把它变成数字。以你自己的基线为准，分区域对比今天的状态。</span>
+                    <span lang="zh-TW">浮腫來來去去——Renka 把它變成數字。以你自己的基線為準，分區域對比今天的狀態。</span>
+                </p>
+                <ul class="fpoints">
+                    <li><span lang="en">Daily puffiness index with history charts</span><span lang="ko">일일 붓기 지수와 히스토리 차트</span><span lang="ja">毎日のむくみ指数と履歴チャート</span><span lang="zh-CN">每日浮肿指数与历史图表</span><span lang="zh-TW">每日浮腫指數與歷史圖表</span></li>
+                    <li><span lang="en">Attractiveness & face dimension trends</span><span lang="ko">매력도·얼굴 치수 변화 추이</span><span lang="ja">魅力度・顔寸法の推移</span><span lang="zh-CN">魅力评分与面部尺寸变化趋势</span><span lang="zh-TW">魅力評分與臉部尺寸變化趨勢</span></li>
+                    <li><span lang="en">Per-region breakdown with heatmap overlay</span><span lang="ko">눈·볼·턱 부위별 분석과 히트맵 오버레이</span><span lang="ja">目・頬・あごの部位別分析とヒートマップ</span><span lang="zh-CN">眼颊颌分区分析与热力图叠加</span><span lang="zh-TW">眼頰顎分區分析與熱力圖疊加</span></li>
+                </ul>
+            </div>
+            <div class="fvisual" id="visual-tracking">
+                <!-- 히스토리 콘셉트: 앱이 실제 트래킹하는 지표(붓기 지수·매력도·얼굴 치수) 재현 -->
+                <svg viewBox="0 0 500 400" aria-hidden="true" font-family="-apple-system, sans-serif">
+                    <rect width="500" height="400" fill="#F6EEE9"/>
+                    <rect x="40" y="32" width="420" height="336" rx="22" fill="#fff" stroke="rgba(35,49,42,0.08)"/>
+                    <text x="72" y="72" font-size="13.5" font-weight="700" fill="#23312A">History · 7 days</text>
+                    <!-- 범례 -->
+                    <g font-size="10.5" fill="#5D6B61">
+                        <circle cx="268" cy="68" r="4" fill="#4C9A45"/><text x="277" y="72">Puffiness</text>
+                        <circle cx="352" cy="68" r="4" fill="#4D80E6"/><text x="361" y="72">Attractiveness</text>
+                    </g>
+                    <!-- 그리드 -->
+                    <g stroke="rgba(35,49,42,0.06)" stroke-width="1">
+                        <line x1="72" y1="120" x2="428" y2="120"/>
+                        <line x1="72" y1="180" x2="428" y2="180"/>
+                        <line x1="72" y1="240" x2="428" y2="240"/>
+                    </g>
+                    <line x1="72" y1="300" x2="428" y2="300" stroke="rgba(35,49,42,0.14)" stroke-width="1.5"/>
+                    <!-- 붓기 지수 (그린, 면적) : 아침마다 오르내리다 오늘 낮음 -->
+                    <path d="M84 210 L140 258 L196 172 L252 236 L308 190 L364 244 L416 272 L416 300 L84 300 Z" fill="url(#rg)" opacity="0.07"/>
+                    <path d="M84 210 L140 258 L196 172 L252 236 L308 190 L364 244 L416 272"
+                          fill="none" stroke="url(#rg)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                    <g fill="#4C9A45">
+                        <circle cx="84" cy="210" r="4.5"/><circle cx="140" cy="258" r="4.5"/><circle cx="196" cy="172" r="4.5"/>
+                        <circle cx="252" cy="236" r="4.5"/><circle cx="308" cy="190" r="4.5"/><circle cx="364" cy="244" r="4.5"/>
+                    </g>
+                    <!-- 매력도 (블루, 완만한 상승) -->
+                    <path d="M84 152 L140 150 L196 146 L252 148 L308 142 L364 140 L416 136"
+                          fill="none" stroke="#4D80E6" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
+                    <g fill="#4D80E6" opacity="0.9">
+                        <circle cx="84" cy="152" r="3.4"/><circle cx="196" cy="146" r="3.4"/><circle cx="308" cy="142" r="3.4"/><circle cx="416" cy="136" r="3.4"/>
+                    </g>
+                    <!-- 오늘 포인트 + 툴팁 -->
+                    <line x1="416" y1="108" x2="416" y2="300" stroke="rgba(76,154,69,0.35)" stroke-width="1.4" stroke-dasharray="4 4"/>
+                    <circle cx="416" cy="272" r="6.5" fill="#4C9A45" stroke="#fff" stroke-width="2.4"/>
+                    <rect x="308" y="94" width="136" height="40" rx="12" fill="#23312A"/>
+                    <text x="322" y="111" font-size="10" font-weight="600" fill="rgba(255,255,255,0.65)">TODAY</text>
+                    <text x="322" y="126" font-size="12.5" font-weight="800" fill="#9FDD8B">Puffiness 3 · Low</text>
+                    <!-- x축 라벨 -->
+                    <g font-size="10" fill="#97A49A" text-anchor="middle">
+                        <text x="84" y="322">Mon</text><text x="140" y="322">Tue</text><text x="196" y="322">Wed</text>
+                        <text x="252" y="322">Thu</text><text x="308" y="322">Fri</text><text x="364" y="322">Sat</text><text x="416" y="322">Sun</text>
+                    </g>
+                    <!-- 트래킹 지표 칩: 얼굴 치수(폭·높이·중안부) + 매력도 변화 -->
+                    <g font-size="10" font-weight="700">
+                        <rect x="72" y="336" width="82" height="22" rx="11" fill="#EAF4E6"/>
+                        <text x="113" y="351" text-anchor="middle" fill="#3E7F38">W 14.6 cm</text>
+                        <rect x="163" y="336" width="82" height="22" rx="11" fill="#EAF4E6"/>
+                        <text x="204" y="351" text-anchor="middle" fill="#3E7F38">H 20.2 cm</text>
+                        <rect x="254" y="336" width="82" height="22" rx="11" fill="#EAF4E6"/>
+                        <text x="295" y="351" text-anchor="middle" fill="#3E7F38">Mid 6.8 cm</text>
+                        <rect x="345" y="336" width="82" height="22" rx="11" fill="#EDF1FD"/>
+                        <text x="386" y="351" text-anchor="middle" fill="#3557A8">Attr. 84 ▲2</text>
+                    </g>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ Small feature grid ══ -->
+    <section class="section">
+        <div class="section-head center reveal">
+            <div class="kicker">
+                <span lang="en">And more</span><span lang="ko">그리고 더</span><span lang="ja">さらに</span><span lang="zh-CN">还有更多</span><span lang="zh-TW">還有更多</span>
+            </div>
+            <h2 class="serif">
+                <span lang="en">Everything beauty, one scan away</span>
+                <span lang="ko">뷰티의 모든 것, 스캔 한 번으로</span>
+                <span lang="ja">ビューティーのすべてを、スキャン1回で</span>
+                <span lang="zh-CN">一次扫描，尽览美丽</span>
+                <span lang="zh-TW">一次掃描，盡覽美麗</span>
+            </h2>
+        </div>
+        <div class="grid4 reveal">
+            <div class="gcard">
+                <div class="gicon"><img src="assets/icons/palette.png" alt=""></div>
+                <h4><span lang="en">Personal Color</span><span lang="ko">퍼스널 컬러</span><span lang="ja">パーソナルカラー</span><span lang="zh-CN">个人色彩</span><span lang="zh-TW">個人色彩</span></h4>
+                <p>
+                    <span lang="en">Seasonal color diagnosis from your actual measured skin tone.</span>
+                    <span lang="ko">실측 피부톤 기반 계절 컬러 진단.</span>
+                    <span lang="ja">実測した肌トーンに基づく季節カラー診断。</span>
+                    <span lang="zh-CN">基于实测肤色的季节色彩诊断。</span>
+                    <span lang="zh-TW">基於實測膚色的季節色彩診斷。</span>
+                </p>
+            </div>
+            <div class="gcard">
+                <div class="gicon"><img src="assets/icons/chat.png" alt=""></div>
+                <h4><span lang="en">AI Beauty Consult</span><span lang="ko">AI 뷰티 상담</span><span lang="ja">AIビューティー相談</span><span lang="zh-CN">AI美容咨询</span><span lang="zh-TW">AI美容諮詢</span></h4>
+                <p>
+                    <span lang="en">Ask anything — the AI answers based on your own measurements.</span>
+                    <span lang="ko">무엇이든 물어보세요 — 내 측정 데이터 기반으로 답합니다.</span>
+                    <span lang="ja">何でも質問を — あなたの測定データに基づいて回答します。</span>
+                    <span lang="zh-CN">随便问——AI 基于你的测量数据作答。</span>
+                    <span lang="zh-TW">隨便問——AI 基於你的測量數據作答。</span>
+                </p>
+            </div>
+            <div class="gcard">
+                <div class="gicon"><img src="assets/icons/filter.png" alt=""></div>
+                <h4><span lang="en">Live Beauty Filter</span><span lang="ko">라이브 뷰티 필터</span><span lang="ja">ライブビューティーフィルター</span><span lang="zh-CN">实时美颜滤镜</span><span lang="zh-TW">即時美顏濾鏡</span><span class="beta-pill">BETA</span></h4>
+                <p>
+                    <span lang="en">A real-time filter that knows your face in 3D.</span>
+                    <span lang="ko">내 얼굴을 3D로 아는 실시간 필터.</span>
+                    <span lang="ja">あなたの顔を3Dで理解するリアルタイムフィルター。</span>
+                    <span lang="zh-CN">以3D方式理解你面部的实时滤镜。</span>
+                    <span lang="zh-TW">以3D方式理解你臉部的即時濾鏡。</span>
+                </p>
+            </div>
+            <div class="gcard">
+                <div class="gicon"><img src="assets/icons/style.png" alt=""></div>
+                <h4><span lang="en">Style Guides</span><span lang="ko">스타일 가이드</span><span lang="ja">スタイルガイド</span><span lang="zh-CN">造型指南</span><span lang="zh-TW">造型指南</span></h4>
+                <p>
+                    <span lang="en">Hair, makeup and styling tips matched to your face shape.</span>
+                    <span lang="ko">얼굴형에 맞춘 헤어·메이크업·스타일링 팁.</span>
+                    <span lang="ja">顔型に合わせたヘア・メイク・スタイリングのヒント。</span>
+                    <span lang="zh-CN">匹配你脸型的发型、妆容与造型建议。</span>
+                    <span lang="zh-TW">匹配你臉型的髮型、妝容與造型建議。</span>
+                </p>
+            </div>
+        </div>
+
+        <!-- Privacy band -->
+        <div class="privacy-band reveal">
+            <div class="lock"><img src="assets/icons/privacy.png" alt="" style="width:38px;height:38px;display:block;"></div>
+            <div>
+                <h3>
+                    <span lang="en">Your face never leaves your phone</span>
+                    <span lang="ko">얼굴 데이터는 폰 밖으로 나가지 않습니다</span>
+                    <span lang="ja">顔データはスマホの外に出ません</span>
+                    <span lang="zh-CN">你的面部数据绝不离开手机</span>
+                    <span lang="zh-TW">你的臉部數據絕不離開手機</span>
+                </h3>
+                <p>
+                    <span lang="en">All scanning, measurement and analysis happen 100% on-device. No face data is uploaded, collected or sold — ever.</span>
+                    <span lang="ko">스캔·측정·분석 전 과정이 100% 기기 안에서 이뤄집니다. 얼굴 데이터는 업로드·수집·판매되지 않습니다.</span>
+                    <span lang="ja">スキャン・測定・分析はすべて100%デバイス内で完結。顔データのアップロード・収集・販売は一切ありません。</span>
+                    <span lang="zh-CN">扫描、测量与分析全程100%在设备端完成。面部数据绝不会被上传、收集或出售。</span>
+                    <span lang="zh-TW">掃描、測量與分析全程100%在裝置端完成。臉部數據絕不會被上傳、收集或出售。</span>
+                </p>
+                <p class="fineprint">
+                    <span lang="en">Exception: the optional AI Beauty Consult sends your question and related measurement data to our AI server, only while you use it. It is never used for anything else.</span>
+                    <span lang="ko">예외: 선택 기능인 AI 뷰티 상담 이용 시에만 질문과 관련 측정 데이터가 AI 서버로 전송되며, 그 외 용도로는 사용되지 않습니다.</span>
+                    <span lang="ja">例外：オプションのAIビューティー相談を利用する時のみ、質問と関連する測定データがAIサーバーに送信されます。それ以外の用途には一切使用されません。</span>
+                    <span lang="zh-CN">例外：仅在使用可选的 AI 美容咨询时，你的问题和相关测量数据才会发送至 AI 服务器，绝不用于其他用途。</span>
+                    <span lang="zh-TW">例外：僅在使用可選的 AI 美容諮詢時，你的問題和相關測量數據才會發送至 AI 伺服器，絕不用於其他用途。</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ CTA banner ══ -->
+    <section class="cta-banner reveal">
+        <div class="cta-inner">
+            <img src="logo.png" alt="Renka">
+            <h2 class="serif">
+                <span lang="en">Ready to meet your true face?</span>
+                <span lang="ko">진짜 내 얼굴, 만나볼 준비 됐나요?</span>
+                <span lang="ja">本当の自分の顔に、会う準備はできましたか？</span>
+                <span lang="zh-CN">准备好遇见真实的自己了吗？</span>
+                <span lang="zh-TW">準備好遇見真實的自己了嗎？</span>
+            </h2>
+            <p>
+                <span lang="en">Free to download. Works on any iPhone with Face ID.</span>
+                <span lang="ko">무료 다운로드 · Face ID 지원 아이폰이면 OK.</span>
+                <span lang="ja">無料ダウンロード · Face ID対応iPhoneでOK。</span>
+                <span lang="zh-CN">免费下载 · 支持 Face ID 的 iPhone 均可使用。</span>
+                <span lang="zh-TW">免費下載 · 支援 Face ID 的 iPhone 均可使用。</span>
+            </p>
+            <a class="store-badge" href="https://apps.apple.com/us/app/renka-3d-face-analyzer/id6756908316">
+                    <span lang="en"><img src="assets/badges/appstore-en.svg" alt="Download on the App Store"></span>
+                    <span lang="ko"><img src="assets/badges/appstore-ko.svg" alt="App Store에서 다운로드"></span>
+                    <span lang="ja"><img src="assets/badges/appstore-ja.svg" alt="App Storeでダウンロード"></span>
+                    <span lang="zh-CN"><img src="assets/badges/appstore-zh-CN.svg" alt="在 App Store 下载"></span>
+                    <span lang="zh-TW"><img src="assets/badges/appstore-zh-TW.svg" alt="在 App Store 下載"></span>
+                </a>
+        </div>
+    </section>
+
+    <!-- ══ Footer ══ -->
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="Renka-FAQ.html">
+                <span lang="en">FAQ</span><span lang="ko">자주 묻는 질문</span><span lang="ja">よくある質問</span><span lang="zh-CN">常见问题</span><span lang="zh-TW">常見問題</span>
+            </a>
+            <a href="notices.html">
+                <span lang="en">Notices</span><span lang="ko">공지사항</span><span lang="ja">お知らせ</span><span lang="zh-CN">公告</span><span lang="zh-TW">公告</span>
+            </a>
+            <a href="privacy-policy.html">
+                <span lang="en">Privacy Policy</span><span lang="ko">개인정보처리방침</span><span lang="ja">プライバシーポリシー</span><span lang="zh-CN">隐私政策</span><span lang="zh-TW">隱私權政策</span>
+            </a>
+            <a href="terms-of-service.html">
+                <span lang="en">Terms of Service</span><span lang="ko">이용약관</span><span lang="ja">利用規約</span><span lang="zh-CN">服务条款</span><span lang="zh-TW">服務條款</span>
+            </a>
+        </div>
+        <div class="footer-meta">
+            <p>© 2026 FatTail Labs. All rights reserved. · <a href="mailto:bernard@fattaillabs.com">bernard@fattaillabs.com</a></p>
+            <p style="margin-top: 8px; font-size: 11px; opacity: 0.8;">Apple, iPhone, Face ID, App Store and TrueDepth are trademarks of Apple Inc., registered in the U.S. and other countries.</p>
+        </div>
+    </footer>
+
     <script>
         function setLang(lang) {
-            setLangSilent(lang);
-        }
-        
-        function setLangSilent(lang) {
             document.body.className = 'lang-' + lang;
+            document.documentElement.setAttribute('lang', lang);
             document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.classList.remove('active');
-                if (btn.getAttribute('onclick').includes("'" + lang + "'")) {
-                    btn.classList.add('active');
-                }
+                btn.classList.toggle('active', btn.getAttribute('onclick').includes("'" + lang + "'"));
             });
             localStorage.setItem('preferred-lang', lang);
         }
-        
+
         document.addEventListener('DOMContentLoaded', function() {
+            // 언어 결정: URL 파라미터 > 저장값
             const urlParams = new URLSearchParams(window.location.search);
             const langParam = urlParams.get('lang');
             const supportedLangs = ['en', 'ko', 'ja', 'zh-CN', 'zh-TW'];
-            
             if (langParam && supportedLangs.includes(langParam)) {
-                setLangSilent(langParam);
+                setLang(langParam);
             } else {
                 const saved = localStorage.getItem('preferred-lang');
-                if (saved && supportedLangs.includes(saved)) {
-                    setLangSilent(saved);
-                }
+                if (saved && supportedLangs.includes(saved)) setLang(saved);
             }
+
+            // 스크롤 리빌
+            const io = new IntersectionObserver((entries) => {
+                entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } });
+            }, { threshold: 0.12 });
+            document.querySelectorAll('.reveal').forEach(el => io.observe(el));
         });
     </script>
 </body>
