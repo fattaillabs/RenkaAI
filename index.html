@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Renka — True 3D Face Analyzer</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png">
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
     <meta name="description" content="World's first real 3D face scanner using the iPhone IR depth sensor. Golden ratio, symmetry, contour analysis, plastic surgery simulator, daily puffiness tracking — all on-device.">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Renka — True 3D Face Analyzer">
@@ -439,14 +444,15 @@
                 <div class="phone-screen">
                     <div class="phone-notch"></div>
                     <!-- 실사 얼굴 + 앱 윤곽 오버레이(틸 턱선·노랑 하악각·주황 턱끝·흰/마젠타 캘리퍼) 합성 -->
-                    <img class="screen-photo" src="assets/hero-face.jpg" alt="">
+                    <img class="screen-photo" id="heroPhoto" src="assets/hero-face.jpg" alt="">
                     <svg class="scan-face" viewBox="0 0 200 420" aria-hidden="true">
                         <defs>
                             <linearGradient id="meshg" x1="0" y1="0" x2="1" y2="1">
                                 <stop offset="0" stop-color="#9FDD8B"/><stop offset="1" stop-color="#4C9A45"/>
                             </linearGradient>
                         </defs>
-                        <!-- 은은한 메쉬 (사진 위 스캔 느낌) -->
+                        <!-- 은은한 메쉬 (사진 위 스캔 느낌) — 언어별 히어로 얼굴에 맞춰 JS가 transform 조정 -->
+                        <g id="faceOverlay">
                         <g stroke="url(#meshg)" stroke-width="0.6" fill="none" opacity="0.4">
                             <ellipse cx="100" cy="204" rx="50" ry="63"/>
                             <path d="M52 190 Q100 152 148 190"/>
@@ -459,6 +465,7 @@
                             <circle cx="100" cy="142" r="1.6"/><circle cx="52" cy="190" r="1.6"/><circle cx="148" cy="190" r="1.6"/>
                             <circle cx="74" cy="174" r="1.6"/><circle cx="126" cy="174" r="1.6"/><circle cx="100" cy="210" r="1.6"/>
                             <circle cx="64" cy="160" r="1.6"/><circle cx="136" cy="160" r="1.6"/><circle cx="100" cy="264" r="1.6"/>
+                        </g>
                         </g>
                         <!-- 하단 미니 지표 바: 6대 메트릭 중 플로팅 칩(매력도·윤곽·붓기) 외 나머지 3종 -->
                         <g font-family="-apple-system, sans-serif">
@@ -627,9 +634,10 @@
         <div class="frow reveal">
             <div class="fvisual" id="visual-simulator">
                 <!-- 시뮬레이터 콘셉트: 실사 얼굴 + 시술 가이드 마커(쌍커풀·코·V라인) + 시술 선택 칩 + 강도 슬라이더 -->
-                <img src="assets/face-male.jpg" alt="">
+                <img src="assets/face-male.jpg" alt="" id="simPhoto">
                 <svg class="fv-overlay" viewBox="0 0 500 400" aria-hidden="true" font-family="-apple-system, sans-serif">
-                    <!-- 쌍커풀 가이드 (그린 아크) -->
+                    <!-- 쌍커풀 가이드 (그린 아크) — 언어별 얼굴에 맞춰 JS가 transform 조정 -->
+                    <g id="simOverlay">
                     <path d="M178 175 q16 -8 32 0" stroke="#7BC96A" stroke-width="2" fill="none" stroke-linecap="round" stroke-dasharray="4 3"/>
                     <path d="M248 175 q16 -8 32 0" stroke="#7BC96A" stroke-width="2" fill="none" stroke-linecap="round" stroke-dasharray="4 3"/>
                     <!-- 코 가이드 (흰 점선 세로) -->
@@ -640,6 +648,7 @@
                     <path d="M158 283 Q180 322 229 334 Q278 322 300 283" fill="none" stroke="#2AC7BD" stroke-width="2.6" stroke-linecap="round"/>
                     <!-- 축소 화살표 -->
                     <path d="M170 310 l10 -6 M288 310 l-10 -6" stroke="#2AC7BD" stroke-width="2" stroke-linecap="round"/>
+                    </g>
                     <!-- 시술 선택 칩 -->
                     <g font-size="11" font-weight="700">
                         <rect x="64" y="350" width="112" height="24" rx="12" fill="rgba(89,162,78,0.92)"/>
@@ -905,6 +914,30 @@
         function setLang(lang) {
             document.body.className = 'lang-' + lang;
             document.documentElement.setAttribute('lang', lang);
+
+            // 영어권 히어로는 백인 모델로 스왑 + 얼굴 랜드마크에 맞춰 오버레이 보정
+            var hero = document.getElementById('heroPhoto');
+            var overlay = document.getElementById('faceOverlay');
+            if (hero && overlay) {
+                if (lang === 'en') {
+                    hero.src = 'assets/hero-face-en.jpg';
+                    overlay.setAttribute('transform', 'translate(7,16) scale(0.93,1)');
+                } else {
+                    hero.src = 'assets/hero-face.jpg';
+                    overlay.removeAttribute('transform');
+                }
+            }
+            var simPhoto = document.getElementById('simPhoto');
+            var simOverlay = document.getElementById('simOverlay');
+            if (simPhoto && simOverlay) {
+                if (lang === 'en') {
+                    simPhoto.src = 'assets/face-male-en.jpg';
+                    simOverlay.setAttribute('transform', 'translate(17,34.3) scale(1,0.781)');
+                } else {
+                    simPhoto.src = 'assets/face-male.jpg';
+                    simOverlay.removeAttribute('transform');
+                }
+            }
             document.querySelectorAll('.lang-btn').forEach(btn => {
                 btn.classList.toggle('active', btn.getAttribute('onclick').includes("'" + lang + "'"));
             });
@@ -920,7 +953,7 @@
                 setLang(langParam);
             } else {
                 const saved = localStorage.getItem('preferred-lang');
-                if (saved && supportedLangs.includes(saved)) setLang(saved);
+                setLang(saved && supportedLangs.includes(saved) ? saved : 'en');
             }
 
             // 스크롤 리빌
