@@ -146,6 +146,7 @@
             .nav-cta span { display: none !important; }
             .nav-cta::after { content: '↓'; }
             .nav-inner { gap: 8px; padding: 12px 14px; }
+            .hero-note { flex-basis: 100%; text-align: center; }
             .nav-brand { gap: 7px; }
             .nav-brand img { width: 28px; height: 28px; }
             .lang-bar { gap: 2px; }
@@ -414,7 +415,9 @@
             border-radius: 32px;
             padding: 72px 32px;
         }
-        .cta-inner img { width: 88px; height: 88px; border-radius: 22px; margin-bottom: 24px; box-shadow: var(--shadow-card); }
+        .cta-inner > img { width: 88px; height: 88px; border-radius: 22px; margin-bottom: 24px; box-shadow: var(--shadow-card); }
+        .cta-inner .store-badge { vertical-align: middle; margin: 6px 8px; }
+        .cta-inner .store-badge img { width: auto; height: 56px; border-radius: 0; margin: 0; box-shadow: none; }
         .cta-inner h2 { font-size: clamp(26px, 3.4vw, 38px); letter-spacing: -0.7px; margin-bottom: 12px; }
         .cta-inner p { color: var(--ink-soft); margin-bottom: 30px; font-size: 16px; }
 
