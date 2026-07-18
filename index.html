@@ -3,20 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Renka — True 3D Face Analyzer</title>
+    <title>Renka(렌카) — 얼굴 실측 · 매력도 분석 · 성형 시뮬레이션 앱 | True 3D Face Analyzer</title>
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
     <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png">
     <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+    <link rel="canonical" href="https://fattaillabs.com/RenkaAI/">
 
-    <meta name="description" content="World's first real 3D face scanner using the iPhone IR depth sensor. Golden ratio, symmetry, contour analysis, plastic surgery simulator, daily puffiness tracking — all on-device.">
+    <meta name="description" content="렌카(Renka)는 TrueScale 기술로 얼굴 크기를 mm 단위로 실측하는 얼굴 분석 앱입니다. 얼굴형 분석, 황금비율·좌우대칭 매력도 리포트, 성형 시뮬레이션, 붓기 관리까지 — 사진은 기기 밖으로 나가지 않습니다. World's first true-3D face analyzer with real-mm measurement, golden ratio & symmetry reports, and a beauty simulator.">
+    <meta name="keywords" content="렌카, Renka, 얼굴 크기 측정, 얼굴 실측, 얼굴형 분석, 얼굴형 테스트, 매력도 테스트, 황금비율, 좌우대칭, 성형 시뮬레이션, 붓기 관리, 뷰티 앱, TrueScale, face measurement app, face analyzer, golden ratio face, face symmetry, beauty simulator">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Renka — True 3D Face Analyzer">
-    <meta property="og:description" content="Golden ratio, symmetry, contour and daily puffiness — measured in true 3D with the iPhone IR depth sensor.">
+    <meta property="og:site_name" content="Renka">
+    <meta property="og:title" content="Renka(렌카) — 얼굴 실측 · 매력도 분석 · 성형 시뮬레이션 앱">
+    <meta property="og:description" content="TrueScale 기술로 얼굴을 mm 단위로 실측. 얼굴형·황금비율·좌우대칭 분석과 성형 시뮬레이션을 한 앱에서. 사진은 기기 밖으로 나가지 않습니다.">
     <meta property="og:image" content="https://fattaillabs.com/RenkaAI/assets/og.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <meta property="og:url" content="https://fattaillabs.com/RenkaAI/">
+    <meta property="og:locale" content="ko_KR">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="ja_JP">
+    <meta property="og:locale:alternate" content="zh_CN">
+    <meta property="og:locale:alternate" content="zh_TW">
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Renka(렌카) — 얼굴 실측 · 매력도 분석 앱">
+    <meta name="twitter:description" content="TrueScale 실측 기반 얼굴 분석 · 매력도 리포트 · 성형 시뮬레이션. All on-device.">
     <meta name="twitter:image" content="https://fattaillabs.com/RenkaAI/assets/og.jpg">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "MobileApplication",
+          "name": "Renka",
+          "alternateName": "렌카",
+          "operatingSystem": "iOS, Android",
+          "applicationCategory": "LifestyleApplication",
+          "description": "TrueScale 기술로 얼굴을 mm 단위로 실측하는 얼굴 분석 앱. 얼굴형 분석, 황금비율·좌우대칭 매력도 리포트, 성형 시뮬레이션, 붓기 관리 기능을 제공하며 모든 분석은 기기 안에서 처리됩니다.",
+          "url": "https://fattaillabs.com/RenkaAI/",
+          "installUrl": "https://apps.apple.com/app/renka-3d-face-analyzer/id6756908316",
+          "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+          "publisher": { "@id": "https://fattaillabs.com/#org" }
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://fattaillabs.com/#org",
+          "name": "Fat Tail Labs",
+          "url": "https://fattaillabs.com/",
+          "logo": "https://fattaillabs.com/RenkaAI/assets/favicon-192.png",
+          "contactPoint": { "@type": "ContactPoint", "email": "bernard@fattaillabs.com", "contactType": "customer support" }
+        },
+        {
+          "@type": "WebSite",
+          "name": "Renka",
+          "url": "https://fattaillabs.com/RenkaAI/",
+          "inLanguage": ["ko", "en", "ja", "zh-CN", "zh-TW"]
+        }
+      ]
+    }
+    </script>
     <style>
         :root {
             --bg: #FBF7F4;
@@ -444,7 +490,7 @@
                 <div class="phone-screen">
                     <div class="phone-notch"></div>
                     <!-- 실사 얼굴 + 앱 윤곽 오버레이(틸 턱선·노랑 하악각·주황 턱끝·흰/마젠타 캘리퍼) 합성 -->
-                    <img class="screen-photo" id="heroPhoto" src="assets/hero-face.jpg" alt="">
+                    <img class="screen-photo" id="heroPhoto" src="assets/hero-face.jpg" alt="렌카 얼굴 분석 화면 — 3D 랜드마크와 mm 실측 오버레이 예시">
                     <svg class="scan-face" viewBox="0 0 200 420" aria-hidden="true">
                         <defs>
                             <linearGradient id="meshg" x1="0" y1="0" x2="1" y2="1">
@@ -634,7 +680,7 @@
         <div class="frow reveal">
             <div class="fvisual" id="visual-simulator">
                 <!-- 시뮬레이터 콘셉트: 실사 얼굴 + 시술 가이드 마커(쌍커풀·코·V라인) + 시술 선택 칩 + 강도 슬라이더 -->
-                <img src="assets/face-male.jpg" alt="" id="simPhoto">
+                <img src="assets/face-male.jpg" alt="렌카 성형 시뮬레이션 전후 비교 예시" id="simPhoto">
                 <svg class="fv-overlay" viewBox="0 0 500 400" aria-hidden="true" font-family="-apple-system, sans-serif">
                     <!-- 쌍커풀 가이드 (그린 아크) — 언어별 얼굴에 맞춰 JS가 transform 조정 -->
                     <g id="simOverlay">
