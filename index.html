@@ -1000,7 +1000,6 @@
             document.querySelectorAll('.lang-btn').forEach(btn => {
                 btn.classList.toggle('active', (btn.dataset.lang || '') === lang);
             });
-            localStorage.setItem('preferred-lang', lang);
         }
 
         document.addEventListener('DOMContentLoaded', function() {
@@ -1012,8 +1011,11 @@
                 setLang(langParam);
             } else {
                 const saved = localStorage.getItem('preferred-lang');
-                if (saved && supportedLangs.includes(saved) && saved !== PAGE_LANG && LANG_HOME[saved]) { location.replace(LANG_HOME[saved]); }
-                setLang(PAGE_LANG);
+                if (saved && supportedLangs.includes(saved) && saved !== PAGE_LANG && LANG_HOME[saved]) {
+                    location.replace(LANG_HOME[saved]);
+                } else {
+                    setLang(PAGE_LANG);
+                }
             }
 
             // 스크롤 리빌
