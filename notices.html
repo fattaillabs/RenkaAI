@@ -41,17 +41,19 @@
         
         [lang]:not([lang="en"]) { display: none; }
         body.lang-ko [lang="ko"] { display: block; }
-        body.lang-ko [lang="en"], body.lang-ko [lang="ja"], body.lang-ko [lang="zh-CN"], body.lang-ko [lang="zh-TW"] { display: none; }
+        body.lang-ko [lang="en"], body.lang-ko [lang="ja"], body.lang-ko [lang="zh-CN"], body.lang-ko [lang="zh-TW"], body.lang-ko [lang="id"] { display: none; }
         body.lang-ja [lang="ja"] { display: block; }
-        body.lang-ja [lang="en"], body.lang-ja [lang="ko"], body.lang-ja [lang="zh-CN"], body.lang-ja [lang="zh-TW"] { display: none; }
+        body.lang-ja [lang="en"], body.lang-ja [lang="ko"], body.lang-ja [lang="zh-CN"], body.lang-ja [lang="zh-TW"], body.lang-ja [lang="id"] { display: none; }
         body.lang-en [lang="en"] { display: block; }
-        body.lang-en [lang="ko"], body.lang-en [lang="ja"], body.lang-en [lang="zh-CN"], body.lang-en [lang="zh-TW"] { display: none; }
+        body.lang-en [lang="ko"], body.lang-en [lang="ja"], body.lang-en [lang="zh-CN"], body.lang-en [lang="zh-TW"], body.lang-en [lang="id"] { display: none; }
         body.lang-zh-CN [lang="zh-CN"] { display: block; }
-        body.lang-zh-CN [lang="en"], body.lang-zh-CN [lang="ko"], body.lang-zh-CN [lang="ja"], body.lang-zh-CN [lang="zh-TW"] { display: none; }
+        body.lang-zh-CN [lang="en"], body.lang-zh-CN [lang="ko"], body.lang-zh-CN [lang="ja"], body.lang-zh-CN [lang="zh-TW"], body.lang-zh-CN [lang="id"] { display: none; }
         body.lang-zh-TW [lang="zh-TW"] { display: block; }
         body.lang-es [lang="es"] { display: block; }
-        body.lang-es [lang="en"], body.lang-es [lang="ko"], body.lang-es [lang="ja"], body.lang-es [lang="zh-CN"], body.lang-es [lang="zh-TW"] { display: none; }
-        body.lang-zh-TW [lang="en"], body.lang-zh-TW [lang="ko"], body.lang-zh-TW [lang="ja"], body.lang-zh-TW [lang="zh-CN"] { display: none; }
+        body.lang-id [lang="id"] { display: block; }
+        body.lang-id [lang="en"], body.lang-id [lang="ko"], body.lang-id [lang="ja"], body.lang-id [lang="zh-CN"], body.lang-id [lang="zh-TW"], body.lang-id [lang="es"] { display: none; }
+        body.lang-es [lang="en"], body.lang-es [lang="ko"], body.lang-es [lang="ja"], body.lang-es [lang="zh-CN"], body.lang-es [lang="zh-TW"], body.lang-es [lang="id"] { display: none; }
+        body.lang-zh-TW [lang="en"], body.lang-zh-TW [lang="ko"], body.lang-zh-TW [lang="ja"], body.lang-zh-TW [lang="zh-CN"], body.lang-zh-TW [lang="id"] { display: none; }
         span[lang] { display: none; }
         body.lang-en span[lang="en"] { display: inline; }
         body.lang-ko span[lang="ko"] { display: inline; }
@@ -59,12 +61,13 @@
         body.lang-zh-CN span[lang="zh-CN"] { display: inline; }
         body.lang-zh-TW span[lang="zh-TW"] { display: inline; }
         body.lang-es span[lang="es"] { display: inline; }
+        body.lang-id span[lang="id"] { display: inline; }
     </style>
 </head>
 <body class="lang-en">
     <div class="container">
         <div class="header">
-            <a href="index.html" class="back-link">← <span lang="en">Home</span><span lang="es">Inicio</span><span lang="ko">홈으로</span><span lang="ja">ホームへ</span><span lang="zh-CN">返回首页</span><span lang="zh-TW">返回首頁</span></a>
+            <a href="index.html" class="back-link">← <span lang="en">Home</span><span lang="id">Beranda</span><span lang="es">Inicio</span><span lang="ko">홈으로</span><span lang="ja">ホームへ</span><span lang="zh-CN">返回首页</span><span lang="zh-TW">返回首頁</span></a>
             <div class="lang-switcher">
                 <button class="lang-btn active" onclick="setLang('en')" title="English">🇺🇸</button>
                 <button class="lang-btn" onclick="setLang('ko')" title="한국어">🇰🇷</button>
@@ -72,17 +75,18 @@
                 <button class="lang-btn" onclick="setLang('zh-CN')" title="简体中文">🇨🇳</button>
                 <button class="lang-btn" onclick="setLang('zh-TW')" title="繁體中文">🇹🇼</button>
                 <button class="lang-btn" onclick="setLang('es')" title="Español">🇪🇸</button>
+                <button class="lang-btn" onclick="setLang('id')" title="Bahasa Indonesia">🇮🇩</button>
             </div>
         </div>
         
-        <h1 lang="en">📢 Notices</h1><h1 lang="es">📢 Avisos</h1>
+        <h1 lang="en">📢 Notices</h1><h1 lang="id">📢 Pengumuman</h1><h1 lang="es">📢 Avisos</h1>
         <h1 lang="ko">📢 공지사항</h1>
         <h1 lang="ja">📢 お知らせ</h1>
         <h1 lang="zh-CN">📢 公告</h1>
         <h1 lang="zh-TW">📢 公告</h1>
         
         <p class="subtitle">
-            <span lang="en">Latest updates and announcements</span><span lang="es">Últimas novedades y anuncios</span>
+            <span lang="en">Latest updates and announcements</span><span lang="id">Pembaruan dan pengumuman terbaru</span><span lang="es">Últimas novedades y anuncios</span>
             <span lang="ko">최신 업데이트 및 안내사항</span>
             <span lang="ja">最新のアップデートとお知らせ</span>
             <span lang="zh-CN">最新更新和公告</span>
@@ -109,6 +113,20 @@
                         <li>An upgraded <strong>Beauty Selfie</strong> (nose slimming, blemish softening) and a more natural Plastic Surgery Simulator</li>
                     </ul>
                     <p>📅 <strong>Rollout timing:</strong> Version 2.0 is being released on the night of July 6, 2026 (KST / Korea time) through the App Store. Depending on your region, it may take a few hours to appear. If you don't see the new features yet, please open the App Store and tap "Update" once it becomes available. Until you update, you'll continue on the current version.</p>
+                </div>
+            </div><div lang="id">
+                <div class="notice-header">
+                    <h2 class="notice-title">🎉 Renka 2.0 — Pembaruan Besar</h2>
+                    <span class="notice-date">6 Juli 2026</span>
+                </div>
+                <div class="notice-content">
+                    <p>Renka mendapatkan peningkatan besar ke versi 2.0! Sorotan pembaruan ini:</p>
+                    <ul>
+                        <li><strong>DietCam</strong> — potret makananmu untuk mengenali kalori, natrium, dan indeks glikemik, lalu lihat kaitan asupan natriummu dengan pembengkakan wajah dalam satu grafik</li>
+                        <li><strong>Analisis Kontur</strong> — skor kontur dari garis rahang, sudut gonial, dan fWHR</li>
+                        <li><strong>Beauty Selfie</strong> yang ditingkatkan (pelangsingan hidung, penyamaran noda) dan Simulator Bedah Plastik yang lebih natural</li>
+                    </ul>
+                    <p>📅 <strong>Waktu peluncuran:</strong> Versi 2.0 dirilis pada malam hari 6 Juli 2026 (KST / waktu Korea) melalui App Store. Tergantung wilayahmu, mungkin perlu beberapa jam sampai muncul. Jika kamu belum melihat fitur barunya, silakan buka App Store dan ketuk "Update" begitu tersedia. Sampai kamu memperbarui, kamu akan tetap menggunakan versi saat ini.</p>
                 </div>
             </div><div lang="es">
                 <div class="notice-header">
@@ -220,6 +238,24 @@
                         <li>And more!</li>
                     </ul>
                     <p><a href="Renka-FAQ.html" style="color: #4CAF50;">Check out the FAQ page</a> for detailed answers to help you get the most out of Renka.</p>
+                </div>
+            </div><div lang="id">
+                <div class="notice-header">
+                    <h2 class="notice-title">📖 Halaman FAQ Telah Terbit</h2>
+                    <span class="notice-date">17 Maret 2026</span>
+                </div>
+                <div class="notice-content">
+                    <p>Kami telah menerbitkan halaman FAQ yang lengkap untuk menjawab pertanyaan-pertanyaan yang paling sering kamu ajukan tentang Renka!</p>
+                    <p>Topik yang dibahas meliputi:</p>
+                    <ul>
+                        <li>Perbedaan Renka dengan aplikasi beauty scanner lainnya</li>
+                        <li>Metodologi pengukuran wajah</li>
+                        <li>Tips melacak pembengkakan wajah</li>
+                        <li>Penafian simulator bedah plastik</li>
+                        <li>Perangkat yang didukung</li>
+                        <li>Dan masih banyak lagi!</li>
+                    </ul>
+                    <p><a href="Renka-FAQ.html" style="color: #4CAF50;">Lihat halaman FAQ</a> untuk jawaban lengkap yang membantumu memanfaatkan Renka secara maksimal.</p>
                 </div>
             </div><div lang="es">
                 <div class="notice-header">
@@ -348,6 +384,23 @@
                     </ul>
                     <p>Thank you for using Renka. We'll continue to improve and add new features!</p>
                 </div>
+            </div><div lang="id">
+                <div class="notice-header">
+                    <h2 class="notice-title">🎉 Peluncuran Renka v1.0!</h2>
+                    <span class="notice-date">2 Desember 2025</span>
+                </div>
+                <div class="notice-content">
+                    <p>Dengan senang hati kami mengumumkan peluncuran resmi Renka!</p>
+                    <p>Renka adalah aplikasi pengukuran wajah yang menggunakan teknologi AR untuk menghadirkan:</p>
+                    <ul>
+                        <li>Pengukuran wajah yang akurat (tinggi, lebar, luas)</li>
+                        <li>Analisis rasio emas dan simetri</li>
+                        <li>Diagnosis personal color</li>
+                        <li>Pelacakan pembengkakan wajah dari waktu ke waktu</li>
+                        <li>Perhitungan rasio tubuh (kepala terhadap badan)</li>
+                    </ul>
+                    <p>Terima kasih telah menggunakan Renka. Kami akan terus meningkatkan dan menambahkan fitur baru!</p>
+                </div>
             </div><div lang="es">
                 <div class="notice-header">
                     <h2 class="notice-title">🎉 ¡Lanzamiento de Renka v1.0!</h2>
@@ -466,7 +519,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             const urlParams = new URLSearchParams(window.location.search);
             const langParam = urlParams.get('lang');
-            const supportedLangs = ['en', 'ko', 'ja', 'zh-CN', 'zh-TW', 'es'];
+            const supportedLangs = ['en', 'ko', 'ja', 'zh-CN', 'zh-TW', 'es', 'id'];
             
             if (langParam && supportedLangs.includes(langParam)) {
                 setLangSilent(langParam);
