@@ -49,6 +49,8 @@
         body.lang-zh-CN [lang="zh-CN"] { display: block; }
         body.lang-zh-CN [lang="en"], body.lang-zh-CN [lang="ko"], body.lang-zh-CN [lang="ja"], body.lang-zh-CN [lang="zh-TW"] { display: none; }
         body.lang-zh-TW [lang="zh-TW"] { display: block; }
+        body.lang-es [lang="es"] { display: block; }
+        body.lang-es [lang="en"], body.lang-es [lang="ko"], body.lang-es [lang="ja"], body.lang-es [lang="zh-CN"], body.lang-es [lang="zh-TW"] { display: none; }
         body.lang-zh-TW [lang="en"], body.lang-zh-TW [lang="ko"], body.lang-zh-TW [lang="ja"], body.lang-zh-TW [lang="zh-CN"] { display: none; }
         span[lang] { display: none; }
         body.lang-en span[lang="en"] { display: inline; }
@@ -56,29 +58,31 @@
         body.lang-ja span[lang="ja"] { display: inline; }
         body.lang-zh-CN span[lang="zh-CN"] { display: inline; }
         body.lang-zh-TW span[lang="zh-TW"] { display: inline; }
+        body.lang-es span[lang="es"] { display: inline; }
     </style>
 </head>
 <body class="lang-en">
     <div class="container">
         <div class="header">
-            <a href="index.html" class="back-link">← <span lang="en">Home</span><span lang="ko">홈으로</span><span lang="ja">ホームへ</span><span lang="zh-CN">返回首页</span><span lang="zh-TW">返回首頁</span></a>
+            <a href="index.html" class="back-link">← <span lang="en">Home</span><span lang="es">Inicio</span><span lang="ko">홈으로</span><span lang="ja">ホームへ</span><span lang="zh-CN">返回首页</span><span lang="zh-TW">返回首頁</span></a>
             <div class="lang-switcher">
                 <button class="lang-btn active" onclick="setLang('en')" title="English">🇺🇸</button>
                 <button class="lang-btn" onclick="setLang('ko')" title="한국어">🇰🇷</button>
                 <button class="lang-btn" onclick="setLang('ja')" title="日本語">🇯🇵</button>
                 <button class="lang-btn" onclick="setLang('zh-CN')" title="简体中文">🇨🇳</button>
                 <button class="lang-btn" onclick="setLang('zh-TW')" title="繁體中文">🇹🇼</button>
+                <button class="lang-btn" onclick="setLang('es')" title="Español">🇪🇸</button>
             </div>
         </div>
         
-        <h1 lang="en">📢 Notices</h1>
+        <h1 lang="en">📢 Notices</h1><h1 lang="es">📢 Avisos</h1>
         <h1 lang="ko">📢 공지사항</h1>
         <h1 lang="ja">📢 お知らせ</h1>
         <h1 lang="zh-CN">📢 公告</h1>
         <h1 lang="zh-TW">📢 公告</h1>
         
         <p class="subtitle">
-            <span lang="en">Latest updates and announcements</span>
+            <span lang="en">Latest updates and announcements</span><span lang="es">Últimas novedades y anuncios</span>
             <span lang="ko">최신 업데이트 및 안내사항</span>
             <span lang="ja">最新のアップデートとお知らせ</span>
             <span lang="zh-CN">最新更新和公告</span>
@@ -105,6 +109,20 @@
                         <li>An upgraded <strong>Beauty Selfie</strong> (nose slimming, blemish softening) and a more natural Plastic Surgery Simulator</li>
                     </ul>
                     <p>📅 <strong>Rollout timing:</strong> Version 2.0 is being released on the night of July 6, 2026 (KST / Korea time) through the App Store. Depending on your region, it may take a few hours to appear. If you don't see the new features yet, please open the App Store and tap "Update" once it becomes available. Until you update, you'll continue on the current version.</p>
+                </div>
+            </div><div lang="es">
+                <div class="notice-header">
+                    <h2 class="notice-title">🎉 Renka 2.0 — Una gran actualización</h2>
+                    <span class="notice-date">6 de julio de 2026</span>
+                </div>
+                <div class="notice-content">
+                    <p>¡Renka recibe una gran mejora a la versión 2.0! Lo más destacado de esta actualización:</p>
+                    <ul>
+                        <li><strong>DietCam</strong> — toma una foto de tu comida para reconocer las calorías, el sodio y el índice glucémico, y ve en un solo gráfico cómo se relaciona tu consumo de sodio con la hinchazón facial</li>
+                        <li><strong>Análisis de contorno</strong> — una puntuación de contorno a partir de tu línea de la mandíbula, el ángulo gonial y el fWHR</li>
+                        <li>Una <strong>Selfie de belleza</strong> mejorada (afinado de nariz, suavizado de imperfecciones) y un Simulador de cirugía plástica más natural</li>
+                    </ul>
+                    <p>📅 <strong>Fecha de lanzamiento:</strong> La versión 2.0 se publica en la App Store la noche del 6 de julio de 2026 (KST / hora de Corea). Según tu región, puede tardar unas horas en aparecer. Si aún no ves las nuevas funciones, abre la App Store y toca "Actualizar" cuando esté disponible. Hasta que actualices, seguirás en la versión actual.</p>
                 </div>
             </div>
 
@@ -202,6 +220,24 @@
                         <li>And more!</li>
                     </ul>
                     <p><a href="Renka-FAQ.html" style="color: #4CAF50;">Check out the FAQ page</a> for detailed answers to help you get the most out of Renka.</p>
+                </div>
+            </div><div lang="es">
+                <div class="notice-header">
+                    <h2 class="notice-title">📖 Página de preguntas frecuentes publicada</h2>
+                    <span class="notice-date">17 de marzo de 2026</span>
+                </div>
+                <div class="notice-content">
+                    <p>¡Hemos publicado una completa página de preguntas frecuentes para responder tus dudas más comunes sobre Renka!</p>
+                    <p>Los temas que se tratan incluyen:</p>
+                    <ul>
+                        <li>En qué se diferencia Renka de otras apps de escaneo de belleza</li>
+                        <li>Metodología de medición facial</li>
+                        <li>Consejos para el seguimiento de la hinchazón</li>
+                        <li>Aviso legal del simulador de cirugía plástica</li>
+                        <li>Dispositivos compatibles</li>
+                        <li>¡Y mucho más!</li>
+                    </ul>
+                    <p><a href="Renka-FAQ.html" style="color: #4CAF50;">Consulta la página de preguntas frecuentes</a> para ver respuestas detalladas que te ayudarán a sacar el máximo partido a Renka.</p>
                 </div>
             </div>
             
@@ -312,6 +348,23 @@
                     </ul>
                     <p>Thank you for using Renka. We'll continue to improve and add new features!</p>
                 </div>
+            </div><div lang="es">
+                <div class="notice-header">
+                    <h2 class="notice-title">🎉 ¡Lanzamiento de Renka v1.0!</h2>
+                    <span class="notice-date">2 de diciembre de 2025</span>
+                </div>
+                <div class="notice-content">
+                    <p>¡Nos complace anunciar el lanzamiento oficial de Renka!</p>
+                    <p>Renka es una app de medición facial que utiliza tecnología de RA para ofrecerte:</p>
+                    <ul>
+                        <li>Mediciones faciales precisas (altura, anchura, área)</li>
+                        <li>Análisis de proporción áurea y simetría</li>
+                        <li>Diagnóstico de color personal</li>
+                        <li>Seguimiento de la hinchazón a lo largo del tiempo</li>
+                        <li>Cálculo de la proporción corporal (cabeza-cuerpo)</li>
+                    </ul>
+                    <p>Gracias por usar Renka. ¡Seguiremos mejorando y añadiendo nuevas funciones!</p>
+                </div>
             </div>
             
             <div lang="ko">
@@ -413,7 +466,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             const urlParams = new URLSearchParams(window.location.search);
             const langParam = urlParams.get('lang');
-            const supportedLangs = ['en', 'ko', 'ja', 'zh-CN', 'zh-TW'];
+            const supportedLangs = ['en', 'ko', 'ja', 'zh-CN', 'zh-TW', 'es'];
             
             if (langParam && supportedLangs.includes(langParam)) {
                 setLangSilent(langParam);

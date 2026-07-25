@@ -81,6 +81,8 @@
         body.lang-zh-CN [lang="zh-CN"] { display: block; }
         body.lang-zh-CN [lang="en"], body.lang-zh-CN [lang="ko"], body.lang-zh-CN [lang="ja"], body.lang-zh-CN [lang="zh-TW"] { display: none; }
         body.lang-zh-TW [lang="zh-TW"] { display: block; }
+        body.lang-es [lang="es"] { display: block; }
+        body.lang-es [lang="en"], body.lang-es [lang="ko"], body.lang-es [lang="ja"], body.lang-es [lang="zh-CN"], body.lang-es [lang="zh-TW"] { display: none; }
         body.lang-zh-TW [lang="en"], body.lang-zh-TW [lang="ko"], body.lang-zh-TW [lang="ja"], body.lang-zh-TW [lang="zh-CN"] { display: none; }
         span[lang] { display: none; }
         body.lang-en span[lang="en"] { display: inline; }
@@ -88,29 +90,31 @@
         body.lang-ja span[lang="ja"] { display: inline; }
         body.lang-zh-CN span[lang="zh-CN"] { display: inline; }
         body.lang-zh-TW span[lang="zh-TW"] { display: inline; }
+        body.lang-es span[lang="es"] { display: inline; }
     </style>
 </head>
 <body class="lang-en">
     <div class="container">
         <div class="header">
-            <a href="index.html" class="back-link">← <span lang="en">Home</span><span lang="ko">홈으로</span><span lang="ja">ホームへ</span><span lang="zh-CN">返回首页</span><span lang="zh-TW">返回首頁</span></a>
+            <a href="index.html" class="back-link">← <span lang="en">Home</span><span lang="es">Inicio</span><span lang="ko">홈으로</span><span lang="ja">ホームへ</span><span lang="zh-CN">返回首页</span><span lang="zh-TW">返回首頁</span></a>
             <div class="lang-switcher">
                 <button class="lang-btn active" onclick="setLang('en')" title="English">🇺🇸</button>
                 <button class="lang-btn" onclick="setLang('ko')" title="한국어">🇰🇷</button>
                 <button class="lang-btn" onclick="setLang('ja')" title="日本語">🇯🇵</button>
                 <button class="lang-btn" onclick="setLang('zh-CN')" title="简体中文">🇨🇳</button>
                 <button class="lang-btn" onclick="setLang('zh-TW')" title="繁體中文">🇹🇼</button>
+                <button class="lang-btn" onclick="setLang('es')" title="Español">🇪🇸</button>
             </div>
         </div>
         
-        <h1 lang="en">❓ FAQ</h1>
+        <h1 lang="en">❓ FAQ</h1><h1 lang="es">❓ Preguntas frecuentes</h1>
         <h1 lang="ko">❓ 자주 묻는 질문</h1>
         <h1 lang="ja">❓ よくある質問</h1>
         <h1 lang="zh-CN">❓ 常见问题</h1>
         <h1 lang="zh-TW">❓ 常見問題</h1>
         
         <p class="subtitle">
-            <span lang="en">Frequently asked questions about Renka</span>
+            <span lang="en">Frequently asked questions about Renka</span><span lang="es">Preguntas frecuentes sobre Renka</span>
             <span lang="ko">Renka에 대해 자주 묻는 질문들</span>
             <span lang="ja">Renkaに関するよくある質問</span>
             <span lang="zh-CN">关于Renka的常见问题</span>
@@ -124,6 +128,12 @@
                 <div class="faq-answer">
                     <p>There is a fundamental difference. Existing beauty scanner apps simply send 2D images to AI services like ChatGPT to receive analysis results. While this can help evaluate the general feel of a face, it does not provide accurate measurements at all.</p>
                     <p>In contrast, Renka measures key facial features in real millimeters with its own <strong>TrueScale</strong> measurement technology — powered by the TrueDepth IR sensor (3D scanning) on iPhone, and by biometric reference points on Android. All measurement data is processed only on your device, ensuring your privacy is protected.</p>
+                </div>
+            </div><div lang="es">
+                <div class="faq-question"><span class="faq-number">1.</span> ¿En qué se diferencia Renka de otras apps de escaneo de belleza?</div>
+                <div class="faq-answer">
+                    <p>Hay una diferencia fundamental. Las apps de escaneo de belleza que existen simplemente envían imágenes 2D a servicios de IA como ChatGPT para recibir los resultados del análisis. Aunque esto puede ayudar a evaluar la sensación general de un rostro, no ofrece mediciones precisas en absoluto.</p>
+                    <p>En cambio, Renka mide las características faciales clave en milímetros reales con su propia tecnología de medición <strong>TrueScale</strong>, impulsada por el sensor IR TrueDepth (escaneo 3D) en iPhone, y por puntos de referencia biométricos en Android. Todos los datos de medición se procesan únicamente en tu dispositivo, garantizando que tu privacidad quede protegida.</p>
                 </div>
             </div>
             <div lang="ko">
@@ -164,6 +174,12 @@
                     <p>The hairline is not necessarily the boundary of the face. This is because the hairline constantly changes depending on factors like hair loss. This app uses Renka's TrueScale precision measurement, based on the ergonomically defined facial boundaries provided by each platform's face-tracking technology (Apple TrueDepth on iPhone, Google's face mesh on Android).</p>
                     <p>Therefore, you can consider the vertical face length measured by this app to be quite accurate. However, head size is an estimated value based on face size, so it may be somewhat inaccurate in some cases.</p>
                 </div>
+            </div><div lang="es">
+                <div class="faq-question"><span class="faq-number">2.</span> ¿Hasta dónde llega la medición vertical del rostro? ¿Debería medir hasta la línea del cabello?</div>
+                <div class="faq-answer">
+                    <p>La línea del cabello no es necesariamente el límite del rostro. Esto se debe a que la línea del cabello cambia constantemente según factores como la caída del cabello. Esta app utiliza la medición de precisión TrueScale de Renka, basada en los límites faciales definidos ergonómicamente que proporciona la tecnología de seguimiento facial de cada plataforma (Apple TrueDepth en iPhone, la malla facial de Google en Android).</p>
+                    <p>Por lo tanto, puedes considerar que la longitud vertical del rostro medida por esta app es bastante precisa. Sin embargo, el tamaño de la cabeza es un valor estimado basado en el tamaño del rostro, por lo que en algunos casos puede ser algo impreciso.</p>
+                </div>
             </div>
             <div lang="ko">
                 <div class="faq-question"><span class="faq-number">2.</span> 얼굴의 세로 길이는 어디까지 재는 건가요? 헤어라인까지 재야 한다는데 맞나요?</div>
@@ -202,6 +218,12 @@
                 <div class="faq-answer">
                     <p>Since face length can be easily adjusted with hairstyles, face width is quite important in determining face size. A CD has a diameter of about 12cm, so if your face width is less than about 14cm, a CD placed right in front of your face would almost cover it.</p>
                     <p>This is similar to why a single sheet of toilet paper is often used for face size measurement. (One sheet of toilet paper is about 10-11cm)</p>
+                </div>
+            </div><div lang="es">
+                <div class="faq-question"><span class="faq-number">3.</span> ¿Qué tamaño tiene un rostro que puede cubrirse con un CD?</div>
+                <div class="faq-answer">
+                    <p>Como la longitud del rostro se puede ajustar fácilmente con los peinados, el ancho del rostro es bastante importante para determinar su tamaño. Un CD tiene un diámetro de unos 12 cm, así que si el ancho de tu rostro es menor de unos 14 cm, un CD colocado justo delante de tu cara lo cubriría casi por completo.</p>
+                    <p>Esto es similar a por qué se suele usar una sola hoja de papel higiénico para medir el tamaño del rostro. (Una hoja de papel higiénico mide unos 10-11 cm)</p>
                 </div>
             </div>
             <div lang="ko">
@@ -242,6 +264,12 @@
                     <p>Puffiness measurement works by continuously measuring your face and tracking displacement values over time. It also tracks changes in expressions such as closed eyelids, protruding lips, and puffy cheeks to help track puffiness in specific areas.</p>
                     <p>Therefore, maintaining a consistent expression and posture during measurement greatly helps improve accuracy. A neutral expression is best for accuracy. However, please note that a neutral expression may result in a slightly lower attractiveness score.</p>
                 </div>
+            </div><div lang="es">
+                <div class="faq-question"><span class="faq-number">4.</span> ¿Cómo puedo medir la hinchazón con precisión?</div>
+                <div class="faq-answer">
+                    <p>La medición de la hinchazón funciona midiendo tu rostro de forma continua y registrando los valores de desplazamiento a lo largo del tiempo. También hace seguimiento de los cambios de expresión, como los párpados cerrados, los labios sobresalientes y las mejillas hinchadas, para ayudar a rastrear la hinchazón en zonas específicas.</p>
+                    <p>Por lo tanto, mantener una expresión y una postura constantes durante la medición ayuda mucho a mejorar la precisión. Una expresión neutra es lo mejor para la precisión. Sin embargo, ten en cuenta que una expresión neutra puede dar como resultado una puntuación de atractivo ligeramente más baja.</p>
+                </div>
             </div>
             <div lang="ko">
                 <div class="faq-question"><span class="faq-number">4.</span> 붓기 측정은 어떻게 해야 정확한가요?</div>
@@ -280,6 +308,12 @@
                 <div class="faq-answer">
                     <p>This could be due to actual differences in puffiness, but it may also be caused by changes in the puffiness calculation logic from the app update. Puffiness is a very sensitive measurement indicator, and we are continuously working to improve its accuracy.</p>
                     <p>We appreciate your understanding that sudden changes may be due to app updates. If measurements continue to appear abnormal, deleting data from before the update will restore accuracy. We will continue to work towards providing stable results.</p>
+                </div>
+            </div><div lang="es">
+                <div class="faq-question"><span class="faq-number">5.</span> Los valores de hinchazón cambiaron mucho después de una actualización de la app.</div>
+                <div class="faq-answer">
+                    <p>Esto podría deberse a diferencias reales en la hinchazón, pero también puede estar causado por cambios en la lógica de cálculo de la hinchazón derivados de la actualización de la app. La hinchazón es un indicador de medición muy sensible, y trabajamos continuamente para mejorar su precisión.</p>
+                    <p>Agradecemos tu comprensión de que los cambios repentinos pueden deberse a las actualizaciones de la app. Si las mediciones siguen apareciendo anormales, eliminar los datos anteriores a la actualización restaurará la precisión. Seguiremos trabajando para ofrecer resultados estables.</p>
                 </div>
             </div>
             <div lang="ko">
@@ -320,6 +354,13 @@
                     <p>Renka estimates your personal color from three things together — your skin tone, iris (eye) color, and hair color. It measures the warm/cool balance of each, along with brightness and color clarity (chroma), then classifies you into one of four seasonal types: Spring Warm, Summer Cool, Autumn Warm, or Winter Cool.</p>
                     <p>Your result may differ from a salon drape test or a self-diagnosis. Professional draping compares physical fabrics against your skin under standardized lighting with a trained consultant's eye, while self-diagnosis is subjective. Renka instead gives an objective, sensor-based estimate that is consistent and repeatable, and it considers your eye and hair color — not just skin. The trade-offs: the result depends on your lighting and camera, and it is simplified into four seasons rather than a finer 8- or 12-tone system.</p>
                     <p>For the most reliable result, measure in soft, even, neutral lighting with enough natural light (avoid strong colored light and heavy makeup), and treat the outcome as a helpful starting point. For an even more precise diagnosis, we recommend consulting a beauty/color specialist.</p>
+                </div>
+            </div><div lang="es">
+                <div class="faq-question"><span class="faq-number">6.</span> ¿Cómo se determina mi color personal (diagnóstico de color) y cómo obtengo un resultado preciso?</div>
+                <div class="faq-answer">
+                    <p>Renka estima tu color personal a partir de tres elementos en conjunto: el tono de tu piel, el color del iris (ojos) y el color del cabello. Mide el balance cálido/frío de cada uno, junto con la luminosidad y la nitidez del color (croma), y luego te clasifica en uno de cuatro tipos estacionales: Primavera Cálida, Verano Frío, Otoño Cálido o Invierno Frío.</p>
+                    <p>Tu resultado puede diferir del de una prueba de drapeado en un salón o de un autodiagnóstico. El drapeado profesional compara telas físicas contra tu piel bajo una iluminación estandarizada y con el ojo entrenado de un consultor, mientras que el autodiagnóstico es subjetivo. Renka, en cambio, ofrece una estimación objetiva basada en sensores, que es consistente y repetible, y tiene en cuenta el color de tus ojos y tu cabello, no solo la piel. Las contrapartidas: el resultado depende de tu iluminación y tu cámara, y se simplifica en cuatro estaciones en lugar de un sistema más fino de 8 o 12 tonos.</p>
+                    <p>Para obtener el resultado más fiable, mide con una iluminación suave, uniforme y neutra, con suficiente luz natural (evita la luz de color intensa y el maquillaje fuerte), y toma el resultado como un punto de partida útil. Para un diagnóstico aún más preciso, te recomendamos consultar a un especialista en belleza/color.</p>
                 </div>
             </div>
             <div lang="ko">
@@ -364,6 +405,12 @@
                     <p>The plastic surgery simulator is provided for reference purposes only. While it simulates based on actual 3D facial data, real surgery results can vary depending on various factors such as skin elasticity, bone structure, and the surgeon's technique.</p>
                     <p>Please be sure to consult with qualified medical professionals for accurate consultations.</p>
                 </div>
+            </div><div lang="es">
+                <div class="faq-question"><span class="faq-number">7.</span> ¿El simulador de cirugía estética mostrará los mismos resultados que una cirugía real?</div>
+                <div class="faq-answer">
+                    <p>El simulador de cirugía estética se ofrece únicamente con fines de referencia. Aunque simula a partir de datos faciales 3D reales, los resultados de una cirugía real pueden variar según diversos factores, como la elasticidad de la piel, la estructura ósea y la técnica del cirujano.</p>
+                    <p>Asegúrate de consultar con profesionales médicos cualificados para obtener asesoramiento preciso.</p>
+                </div>
             </div>
             <div lang="ko">
                 <div class="faq-question"><span class="faq-number">7.</span> 성형 시뮬레이터는 실제 수술 결과와 같나요?</div>
@@ -402,6 +449,11 @@
                 <div class="faq-answer">
                     <p><strong>iPhone:</strong> Renka requires a TrueDepth camera (Face ID) — all iPhones released after iPhone X (excluding the iPhone SE series), plus iPad Pro models with Face ID.<br><strong>Android:</strong> No special sensor is required — Renka's TrueScale measurement works on most modern Android phones running Android 8.0 or later.</p>
                 </div>
+            </div><div lang="es">
+                <div class="faq-question"><span class="faq-number">8.</span> ¿Qué dispositivos pueden usar Renka?</div>
+                <div class="faq-answer">
+                    <p><strong>iPhone:</strong> Renka requiere una cámara TrueDepth (Face ID): todos los iPhone lanzados después del iPhone X (excluyendo la serie iPhone SE), además de los modelos de iPad Pro con Face ID.<br><strong>Android:</strong> No se requiere ningún sensor especial: la medición TrueScale de Renka funciona en la mayoría de los teléfonos Android modernos con Android 8.0 o posterior.</p>
+                </div>
             </div>
             <div lang="ko">
                 <div class="faq-question"><span class="faq-number">8.</span> 어떤 기기에서 사용할 수 있나요?</div>
@@ -436,6 +488,11 @@
                 <div class="faq-answer">
                     <p>Measurement values can vary slightly depending on lighting, posture, expression, and distance from the camera. For the most accurate results, maintain a consistent distance while looking straight ahead with a neutral expression under bright lighting.</p>
                 </div>
+            </div><div lang="es">
+                <div class="faq-question"><span class="faq-number">9.</span> Los resultados son ligeramente diferentes cada vez que mido. ¿Por qué?</div>
+                <div class="faq-answer">
+                    <p>Los valores de medición pueden variar ligeramente según la iluminación, la postura, la expresión y la distancia a la cámara. Para obtener los resultados más precisos, mantén una distancia constante mirando de frente con una expresión neutra bajo una iluminación brillante.</p>
+                </div>
             </div>
             <div lang="ko">
                 <div class="faq-question"><span class="faq-number">9.</span> 측정할 때마다 결과가 조금씩 다릅니다. 왜 그런가요?</div>
@@ -469,6 +526,11 @@
                 <div class="faq-question"><span class="faq-number">10.</span> Are there plans to release an Android version?</div>
                 <div class="faq-answer">
                     <p>The Android version is now available! Search for "Renka" on Google Play. Thanks to Renka's TrueScale measurement technology, Android also provides real-millimeter facial measurement without any special sensor — along with the face simulator, AI consultation, and other core features. (Some features, such as swelling analysis, are available on iOS first.)</p>
+                </div>
+            </div><div lang="es">
+                <div class="faq-question"><span class="faq-number">10.</span> ¿Hay planes de lanzar una versión para Android?</div>
+                <div class="faq-answer">
+                    <p>¡La versión para Android ya está disponible! Busca "Renka" en Google Play. Gracias a la tecnología de medición TrueScale de Renka, Android también ofrece medición facial en milímetros reales sin ningún sensor especial, junto con el simulador facial, la consulta con IA y otras funciones clave. (Algunas funciones, como el análisis de hinchazón, están disponibles primero en iOS).</p>
                 </div>
             </div>
             <div lang="ko">
@@ -507,6 +569,15 @@
                     <p>Data will be lost when: installing the app fresh on a new device without restoring from backup.</p>
                     <p>Note: This app does not have separate cloud sync (such as iCloud CloudKit), so data can only be transferred through full device backup.</p>
                     <p><strong>Android:</strong> If device backup (Google One) is enabled, app data is included in the backup and restored when you set up a new device.</p>
+                </div>
+            </div><div lang="es">
+                <div class="faq-question"><span class="faq-number">11.</span> ¿Cómo puedo hacer una copia de seguridad o transferir mis datos a un dispositivo nuevo?</div>
+                <div class="faq-answer">
+                    <p>Si tienes activada la copia de seguridad de iCloud, tus datos se transferirán cuando hagas la copia de seguridad y restaures tu dispositivo.</p>
+                    <p>Los datos se conservan cuando: usas "Transferir directamente desde iPhone" o restauras desde una copia de seguridad de iCloud/iTunes.</p>
+                    <p>Los datos se perderán cuando: instalas la app desde cero en un dispositivo nuevo sin restaurar desde una copia de seguridad.</p>
+                    <p>Nota: Esta app no cuenta con una sincronización en la nube independiente (como iCloud CloudKit), por lo que los datos solo se pueden transferir mediante una copia de seguridad completa del dispositivo.</p>
+                    <p><strong>Android:</strong> Si tienes activada la copia de seguridad del dispositivo (Google One), los datos de la app se incluyen en la copia de seguridad y se restauran cuando configuras un dispositivo nuevo.</p>
                 </div>
             </div>
             <div lang="ko">
@@ -560,6 +631,13 @@
                     <p>In contrast, Cosmetic Midface refers to the area from below the eyes to above the lips, used in makeup and beauty fields for facial proportion analysis. This app uses the Cosmetic Midface standard.</p>
                     <p>Since the measurement ranges differ, values from plastic surgery consultations may differ from this app's measurements.</p>
                 </div>
+            </div><div lang="es">
+                <div class="faq-question"><span class="faq-number">12.</span> ¿Cuál es la diferencia entre el tercio medio médico y el tercio medio cosmético?</div>
+                <div class="faq-answer">
+                    <p>El tercio medio médico se refiere a la zona que va desde debajo de las cejas hasta debajo de la nariz (subnasal), basándose en los tercios faciales (superior/medio/inferior). Este es el que se usa comúnmente en cirugía estética y dermatología.</p>
+                    <p>En cambio, el tercio medio cosmético se refiere a la zona que va desde debajo de los ojos hasta encima de los labios, y se usa en los campos del maquillaje y la belleza para el análisis de las proporciones faciales. Esta app utiliza el estándar del tercio medio cosmético.</p>
+                    <p>Como los rangos de medición difieren, los valores de las consultas de cirugía estética pueden diferir de las mediciones de esta app.</p>
+                </div>
             </div>
             <div lang="ko">
                 <div class="faq-question"><span class="faq-number">12.</span> 의학적 중안부와 미용적 중안부는 어떻게 다른가요?</div>
@@ -603,6 +681,12 @@
                     <p>No. Beauty Selfie is a separate live-camera mode that applies a gentle social/beauty filter — adjustable skin, midface, V-line, and eye effects — so you can take and save enhanced selfies. It is purely for photos.</p>
                     <p>It does not touch your measurement or analysis in any way. Your face size, ratios, symmetry, and other scores are calculated from the IR sensor's 3D data and are completely unaffected by the selfie filter's strength.</p>
                 </div>
+            </div><div lang="es">
+                <div class="faq-question"><span class="faq-number">13.</span> ¿La Selfie de Belleza (filtro social) afecta a mis resultados de medición?</div>
+                <div class="faq-answer">
+                    <p>No. La Selfie de Belleza es un modo de cámara en vivo independiente que aplica un suave filtro social/de belleza (con efectos ajustables de piel, tercio medio, línea en V y ojos) para que puedas tomar y guardar selfies mejoradas. Es únicamente para fotos.</p>
+                    <p>No afecta en absoluto a tu medición ni a tu análisis. El tamaño de tu rostro, las proporciones, la simetría y las demás puntuaciones se calculan a partir de los datos 3D del sensor IR y no se ven afectados en absoluto por la intensidad del filtro de la selfie.</p>
+                </div>
             </div>
             <div lang="ko">
                 <div class="faq-question"><span class="faq-number">13.</span> 뷰티 셀피(소셜 필터)가 측정 결과에 영향을 주나요?</div>
@@ -642,6 +726,12 @@
                     <p>The attractiveness score combines three things: golden-ratio facial proportions, left–right symmetry, and your facial expression (such as a smile). Renka weighs these into a single reference score, and a natural smile can raise it because expression is part of how attractiveness is perceived.</p>
                     <p>Please treat it as a fun, proportion-based reference — not an objective verdict. Real attractiveness is subjective and varies by person and culture, and no single number can capture it. Use the breakdown to understand your proportions and balance, not to judge yourself.</p>
                 </div>
+            </div><div lang="es">
+                <div class="faq-question"><span class="faq-number">14.</span> ¿En qué se basa la puntuación de atractivo y cómo debería interpretarla?</div>
+                <div class="faq-answer">
+                    <p>La puntuación de atractivo combina tres elementos: las proporciones faciales de la proporción áurea, la simetría izquierda-derecha y tu expresión facial (como una sonrisa). Renka pondera estos elementos en una única puntuación de referencia, y una sonrisa natural puede aumentarla, porque la expresión forma parte de cómo se percibe el atractivo.</p>
+                    <p>Tómala como una referencia divertida basada en las proporciones, no como un veredicto objetivo. El atractivo real es subjetivo y varía según la persona y la cultura, y ningún número por sí solo puede captarlo. Usa el desglose para entender tus proporciones y tu equilibrio, no para juzgarte a ti mismo.</p>
+                </div>
             </div>
             <div lang="ko">
                 <div class="faq-question"><span class="faq-number">14.</span> 매력도 점수는 무엇을 기준으로 하나요? 어떻게 받아들여야 하나요?</div>
@@ -679,6 +769,12 @@
                 <div class="faq-answer">
                     <p>Renka is designed as a single-user app. Your measurement history, the puffiness baseline, and the internal auto-calibration that fine-tunes accuracy to one person's face over repeated measurements all assume the same person is being measured.</p>
                     <p>If someone else uses the app in between, their measurements can subtly skew this calibration and reduce accuracy for both people. An occasional one-off measurement for fun is fine, but for accurate tracking we recommend one person per device. If the main user changes, please run "Reset Settings" in Settings — this clears the history and calibration so the app can adapt to the new face from scratch.</p>
+                </div>
+            </div><div lang="es">
+                <div class="faq-question"><span class="faq-number">15.</span> ¿Pueden varias personas compartir la app en un mismo dispositivo?</div>
+                <div class="faq-answer">
+                    <p>Renka está diseñada como una app de un solo usuario. Tu historial de mediciones, la línea base de la hinchazón y la calibración automática interna que ajusta la precisión al rostro de una persona a lo largo de mediciones repetidas asumen que siempre se está midiendo a la misma persona.</p>
+                    <p>Si otra persona usa la app entre medias, sus mediciones pueden distorsionar sutilmente esta calibración y reducir la precisión para ambas personas. Una medición ocasional y aislada por diversión está bien, pero para un seguimiento preciso recomendamos una persona por dispositivo. Si cambia el usuario principal, ejecuta "Restablecer ajustes" en Ajustes: esto borra el historial y la calibración para que la app pueda adaptarse al nuevo rostro desde cero.</p>
                 </div>
             </div>
             <div lang="ko">
@@ -733,7 +829,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             const urlParams = new URLSearchParams(window.location.search);
             const langParam = urlParams.get('lang');
-            const supportedLangs = ['en', 'ko', 'ja', 'zh-CN', 'zh-TW'];
+            const supportedLangs = ['en', 'ko', 'ja', 'zh-CN', 'zh-TW', 'es'];
             
             if (langParam && supportedLangs.includes(langParam)) {
                 setLangSilent(langParam);
