@@ -662,8 +662,10 @@
         }
         // 언어/성별 토글로 페이지 높이가 바뀌면 앵커 위치가 어긋나므로 재점프
         function rejumpToHash() {
-            if (!window.location.hash) return;
-            const id = decodeURIComponent(window.location.hash.slice(1));
+            // 해시 우선, 없으면 ?shape= 폴백 (WebView가 리다이렉트에서 #를 유실해도 쿼리는 보존됨)
+            let id = window.location.hash ? decodeURIComponent(window.location.hash.slice(1)) : null;
+            if (!id) id = new URLSearchParams(window.location.search).get('shape');
+            if (!id) return;
             const el = document.getElementById(id);
             if (el) requestAnimationFrame(() => el.scrollIntoView());
         }
