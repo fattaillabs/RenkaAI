@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <script src="gate.js"></script>
+    <title>Contouring Guide by Face Shape - Renka</title>
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../assets/favicon-192.png">
+    <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Apple SD Gothic Neo', sans-serif; background: linear-gradient(160deg, #f2fae8 0%, #e2f3d0 100%); background-attachment: fixed; color: #33402d; line-height: 1.75; }
+        .container { max-width: 700px; margin: 0 auto; padding: 36px 20px 80px; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 22px; flex-wrap: wrap; gap: 12px; }
+        .back-link { display: inline-flex; align-items: center; gap: 6px; color: #4e8a2c; text-decoration: none; font-size: 14px; font-weight: 600; }
+        .back-link:hover { text-decoration: underline; }
+        .lang-switcher { display: flex; gap: 6px; flex-wrap: wrap; }
+        .lang-btn { background: rgba(255,255,255,0.7); border: 1px solid #cfe6b5; border-radius: 8px; padding: 7px 10px; font-size: 18px; cursor: pointer; transition: all 0.2s; }
+        .lang-btn:hover { background: #fff; }
+        .lang-btn.active { background: #fff; border-color: #7cb342; box-shadow: 0 1px 5px rgba(124,179,66,0.35); }
+
+        h1 { font-size: 28px; font-weight: 800; margin-bottom: 8px; color: #fff; letter-spacing: -0.3px; text-shadow: 0 1px 0 #6aa83a, 0 2px 0 #5d9931, 2px 3px 7px rgba(80,140,40,0.35); }
+        .subtitle { font-size: 14px; color: #6b7a60; margin-bottom: 14px; }
+        .auto-note { font-size: 12.5px; color: #87937c; margin-bottom: 24px; }
+
+        .section-nav { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px; }
+        .section-chip { display: inline-block; padding: 7px 13px; font-size: 13px; font-weight: 600; color: #4e6b39; background: rgba(255,255,255,0.75); border: 1px solid #d4e8bd; border-radius: 20px; text-decoration: none; transition: all 0.2s; }
+        .section-chip:hover { background: #fff; border-color: #7cb342; color: #3d6b1f; }
+
+        .guide-card { scroll-margin-top: 16px; background: rgba(255,255,255,0.5); border: 1px solid rgba(255,255,255,0.65); border-radius: 18px; padding: 24px 22px; margin-bottom: 18px; box-shadow: 0 2px 12px rgba(99,150,55,0.1); }
+        .guide-card h2 { font-size: 22px; font-weight: 800; margin-bottom: 4px; display: flex; align-items: baseline; gap: 8px; color: #3d6b1f; flex-wrap: wrap; }
+        .guide-card h2 .en-name { font-size: 13px; color: #6aa83a; font-weight: 600; }
+        .feature { font-size: 14.5px; color: #56624e; margin: 10px 0 14px; }
+
+        .img-row { display: flex; justify-content: center; margin: 14px 0 6px; }
+        .face-img { width: 260px; max-width: 78%; margin: 0; }
+        .face-img img { width: 100%; height: auto; display: block; }
+        .face-img figcaption { display: none; }
+        .face-img.pending img { display: none; }
+        .face-img.pending { aspect-ratio: 475 / 494; border: 1.5px dashed #b9d49a; border-radius: 14px; display: flex; align-items: center; justify-content: center; text-align: center; background: rgba(255,255,255,0.5); }
+        .face-img.pending figcaption { display: block; font-size: 11px; color: #8aa372; line-height: 1.5; padding: 8px; }
+
+        .block-label { font-size: 13px; font-weight: 800; letter-spacing: 0.2px; margin: 16px 0 8px; display: inline-flex; align-items: center; gap: 6px; }
+        .block-label.shade { color: #a4713d; }
+        .block-label.hl { color: #b9941f; }
+        ul.tips { list-style: none; }
+        ul.tips li { position: relative; padding-left: 18px; margin-bottom: 7px; font-size: 14.5px; color: #3f4a39; }
+        ul.tips li::before { content: ''; position: absolute; left: 2px; top: 10px; width: 6px; height: 6px; border-radius: 50%; }
+        ul.tips.shade li::before { background: #c99b6a; }
+        ul.tips.hl li::before { background: #e8c25a; }
+        .pro-tip { margin-top: 14px; font-size: 13.5px; color: #4e6b39; background: rgba(124,179,66,0.1); border: 1px solid rgba(124,179,66,0.22); border-radius: 12px; padding: 11px 14px; }
+        .pro-tip strong { font-weight: 800; }
+        .pro-tip span[lang] { display: none; }
+
+        .adapt-note { margin-top: 26px; font-size: 12.5px; color: #5e6d54; line-height: 1.7; background: rgba(255,255,255,0.45); border: 1px solid rgba(255,255,255,0.6); border-radius: 12px; padding: 14px 16px; }
+        .footer-note { margin-top: 18px; font-size: 12px; color: #87937c; text-align: center; line-height: 1.7; }
+
+        /* ===== 다국어 표시 제어 (기존 사이트와 동일 메커니즘) ===== */
+        [lang]:not([lang="en"]) { display: none; }
+        body.lang-en [lang="en"] { display: block; }
+        body.lang-en [lang="ko"], body.lang-en [lang="ja"], body.lang-en [lang="zh-CN"], body.lang-en [lang="zh-TW"], body.lang-en [lang="es"], body.lang-en [lang="id"] { display: none; }
+        body.lang-ko [lang="ko"] { display: block; }
+        body.lang-ko [lang="en"], body.lang-ko [lang="ja"], body.lang-ko [lang="zh-CN"], body.lang-ko [lang="zh-TW"], body.lang-ko [lang="es"], body.lang-ko [lang="id"] { display: none; }
+        body.lang-ja [lang="ja"] { display: block; }
+        body.lang-ja [lang="en"], body.lang-ja [lang="ko"], body.lang-ja [lang="zh-CN"], body.lang-ja [lang="zh-TW"], body.lang-ja [lang="es"], body.lang-ja [lang="id"] { display: none; }
+        body.lang-zh-CN [lang="zh-CN"] { display: block; }
+        body.lang-zh-CN [lang="en"], body.lang-zh-CN [lang="ko"], body.lang-zh-CN [lang="ja"], body.lang-zh-CN [lang="zh-TW"], body.lang-zh-CN [lang="es"], body.lang-zh-CN [lang="id"] { display: none; }
+        body.lang-zh-TW [lang="zh-TW"] { display: block; }
+        body.lang-zh-TW [lang="en"], body.lang-zh-TW [lang="ko"], body.lang-zh-TW [lang="ja"], body.lang-zh-TW [lang="zh-CN"], body.lang-zh-TW [lang="es"], body.lang-zh-TW [lang="id"] { display: none; }
+        body.lang-es [lang="es"] { display: block; }
+        body.lang-es [lang="en"], body.lang-es [lang="ko"], body.lang-es [lang="ja"], body.lang-es [lang="zh-CN"], body.lang-es [lang="zh-TW"], body.lang-es [lang="id"] { display: none; }
+        body.lang-id [lang="id"] { display: block; }
+        body.lang-id [lang="en"], body.lang-id [lang="ko"], body.lang-id [lang="ja"], body.lang-id [lang="zh-CN"], body.lang-id [lang="zh-TW"], body.lang-id [lang="es"] { display: none; }
+        span[lang] { display: none; }
+        body.lang-en span[lang="en"] { display: inline; }
+        body.lang-ko span[lang="ko"] { display: inline; }
+        body.lang-ja span[lang="ja"] { display: inline; }
+        body.lang-zh-CN span[lang="zh-CN"] { display: inline; }
+        body.lang-zh-TW span[lang="zh-TW"] { display: inline; }
+        body.lang-es span[lang="es"] { display: inline; }
+        body.lang-id span[lang="id"] { display: inline; }
+    </style>
+</head>
+<body class="lang-en">
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="back-link">← <span lang="en">Style Guide</span><span lang="ko">스타일 가이드</span><span lang="ja">スタイルガイド</span><span lang="zh-CN">风格指南</span><span lang="zh-TW">風格指南</span><span lang="es">Guía de estilo</span><span lang="id">Panduan gaya</span></a>
+            <div class="lang-switcher">
+                <button class="lang-btn active" onclick="setLang('en')" title="English">🇺🇸</button>
+                <button class="lang-btn" onclick="setLang('ko')" title="한국어">🇰🇷</button>
+                <button class="lang-btn" onclick="setLang('ja')" title="日本語">🇯🇵</button>
+                <button class="lang-btn" onclick="setLang('zh-CN')" title="简体中文">🇨🇳</button>
+                <button class="lang-btn" onclick="setLang('zh-TW')" title="繁體中文">🇹🇼</button>
+                <button class="lang-btn" onclick="setLang('es')" title="Español">🇪🇸</button>
+                <button class="lang-btn" onclick="setLang('id')" title="Bahasa Indonesia">🇮🇩</button>
+            </div>
+        </div>
+
+        <h1>
+            <span lang="en">Contouring Guide by Face Shape</span><span lang="ko">얼굴형별 컨투어링 가이드</span><span lang="ja">顔型別コントゥアリングガイド</span><span lang="zh-CN">脸型修容指南</span><span lang="zh-TW">臉型修容指南</span><span lang="es">Guía de contouring según la forma del rostro</span><span lang="id">Panduan Contouring Sesuai Bentuk Wajah</span>
+        </h1>
+        <p class="subtitle">
+            <span lang="en">Where to shade and where to highlight, based on your measured face shape. A guide, not a rule — your features come first.</span><span lang="ko">측정된 얼굴형에 맞춰 어디를 셰이딩하고 어디를 하이라이트할지 알려드려요. 정답이 아닌 참고용 가이드입니다.</span><span lang="ja">測定された顔型に合わせて、どこにシェード、どこにハイライトを入れるかをご紹介。あくまで参考ガイドです。</span><span lang="zh-CN">根据测得的脸型，告诉你哪里该修容、哪里该打高光。仅供参考，并非定式。</span><span lang="zh-TW">根據測得的臉型，告訴你哪裡該修容、哪裡該打亮。僅供參考，並非定式。</span><span lang="es">Dónde dar sombra y dónde iluminar, según la forma de tu rostro medida. Es una guía, no una regla: tus rasgos van primero.</span><span lang="id">Di mana perlu shading dan di mana perlu highlight, sesuai bentuk wajah hasil pengukuranmu. Ini panduan, bukan aturan — fitur wajahmu yang utama.</span>
+        </p>
+        <p class="auto-note">
+            <span lang="en">You&#x27;ll jump to your measured shape automatically — feel free to browse the others too.</span><span lang="ko">측정 결과에 따라 내 얼굴형 섹션으로 자동 이동해요. 다른 얼굴형 팁도 자유롭게 확인하세요.</span><span lang="ja">測定結果に応じて自分の顔型へ自動で移動します。他の顔型のコツも自由にどうぞ。</span><span lang="zh-CN">会根据测量结果自动跳到你的脸型，其他脸型的技巧也欢迎查看。</span><span lang="zh-TW">會根據測量結果自動跳到你的臉型，其他臉型的技巧也歡迎查看。</span><span lang="es">Saltarás automáticamente a tu forma medida; también puedes consultar las demás cuando quieras.</span><span lang="id">Kamu akan langsung diarahkan ke bentuk wajahmu — bebas juga menjelajah bentuk lainnya.</span>
+        </p>
+
+        <!-- 얼굴형 빠른 이동 -->
+        <nav class="section-nav">
+            <a class="section-chip" href="#oval"><span lang="en">Oval</span><span lang="ko">계란형</span><span lang="ja">卵型</span><span lang="zh-CN">鹅蛋脸</span><span lang="zh-TW">鵝蛋臉</span><span lang="es">Ovalado</span><span lang="id">Oval</span></a>
+            <a class="section-chip" href="#round"><span lang="en">Round</span><span lang="ko">둥근형</span><span lang="ja">丸顔</span><span lang="zh-CN">圆脸</span><span lang="zh-TW">圓臉</span><span lang="es">Redondo</span><span lang="id">Bulat</span></a>
+            <a class="section-chip" href="#triangle"><span lang="en">Triangle</span><span lang="ko">삼각형</span><span lang="ja">三角顔</span><span lang="zh-CN">三角脸</span><span lang="zh-TW">三角臉</span><span lang="es">Triángulo</span><span lang="id">Segitiga</span></a>
+            <a class="section-chip" href="#rectangle"><span lang="en">Rectangle</span><span lang="ko">직사각형</span><span lang="ja">長方形</span><span lang="zh-CN">长方脸</span><span lang="zh-TW">長方臉</span><span lang="es">Rectangular</span><span lang="id">Persegi panjang</span></a>
+            <a class="section-chip" href="#square"><span lang="en">Square</span><span lang="ko">각진형</span><span lang="ja">四角顔</span><span lang="zh-CN">方脸</span><span lang="zh-TW">方臉</span><span lang="es">Cuadrado</span><span lang="id">Persegi</span></a>
+            <a class="section-chip" href="#diamond"><span lang="en">Diamond</span><span lang="ko">다이아몬드형</span><span lang="ja">ひし形</span><span lang="zh-CN">菱形脸</span><span lang="zh-TW">菱形臉</span><span lang="es">Diamante</span><span lang="id">Berlian</span></a>
+            <a class="section-chip" href="#oblong"><span lang="en">Oblong</span><span lang="ko">긴형</span><span lang="ja">面長</span><span lang="zh-CN">长脸</span><span lang="zh-TW">長臉</span><span lang="es">Alargado</span><span lang="id">Lonjong</span></a>
+            <a class="section-chip" href="#invertedTriangle"><span lang="en">Inverted Triangle</span><span lang="ko">역삼각형</span><span lang="ja">逆三角</span><span lang="zh-CN">倒三角脸</span><span lang="zh-TW">倒三角臉</span><span lang="es">Triángulo invertido</span><span lang="id">Segitiga terbalik</span></a>
+            <a class="section-chip" href="#heart"><span lang="en">Heart</span><span lang="ko">하트형</span><span lang="ja">ハート型</span><span lang="zh-CN">心形脸</span><span lang="zh-TW">心形臉</span><span lang="es">Corazón</span><span lang="id">Hati</span></a>
+        </nav>
+
+        <!-- =================== 계란형 (oval) =================== -->
+        <section class="guide-card" id="oval">
+            <h2>
+                <span lang="en">Oval</span><span lang="ko">계란형</span><span lang="ja">卵型</span><span lang="zh-CN">鹅蛋脸</span><span lang="zh-TW">鵝蛋臉</span><span lang="es">Ovalado</span><span lang="id">Oval</span>
+                <span class="en-name" lang="ko">Oval</span><span class="en-name" lang="ja">Oval</span><span class="en-name" lang="zh-CN">Oval</span><span class="en-name" lang="zh-TW">Oval</span><span class="en-name" lang="es">Oval</span><span class="en-name" lang="id">Oval</span>
+            </h2>
+            <p class="feature">
+                <span lang="en">Balanced proportions with length slightly greater than width. Contouring here is polish, not correction — a light hand keeps it natural.</span><span lang="ko">세로가 가로보다 살짝 긴 균형 잡힌 비율. 교정보다는 다듬는 컨투어링이라, 가볍게 얹는 게 오히려 자연스러워요.</span><span lang="ja">縦が横よりやや長い、バランスのよい比率。ここでのシェーディングは補正ではなく仕上げ。軽く入れるほど自然です。</span><span lang="zh-CN">纵向略长于横向的匀称比例。这里的修容是润色而非矫正——下手越轻越自然。</span><span lang="zh-TW">縱向略長於橫向的勻稱比例。這裡的修容是潤色而非矯正——下手越輕越自然。</span><span lang="es">Proporciones equilibradas, con un largo ligeramente mayor que el ancho. Aquí el contouring es un acabado, no una corrección: cuanto más ligero, más natural.</span><span lang="id">Proporsi seimbang, panjang sedikit melebihi lebar. Contouring di sini untuk mempercantik, bukan mengoreksi — makin tipis makin natural.</span>
+            </p>
+
+            <div class="img-row">
+                <figure class="face-img"><img src="img/contour-oval.svg" alt="Oval contouring map" loading="lazy" width="475" height="494" onerror="this.closest('.face-img').classList.add('pending')"><figcaption>img/contour-oval.svg</figcaption></figure>
+            </div>
+
+            <div class="block-label shade">🤎 <span lang="en">Shade</span><span lang="ko">셰이딩</span><span lang="ja">シェーディング</span><span lang="zh-CN">修容（阴影）</span><span lang="zh-TW">修容（陰影）</span><span lang="es">Sombras</span><span lang="id">Shading</span></div>
+            <ul class="tips shade">
+                <li><span lang="en">Lightly under the cheekbones for gentle definition</span><span lang="ko">광대 아래를 살짝 — 은은한 입체감용</span><span lang="ja">頬骨の下に軽く — さりげない立体感を</span><span lang="zh-CN">颧骨下方轻扫，营造若隐若现的立体感</span><span lang="zh-TW">顴骨下方輕掃，營造若隱若現的立體感</span><span lang="es">Ligero bajo los pómulos, para una definición sutil</span><span lang="id">Tipis-tipis di bawah tulang pipi untuk dimensi halus</span></li>
+                <li><span lang="en">A soft shadow along the temples</span><span lang="ko">관자놀이에 부드러운 음영</span><span lang="ja">こめかみに柔らかい影</span><span lang="zh-CN">太阳穴处柔和的阴影</span><span lang="zh-TW">太陽穴處柔和的陰影</span><span lang="es">Una sombra suave en las sienes</span><span lang="id">Bayangan lembut di pelipis</span></li>
+                <li><span lang="en">A whisper of shade just under the jawline to sharpen it</span><span lang="ko">턱선 바로 아래에 아주 옅게 — 라인이 또렷해져요</span><span lang="ja">フェイスラインの真下にごく薄く — 輪郭が引き締まります</span><span lang="zh-CN">下颌线正下方极浅一层，让轮廓更利落</span><span lang="zh-TW">下顎線正下方極淺一層，讓輪廓更俐落</span><span lang="es">Un toque casi imperceptible justo bajo la mandíbula para afinarla</span><span lang="id">Sapuan sangat tipis tepat di bawah garis rahang agar makin tegas</span></li>
+            </ul>
+
+            <div class="block-label hl">✨ <span lang="en">Highlight</span><span lang="ko">하이라이트</span><span lang="ja">ハイライト</span><span lang="zh-CN">高光</span><span lang="zh-TW">打亮</span><span lang="es">Iluminador</span><span lang="id">Highlight</span></div>
+            <ul class="tips hl">
+                <li><span lang="en">Center of the forehead</span><span lang="ko">이마 중앙</span><span lang="ja">額の中央</span><span lang="zh-CN">额头中央</span><span lang="zh-TW">額頭中央</span><span lang="es">Centro de la frente</span><span lang="id">Tengah dahi</span></li>
+                <li><span lang="en">Bridge of the nose and the under-eye triangles</span><span lang="ko">콧대와 눈밑 삼각존</span><span lang="ja">鼻筋と目の下の三角ゾーン</span><span lang="zh-CN">鼻梁与眼下三角区</span><span lang="zh-TW">鼻樑與眼下三角區</span><span lang="es">Puente de la nariz y triángulos bajo los ojos</span><span lang="id">Batang hidung dan segitiga bawah mata</span></li>
+                <li><span lang="en">Center of the chin</span><span lang="ko">턱 중앙</span><span lang="ja">顎の中央</span><span lang="zh-CN">下巴中央</span><span lang="zh-TW">下巴中央</span><span lang="es">Centro del mentón</span><span lang="id">Tengah dagu</span></li>
+            </ul>
+
+            <p class="pro-tip">💡 <strong><span lang="en">Pro tip</span><span lang="ko">팁</span><span lang="ja">ワンポイント</span><span lang="zh-CN">小贴士</span><span lang="zh-TW">小訣竅</span><span lang="es">Consejo</span><span lang="id">Tips</span></strong> — <span lang="en">Blend twice — on a balanced face, a visible contour line is the only real mistake.</span><span lang="ko">블렌딩을 두 번 하세요. 균형 잡힌 얼굴에서 유일한 실수는 티 나는 셰이딩 경계선이에요.</span><span lang="ja">ぼかしは2回。整った顔で唯一の失敗は、境界線が見えるシェーディングです。</span><span lang="zh-CN">晕染两遍。对匀称的脸型来说，唯一的失误就是能看出修容边界。</span><span lang="zh-TW">暈染兩遍。對勻稱的臉型來說，唯一的失誤就是能看出修容邊界。</span><span lang="es">Difumina dos veces: en un rostro equilibrado, el único error real es una línea de contorno visible.</span><span lang="id">Baurkan dua kali — di wajah seimbang, satu-satunya kesalahan adalah garis contour yang kelihatan.</span></p>
+        </section>
+        <!-- =================== 둥근형 (round) =================== -->
+        <section class="guide-card" id="round">
+            <h2>
+                <span lang="en">Round</span><span lang="ko">둥근형</span><span lang="ja">丸顔</span><span lang="zh-CN">圆脸</span><span lang="zh-TW">圓臉</span><span lang="es">Redondo</span><span lang="id">Bulat</span>
+                <span class="en-name" lang="ko">Round</span><span class="en-name" lang="ja">Round</span><span class="en-name" lang="zh-CN">Round</span><span class="en-name" lang="zh-TW">Round</span><span class="en-name" lang="es">Round</span><span class="en-name" lang="id">Round</span>
+            </h2>
+            <p class="feature">
+                <span lang="en">Width and length are close, with soft curves. The play is vertical: add length, slim the sides.</span><span lang="ko">가로세로 길이가 비슷하고 곡선이 부드러운 얼굴. 핵심은 세로예요 — 길이감을 더하고 옆을 갸름하게.</span><span lang="ja">横と縦の長さが近く、曲線が柔らかい輪郭。狙いは縦 — 長さを足して、サイドをすっきりと。</span><span lang="zh-CN">横纵长度接近、线条柔和。关键在纵向：拉长脸型、收窄两侧。</span><span lang="zh-TW">橫縱長度接近、線條柔和。關鍵在縱向：拉長臉型、收窄兩側。</span><span lang="es">Ancho y largo similares, con curvas suaves. La jugada es vertical: añadir largo y afinar los lados.</span><span lang="id">Lebar dan panjang hampir sama, dengan lekukan lembut. Kuncinya vertikal: tambah kesan panjang, tiruskan sisi wajah.</span>
+            </p>
+
+            <div class="img-row">
+                <figure class="face-img"><img src="img/contour-round.svg" alt="Round contouring map" loading="lazy" width="475" height="494" onerror="this.closest('.face-img').classList.add('pending')"><figcaption>img/contour-round.svg</figcaption></figure>
+            </div>
+
+            <div class="block-label shade">🤎 <span lang="en">Shade</span><span lang="ko">셰이딩</span><span lang="ja">シェーディング</span><span lang="zh-CN">修容（阴影）</span><span lang="zh-TW">修容（陰影）</span><span lang="es">Sombras</span><span lang="id">Shading</span></div>
+            <ul class="tips shade">
+                <li><span lang="en">Long vertical bands along the sides of the face, temple to jaw</span><span lang="ko">관자놀이부터 턱까지, 얼굴 옆면에 세로로 길게</span><span lang="ja">こめかみから顎まで、顔の側面に縦長のシェード</span><span lang="zh-CN">从太阳穴到下颌，沿脸部两侧竖向长扫</span><span lang="zh-TW">從太陽穴到下顎，沿臉部兩側豎向長掃</span><span lang="es">Bandas verticales largas por los lados del rostro, de la sien a la mandíbula</span><span lang="id">Sapuan vertikal panjang di sisi wajah, dari pelipis ke rahang</span></li>
+                <li><span lang="en">The hollow just below the cheekbones</span><span lang="ko">광대뼈 바로 아래 움푹한 곳</span><span lang="ja">頬骨のすぐ下のくぼみ</span><span lang="zh-CN">颧骨正下方的凹陷处</span><span lang="zh-TW">顴骨正下方的凹陷處</span><span lang="es">El hueco justo bajo los pómulos</span><span lang="id">Cekungan tepat di bawah tulang pipi</span></li>
+                <li><span lang="en">Sides of the jaw — keep the chin itself clear</span><span lang="ko">턱 옆면 — 턱 끝은 비워두세요</span><span lang="ja">顎の側面 — 顎先は塗らずに残す</span><span lang="zh-CN">下颌两侧——下巴尖留白</span><span lang="zh-TW">下顎兩側——下巴尖留白</span><span lang="es">Lados de la mandíbula, dejando libre el mentón</span><span lang="id">Sisi rahang — biarkan dagu tetap bersih</span></li>
+            </ul>
+
+            <div class="block-label hl">✨ <span lang="en">Highlight</span><span lang="ko">하이라이트</span><span lang="ja">ハイライト</span><span lang="zh-CN">高光</span><span lang="zh-TW">打亮</span><span lang="es">Iluminador</span><span lang="id">Highlight</span></div>
+            <ul class="tips hl">
+                <li><span lang="en">Forehead center down the nose bridge, one vertical line</span><span lang="ko">이마 중앙부터 콧대까지 세로 일직선</span><span lang="ja">額の中央から鼻筋まで、縦の一本ライン</span><span lang="zh-CN">从额头中央到鼻梁，一条竖直线</span><span lang="zh-TW">從額頭中央到鼻樑，一條豎直線</span><span lang="es">Del centro de la frente al puente de la nariz, en una sola línea vertical</span><span lang="id">Dari tengah dahi turun ke batang hidung, satu garis vertikal</span></li>
+                <li><span lang="en">Under-eye triangles</span><span lang="ko">눈밑 삼각존</span><span lang="ja">目の下の三角ゾーン</span><span lang="zh-CN">眼下三角区</span><span lang="zh-TW">眼下三角區</span><span lang="es">Triángulos bajo los ojos</span><span lang="id">Segitiga bawah mata</span></li>
+                <li><span lang="en">Center of the chin to extend the face downward</span><span lang="ko">턱 중앙 — 얼굴이 아래로 길어 보여요</span><span lang="ja">顎の中央 — 顔が下に伸びて見えます</span><span lang="zh-CN">下巴中央，让脸向下延伸</span><span lang="zh-TW">下巴中央，讓臉向下延伸</span><span lang="es">Centro del mentón, para alargar el rostro hacia abajo</span><span lang="id">Tengah dagu agar wajah tampak memanjang ke bawah</span></li>
+            </ul>
+
+            <p class="pro-tip">💡 <strong><span lang="en">Pro tip</span><span lang="ko">팁</span><span lang="ja">ワンポイント</span><span lang="zh-CN">小贴士</span><span lang="zh-TW">小訣竅</span><span lang="es">Consejo</span><span lang="id">Tips</span></strong> — <span lang="en">Keep every stroke vertical — anything horizontal gives the width right back.</span><span lang="ko">모든 터치를 세로로. 가로로 바르는 순간 줄인 폭이 도로 살아나요.</span><span lang="ja">すべてのタッチを縦方向に。横に入れた瞬間、消した幅が戻ってきます。</span><span lang="zh-CN">每一笔都保持竖向——横着扫，收窄的宽度立刻回来。</span><span lang="zh-TW">每一筆都保持豎向——橫著掃，收窄的寬度立刻回來。</span><span lang="es">Cada trazo en vertical: cualquier pasada horizontal devuelve el ancho al instante.</span><span lang="id">Semua sapuan harus vertikal — sekali menyapu horizontal, lebarnya langsung balik.</span></p>
+        </section>
+        <!-- =================== 삼각형 (triangle) =================== -->
+        <section class="guide-card" id="triangle">
+            <h2>
+                <span lang="en">Triangle</span><span lang="ko">삼각형</span><span lang="ja">三角顔</span><span lang="zh-CN">三角脸</span><span lang="zh-TW">三角臉</span><span lang="es">Triángulo</span><span lang="id">Segitiga</span>
+                <span class="en-name" lang="ko">Triangle</span><span class="en-name" lang="ja">Triangle</span><span class="en-name" lang="zh-CN">Triangle</span><span class="en-name" lang="zh-TW">Triangle</span><span class="en-name" lang="es">Triangle</span><span class="en-name" lang="id">Triangle</span>
+            </h2>
+            <p class="feature">
+                <span lang="en">A narrower forehead over a wider jaw. Soften the jaw and bring visual volume up top.</span><span lang="ko">이마가 좁고 턱이 넓은 얼굴형. 턱은 부드럽게 줄이고, 시선의 볼륨을 위쪽으로 끌어올리는 게 목표예요.</span><span lang="ja">額が狭く、顎まわりが広い輪郭。顎を柔らかく抑え、視線のボリュームを上へ引き上げるのが狙い。</span><span lang="zh-CN">额头较窄、下颌较宽。目标是柔化下颌，把视觉重心提到上半张脸。</span><span lang="zh-TW">額頭較窄、下顎較寬。目標是柔化下顎，把視覺重心提到上半張臉。</span><span lang="es">Frente más estrecha sobre una mandíbula más ancha. Suaviza la mandíbula y lleva el volumen visual hacia arriba.</span><span lang="id">Dahi lebih sempit dengan rahang lebih lebar. Haluskan rahang dan angkat volume visual ke bagian atas wajah.</span>
+            </p>
+
+            <div class="img-row">
+                <figure class="face-img"><img src="img/contour-triangle.svg" alt="Triangle contouring map" loading="lazy" width="475" height="494" onerror="this.closest('.face-img').classList.add('pending')"><figcaption>img/contour-triangle.svg</figcaption></figure>
+            </div>
+
+            <div class="block-label shade">🤎 <span lang="en">Shade</span><span lang="ko">셰이딩</span><span lang="ja">シェーディング</span><span lang="zh-CN">修容（阴影）</span><span lang="zh-TW">修容（陰影）</span><span lang="es">Sombras</span><span lang="id">Shading</span></div>
+            <ul class="tips shade">
+                <li><span lang="en">Jaw corners and along the lower jawline</span><span lang="ko">턱 모서리와 아래턱 라인을 따라</span><span lang="ja">エラと下顎のラインに沿って</span><span lang="zh-CN">下颌角和下颌线一带</span><span lang="zh-TW">下顎角和下顎線一帶</span><span lang="es">Ángulos de la mandíbula y a lo largo de su línea inferior</span><span lang="id">Sudut rahang dan sepanjang garis rahang bawah</span></li>
+                <li><span lang="en">Lower cheeks, close to the jaw</span><span lang="ko">턱과 가까운 볼 아래쪽</span><span lang="ja">顎に近い頬の下部</span><span lang="zh-CN">靠近下颌的脸颊下部</span><span lang="zh-TW">靠近下顎的臉頰下部</span><span lang="es">Parte baja de las mejillas, cerca de la mandíbula</span><span lang="id">Pipi bagian bawah, dekat rahang</span></li>
+                <li><span lang="en">Nothing on the forehead — it stays bright</span><span lang="ko">이마엔 아무것도 하지 않기 — 밝게 남겨두세요</span><span lang="ja">額には何も入れない — 明るいまま残す</span><span lang="zh-CN">额头什么都不涂——保持明亮</span><span lang="zh-TW">額頭什麼都不塗——保持明亮</span><span lang="es">Nada en la frente: se queda luminosa</span><span lang="id">Dahi tidak usah — biarkan tetap cerah</span></li>
+            </ul>
+
+            <div class="block-label hl">✨ <span lang="en">Highlight</span><span lang="ko">하이라이트</span><span lang="ja">ハイライト</span><span lang="zh-CN">高光</span><span lang="zh-TW">打亮</span><span lang="es">Iluminador</span><span lang="id">Highlight</span></div>
+            <ul class="tips hl">
+                <li><span lang="en">Across the forehead — center and temples — to widen the upper face</span><span lang="ko">이마 전체 — 중앙과 관자놀이까지 — 상안부를 넓게</span><span lang="ja">額全体 — 中央からこめかみまで — 上部を広く見せる</span><span lang="zh-CN">整个额头——从中央到太阳穴——拓宽上半脸</span><span lang="zh-TW">整個額頭——從中央到太陽穴——拓寬上半臉</span><span lang="es">Toda la frente —centro y sienes— para ensanchar la parte superior</span><span lang="id">Seluruh dahi — tengah sampai pelipis — agar wajah atas melebar</span></li>
+                <li><span lang="en">Under-eye triangles</span><span lang="ko">눈밑 삼각존</span><span lang="ja">目の下の三角ゾーン</span><span lang="zh-CN">眼下三角区</span><span lang="zh-TW">眼下三角區</span><span lang="es">Triángulos bajo los ojos</span><span lang="id">Segitiga bawah mata</span></li>
+                <li><span lang="en">A small dot on the chin center</span><span lang="ko">턱 중앙에 작게 콕</span><span lang="ja">顎の中央に小さくひと点</span><span lang="zh-CN">下巴中央小小一点</span><span lang="zh-TW">下巴中央小小一點</span><span lang="es">Un punto pequeño en el centro del mentón</span><span lang="id">Satu titik kecil di tengah dagu</span></li>
+            </ul>
+
+            <p class="pro-tip">💡 <strong><span lang="en">Pro tip</span><span lang="ko">팁</span><span lang="ja">ワンポイント</span><span lang="zh-CN">小贴士</span><span lang="zh-TW">小訣竅</span><span lang="es">Consejo</span><span lang="id">Tips</span></strong> — <span lang="en">Slightly elongated, straighter brows also help the upper face read wider.</span><span lang="ko">눈썹을 살짝 길고 일자에 가깝게 그리면 상안부가 한층 넓어 보여요.</span><span lang="ja">眉をやや長め・直線寄りに描くと、顔の上部がさらに広く見えます。</span><span lang="zh-CN">眉形稍拉长、偏平直，也能让上半脸显得更开阔。</span><span lang="zh-TW">眉形稍拉長、偏平直，也能讓上半臉顯得更開闊。</span><span lang="es">Unas cejas algo más largas y rectas también ayudan a que la parte superior se vea más amplia.</span><span lang="id">Alis yang sedikit lebih panjang dan lurus juga membuat wajah bagian atas tampak lebih lebar.</span></p>
+        </section>
+        <!-- =================== 직사각형 (rectangle) =================== -->
+        <section class="guide-card" id="rectangle">
+            <h2>
+                <span lang="en">Rectangle</span><span lang="ko">직사각형</span><span lang="ja">長方形</span><span lang="zh-CN">长方脸</span><span lang="zh-TW">長方臉</span><span lang="es">Rectangular</span><span lang="id">Persegi panjang</span>
+                <span class="en-name" lang="ko">Rectangle</span><span class="en-name" lang="ja">Rectangle</span><span class="en-name" lang="zh-CN">Rectangle</span><span class="en-name" lang="zh-TW">Rectangle</span><span class="en-name" lang="es">Rectangle</span><span class="en-name" lang="id">Rectangle</span>
+            </h2>
+            <p class="feature">
+                <span lang="en">Long with angular corners. Visually shorten and soften at the same time.</span><span lang="ko">길고 각진 얼굴형. 시각적으로 길이를 줄이면서 동시에 각을 부드럽게.</span><span lang="ja">長さがあり、角のある輪郭。長さを視覚的に抑えつつ、角も同時に和らげます。</span><span lang="zh-CN">脸型偏长且棱角分明。要在视觉上缩短长度，同时柔化棱角。</span><span lang="zh-TW">臉型偏長且稜角分明。要在視覺上縮短長度，同時柔化稜角。</span><span lang="es">Rostro largo y de ángulos marcados. Acorta visualmente y suaviza al mismo tiempo.</span><span lang="id">Wajah panjang dengan sudut tegas. Perpendek secara visual sekaligus haluskan sudutnya.</span>
+            </p>
+
+            <div class="img-row">
+                <figure class="face-img"><img src="img/contour-rectangle.svg" alt="Rectangle contouring map" loading="lazy" width="475" height="494" onerror="this.closest('.face-img').classList.add('pending')"><figcaption>img/contour-rectangle.svg</figcaption></figure>
+            </div>
+
+            <div class="block-label shade">🤎 <span lang="en">Shade</span><span lang="ko">셰이딩</span><span lang="ja">シェーディング</span><span lang="zh-CN">修容（阴影）</span><span lang="zh-TW">修容（陰影）</span><span lang="es">Sombras</span><span lang="id">Shading</span></div>
+            <ul class="tips shade">
+                <li><span lang="en">A soft band along the hairline at the top of the forehead</span><span lang="ko">이마 위 헤어라인을 따라 부드럽게 한 줄</span><span lang="ja">額の生え際に沿って柔らかくひと筋</span><span lang="zh-CN">沿额头发际线柔和地扫一条</span><span lang="zh-TW">沿額頭髮際線柔和地掃一條</span><span lang="es">Una banda suave a lo largo del nacimiento del pelo, en lo alto de la frente</span><span lang="id">Sapuan lembut di sepanjang garis rambut di dahi atas</span></li>
+                <li><span lang="en">Both jaw corners</span><span lang="ko">양쪽 턱 모서리</span><span lang="ja">左右のエラ</span><span lang="zh-CN">两侧下颌角</span><span lang="zh-TW">兩側下顎角</span><span lang="es">Ambos ángulos de la mandíbula</span><span lang="id">Kedua sudut rahang</span></li>
+                <li><span lang="en">The bottom edge of the chin to cut length</span><span lang="ko">턱 끝 아래 가장자리 — 길이를 잘라줘요</span><span lang="ja">顎先の下端 — 長さをカットします</span><span lang="zh-CN">下巴底缘——截断长度</span><span lang="zh-TW">下巴底緣——截斷長度</span><span lang="es">El borde inferior del mentón, para recortar el largo</span><span lang="id">Tepi bawah dagu untuk memotong kesan panjang</span></li>
+            </ul>
+
+            <div class="block-label hl">✨ <span lang="en">Highlight</span><span lang="ko">하이라이트</span><span lang="ja">ハイライト</span><span lang="zh-CN">高光</span><span lang="zh-TW">打亮</span><span lang="es">Iluminador</span><span lang="id">Highlight</span></div>
+            <ul class="tips hl">
+                <li><span lang="en">Under-eyes, swept horizontally outward</span><span lang="ko">눈밑을 바깥쪽으로 가로로 길게</span><span lang="ja">目の下を外側へ横長に</span><span lang="zh-CN">眼下向外横扫</span><span lang="zh-TW">眼下向外橫掃</span><span lang="es">Bajo los ojos, difuminado en horizontal hacia afuera</span><span lang="id">Bawah mata, disapu horizontal ke arah luar</span></li>
+                <li><span lang="en">Fronts of the cheeks</span><span lang="ko">볼 앞쪽</span><span lang="ja">頬の前面</span><span lang="zh-CN">脸颊前侧</span><span lang="zh-TW">臉頰前側</span><span lang="es">Parte frontal de las mejillas</span><span lang="id">Bagian depan pipi</span></li>
+                <li><span lang="en">Skip the long nose stripe — it adds length back</span><span lang="ko">콧대 세로 하이라이트는 생략 — 길이가 되살아나요</span><span lang="ja">鼻筋の縦ハイライトは省略 — 長さが戻ってしまいます</span><span lang="zh-CN">省略鼻梁竖高光——那会把长度加回来</span><span lang="zh-TW">省略鼻樑豎高光——那會把長度加回來</span><span lang="es">Evita la línea larga en la nariz: devuelve el largo</span><span lang="id">Lewati garis panjang di hidung — itu mengembalikan kesan panjang</span></li>
+            </ul>
+
+            <p class="pro-tip">💡 <strong><span lang="en">Pro tip</span><span lang="ko">팁</span><span lang="ja">ワンポイント</span><span lang="zh-CN">小贴士</span><span lang="zh-TW">小訣竅</span><span lang="es">Consejo</span><span lang="id">Tips</span></strong> — <span lang="en">Blush swept horizontally across both cheeks visually shortens the face.</span><span lang="ko">블러셔를 양 볼에 가로로 쓸면 얼굴이 짧아 보여요.</span><span lang="ja">チークを両頬に横方向に入れると、顔が短く見えます。</span><span lang="zh-CN">腮红在两颊横向晕开，脸会显短。</span><span lang="zh-TW">腮紅在兩頰橫向暈開，臉會顯短。</span><span lang="es">El rubor extendido en horizontal por ambas mejillas acorta visualmente el rostro.</span><span lang="id">Blush yang disapu horizontal di kedua pipi membuat wajah tampak lebih pendek.</span></p>
+        </section>
+        <!-- =================== 각진형 (square) =================== -->
+        <section class="guide-card" id="square">
+            <h2>
+                <span lang="en">Square</span><span lang="ko">각진형</span><span lang="ja">四角顔</span><span lang="zh-CN">方脸</span><span lang="zh-TW">方臉</span><span lang="es">Cuadrado</span><span lang="id">Persegi</span>
+                <span class="en-name" lang="ko">Square</span><span class="en-name" lang="ja">Square</span><span class="en-name" lang="zh-CN">Square</span><span class="en-name" lang="zh-TW">Square</span><span class="en-name" lang="es">Square</span><span class="en-name" lang="id">Square</span>
+            </h2>
+            <p class="feature">
+                <span lang="en">Broad forehead corners and a strong, angular jaw. Round off the four corners.</span><span lang="ko">이마 모서리가 넓고 턱이 뚜렷하게 각진 얼굴형. 네 모서리를 둥글게 깎는 게 핵심이에요.</span><span lang="ja">額の角が広く、顎のラインがはっきり角ばった輪郭。四つの角を丸く削るのがポイント。</span><span lang="zh-CN">额角宽、下颌方正有力。关键是把四个角修圆。</span><span lang="zh-TW">額角寬、下顎方正有力。關鍵是把四個角修圓。</span><span lang="es">Ángulos de la frente amplios y mandíbula fuerte y marcada. Se trata de redondear las cuatro esquinas.</span><span lang="id">Sudut dahi lebar dan rahang tegas menyudut. Intinya: bulatkan keempat sudutnya.</span>
+            </p>
+
+            <div class="img-row">
+                <figure class="face-img"><img src="img/contour-square.svg" alt="Square contouring map" loading="lazy" width="475" height="494" onerror="this.closest('.face-img').classList.add('pending')"><figcaption>img/contour-square.svg</figcaption></figure>
+            </div>
+
+            <div class="block-label shade">🤎 <span lang="en">Shade</span><span lang="ko">셰이딩</span><span lang="ja">シェーディング</span><span lang="zh-CN">修容（阴影）</span><span lang="zh-TW">修容（陰影）</span><span lang="es">Sombras</span><span lang="id">Shading</span></div>
+            <ul class="tips shade">
+                <li><span lang="en">Both temples at the hairline corners</span><span lang="ko">헤어라인 양쪽 모서리(관자놀이)</span><span lang="ja">生え際の両角（こめかみ）</span><span lang="zh-CN">发际线两侧的额角（太阳穴）</span><span lang="zh-TW">髮際線兩側的額角（太陽穴）</span><span lang="es">Ambas sienes, en las esquinas del nacimiento del pelo</span><span lang="id">Kedua pelipis di sudut garis rambut</span></li>
+                <li><span lang="en">Both jaw angles</span><span lang="ko">양쪽 턱 각</span><span lang="ja">左右のエラ</span><span lang="zh-CN">两侧下颌角</span><span lang="zh-TW">兩側下顎角</span><span lang="es">Ambos ángulos de la mandíbula</span><span lang="id">Kedua sudut rahang</span></li>
+                <li><span lang="en">Softly below the cheekbones</span><span lang="ko">광대 아래를 부드럽게</span><span lang="ja">頬骨の下を柔らかく</span><span lang="zh-CN">颧骨下方轻柔带过</span><span lang="zh-TW">顴骨下方輕柔帶過</span><span lang="es">Suavemente bajo los pómulos</span><span lang="id">Lembut di bawah tulang pipi</span></li>
+            </ul>
+
+            <div class="block-label hl">✨ <span lang="en">Highlight</span><span lang="ko">하이라이트</span><span lang="ja">ハイライト</span><span lang="zh-CN">高光</span><span lang="zh-TW">打亮</span><span lang="es">Iluminador</span><span lang="id">Highlight</span></div>
+            <ul class="tips hl">
+                <li><span lang="en">Center of the forehead</span><span lang="ko">이마 중앙</span><span lang="ja">額の中央</span><span lang="zh-CN">额头中央</span><span lang="zh-TW">額頭中央</span><span lang="es">Centro de la frente</span><span lang="id">Tengah dahi</span></li>
+                <li><span lang="en">Under-eye triangles</span><span lang="ko">눈밑 삼각존</span><span lang="ja">目の下の三角ゾーン</span><span lang="zh-CN">眼下三角区</span><span lang="zh-TW">眼下三角區</span><span lang="es">Triángulos bajo los ojos</span><span lang="id">Segitiga bawah mata</span></li>
+                <li><span lang="en">Center of the chin — building a vertical oval of light</span><span lang="ko">턱 중앙 — 세로로 긴 빛의 타원을 만들어요</span><span lang="ja">顎の中央 — 縦長の光の楕円をつくります</span><span lang="zh-CN">下巴中央——打造一个纵向的光椭圆</span><span lang="zh-TW">下巴中央——打造一個縱向的光橢圓</span><span lang="es">Centro del mentón: construyendo un óvalo vertical de luz</span><span lang="id">Tengah dagu — membentuk oval cahaya vertikal</span></li>
+            </ul>
+
+            <p class="pro-tip">💡 <strong><span lang="en">Pro tip</span><span lang="ko">팁</span><span lang="ja">ワンポイント</span><span lang="zh-CN">小贴士</span><span lang="zh-TW">小訣竅</span><span lang="es">Consejo</span><span lang="id">Tips</span></strong> — <span lang="en">Blend with small circular motions — echo the curves you&#x27;re creating.</span><span lang="ko">작은 원을 그리듯 블렌딩하세요. 만들고 싶은 곡선을 손끝으로 그대로 그리는 거예요.</span><span lang="ja">小さな円を描くようにぼかして。つくりたい曲線を指先でなぞるイメージです。</span><span lang="zh-CN">用画小圆的方式晕染——用指尖描出你想要的弧线。</span><span lang="zh-TW">用畫小圓的方式暈染——用指尖描出你想要的弧線。</span><span lang="es">Difumina con pequeños movimientos circulares: dibuja con los dedos las curvas que quieres crear.</span><span lang="id">Baurkan dengan gerakan melingkar kecil — ikuti lekukan yang ingin kamu bentuk.</span></p>
+        </section>
+        <!-- =================== 다이아몬드형 (diamond) =================== -->
+        <section class="guide-card" id="diamond">
+            <h2>
+                <span lang="en">Diamond</span><span lang="ko">다이아몬드형</span><span lang="ja">ひし形</span><span lang="zh-CN">菱形脸</span><span lang="zh-TW">菱形臉</span><span lang="es">Diamante</span><span lang="id">Berlian</span>
+                <span class="en-name" lang="ko">Diamond</span><span class="en-name" lang="ja">Diamond</span><span class="en-name" lang="zh-CN">Diamond</span><span class="en-name" lang="zh-TW">Diamond</span><span class="en-name" lang="es">Diamond</span><span class="en-name" lang="id">Diamond</span>
+            </h2>
+            <p class="feature">
+                <span lang="en">Cheekbones are the widest point, with a narrower forehead and chin.</span><span lang="ko">광대가 가장 넓고, 이마와 턱이 상대적으로 좁은 얼굴형.</span><span lang="ja">頬骨が最も広く、額と顎が相対的に狭い輪郭。</span><span lang="zh-CN">颧骨是最宽的部位，额头和下巴相对较窄。</span><span lang="zh-TW">顴骨是最寬的部位，額頭和下巴相對較窄。</span><span lang="es">Los pómulos son el punto más ancho, con frente y mentón más estrechos.</span><span lang="id">Tulang pipi adalah titik terlebar, dengan dahi dan dagu lebih sempit.</span>
+            </p>
+
+            <div class="img-row">
+                <figure class="face-img"><img src="img/contour-diamond.svg" alt="Diamond contouring map" loading="lazy" width="475" height="494" onerror="this.closest('.face-img').classList.add('pending')"><figcaption>img/contour-diamond.svg</figcaption></figure>
+            </div>
+
+            <div class="block-label shade">🤎 <span lang="en">Shade</span><span lang="ko">셰이딩</span><span lang="ja">シェーディング</span><span lang="zh-CN">修容（阴影）</span><span lang="zh-TW">修容（陰影）</span><span lang="es">Sombras</span><span lang="id">Shading</span></div>
+            <ul class="tips shade">
+                <li><span lang="en">Only the outer peaks of the cheekbones</span><span lang="ko">광대뼈 바깥쪽 튀어나온 지점만</span><span lang="ja">頬骨の外側の張り出しだけ</span><span lang="zh-CN">只修颧骨外侧最突出的位置</span><span lang="zh-TW">只修顴骨外側最突出的位置</span><span lang="es">Solo los picos externos de los pómulos</span><span lang="id">Hanya puncak luar tulang pipi</span></li>
+                <li><span lang="en">Leave temples and jaw untouched — they&#x27;re already narrow</span><span lang="ko">관자놀이와 턱은 건드리지 않기 — 이미 좁으니까요</span><span lang="ja">こめかみと顎は触らない — もともと狭いので</span><span lang="zh-CN">太阳穴和下颌不要动——它们本来就窄</span><span lang="zh-TW">太陽穴和下顎不要動——它們本來就窄</span><span lang="es">Sienes y mandíbula sin tocar: ya son estrechas</span><span lang="id">Pelipis dan rahang jangan disentuh — sudah sempit dari sananya</span></li>
+            </ul>
+
+            <div class="block-label hl">✨ <span lang="en">Highlight</span><span lang="ko">하이라이트</span><span lang="ja">ハイライト</span><span lang="zh-CN">高光</span><span lang="zh-TW">打亮</span><span lang="es">Iluminador</span><span lang="id">Highlight</span></div>
+            <ul class="tips hl">
+                <li><span lang="en">Center and sides of the forehead to open it up</span><span lang="ko">이마 중앙과 양옆 — 이마를 넓혀줘요</span><span lang="ja">額の中央と両サイド — 額を広く見せる</span><span lang="zh-CN">额头中央和两侧——把额头打开</span><span lang="zh-TW">額頭中央和兩側——把額頭打開</span><span lang="es">Centro y laterales de la frente, para abrirla</span><span lang="id">Tengah dan sisi dahi agar tampak lebih terbuka</span></li>
+                <li><span lang="en">Wide under-eye triangles to fill the midface</span><span lang="ko">눈밑 삼각존을 넓게 — 중안부를 채워요</span><span lang="ja">目の下の三角ゾーンを広めに — 中顔面を満たす</span><span lang="zh-CN">眼下三角区放宽——填满中庭</span><span lang="zh-TW">眼下三角區放寬——填滿中庭</span><span lang="es">Triángulos amplios bajo los ojos, para llenar el tercio medio</span><span lang="id">Segitiga bawah mata yang lebar untuk mengisi wajah tengah</span></li>
+                <li><span lang="en">Center of the chin to soften the point</span><span lang="ko">턱 중앙 — 뾰족함을 부드럽게</span><span lang="ja">顎の中央 — 尖りを柔らかく</span><span lang="zh-CN">下巴中央——柔化尖度</span><span lang="zh-TW">下巴中央——柔化尖度</span><span lang="es">Centro del mentón, para suavizar la punta</span><span lang="id">Tengah dagu untuk melembutkan ujungnya</span></li>
+            </ul>
+
+            <p class="pro-tip">💡 <strong><span lang="en">Pro tip</span><span lang="ko">팁</span><span lang="ja">ワンポイント</span><span lang="zh-CN">小贴士</span><span lang="zh-TW">小訣竅</span><span lang="es">Consejo</span><span lang="id">Tips</span></strong> — <span lang="en">Blush on the cheek fronts — never on the peaks — melts cheekbone width.</span><span lang="ko">블러셔는 볼 앞쪽에만. 광대 꼭대기에 얹으면 폭이 더 살아나요.</span><span lang="ja">チークは頬の前面だけに。頬骨の頂点にのせると幅が強調されます。</span><span lang="zh-CN">腮红只上在脸颊前侧——千万别扫在颧骨最高点，否则宽度更明显。</span><span lang="zh-TW">腮紅只上在臉頰前側——千萬別掃在顴骨最高點，否則寬度更明顯。</span><span lang="es">El rubor va en el frente de las mejillas —nunca en los picos—: así se funde el ancho de los pómulos.</span><span lang="id">Blush hanya di bagian depan pipi — jangan pernah di puncak tulang pipi — supaya lebarnya menyamar.</span></p>
+        </section>
+        <!-- =================== 긴형 (oblong) =================== -->
+        <section class="guide-card" id="oblong">
+            <h2>
+                <span lang="en">Oblong</span><span lang="ko">긴형</span><span lang="ja">面長</span><span lang="zh-CN">长脸</span><span lang="zh-TW">長臉</span><span lang="es">Alargado</span><span lang="id">Lonjong</span>
+                <span class="en-name" lang="ko">Oblong</span><span class="en-name" lang="ja">Oblong</span><span class="en-name" lang="zh-CN">Oblong</span><span class="en-name" lang="zh-TW">Oblong</span><span class="en-name" lang="es">Oblong</span><span class="en-name" lang="id">Oblong</span>
+            </h2>
+            <p class="feature">
+                <span lang="en">Clearly longer than wide. Think horizontal: shorten the face, widen the middle.</span><span lang="ko">가로보다 세로가 뚜렷하게 긴 얼굴형. 발상을 가로로 — 길이는 줄이고 중앙은 넓혀요.</span><span lang="ja">横より縦がはっきり長い輪郭。発想を横に — 長さを抑え、中央に幅を。</span><span lang="zh-CN">纵向明显长于横向。思路要横向：缩短脸长、加宽中庭。</span><span lang="zh-TW">縱向明顯長於橫向。思路要橫向：縮短臉長、加寬中庭。</span><span lang="es">Claramente más largo que ancho. Piensa en horizontal: acortar el rostro y ensanchar el centro.</span><span lang="id">Jelas lebih panjang daripada lebar. Berpikirlah horizontal: perpendek wajah, lebarkan bagian tengah.</span>
+            </p>
+
+            <div class="img-row">
+                <figure class="face-img"><img src="img/contour-oblong.svg" alt="Oblong contouring map" loading="lazy" width="475" height="494" onerror="this.closest('.face-img').classList.add('pending')"><figcaption>img/contour-oblong.svg</figcaption></figure>
+            </div>
+
+            <div class="block-label shade">🤎 <span lang="en">Shade</span><span lang="ko">셰이딩</span><span lang="ja">シェーディング</span><span lang="zh-CN">修容（阴影）</span><span lang="zh-TW">修容（陰影）</span><span lang="es">Sombras</span><span lang="id">Shading</span></div>
+            <ul class="tips shade">
+                <li><span lang="en">A band along the top hairline</span><span lang="ko">이마 위 헤어라인을 따라 한 줄</span><span lang="ja">額上部の生え際に沿ってひと筋</span><span lang="zh-CN">沿头顶发际线扫一条</span><span lang="zh-TW">沿頭頂髮際線掃一條</span><span lang="es">Una banda a lo largo del nacimiento del pelo</span><span lang="id">Sapuan di sepanjang garis rambut atas</span></li>
+                <li><span lang="en">The bottom of the chin</span><span lang="ko">턱 끝 아래</span><span lang="ja">顎先の下</span><span lang="zh-CN">下巴底部</span><span lang="zh-TW">下巴底部</span><span lang="es">La base del mentón</span><span lang="id">Bagian bawah dagu</span></li>
+                <li><span lang="en">Keep the sides light — slimming them adds length</span><span lang="ko">옆면은 옅게 — 옆을 깎을수록 더 길어 보여요</span><span lang="ja">側面は控えめに — 削るほど長く見えます</span><span lang="zh-CN">两侧要浅——越修两侧脸越长</span><span lang="zh-TW">兩側要淺——越修兩側臉越長</span><span lang="es">Los lados apenas: afinarlos añade largo</span><span lang="id">Sisi wajah cukup tipis — makin ditiruskan makin panjang kelihatannya</span></li>
+            </ul>
+
+            <div class="block-label hl">✨ <span lang="en">Highlight</span><span lang="ko">하이라이트</span><span lang="ja">ハイライト</span><span lang="zh-CN">高光</span><span lang="zh-TW">打亮</span><span lang="es">Iluminador</span><span lang="id">Highlight</span></div>
+            <ul class="tips hl">
+                <li><span lang="en">Under-eyes stretched outward toward the temples</span><span lang="ko">눈밑에서 관자놀이 쪽으로 가로로 길게</span><span lang="ja">目の下からこめかみへ横に伸ばす</span><span lang="zh-CN">眼下向太阳穴方向横向拉长</span><span lang="zh-TW">眼下向太陽穴方向橫向拉長</span><span lang="es">Bajo los ojos, estirado hacia las sienes</span><span lang="id">Bawah mata ditarik horizontal ke arah pelipis</span></li>
+                <li><span lang="en">Fronts of the cheeks</span><span lang="ko">볼 앞쪽</span><span lang="ja">頬の前面</span><span lang="zh-CN">脸颊前侧</span><span lang="zh-TW">臉頰前側</span><span lang="es">Parte frontal de las mejillas</span><span lang="id">Bagian depan pipi</span></li>
+                <li><span lang="en">A short touch on the nose bridge only — no full stripe</span><span lang="ko">콧대엔 짧게 콕 — 세로 줄은 금물</span><span lang="ja">鼻筋は短くひと点だけ — 縦ラインは禁物</span><span lang="zh-CN">鼻梁只点一小段——忌整条竖线</span><span lang="zh-TW">鼻樑只點一小段——忌整條豎線</span><span lang="es">Solo un toque corto en el puente de la nariz, nada de línea completa</span><span lang="id">Cukup sentuhan pendek di batang hidung — jangan garis penuh</span></li>
+            </ul>
+
+            <p class="pro-tip">💡 <strong><span lang="en">Pro tip</span><span lang="ko">팁</span><span lang="ja">ワンポイント</span><span lang="zh-CN">小贴士</span><span lang="zh-TW">小訣竅</span><span lang="es">Consejo</span><span lang="id">Tips</span></strong> — <span lang="en">Go horizontal with everything — blush, highlight, even eyeshadow direction.</span><span lang="ko">전부 가로로 — 블러셔도, 하이라이트도, 아이섀도 방향까지도.</span><span lang="ja">すべて横方向に — チークもハイライトも、アイシャドウの入れ方まで。</span><span lang="zh-CN">一切都横着来——腮红、高光，连眼影的晕染方向也是。</span><span lang="zh-TW">一切都橫著來——腮紅、高光，連眼影的暈染方向也是。</span><span lang="es">Todo en horizontal: el rubor, el iluminador e incluso la dirección de la sombra de ojos.</span><span lang="id">Semuanya serba horizontal — blush, highlight, bahkan arah eyeshadow.</span></p>
+        </section>
+        <!-- =================== 역삼각형 (invertedTriangle) =================== -->
+        <section class="guide-card" id="invertedTriangle">
+            <h2>
+                <span lang="en">Inverted Triangle</span><span lang="ko">역삼각형</span><span lang="ja">逆三角</span><span lang="zh-CN">倒三角脸</span><span lang="zh-TW">倒三角臉</span><span lang="es">Triángulo invertido</span><span lang="id">Segitiga terbalik</span>
+                <span class="en-name" lang="ko">Inverted Triangle</span><span class="en-name" lang="ja">Inverted Triangle</span><span class="en-name" lang="zh-CN">Inverted Triangle</span><span class="en-name" lang="zh-TW">Inverted Triangle</span><span class="en-name" lang="es">Inverted Triangle</span><span class="en-name" lang="id">Inverted Triangle</span>
+            </h2>
+            <p class="feature">
+                <span lang="en">A wide forehead tapering to a narrow chin. Rebalance toward the lower face.</span><span lang="ko">이마가 넓고 턱으로 갈수록 좁아지는 얼굴형. 무게중심을 아래쪽으로 되돌리는 게 목표예요.</span><span lang="ja">額が広く、顎に向かって細くなる輪郭。重心を顔の下半分へ戻すのが狙い。</span><span lang="zh-CN">额头宽、往下巴逐渐收窄。目标是把重心拉回下半张脸。</span><span lang="zh-TW">額頭寬、往下巴逐漸收窄。目標是把重心拉回下半張臉。</span><span lang="es">Frente ancha que se estrecha hacia un mentón fino. Reequilibra hacia la parte baja del rostro.</span><span lang="id">Dahi lebar yang menyempit ke dagu. Kembalikan keseimbangan ke wajah bagian bawah.</span>
+            </p>
+
+            <div class="img-row">
+                <figure class="face-img"><img src="img/contour-invertedTriangle.svg" alt="Inverted Triangle contouring map" loading="lazy" width="475" height="494" onerror="this.closest('.face-img').classList.add('pending')"><figcaption>img/contour-invertedTriangle.svg</figcaption></figure>
+            </div>
+
+            <div class="block-label shade">🤎 <span lang="en">Shade</span><span lang="ko">셰이딩</span><span lang="ja">シェーディング</span><span lang="zh-CN">修容（阴影）</span><span lang="zh-TW">修容（陰影）</span><span lang="es">Sombras</span><span lang="id">Shading</span></div>
+            <ul class="tips shade">
+                <li><span lang="en">Forehead sides along the hairline</span><span lang="ko">헤어라인을 따라 이마 양옆</span><span lang="ja">生え際に沿って額の両サイド</span><span lang="zh-CN">沿发际线修额头两侧</span><span lang="zh-TW">沿髮際線修額頭兩側</span><span lang="es">Laterales de la frente, siguiendo el nacimiento del pelo</span><span lang="id">Sisi dahi di sepanjang garis rambut</span></li>
+                <li><span lang="en">Both temples</span><span lang="ko">양쪽 관자놀이</span><span lang="ja">左右のこめかみ</span><span lang="zh-CN">两侧太阳穴</span><span lang="zh-TW">兩側太陽穴</span><span lang="es">Ambas sienes</span><span lang="id">Kedua pelipis</span></li>
+                <li><span lang="en">The very tip of the chin, lightly</span><span lang="ko">턱 맨 끝을 아주 옅게</span><span lang="ja">顎の先端をごく薄く</span><span lang="zh-CN">下巴最尖端轻轻带过</span><span lang="zh-TW">下巴最尖端輕輕帶過</span><span lang="es">La punta del mentón, con suavidad</span><span lang="id">Ujung dagu, tipis saja</span></li>
+            </ul>
+
+            <div class="block-label hl">✨ <span lang="en">Highlight</span><span lang="ko">하이라이트</span><span lang="ja">ハイライト</span><span lang="zh-CN">高光</span><span lang="zh-TW">打亮</span><span lang="es">Iluminador</span><span lang="id">Highlight</span></div>
+            <ul class="tips hl">
+                <li><span lang="en">Under-eye triangles</span><span lang="ko">눈밑 삼각존</span><span lang="ja">目の下の三角ゾーン</span><span lang="zh-CN">眼下三角区</span><span lang="zh-TW">眼下三角區</span><span lang="es">Triángulos bajo los ojos</span><span lang="id">Segitiga bawah mata</span></li>
+                <li><span lang="en">Sides of the jawline to add width below</span><span lang="ko">턱선 양옆 — 아래쪽에 폭을 더해요</span><span lang="ja">フェイスラインの両脇 — 下側に幅を足します</span><span lang="zh-CN">下颌线两侧——给下半脸加宽</span><span lang="zh-TW">下顎線兩側——給下半臉加寬</span><span lang="es">Lados de la mandíbula, para añadir ancho abajo</span><span lang="id">Sisi garis rahang untuk menambah lebar di bawah</span></li>
+                <li><span lang="en">Center of the chin</span><span lang="ko">턱 중앙</span><span lang="ja">顎の中央</span><span lang="zh-CN">下巴中央</span><span lang="zh-TW">下巴中央</span><span lang="es">Centro del mentón</span><span lang="id">Tengah dagu</span></li>
+            </ul>
+
+            <p class="pro-tip">💡 <strong><span lang="en">Pro tip</span><span lang="ko">팁</span><span lang="ja">ワンポイント</span><span lang="zh-CN">小贴士</span><span lang="zh-TW">小訣竅</span><span lang="es">Consejo</span><span lang="id">Tips</span></strong> — <span lang="en">Blush placed low and swept horizontally shifts weight toward the jaw.</span><span lang="ko">블러셔를 평소보다 낮게, 가로로 쓸면 무게중심이 턱 쪽으로 내려와요.</span><span lang="ja">チークをいつもより低め・横方向に入れると、重心が顎側へ下がります。</span><span lang="zh-CN">腮红位置比平时低一些、横向晕开，重心就会移向下颌。</span><span lang="zh-TW">腮紅位置比平時低一些、橫向暈開，重心就會移向下顎。</span><span lang="es">El rubor colocado bajo y difuminado en horizontal desplaza el peso visual hacia la mandíbula.</span><span lang="id">Blush yang dipasang agak rendah dan disapu horizontal menggeser kesan berat ke arah rahang.</span></p>
+        </section>
+        <!-- =================== 하트형 (heart) =================== -->
+        <section class="guide-card" id="heart">
+            <h2>
+                <span lang="en">Heart</span><span lang="ko">하트형</span><span lang="ja">ハート型</span><span lang="zh-CN">心形脸</span><span lang="zh-TW">心形臉</span><span lang="es">Corazón</span><span lang="id">Hati</span>
+                <span class="en-name" lang="ko">Heart</span><span class="en-name" lang="ja">Heart</span><span class="en-name" lang="zh-CN">Heart</span><span class="en-name" lang="zh-TW">Heart</span><span class="en-name" lang="es">Heart</span><span class="en-name" lang="id">Heart</span>
+            </h2>
+            <p class="feature">
+                <span lang="en">Like the inverted triangle but softer, often with a widow&#x27;s peak. Balance the narrow chin against the open forehead.</span><span lang="ko">역삼각형보다 곡선이 부드럽고 이마 라인이 M자를 그리기도 하는 얼굴형. 좁은 턱과 시원한 이마의 균형을 잡아요.</span><span lang="ja">逆三角より曲線が柔らかく、生え際がM字を描くことも。狭い顎と広い額のバランスを取ります。</span><span lang="zh-CN">比倒三角更柔和，发际线常呈美人尖。要在窄下巴和开阔额头之间找平衡。</span><span lang="zh-TW">比倒三角更柔和，髮際線常呈美人尖。要在窄下巴和開闊額頭之間找平衡。</span><span lang="es">Como el triángulo invertido pero más suave, a menudo con pico de viuda. Equilibra el mentón fino frente a la frente despejada.</span><span lang="id">Mirip segitiga terbalik tapi lebih lembut, sering dengan garis rambut membentuk huruf M. Seimbangkan dagu sempit dengan dahi yang lapang.</span>
+            </p>
+
+            <div class="img-row">
+                <figure class="face-img"><img src="img/contour-heart.svg" alt="Heart contouring map" loading="lazy" width="475" height="494" onerror="this.closest('.face-img').classList.add('pending')"><figcaption>img/contour-heart.svg</figcaption></figure>
+            </div>
+
+            <div class="block-label shade">🤎 <span lang="en">Shade</span><span lang="ko">셰이딩</span><span lang="ja">シェーディング</span><span lang="zh-CN">修容（阴影）</span><span lang="zh-TW">修容（陰影）</span><span lang="es">Sombras</span><span lang="id">Shading</span></div>
+            <ul class="tips shade">
+                <li><span lang="en">Upper forehead sides and temples</span><span lang="ko">이마 위쪽 양옆과 관자놀이</span><span lang="ja">額上部の両サイドとこめかみ</span><span lang="zh-CN">额头上部两侧和太阳穴</span><span lang="zh-TW">額頭上部兩側和太陽穴</span><span lang="es">Laterales superiores de la frente y sienes</span><span lang="id">Sisi atas dahi dan pelipis</span></li>
+                <li><span lang="en">Lightly below the cheekbones</span><span lang="ko">광대 아래를 옅게</span><span lang="ja">頬骨の下を薄く</span><span lang="zh-CN">颧骨下方浅浅带过</span><span lang="zh-TW">顴骨下方淺淺帶過</span><span lang="es">Ligero bajo los pómulos</span><span lang="id">Tipis di bawah tulang pipi</span></li>
+                <li><span lang="en">The chin point</span><span lang="ko">턱 끝</span><span lang="ja">顎の先端</span><span lang="zh-CN">下巴尖</span><span lang="zh-TW">下巴尖</span><span lang="es">La punta del mentón</span><span lang="id">Ujung dagu</span></li>
+            </ul>
+
+            <div class="block-label hl">✨ <span lang="en">Highlight</span><span lang="ko">하이라이트</span><span lang="ja">ハイライト</span><span lang="zh-CN">高光</span><span lang="zh-TW">打亮</span><span lang="es">Iluminador</span><span lang="id">Highlight</span></div>
+            <ul class="tips hl">
+                <li><span lang="en">A small touch at the forehead center</span><span lang="ko">이마 중앙에 작게</span><span lang="ja">額の中央に小さく</span><span lang="zh-CN">额头中央小范围</span><span lang="zh-TW">額頭中央小範圍</span><span lang="es">Un toque pequeño en el centro de la frente</span><span lang="id">Sentuhan kecil di tengah dahi</span></li>
+                <li><span lang="en">Under-eye triangles</span><span lang="ko">눈밑 삼각존</span><span lang="ja">目の下の三角ゾーン</span><span lang="zh-CN">眼下三角区</span><span lang="zh-TW">眼下三角區</span><span lang="es">Triángulos bajo los ojos</span><span lang="id">Segitiga bawah mata</span></li>
+                <li><span lang="en">Center of the chin to round it</span><span lang="ko">턱 중앙 — 끝을 둥글게 보이게</span><span lang="ja">顎の中央 — 先端を丸く見せる</span><span lang="zh-CN">下巴中央——让尖端显得圆润</span><span lang="zh-TW">下巴中央——讓尖端顯得圓潤</span><span lang="es">Centro del mentón, para redondearlo</span><span lang="id">Tengah dagu agar tampak membulat</span></li>
+            </ul>
+
+            <p class="pro-tip">💡 <strong><span lang="en">Pro tip</span><span lang="ko">팁</span><span lang="ja">ワンポイント</span><span lang="zh-CN">小贴士</span><span lang="zh-TW">小訣竅</span><span lang="es">Consejo</span><span lang="id">Tips</span></strong> — <span lang="en">A fuller, slightly overlined lip adds presence to the narrow lower face.</span><span lang="ko">립 라인을 살짝 크게, 도톰하게 그리면 좁은 하관에 존재감이 생겨요.</span><span lang="ja">リップをやや大きめ・ふっくら描くと、細い下顔面に存在感が生まれます。</span><span lang="zh-CN">唇线稍微画满一些、更饱满，窄小的下半脸就有了存在感。</span><span lang="zh-TW">唇線稍微畫滿一些、更飽滿，窄小的下半臉就有了存在感。</span><span lang="es">Un labio más lleno y ligeramente perfilado por fuera da presencia a la parte baja del rostro.</span><span lang="id">Bibir yang digambar sedikit lebih penuh memberi kehadiran pada wajah bawah yang sempit.</span></p>
+        </section>
+
+        <p class="adapt-note">
+            <span lang="en">Shade and highlight colors depend on your skin tone, not your face shape. Fair or cool-toned skin suits a soft taupe contour; deeper or warm-toned skin glows with warm bronze and a more pigmented gold highlight. If a contour ever looks gray or ashy on you, it&#x27;s the color — go warmer, not darker. You can check your undertone with Renka&#x27;s personal color analysis.</span><span lang="ko">셰이딩·하이라이트 컬러는 얼굴형이 아니라 피부 톤이 정해요. 밝거나 쿨톤인 피부엔 부드러운 토프(회갈색)가, 딥하거나 웜톤인 피부엔 웜 브론즈와 발색 진한 골드 하이라이트가 어울려요. 셰이딩이 잿빛으로 떠 보인다면 색이 안 맞는 거예요 — 더 어둡게가 아니라 더 웜하게 바꿔보세요. 내 언더톤은 Renka 퍼스널컬러 분석에서 확인할 수 있어요.</span><span lang="ja">シェードとハイライトの色は、顔型ではなく肌のトーンで決まります。明るい肌・ブルベにはソフトなトープ、深い肌・イエベにはウォームブロンズと発色のよいゴールドのハイライトが似合います。シェードがグレーに浮いて見えたら色が合っていないサイン — 暗くではなく、より温かい色へ。自分のアンダートーンはRenkaのパーソナルカラー分析で確認できます。</span><span lang="zh-CN">修容和高光的颜色取决于肤色，而不是脸型。白皙或冷调肤色适合柔和的灰棕色；较深或暖调肤色适合暖棕铜色和显色度更高的金色高光。如果修容在脸上显灰，说明颜色不对——要换更暖的，而不是更深的。你的冷暖调可以在 Renka 的个人色彩分析中确认。</span><span lang="zh-TW">修容和打亮的顏色取決於膚色，而不是臉型。白皙或冷調膚色適合柔和的灰棕色；較深或暖調膚色適合暖棕銅色和顯色度更高的金色打亮。如果修容在臉上顯灰，說明顏色不對——要換更暖的，而不是更深的。你的冷暖調可以在 Renka 的個人色彩分析中確認。</span><span lang="es">Los colores de sombra e iluminador dependen de tu tono de piel, no de la forma de tu rostro. La piel clara o de subtono frío pide un contorno taupe suave; la piel más profunda o cálida luce con bronce cálido y un iluminador dorado más pigmentado. Si un contorno se ve gris o ceniciento, es el color: ve hacia algo más cálido, no más oscuro. Puedes comprobar tu subtono con el análisis de color personal de Renka.</span><span lang="id">Warna shading dan highlight ditentukan oleh warna kulitmu, bukan bentuk wajah. Kulit cerah atau bernada dingin cocok dengan contour taupe lembut; kulit lebih gelap atau hangat justru menyala dengan bronze hangat dan highlight emas yang lebih pekat. Kalau contour terlihat abu-abu di kulitmu, berarti warnanya yang salah — pilih yang lebih hangat, bukan lebih gelap. Undertone-mu bisa dicek lewat analisis warna personal Renka.</span>
+        </p>
+        <p class="footer-note">
+            <span lang="en">These placements are general guidance, not rules. Product texture and personal taste matter too — use them as a starting point.</span><span lang="ko">위 위치는 일반적인 가이드일 뿐 정답이 아니에요. 제품 제형과 개인 취향도 중요하니 출발점으로 활용해 주세요.</span><span lang="ja">ここでの位置はあくまで一般的な目安です。コスメの質感や好みも大切に、出発点としてお使いください。</span><span lang="zh-CN">以上位置仅为一般参考，并非定式。产品质地和个人喜好同样重要，请作为起点参考。</span><span lang="zh-TW">以上位置僅為一般參考，並非定式。產品質地和個人喜好同樣重要，請作為起點參考。</span><span lang="es">Estas ubicaciones son orientación general, no reglas. La textura del producto y tu gusto personal también cuentan: úsalas como punto de partida.</span><span lang="id">Penempatan di atas adalah panduan umum, bukan aturan. Tekstur produk dan selera pribadi juga penting — jadikan ini titik awal.</span>
+        </p>
+    </div>
+
+    <script>
+        function setLang(lang) { setLangSilent(lang); rejumpToHash(); }
+        function setLangSilent(lang) {
+            ['lang-en', 'lang-ko', 'lang-ja', 'lang-zh-CN', 'lang-zh-TW', 'lang-es', 'lang-id'].forEach(c => document.body.classList.remove(c));
+            document.body.classList.add('lang-' + lang);
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('onclick').includes("'" + lang + "'")) btn.classList.add('active');
+            });
+            localStorage.setItem('preferred-lang', lang);
+        }
+        // 언어 토글로 페이지 높이가 바뀌면 앵커 위치가 어긋나므로 재점프
+        function rejumpToHash() {
+            if (!window.location.hash) return;
+            const id = decodeURIComponent(window.location.hash.slice(1));
+            const el = document.getElementById(id);
+            if (el) requestAnimationFrame(() => el.scrollIntoView());
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const langParam = urlParams.get('lang');
+            const supportedLangs = ['en', 'ko', 'ja', 'zh-CN', 'zh-TW', 'es', 'id'];
+            if (langParam && supportedLangs.includes(langParam)) {
+                setLangSilent(langParam);
+            } else {
+                const saved = localStorage.getItem('preferred-lang');
+                if (saved && supportedLangs.includes(saved)) setLangSilent(saved);
+            }
+            rejumpToHash();
+        });
+    </script>
+</body>
+</html>
