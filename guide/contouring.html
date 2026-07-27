@@ -415,11 +415,19 @@
         // 언어 토글로 페이지 높이가 바뀌면 앵커 위치가 어긋나므로 재점프
         function rejumpToHash() {
             // 해시 우선, 없으면 ?shape= 폴백 (WebView가 리다이렉트에서 #를 유실해도 쿼리는 보존됨)
+            // 주의: requestAnimationFrame은 WKWebView/백그라운드에서 실행이 밀리거나 생략됨 → 동기 스크롤 사용
             let id = window.location.hash ? decodeURIComponent(window.location.hash.slice(1)) : null;
             if (!id) id = new URLSearchParams(window.location.search).get('shape');
             if (!id) return;
             const el = document.getElementById(id);
-            if (el) requestAnimationFrame(() => el.scrollIntoView());
+            if (el) el.scrollIntoView();
+        }
+        // WKWebView는 초기 로드 시 fragment 스크롤을 자주 누락 + 레이아웃이 늦게 잡힘 → 시간차 재시도.
+        // 사용자가 직접 스크롤하기 시작하면 중단.
+        var _userScrolled = false;
+        ['wheel','touchstart'].forEach(function(e){ window.addEventListener(e, function(){ _userScrolled = true; }, {passive:true, once:true}); });
+        function scheduleJumpRetries() {
+            [0, 150, 400, 800, 1500].forEach(function(ms){ setTimeout(function(){ if (!_userScrolled) rejumpToHash(); }, ms); });
         }
         document.addEventListener('DOMContentLoaded', function() {
             const urlParams = new URLSearchParams(window.location.search);
@@ -431,7 +439,7 @@
                 const saved = localStorage.getItem('preferred-lang');
                 if (saved && supportedLangs.includes(saved)) setLangSilent(saved);
             }
-            rejumpToHash();
+            scheduleJumpRetries();
         });
         // 무거운 SVG 로드로 레이아웃이 밀리면 앵커 위치가 어긋남 → 전체 로드 후 한 번 더 점프
         window.addEventListener('load', rejumpToHash);
