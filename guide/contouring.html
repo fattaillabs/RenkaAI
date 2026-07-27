@@ -431,6 +431,8 @@
             }
             rejumpToHash();
         });
+        // 무거운 SVG 로드로 레이아웃이 밀리면 앵커 위치가 어긋남 → 전체 로드 후 한 번 더 점프
+        window.addEventListener('load', rejumpToHash);
     </script>
 </body>
 </html>
