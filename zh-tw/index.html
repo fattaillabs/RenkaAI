@@ -50,7 +50,7 @@
           "applicationCategory": "LifestyleApplication",
           "description": "使用 TrueScale 技術以毫米為單位實測臉部尺寸的臉部分析App。提供臉型分析、黃金比例與對稱性顏值報告、整形模擬和浮腫管理，所有分析皆在裝置端完成。",
           "url": "https://fattaillabs.com/RenkaAI/zh-tw/",
-          "installUrl": "https://apps.apple.com/app/renka-3d-face-analyzer/id6756908316",
+          "installUrl": ["https://apps.apple.com/app/renka-3d-face-analyzer/id6756908316", "https://play.google.com/store/apps/details?id=com.fattail.renka"],
           "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
           "publisher": { "@id": "https://fattaillabs.com/#org" }
         },
@@ -217,13 +217,6 @@
         .store-badge { display: inline-block; transition: transform 0.25s ease, filter 0.25s ease; }
         .store-badge img { height: 56px; display: block; }
         .store-badge:hover { transform: translateY(-3px); filter: drop-shadow(0 10px 22px rgba(35,49,42,0.28)); }
-        .play-soon { cursor: default; }
-        .play-soon:hover { transform: none; filter: none; }
-        .play-badge-box { display: inline-flex; align-items: center; gap: 10px; height: 56px; padding: 0 18px 0 15px; border-radius: 9px; background: #23312A; opacity: 0.5; }
-        .play-tri { width: 24px; height: 24px; fill: #fff; flex-shrink: 0; }
-        .play-text { display: flex; flex-direction: column; justify-content: center; line-height: 1.2; color: #fff; text-align: left; }
-        .play-text em { font-style: normal; font-size: 10.5px; opacity: 0.85; letter-spacing: 0.03em; white-space: nowrap; }
-        .play-text strong { font-size: 16px; font-weight: 600; white-space: nowrap; }
         .hero-note { font-size: 13px; color: var(--ink-faint); }
 
         /* ── Hero phone mockup ─────────────────────────── */
@@ -465,7 +458,7 @@
                 <button class="lang-btn" data-lang="es" onclick="goLang('es')" title="Español">🇪🇸</button>
                 <button class="lang-btn" data-lang="id" onclick="goLang('id')" title="Bahasa Indonesia">🇮🇩</button>
             </div>
-            <a class="nav-cta" href="https://apps.apple.com/us/app/renka-3d-face-analyzer/id6756908316">
+            <a class="nav-cta" href="#download">
                 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
                 <span lang="en">Download</span><span lang="id">Unduh</span><span lang="es">Descargar</span><span lang="ko">다운로드</span><span lang="ja">ダウンロード</span><span lang="zh-CN">下载</span><span lang="zh-TW">下載</span>
             </a>
@@ -491,35 +484,27 @@
                 <span lang="zh-TW">你的臉，<br><em>真正的3D</em>。</span>
             </h1>
             <p class="sub">
-                <span lang="en">Renka scans 1,220 points of your face with the iPhone's IR depth sensor — golden ratio, symmetry, contour and daily puffiness, measured to the millimeter. No photos guessing. Real geometry.</span><span lang="id">Renka memindai 1.220 titik di wajah kamu dengan sensor kedalaman IR iPhone — rasio emas, simetri, kontur, dan pembengkakan wajah harian, terukur sampai milimeter. Bukan tebak-tebakan dari foto. Geometri sungguhan.</span><span lang="es">Renka escanea 1,220 puntos de tu rostro con el sensor de profundidad IR del iPhone: proporción áurea, simetría, contorno e hinchazón diaria, medidos al milímetro. Nada de adivinar con fotos. Geometría real.</span>
-                <span lang="ko">아이폰 IR 깊이 센서로 얼굴의 1,220개 정점을 스캔합니다. 황금비·대칭·윤곽·붓기까지 밀리미터 단위로 — 사진 추측이 아닌 실제 3D 기하로 측정해요.</span>
-                <span lang="ja">iPhoneのIR深度センサーで顔の1,220点をスキャン。黄金比・対称性・輪郭・むくみまで、ミリ単位で測定します。写真からの推測ではなく、本物の3Dジオメトリで。</span>
-                <span lang="zh-CN">Renka 利用 iPhone 红外深度传感器扫描面部 1,220 个顶点——黄金比例、对称性、轮廓与每日浮肿，以毫米级精度测量。不是照片猜测，而是真实的3D几何。</span>
-                <span lang="zh-TW">Renka 利用 iPhone 紅外深度感測器掃描臉部 1,220 個頂點——黃金比例、對稱性、輪廓與每日浮腫，以毫米級精度測量。不是照片猜測，而是真實的3D幾何。</span>
+                <span lang="en">Renka scans 1,200+ ultra-precise feature points on your face with TrueScale technology — golden ratio, symmetry, contour and daily puffiness, measured to the millimeter. No photos guessing. Real geometry.</span><span lang="id">Renka memindai 1.200+ titik fitur ultra-presisi di wajahmu dengan teknologi TrueScale — rasio emas, simetri, kontur, dan pembengkakan wajah harian, terukur sampai milimeter. Bukan tebak-tebakan dari foto. Geometri sungguhan.</span><span lang="es">Renka escanea más de 1.200 puntos característicos de altísima precisión en tu rostro con la tecnología TrueScale: proporción áurea, simetría, contorno e hinchazón diaria, medidos al milímetro. Nada de adivinar con fotos. Geometría real.</span>
+                <span lang="ko">TrueScale 기술로 얼굴의 1,200개 이상 초정밀 특징점을 스캔합니다. 황금비·대칭·윤곽·붓기까지 밀리미터 단위로 — 사진 추측이 아닌 실제 기하로 측정해요.</span>
+                <span lang="ja">TrueScale技術で顔の1,200点以上の超精密な特徴点をスキャン。黄金比・対称性・輪郭・むくみまで、ミリ単位で測定します。写真からの推測ではなく、本物のジオメトリで。</span>
+                <span lang="zh-CN">Renka 以 TrueScale 技术扫描面部 1,200 多个超精密特征点——黄金比例、对称性、轮廓与每日浮肿，以毫米级精度测量。不是照片猜测，而是真实几何。</span>
+                <span lang="zh-TW">Renka 以 TrueScale 技術掃描臉部 1,200 多個超精密特徵點——黃金比例、對稱性、輪廓與每日浮腫，以毫米級精度測量。不是照片猜測，而是真實幾何。</span>
             </p>
-            <div class="hero-ctas">
+            <div class="hero-ctas" id="download">
                 <a class="store-badge" href="https://apps.apple.com/us/app/renka-3d-face-analyzer/id6756908316">
                     <span lang="en"><img src="../assets/badges/appstore-en.svg" alt="Download on the App Store"></span><span lang="id"><img src="../assets/badges/appstore-en.svg" alt="Download on the App Store"></span><span lang="es"><img src="../assets/badges/appstore-en.svg" alt="Download on the App Store"></span>
-                    <span lang="ko"><img src="../assets/badges/appstore-en.svg" alt="App Store 다운로드"></span>
+                    <span lang="ko"><img src="../assets/badges/appstore-ko.svg" alt="App Store에서 다운로드"></span>
                     <span lang="ja"><img src="../assets/badges/appstore-ja.svg" alt="App Storeでダウンロード"></span>
                     <span lang="zh-CN"><img src="../assets/badges/appstore-zh-CN.svg" alt="在 App Store 下载"></span>
                     <span lang="zh-TW"><img src="../assets/badges/appstore-zh-TW.svg" alt="在 App Store 下載"></span>
                 </a>
-                <span class="store-badge play-soon" aria-disabled="true" title="Google Play — Coming soon">
-                    <span class="play-badge-box">
-                        <svg class="play-tri" viewBox="0 0 24 24"><path d="M3 2.5v19l18-9.5z"/></svg>
-                        <span class="play-text">
-                            <em><span lang="en">Coming soon on</span><span lang="id">Segera hadir di</span><span lang="es">Muy pronto en</span><span lang="ko">곧 출시</span><span lang="ja">近日公開</span><span lang="zh-CN">即将上线</span><span lang="zh-TW">即將上市</span></em>
-                            <strong>Google Play</strong>
-                        </span>
-                    </span>
-                </span>
+                <a class="store-badge play-live" href="https://play.google.com/store/apps/details?id=com.fattail.renka"><img src="../assets/badges/googleplay-en.png" alt="Get it on Google Play"></a>
                 <span class="hero-note">
-                    <span lang="en">Free · iPhone with Face ID</span><span lang="id">Gratis · iPhone dengan Face ID</span><span lang="es">Gratis · iPhone con Face ID</span>
-                    <span lang="ko">무료 · Face ID 지원 아이폰</span>
-                    <span lang="ja">無料 · Face ID対応iPhone</span>
-                    <span lang="zh-CN">免费 · 支持 Face ID 的 iPhone</span>
-                    <span lang="zh-TW">免費 · 支援 Face ID 的 iPhone</span>
+                    <span lang="en">Free · iPhone with Face ID · Android 8.0+</span><span lang="id">Gratis · iPhone dengan Face ID · Android 8.0+</span><span lang="es">Gratis · iPhone con Face ID · Android 8.0+</span>
+                    <span lang="ko">무료 · Face ID 지원 아이폰 · Android 8.0 이상</span>
+                    <span lang="ja">無料 · Face ID対応iPhone · Android 8.0以上</span>
+                    <span lang="zh-CN">免费 · 支持 Face ID 的 iPhone · Android 8.0 以上</span>
+                    <span lang="zh-TW">免費 · 支援 Face ID 的 iPhone · Android 8.0 以上</span>
                 </span>
             </div>
         </div>
@@ -589,12 +574,12 @@
     <div class="trust reveal">
         <div class="trust-inner">
             <div class="trust-item">
-                <div class="t-num">1,220</div>
-                <div class="t-label"><span lang="en">3D mesh vertices</span><span lang="id">Titik mesh 3D</span><span lang="es">Vértices de malla 3D</span><span lang="ko">3D 메쉬 정점</span><span lang="ja">3Dメッシュ頂点</span><span lang="zh-CN">3D网格顶点</span><span lang="zh-TW">3D網格頂點</span></div>
+                <div class="t-num">1,200+</div>
+                <div class="t-label"><span lang="en">ultra-precise feature points</span><span lang="id">titik fitur ultra-presisi</span><span lang="es">puntos de altísima precisión</span><span lang="ko">초정밀 특징점</span><span lang="ja">超精密な特徴点</span><span lang="zh-CN">超精密特征点</span><span lang="zh-TW">超精密特徵點</span></div>
             </div>
             <div class="trust-item">
-                <div class="t-num">IR</div>
-                <div class="t-label"><span lang="en">TrueDepth&trade; sensor</span><span lang="id">Sensor TrueDepth&trade;</span><span lang="es">Sensor TrueDepth&trade;</span><span lang="ko">TrueDepth&trade; 깊이 센서</span><span lang="ja">TrueDepth&trade;センサー</span><span lang="zh-CN">TrueDepth&trade;传感器</span><span lang="zh-TW">TrueDepth&trade;感測器</span></div>
+                <div class="t-num">TrueScale</div>
+                <div class="t-label"><span lang="en">measurement engine</span><span lang="id">mesin pengukuran</span><span lang="es">motor de medición</span><span lang="ko">실측 엔진</span><span lang="ja">実測エンジン</span><span lang="zh-CN">实测引擎</span><span lang="zh-TW">實測引擎</span></div>
             </div>
             <div class="trust-item">
                 <div class="t-num">mm</div>
@@ -957,28 +942,20 @@
                 <span lang="zh-TW">準備好遇見真實的自己了嗎？</span>
             </h2>
             <p>
-                <span lang="en">Free to download. Works on any iPhone with Face ID.</span><span lang="id">Gratis diunduh. Berjalan di semua iPhone dengan Face ID.</span><span lang="es">Descarga gratis. Funciona en cualquier iPhone con Face ID.</span>
-                <span lang="ko">무료 다운로드 · Face ID 지원 아이폰이면 OK.</span>
-                <span lang="ja">無料ダウンロード · Face ID対応iPhoneでOK。</span>
-                <span lang="zh-CN">免费下载 · 支持 Face ID 的 iPhone 均可使用。</span>
-                <span lang="zh-TW">免費下載 · 支援 Face ID 的 iPhone 均可使用。</span>
+                <span lang="en">Free to download. Works on iPhone with Face ID and on Android 8.0 or later.</span><span lang="id">Gratis diunduh. Berjalan di iPhone dengan Face ID dan di Android 8.0 atau lebih baru.</span><span lang="es">Descarga gratis. Funciona en iPhone con Face ID y en Android 8.0 o posterior.</span>
+                <span lang="ko">무료 다운로드 · Face ID 지원 아이폰과 Android 8.0 이상에서 사용할 수 있습니다.</span>
+                <span lang="ja">無料ダウンロード · Face ID対応iPhoneとAndroid 8.0以上でご利用いただけます。</span>
+                <span lang="zh-CN">免费下载 · 支持 Face ID 的 iPhone 与 Android 8.0 以上均可使用。</span>
+                <span lang="zh-TW">免費下載 · 支援 Face ID 的 iPhone 與 Android 8.0 以上均可使用。</span>
             </p>
             <a class="store-badge" href="https://apps.apple.com/us/app/renka-3d-face-analyzer/id6756908316">
                     <span lang="en"><img src="../assets/badges/appstore-en.svg" alt="Download on the App Store"></span><span lang="id"><img src="../assets/badges/appstore-en.svg" alt="Download on the App Store"></span><span lang="es"><img src="../assets/badges/appstore-en.svg" alt="Download on the App Store"></span>
-                    <span lang="ko"><img src="../assets/badges/appstore-en.svg" alt="App Store 다운로드"></span>
+                    <span lang="ko"><img src="../assets/badges/appstore-ko.svg" alt="App Store에서 다운로드"></span>
                     <span lang="ja"><img src="../assets/badges/appstore-ja.svg" alt="App Storeでダウンロード"></span>
                     <span lang="zh-CN"><img src="../assets/badges/appstore-zh-CN.svg" alt="在 App Store 下载"></span>
                     <span lang="zh-TW"><img src="../assets/badges/appstore-zh-TW.svg" alt="在 App Store 下載"></span>
                 </a>
-                <span class="store-badge play-soon" aria-disabled="true" title="Google Play — Coming soon">
-                    <span class="play-badge-box">
-                        <svg class="play-tri" viewBox="0 0 24 24"><path d="M3 2.5v19l18-9.5z"/></svg>
-                        <span class="play-text">
-                            <em><span lang="en">Coming soon on</span><span lang="id">Segera hadir di</span><span lang="es">Muy pronto en</span><span lang="ko">곧 출시</span><span lang="ja">近日公開</span><span lang="zh-CN">即将上线</span><span lang="zh-TW">即將上市</span></em>
-                            <strong>Google Play</strong>
-                        </span>
-                    </span>
-                </span>
+                <a class="store-badge play-live" href="https://play.google.com/store/apps/details?id=com.fattail.renka"><img src="../assets/badges/googleplay-en.png" alt="Get it on Google Play"></a>
         </div>
     </section>
 
@@ -1061,6 +1038,62 @@
             }, { threshold: 0.12 });
             document.querySelectorAll('.reveal').forEach(el => io.observe(el));
         });
+    </script>
+    <!-- ══ 캠페인 파라미터 릴레이 (어트리뷰션) ══
+         틱톡/인스타 광고 링크의 utm_* 를 스토어 링크로 넘긴다.
+         · Google Play : &referrer= 로 그대로 전달 → Play Console 획득 보고서가 utm을 자동 집계.
+                          앱 안에서 읽으려면 Install Referrer 라이브러리를 앱에 추가해야 한다.
+         · App Store   : 애플은 임의 referrer를 받지 않는다. pt(Provider ID)+ct(캠페인 토큰)만 지원하며
+                          App Store Connect의 '앱 분석 > 캠페인'에 집계로만 잡힌다(앱으로 전달 안 됨).
+                          APPLE_PT를 채우면 자동 활성화된다. -->
+    <script>
+    (function () {
+        var APPLE_PT = '128379849';   // App Store Connect > 앱 분석 > 캠페인 의 Provider ID
+        var UTM  = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+        var CLID = ['ttclid', 'fbclid', 'igshid', 'gclid'];
+        var KEY  = 'renka_campaign';
+
+        // 유입 시 1회 캡처 → 세션 내내 유지(페이지를 옮겨다녀도 유실 안 되게)
+        function params() {
+            var q = new URLSearchParams(location.search), got = {};
+            UTM.concat(CLID).forEach(function (k) { var v = q.get(k); if (v) got[k] = v; });
+            if (Object.keys(got).length) {
+                try { sessionStorage.setItem(KEY, JSON.stringify(got)); } catch (e) {}
+                return got;
+            }
+            try { return JSON.parse(sessionStorage.getItem(KEY) || '{}'); } catch (e) { return {}; }
+        }
+
+        var p = params();
+        if (!Object.keys(p).length) return;
+
+        // Play referrer 는 값 전체를 한 번 더 인코딩해서 넘긴다(=Play 규격)
+        var referrer = encodeURIComponent(
+            Object.keys(p).map(function (k) { return k + '=' + p[k]; }).join('&')
+        );
+        // 애플 ct 는 40자 제한 + 영숫자/._- 만 안전.
+        // 한글 캠페인명을 그대로 넣으면 '--_--' 같은 쓰레기 토큰이 App Analytics에 쌓인다 →
+        // 영숫자가 하나도 안 남으면 utm_source 로 폴백하고, 그것도 아니면 애플 쪽은 건너뛴다.
+        function slug(v) {
+            var out = (v || '').replace(/[^A-Za-z0-9._-]/g, '-').slice(0, 40);
+            return /[A-Za-z0-9]/.test(out) ? out : '';
+        }
+        var ct = slug(p.utm_campaign) || slug(p.utm_source);
+
+        document.querySelectorAll('a[href*="play.google.com"]').forEach(function (a) {
+            if (a.href.indexOf('referrer=') === -1) a.href += '&referrer=' + referrer;
+        });
+        if (APPLE_PT && ct) {
+            document.querySelectorAll('a[href*="apps.apple.com"]').forEach(function (a) {
+                if (a.href.indexOf('ct=') !== -1) return;
+                var id = (a.href.match(/id(\d+)/) || [])[1];
+                if (!id) return;
+                a.href = 'https://apps.apple.com/app/apple-store/id' + id +
+                         '?pt=' + encodeURIComponent(APPLE_PT) +
+                         '&ct=' + encodeURIComponent(ct) + '&mt=8';
+            });
+        }
+    })();
     </script>
 </body>
 </html>
