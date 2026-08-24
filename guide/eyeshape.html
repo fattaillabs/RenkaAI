@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <script src="gate.js"></script>
+    <title>Eye Shape Guide - Renka</title>
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../assets/favicon-192.png">
+    <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Apple SD Gothic Neo', sans-serif; background: linear-gradient(160deg, #f2fae8 0%, #e2f3d0 100%); background-attachment: fixed; color: #33402d; line-height: 1.75; }
+        .container { max-width: 700px; margin: 0 auto; padding: 36px 20px 80px; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 22px; flex-wrap: wrap; gap: 12px; }
+        .back-link { display: inline-flex; align-items: center; gap: 6px; color: #4e8a2c; text-decoration: none; font-size: 14px; font-weight: 600; }
+        .back-link:hover { text-decoration: underline; }
+        .lang-switcher { display: flex; gap: 6px; flex-wrap: wrap; }
+        .lang-btn { background: rgba(255,255,255,0.7); border: 1px solid #cfe6b5; border-radius: 8px; padding: 7px 10px; font-size: 18px; cursor: pointer; transition: all 0.2s; }
+        .lang-btn:hover { background: #fff; }
+        .lang-btn.active { background: #fff; border-color: #7cb342; box-shadow: 0 1px 5px rgba(124,179,66,0.35); }
+
+        h1 { font-size: 28px; font-weight: 800; margin-bottom: 8px; color: #fff; letter-spacing: -0.3px; text-shadow: 0 1px 0 #6aa83a, 0 2px 0 #5d9931, 2px 3px 7px rgba(80,140,40,0.35); }
+        .subtitle { font-size: 14px; color: #6b7a60; margin-bottom: 14px; }
+        .auto-note { font-size: 12.5px; color: #87937c; margin-bottom: 24px; }
+
+        .section-nav { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 30px; }
+        .section-chip { display: inline-block; padding: 7px 13px; font-size: 13px; font-weight: 600; color: #4e6b39; background: rgba(255,255,255,0.75); border: 1px solid #d4e8bd; border-radius: 20px; text-decoration: none; transition: all 0.2s; }
+        .section-chip:hover { background: #fff; border-color: #7cb342; color: #3d6b1f; }
+        .section-chip.active { background: #fff; border-color: #7cb342; color: #3d6b1f; box-shadow: 0 1px 5px rgba(124,179,66,0.35); }
+
+        .axis-head { scroll-margin-top: 16px; margin: 34px 0 6px; }
+        .axis-head h2 { font-size: 21px; font-weight: 800; color: #3d6b1f; letter-spacing: -0.2px; }
+        .axis-head .axis-sub { font-size: 13.5px; color: #6b7a60; margin-top: 2px; }
+        .axis-metric { display: inline-block; margin-top: 8px; font-size: 12px; color: #4e8a2c; background: rgba(255,255,255,0.72); border: 1px solid #d4e8bd; border-radius: 8px; padding: 5px 10px; }
+
+        .type-card { scroll-margin-top: 16px; background: rgba(255,255,255,0.52); border: 1px solid rgba(255,255,255,0.68); border-radius: 18px; padding: 20px 20px 18px; margin-bottom: 14px; box-shadow: 0 2px 12px rgba(99,150,55,0.1); }
+        .type-top { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+        .eye-svg { width: 148px; height: 74px; flex: 0 0 auto; }
+        .eye-img { width: 140px; height: 70px; flex: 0 0 auto; object-fit: contain; }
+        .eye-fallback { display: none; }
+        .type-names { min-width: 200px; flex: 1; }
+        .type-names .local { font-size: 18.5px; font-weight: 800; color: #3d6b1f; }
+        .type-names .intl { font-size: 12.5px; color: #6aa83a; font-weight: 700; margin-top: 1px; letter-spacing: 0.1px; }
+        .type-names .range { font-size: 11.5px; color: #8b9781; margin-top: 3px; }
+
+        .type-body { font-size: 14.5px; color: #4a5644; margin-top: 12px; }
+        .tips { margin-top: 12px; border-top: 1px dashed rgba(124,179,66,0.32); padding-top: 11px; }
+        .tips .tip-label { font-size: 12.5px; font-weight: 800; color: #4e8a2c; display: block; margin-bottom: 5px; }
+        .tips ul { list-style: none; }
+        .tips li { position: relative; padding-left: 15px; font-size: 14px; color: #4a5644; margin-bottom: 4px; }
+        .tips li::before { content: '·'; position: absolute; left: 4px; color: #7cb342; font-weight: 800; }
+
+        .glossary { background: rgba(255,255,255,0.52); border: 1px solid rgba(255,255,255,0.68); border-radius: 18px; padding: 22px 20px; margin-bottom: 18px; box-shadow: 0 2px 12px rgba(99,150,55,0.1); }
+        .gl-row { display: grid; grid-template-columns: 128px 1fr; gap: 10px 14px; padding: 11px 0; border-bottom: 1px solid rgba(124,179,66,0.16); }
+        .gl-row:last-child { border-bottom: 0; }
+        @media (max-width: 520px) { .gl-row { grid-template-columns: 1fr; gap: 3px; padding: 12px 0; } }
+        .gl-term { font-size: 15px; font-weight: 800; color: #3d6b1f; line-height: 1.4; }
+        .gl-term .rom { display: block; font-size: 11px; color: #93a087; font-weight: 600; letter-spacing: 0.2px; }
+        .gl-def .intl-term { display: inline-block; font-size: 12px; font-weight: 700; color: #4e8a2c; background: rgba(124,179,66,0.13); border-radius: 6px; padding: 2px 7px; margin-bottom: 3px; }
+        .gl-def p { font-size: 14px; color: #4a5644; }
+
+        .note-card { background: rgba(255,255,255,0.42); border: 1px solid rgba(255,255,255,0.6); border-radius: 16px; padding: 18px 18px; margin-bottom: 16px; }
+        .note-card h3 { font-size: 15px; font-weight: 800; color: #3d6b1f; margin-bottom: 8px; }
+        .note-card li { position: relative; padding-left: 15px; font-size: 13.8px; color: #56624e; margin-bottom: 4px; list-style: none; }
+        .note-card li::before { content: '·'; position: absolute; left: 4px; color: #7cb342; font-weight: 800; }
+        .disclaimer { font-size: 12.5px; color: #87937c; line-height: 1.7; padding: 4px 2px 0; }
+
+        [lang]:not([lang="en"]) { display: none; }
+        body.lang-ko [lang="ko"] { display: block; }
+        body.lang-ko [lang="en"], body.lang-ko [lang="ja"], body.lang-ko [lang="zh-CN"], body.lang-ko [lang="zh-TW"], body.lang-ko [lang="es"] { display: none; }
+        body.lang-ja [lang="ja"] { display: block; }
+        body.lang-ja [lang="en"], body.lang-ja [lang="ko"], body.lang-ja [lang="zh-CN"], body.lang-ja [lang="zh-TW"], body.lang-ja [lang="es"] { display: none; }
+        body.lang-en [lang="en"] { display: block; }
+        body.lang-en [lang="ko"], body.lang-en [lang="ja"], body.lang-en [lang="zh-CN"], body.lang-en [lang="zh-TW"], body.lang-en [lang="es"] { display: none; }
+        body.lang-zh-CN [lang="zh-CN"] { display: block; }
+        body.lang-zh-CN [lang="en"], body.lang-zh-CN [lang="ko"], body.lang-zh-CN [lang="ja"], body.lang-zh-CN [lang="zh-TW"], body.lang-zh-CN [lang="es"] { display: none; }
+        body.lang-zh-TW [lang="zh-TW"] { display: block; }
+        body.lang-zh-TW [lang="en"], body.lang-zh-TW [lang="ko"], body.lang-zh-TW [lang="ja"], body.lang-zh-TW [lang="zh-CN"], body.lang-zh-TW [lang="es"] { display: none; }
+        body.lang-es [lang="es"] { display: block; }
+        body.lang-es [lang="en"], body.lang-es [lang="ko"], body.lang-es [lang="ja"], body.lang-es [lang="zh-CN"], body.lang-es [lang="zh-TW"] { display: none; }
+
+        body.lang-en span[lang="en"] { display: inline; }
+        body.lang-ko span[lang="ko"] { display: inline; }
+        body.lang-ja span[lang="ja"] { display: inline; }
+        body.lang-zh-CN span[lang="zh-CN"] { display: inline; }
+        body.lang-zh-TW span[lang="zh-TW"] { display: inline; }
+        body.lang-es span[lang="es"] { display: inline; }
+        body.lang-en li[lang="en"] { display: list-item; }
+        body.lang-ko li[lang="ko"] { display: list-item; }
+        body.lang-ja li[lang="ja"] { display: list-item; }
+        body.lang-zh-CN li[lang="zh-CN"] { display: list-item; }
+        body.lang-zh-TW li[lang="zh-TW"] { display: list-item; }
+        body.lang-es li[lang="es"] { display: list-item; }
+    </style>
+</head>
+<body class="lang-en">
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="back-link">← <span lang="en">Style Guide</span><span lang="ko">스타일 가이드</span><span lang="ja">スタイルガイド</span><span lang="zh-CN">风格指南</span><span lang="zh-TW">風格指南</span><span lang="es">Guía de estilo</span></a>
+            <div class="lang-switcher">
+                <button class="lang-btn active" onclick="setLang('en')" title="English">🇺🇸</button>
+                <button class="lang-btn" onclick="setLang('ko')" title="한국어">🇰🇷</button>
+                <button class="lang-btn" onclick="setLang('ja')" title="日本語">🇯🇵</button>
+                <button class="lang-btn" onclick="setLang('zh-CN')" title="简体中文">🇨🇳</button>
+                <button class="lang-btn" onclick="setLang('zh-TW')" title="繁體中文">🇹🇼</button>
+                <button class="lang-btn" onclick="setLang('es')" title="Español">🇪🇸</button>
+            </div>
+        </div>
+
+        <h1>
+            <span lang="en">Eye Shape Guide</span>
+            <span lang="ko">눈매 가이드</span>
+            <span lang="ja">目もとガイド</span>
+            <span lang="zh-CN">眼型指南</span>
+            <span lang="zh-TW">眼型指南</span>
+            <span lang="es">Guía de forma de ojos</span>
+        </h1>
+        <p class="subtitle">
+            <span lang="en">Your eyes are measured on three independent axes — tilt, proportion and lid coverage. Each is an impression type, never a score.</span>
+            <span lang="ko">눈매는 서로 독립적인 세 축 — 눈꼬리 각도·비율·눈꺼풀 덮임 — 으로 측정돼요. 우열이 아니라 인상의 유형입니다.</span>
+            <span lang="ja">目もとは独立した3つの軸（目尻の角度・比率・まぶたの被り）で測定します。優劣ではなく印象のタイプです。</span>
+            <span lang="zh-CN">眼型由三个独立维度测量：眼尾角度、比例、眼睑覆盖。这是印象类型，不是评分。</span>
+            <span lang="zh-TW">眼型由三個獨立維度測量：眼尾角度、比例、眼瞼覆蓋。這是印象類型，不是評分。</span>
+            <span lang="es">Tus ojos se miden en tres ejes independientes: inclinación, proporción y cobertura del párpado. Son tipos de impresión, no puntuaciones.</span>
+        </p>
+        <p class="auto-note">
+            <span lang="en">You'll jump to your measured type automatically. Terms differ by country, so each type shows both the Korean and the international name.</span>
+            <span lang="ko">측정된 내 유형으로 자동 이동해요. 나라마다 부르는 말이 달라서 한국식 표현과 국제 표현을 함께 적어 두었습니다.</span>
+            <span lang="ja">測定されたタイプへ自動で移動します。国によって呼び方が違うため、韓国式と国際的な呼称を併記しています。</span>
+            <span lang="zh-CN">会自动跳到你的测量类型。各国叫法不同，因此同时标注韩式与国际通用名称。</span>
+            <span lang="zh-TW">會自動跳到你的測量類型。各國叫法不同，因此同時標註韓式與國際通用名稱。</span>
+            <span lang="es">Saltarás automáticamente a tu tipo medido. Los términos varían según el país, así que mostramos el nombre coreano y el internacional.</span>
+        </p>
+
+        <nav class="section-nav">
+            <a href="#tilt" class="section-chip"><span lang="en">Corner tilt</span><span lang="ko">눈꼬리 각도</span><span lang="ja">目尻の角度</span><span lang="zh-CN">眼尾角度</span><span lang="zh-TW">眼尾角度</span><span lang="es">Inclinación</span></a>
+            <a href="#aspect" class="section-chip"><span lang="en">Proportion</span><span lang="ko">눈매 비율</span><span lang="ja">目の比率</span><span lang="zh-CN">眼型比例</span><span lang="zh-TW">眼型比例</span><span lang="es">Proporción</span></a>
+            <a href="#cover" class="section-chip"><span lang="en">Lid coverage</span><span lang="ko">눈꺼풀 덮임</span><span lang="ja">まぶたの被り</span><span lang="zh-CN">眼睑覆盖</span><span lang="zh-TW">眼瞼覆蓋</span><span lang="es">Cobertura</span></a>
+            <a href="#glossary" class="section-chip"><span lang="en">Terms</span><span lang="ko">용어 사전</span><span lang="ja">用語辞典</span><span lang="zh-CN">术语对照</span><span lang="zh-TW">術語對照</span><span lang="es">Términos</span></a>
+        </nav>
+
+        <div class="axis-head" id="tilt">
+            <h2><span lang="en">1 · Eye corner tilt</span><span lang="ko">1 · 눈꼬리 각도</span><span lang="ja">1 · 目尻の角度</span><span lang="zh-CN">1 · 眼尾角度</span><span lang="zh-TW">1 · 眼尾角度</span><span lang="es">1 · Inclinación del rabillo</span></h2>
+            <p class="axis-sub">
+                <span lang="en">The line from inner to outer corner. This axis drives the "gentle vs. sharp" impression more than anything else.</span>
+                <span lang="ko">눈머리에서 눈꼬리로 이어지는 선의 기울기예요. '순한 인상'과 '또렷한 인상'을 가장 크게 가르는 축입니다.</span>
+                <span lang="ja">目頭から目尻へのラインの傾き。「優しい印象」と「くっきりした印象」を最も大きく分ける軸です。</span>
+                <span lang="zh-CN">从内眼角到外眼角连线的倾斜度，最能左右“温柔”与“利落”的印象。</span>
+                <span lang="zh-TW">從內眼角到外眼角連線的傾斜度，最能左右「溫柔」與「俐落」的印象。</span>
+                <span lang="es">La línea del lagrimal al rabillo. Este eje define la impresión "dulce" o "marcada" más que ningún otro.</span>
+            </p>
+            <span class="axis-metric">
+                <span lang="en">Measured against the iris centre line — the value stays the same even if you tilt your head.</span>
+                <span lang="ko">홍채 중심선을 기준으로 재기 때문에 고개를 기울여도 값이 변하지 않아요.</span>
+                <span lang="ja">虹彩の中心線を基準に測るため、顔を傾けても値は変わりません。</span>
+                <span lang="zh-CN">以虹膜中心线为基准测量，即使歪头数值也不变。</span>
+                <span lang="zh-TW">以虹膜中心線為基準測量，即使歪頭數值也不變。</span>
+                <span lang="es">Se mide respecto a la línea central del iris: el valor no cambia aunque inclines la cabeza.</span>
+            </span>
+        </div>
+
+        <div class="type-card" id="downturned">
+            <div class="type-top">
+                <img class="eye-img" src="img/eye-tilt-downturned.svg" alt="" width="140" height="70" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                <svg class="eye-svg eye-fallback" viewBox="0 0 132 66" aria-hidden="true">
+                    <defs><clipPath id="cp-dt"><path d="M14,26 Q66,2 118,46 Q66,60 14,26 Z"/></clipPath></defs>
+                    <path d="M14,26 Q66,2 118,46 Q66,60 14,26 Z" fill="#fffdf8" stroke="#a9cf87" stroke-width="2" stroke-linejoin="round"/>
+                    <g clip-path="url(#cp-dt)"><circle cx="66" cy="30" r="13" fill="#8d6e4f"/><circle cx="66" cy="31" r="5.4" fill="#2b2118"/><circle cx="61.6" cy="26.6" r="2.4" fill="#fff" opacity=".9"/></g>
+                    <path d="M14,26 Q66,2 118,46" fill="none" stroke="#3d6b1f" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+                <div class="type-names">
+                    <div class="local"><span lang="en">Downturned</span><span lang="ko">강아지상 · 순한 인상</span><span lang="ja">たれ目・優しい印象</span><span lang="zh-CN">小狗眼 · 温柔感</span><span lang="zh-TW">小狗眼 · 溫柔感</span><span lang="es">Caído · mirada dulce</span></div>
+                    <div class="intl"><span lang="en">In Korea: 강아지상 (gang-a-ji-sang, "puppy eyes")</span><span lang="ko">국제 표현: Downturned eyes</span><span lang="ja">国際的には Downturned eyes／韓国では 강아지상</span><span lang="zh-CN">国际称 Downturned eyes／韩国称 강아지상（小狗眼）</span><span lang="zh-TW">國際稱 Downturned eyes／韓國稱 강아지상（小狗眼）</span><span lang="es">En inglés: Downturned · en Corea: 강아지상</span></div>
+                    <div class="range"><span lang="en">Measured tilt below 5.5°</span><span lang="ko">측정 각도 5.5° 미만</span><span lang="ja">測定角度 5.5° 未満</span><span lang="zh-CN">测量角度低于 5.5°</span><span lang="zh-TW">測量角度低於 5.5°</span><span lang="es">Inclinación medida menor a 5,5°</span></div>
+                </div>
+            </div>
+            <div class="type-body">
+                <span lang="en">The outer corner sits level with — or slightly below — the inner corner. It reads as soft, calm and approachable, and tends to photograph well in candid shots.</span>
+                <span lang="ko">눈꼬리가 눈머리와 수평이거나 살짝 아래에 있어요. 부드럽고 편안한 인상을 주고, 자연스러운 스냅 사진에서 특히 매력적으로 담깁니다.</span>
+                <span lang="ja">目尻が目頭と水平か、やや下にあります。柔らかく穏やかな印象で、自然なスナップ写真によく映えます。</span>
+                <span lang="zh-CN">外眼角与内眼角持平或略低，给人柔和、亲切的印象，抓拍时尤其上镜。</span>
+                <span lang="zh-TW">外眼角與內眼角持平或略低，給人柔和、親切的印象，抓拍時尤其上鏡。</span>
+                <span lang="es">El rabillo queda al nivel del lagrimal o algo más bajo. Transmite suavidad y cercanía, y luce muy bien en fotos espontáneas.</span>
+            </div>
+            <div class="tips">
+                <span class="tip-label"><span lang="en">Makeup that works with it</span><span lang="ko">이 눈매를 살리는 메이크업</span><span lang="ja">この目もとを活かすメイク</span><span lang="zh-CN">适合的妆容</span><span lang="zh-TW">適合的妝容</span><span lang="es">Maquillaje que le favorece</span></span>
+                <ul>
+                    <li lang="en">Finish the liner 2–3 mm past the outer corner, angled slightly upward — a flat or downward flick deepens the droop.</li>
+                    <li lang="en">Curl lashes hard at the centre and outer third; skip a heavy lower line, which pulls the eye down further.</li>
+                    <li lang="ko">아이라인은 눈꼬리에서 2~3mm 살짝 <b>위로</b> 올려 마무리하세요. 수평이나 아래로 빼면 처짐이 강조됩니다.</li>
+                    <li lang="ko">속눈썹은 중앙~바깥 1/3을 강하게 컬링하고, 아래 라인은 진하게 그리지 않는 편이 좋아요.</li>
+                    <li lang="ja">アイラインは目尻から2〜3mm、やや<b>上向き</b>に。水平や下向きだと、たれ感が強調されます。</li>
+                    <li lang="ja">まつ毛は中央〜外側1/3をしっかりカール。下ラインを濃くすると下がって見えます。</li>
+                    <li lang="zh-CN">眼线在外眼角外延伸 2–3mm 并<b>略微上扬</b>；平拉或下垂会强化下垂感。</li>
+                    <li lang="zh-CN">睫毛重点夹翘中段与外侧 1/3；下眼线不宜过重，否则更显下垂。</li>
+                    <li lang="zh-TW">眼線在外眼角外延伸 2–3mm 並<b>略微上揚</b>；平拉或下垂會強化下垂感。</li>
+                    <li lang="zh-TW">睫毛重點夾翹中段與外側 1/3；下眼線不宜過重，否則更顯下垂。</li>
+                    <li lang="es">Termina el delineado 2–3 mm más allá del rabillo, con una leve <b>subida</b>; plano o hacia abajo acentúa la caída.</li>
+                    <li lang="es">Riza las pestañas del centro al tercio exterior y evita una línea inferior muy marcada.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="type-card" id="balanced">
+            <div class="type-top">
+                <img class="eye-img" src="img/eye-tilt-balanced.svg" alt="" width="140" height="70" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                <svg class="eye-svg eye-fallback" viewBox="0 0 132 66" aria-hidden="true">
+                    <defs><clipPath id="cp-bl"><path d="M14,34 Q66,2 118,30 Q66,62 14,34 Z"/></clipPath></defs>
+                    <path d="M14,34 Q66,2 118,30 Q66,62 14,34 Z" fill="#fffdf8" stroke="#a9cf87" stroke-width="2" stroke-linejoin="round"/>
+                    <g clip-path="url(#cp-bl)"><circle cx="66" cy="30" r="13" fill="#8d6e4f"/><circle cx="66" cy="30" r="5.4" fill="#2b2118"/><circle cx="61.6" cy="25.6" r="2.4" fill="#fff" opacity=".9"/></g>
+                    <path d="M14,34 Q66,2 118,30" fill="none" stroke="#3d6b1f" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+                <div class="type-names">
+                    <div class="local"><span lang="en">Balanced</span><span lang="ko">균형 잡힌 눈매</span><span lang="ja">バランス型</span><span lang="zh-CN">均衡型</span><span lang="zh-TW">均衡型</span><span lang="es">Equilibrado</span></div>
+                    <div class="intl"><span lang="en">Neutral tilt — the population average sits here</span><span lang="ko">국제 표현: Balanced / neutral tilt — 인구 평균대가 여기예요</span><span lang="ja">国際的には Balanced tilt — 人口の平均帯がここです</span><span lang="zh-CN">国际称 Balanced tilt — 人群平均值位于此区间</span><span lang="zh-TW">國際稱 Balanced tilt — 人群平均值位於此區間</span><span lang="es">Inclinación neutra: aquí está la media poblacional</span></div>
+                    <div class="range"><span lang="en">Measured tilt 5.5°–8°</span><span lang="ko">측정 각도 5.5°~8°</span><span lang="ja">測定角度 5.5°〜8°</span><span lang="zh-CN">测量角度 5.5°–8°</span><span lang="zh-TW">測量角度 5.5°–8°</span><span lang="es">Inclinación medida 5,5°–8°</span></div>
+                </div>
+            </div>
+            <div class="type-body">
+                <span lang="en">Neither soft nor sharp by default — which means your look changes the most with makeup. You can borrow from either of the other two types depending on the impression you want that day.</span>
+                <span lang="ko">기본값이 한쪽으로 치우치지 않아서, 메이크업에 따라 인상이 가장 크게 달라지는 타입이에요. 그날 원하는 느낌에 맞춰 위·아래 두 유형의 방법을 골라 쓰면 됩니다.</span>
+                <span lang="ja">どちらにも偏らないため、メイクで印象が最も大きく変わるタイプ。その日の気分で他の2タイプの手法を使い分けられます。</span>
+                <span lang="zh-CN">默认不偏向任何一侧，因此妆容带来的变化最大。可按当天想要的感觉，借用另外两种类型的手法。</span>
+                <span lang="zh-TW">預設不偏向任何一側，因此妝容帶來的變化最大。可按當天想要的感覺，借用另外兩種類型的手法。</span>
+                <span lang="es">Ni dulce ni marcado por defecto, así que el maquillaje es lo que más cambia tu mirada. Puedes tomar recursos de los otros dos tipos según el día.</span>
+            </div>
+            <div class="tips">
+                <span class="tip-label"><span lang="en">Makeup that works with it</span><span lang="ko">이 눈매를 살리는 메이크업</span><span lang="ja">この目もとを活かすメイク</span><span lang="zh-CN">适合的妆容</span><span lang="zh-TW">適合的妝容</span><span lang="es">Maquillaje que le favorece</span></span>
+                <ul>
+                    <li lang="en">Want softer? Extend the liner straight out. Want sharper? Lift the tail 5 mm. Both read naturally on you.</li>
+                    <li lang="en">Because the baseline is neutral, changing only the brow angle already shifts the whole impression.</li>
+                    <li lang="ko">순한 느낌을 원하면 라인을 수평으로, 또렷한 느낌을 원하면 눈꼬리를 5mm 정도 올려 빼세요. 둘 다 자연스럽게 소화됩니다.</li>
+                    <li lang="ko">기준선이 중립이라 <b>눈썹 각도</b>만 바꿔도 인상 전체가 달라져요.</li>
+                    <li lang="ja">優しくしたい日はラインを水平に、くっきりさせたい日は目尻を5mm上げて。どちらも自然です。</li>
+                    <li lang="ja">ベースが中立なので、<b>眉の角度</b>を変えるだけで印象全体が変わります。</li>
+                    <li lang="zh-CN">想柔和就把眼线平拉；想利落就把眼尾上扬约 5mm，两种都很自然。</li>
+                    <li lang="zh-CN">因为基准中性，仅调整<b>眉形角度</b>就能改变整体印象。</li>
+                    <li lang="zh-TW">想柔和就把眼線平拉；想俐落就把眼尾上揚約 5mm，兩種都很自然。</li>
+                    <li lang="zh-TW">因為基準中性，僅調整<b>眉形角度</b>就能改變整體印象。</li>
+                    <li lang="es">¿Más dulce? Delineado recto. ¿Más marcado? Eleva el rabillo 5 mm. Ambos te quedan naturales.</li>
+                    <li lang="es">Al ser una base neutra, cambiar solo el <b>ángulo de las cejas</b> ya transforma la mirada.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="type-card" id="upturned">
+            <div class="type-top">
+                <img class="eye-img" src="img/eye-tilt-upturned.svg" alt="" width="140" height="70" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                <svg class="eye-svg eye-fallback" viewBox="0 0 132 66" aria-hidden="true">
+                    <defs><clipPath id="cp-ut"><path d="M14,44 Q66,8 118,18 Q66,66 14,44 Z"/></clipPath></defs>
+                    <path d="M14,44 Q66,8 118,18 Q66,66 14,44 Z" fill="#fffdf8" stroke="#a9cf87" stroke-width="2" stroke-linejoin="round"/>
+                    <g clip-path="url(#cp-ut)"><circle cx="66" cy="32" r="13" fill="#8d6e4f"/><circle cx="66" cy="32" r="5.4" fill="#2b2118"/><circle cx="61.6" cy="27.6" r="2.4" fill="#fff" opacity=".9"/></g>
+                    <path d="M14,44 Q66,8 118,18" fill="none" stroke="#3d6b1f" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+                <div class="type-names">
+                    <div class="local"><span lang="en">Upturned</span><span lang="ko">고양이상 · 또렷한 인상</span><span lang="ja">つり目・くっきりした印象</span><span lang="zh-CN">猫眼 · 利落感</span><span lang="zh-TW">貓眼 · 俐落感</span><span lang="es">Ascendente · mirada felina</span></div>
+                    <div class="intl"><span lang="en">In Korea: 고양이상 (go-yang-i-sang, "cat eyes"); also called fox eyes</span><span lang="ko">국제 표현: Upturned eyes (또는 fox eyes)</span><span lang="ja">国際的には Upturned eyes（fox eyes）／韓国では 고양이상</span><span lang="zh-CN">国际称 Upturned / fox eyes／韩国称 고양이상（猫眼）</span><span lang="zh-TW">國際稱 Upturned / fox eyes／韓國稱 고양이상（貓眼）</span><span lang="es">En inglés: Upturned / fox eyes · en Corea: 고양이상</span></div>
+                    <div class="range"><span lang="en">Measured tilt above 8°</span><span lang="ko">측정 각도 8° 초과</span><span lang="ja">測定角度 8° 超</span><span lang="zh-CN">测量角度高于 8°</span><span lang="zh-TW">測量角度高於 8°</span><span lang="es">Inclinación medida mayor a 8°</span></div>
+                </div>
+            </div>
+            <div class="type-body">
+                <span lang="en">The outer corner lifts clearly above the inner one — a crisp, wide-awake look that holds up in bright light and on camera. The usual pitfall is pushing it further until it turns severe.</span>
+                <span lang="ko">눈꼬리가 눈머리보다 뚜렷하게 올라가 있어요. 또렷하고 시원한 인상이라 밝은 조명이나 카메라 앞에서 특히 강점을 발휘합니다. 흔한 실수는 여기서 더 강조하다가 날카로워지는 것이에요.</span>
+                <span lang="ja">目尻が目頭よりはっきり上がっています。くっきりと涼しげな印象で、明るい照明やカメラ前で強みを発揮。ありがちな失敗は、さらに強調して鋭くなりすぎることです。</span>
+                <span lang="zh-CN">外眼角明显高于内眼角，利落而有神，在强光和镜头前尤其出彩。常见误区是继续强化，反而显得凌厉。</span>
+                <span lang="zh-TW">外眼角明顯高於內眼角，俐落而有神，在強光和鏡頭前尤其出彩。常見誤區是繼續強化，反而顯得凌厲。</span>
+                <span lang="es">El rabillo se eleva claramente sobre el lagrimal: mirada nítida y despierta, muy fotogénica. El error habitual es reforzarla aún más hasta volverla dura.</span>
+            </div>
+            <div class="tips">
+                <span class="tip-label"><span lang="en">Makeup that works with it</span><span lang="ko">이 눈매를 살리는 메이크업</span><span lang="ja">この目もとを活かすメイク</span><span lang="zh-CN">适合的妆容</span><span lang="zh-TW">適合的妝容</span><span lang="es">Maquillaje que le favorece</span></span>
+                <ul>
+                    <li lang="en">Stop the liner within about 3 mm of the outer corner. A long wing stacks on top of a lift you already have.</li>
+                    <li lang="en">Add a light shade to the centre of the lid and a soft lower line on the outer third only — it rounds the eye and softens the edge.</li>
+                    <li lang="ko">아이라인은 눈꼬리에서 <b>3mm 안쪽</b>에서 멈추세요. 이미 올라간 눈에 긴 윙을 더하면 과해집니다.</li>
+                    <li lang="ko">눈두덩 중앙에 밝은 톤을 올리고, 아래 라인은 바깥 1/3에만 은은하게 — 둥근 느낌이 더해져 부드러워져요.</li>
+                    <li lang="ja">アイラインは目尻から<b>3mm以内</b>で止めて。上がった目に長いウイングは過剰です。</li>
+                    <li lang="ja">まぶた中央に明るい色をのせ、下ラインは外側1/3だけ薄く。丸みが出て柔らかくなります。</li>
+                    <li lang="zh-CN">眼线在外眼角 <b>3mm 以内</b>收尾；本就上扬的眼型再加长眼尾会过度。</li>
+                    <li lang="zh-CN">眼皮中央提亮，下眼线只画外侧 1/3，增加圆润感、柔化锐利。</li>
+                    <li lang="zh-TW">眼線在外眼角 <b>3mm 以內</b>收尾；本就上揚的眼型再加長眼尾會過度。</li>
+                    <li lang="zh-TW">眼皮中央提亮，下眼線只畫外側 1/3，增加圓潤感、柔化銳利。</li>
+                    <li lang="es">Detén el delineado a unos <b>3 mm</b> del rabillo: un ala larga suma a una elevación que ya tienes.</li>
+                    <li lang="es">Ilumina el centro del párpado y marca solo el tercio exterior inferior: redondea y suaviza la mirada.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="axis-head" id="aspect">
+            <h2><span lang="en">2 · Eye proportion</span><span lang="ko">2 · 눈매 비율</span><span lang="ja">2 · 目の比率</span><span lang="zh-CN">2 · 眼型比例</span><span lang="zh-TW">2 · 眼型比例</span><span lang="es">2 · Proporción del ojo</span></h2>
+            <p class="axis-sub">
+                <span lang="en">Width divided by height of the eye opening. This is the axis where Korean and Western vocabulary diverge the most.</span>
+                <span lang="ko">눈꺼풀 틈의 가로 ÷ 세로예요. 한국식 표현과 서구식 표현이 가장 많이 엇갈리는 축이기도 합니다.</span>
+                <span lang="ja">まぶたの開きの横÷縦です。韓国式と欧米式の呼び方が最も食い違う軸でもあります。</span>
+                <span lang="zh-CN">睑裂宽度 ÷ 高度。这也是韩式与欧美说法差异最大的一个维度。</span>
+                <span lang="zh-TW">瞼裂寬度 ÷ 高度。這也是韓式與歐美說法差異最大的一個維度。</span>
+                <span lang="es">Ancho dividido por alto de la abertura ocular. Es el eje donde más difieren el vocabulario coreano y el occidental.</span>
+            </p>
+            <span class="axis-metric">
+                <span lang="en">Shoot straight on — turning your head shortens the width only, which makes the eye look rounder than it is.</span>
+                <span lang="ko">정면으로 촬영하세요. 고개가 돌아가면 가로만 짧아 보여서 실제보다 동그랗게 측정됩니다.</span>
+                <span lang="ja">正面で撮影してください。顔が横を向くと横幅だけ短く写り、実際より丸く測定されます。</span>
+                <span lang="zh-CN">请正面拍摄。侧头时只有横向变短，会比实际测得更圆。</span>
+                <span lang="zh-TW">請正面拍攝。側頭時只有橫向變短，會比實際測得更圓。</span>
+                <span lang="es">Fotografía de frente: al girar la cabeza solo se acorta el ancho y el ojo parece más redondo de lo que es.</span>
+            </span>
+        </div>
+
+        <div class="type-card" id="round">
+            <div class="type-top">
+                <img class="eye-img" src="img/eye-aspect-round.svg" alt="" width="140" height="70" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                <svg class="eye-svg eye-fallback" viewBox="0 0 132 66" aria-hidden="true">
+                    <defs><clipPath id="cp-rd"><path d="M14,33 Q66,-8 118,29 Q66,70 14,33 Z"/></clipPath></defs>
+                    <path d="M14,33 Q66,-8 118,29 Q66,70 14,33 Z" fill="#fffdf8" stroke="#a9cf87" stroke-width="2" stroke-linejoin="round"/>
+                    <g clip-path="url(#cp-rd)"><circle cx="66" cy="31" r="14.5" fill="#8d6e4f"/><circle cx="66" cy="31" r="6" fill="#2b2118"/><circle cx="61" cy="26" r="2.6" fill="#fff" opacity=".9"/></g>
+                    <path d="M14,33 Q66,-8 118,29" fill="none" stroke="#3d6b1f" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+                <div class="type-names">
+                    <div class="local"><span lang="en">Round</span><span lang="ko">동그란 눈매</span><span lang="ja">丸目</span><span lang="zh-CN">圆眼</span><span lang="zh-TW">圓眼</span><span lang="es">Redondo</span></div>
+                    <div class="intl"><span lang="en">Also called doe eyes · in Korea: 동그란 눈 or 사슴상 (sa-seum-sang, "deer")</span><span lang="ko">국제 표현: Round eyes / doe eyes — 한국에서는 '사슴상'이라고도 해요</span><span lang="ja">国際的には Round / doe eyes ／韓国では 사슴상（鹿目）とも</span><span lang="zh-CN">国际称 Round / doe eyes／韩国也称 사슴상（鹿眼）</span><span lang="zh-TW">國際稱 Round / doe eyes／韓國也稱 사슴상（鹿眼）</span><span lang="es">También doe eyes · en Corea: 사슴상 ("ojos de ciervo")</span></div>
+                    <div class="range"><span lang="en">Width ÷ height below 2.65</span><span lang="ko">가로÷세로 2.65 미만</span><span lang="ja">横÷縦 2.65 未満</span><span lang="zh-CN">宽÷高 低于 2.65</span><span lang="zh-TW">寬÷高 低於 2.65</span><span lang="es">Ancho ÷ alto menor a 2,65</span></div>
+                </div>
+            </div>
+            <div class="type-body">
+                <span lang="en">The opening is tall relative to its width, so the iris shows more of its circle. It reads as bright, youthful and expressive — the eye looks larger than its actual measurement.</span>
+                <span lang="ko">가로에 비해 세로가 열려 있어 홍채가 더 동그랗게 드러나요. 밝고 어려 보이는 인상이라, 실제 크기보다 눈이 커 보이는 이점이 있습니다.</span>
+                <span lang="ja">横幅に対して縦に開いており、虹彩が丸く見えます。明るく若々しい印象で、実寸より目が大きく見えるのが強みです。</span>
+                <span lang="zh-CN">相对宽度而言纵向更开，虹膜露出更圆。显得明亮、年轻、有表现力，看起来比实际尺寸更大。</span>
+                <span lang="zh-TW">相對寬度而言縱向更開，虹膜露出更圓。顯得明亮、年輕、有表現力，看起來比實際尺寸更大。</span>
+                <span lang="es">La abertura es alta respecto a su ancho y el iris se ve más circular. Da una mirada luminosa y juvenil: el ojo parece mayor de lo que mide.</span>
+            </div>
+            <div class="tips">
+                <span class="tip-label"><span lang="en">Makeup that works with it</span><span lang="ko">이 눈매를 살리는 메이크업</span><span lang="ja">この目もとを活かすメイク</span><span lang="zh-CN">适合的妆容</span><span lang="zh-TW">適合的妝容</span><span lang="es">Maquillaje que le favorece</span></span>
+                <ul>
+                    <li lang="en">Work horizontally: carry the liner 3–4 mm past the outer corner and keep shadow concentrated on the outer half.</li>
+                    <li lang="en">Longer lashes at the outer edge stretch the shape; even lashes all round emphasise the circle.</li>
+                    <li lang="ko">가로로 늘리는 방향이 핵심 — 아이라인을 눈꼬리 밖으로 3~4mm 빼고, 섀도는 바깥쪽 절반에 집중하세요.</li>
+                    <li lang="ko">속눈썹은 <b>바깥쪽만 길게</b>. 전체를 균일하게 올리면 동그란 느낌이 더 강조됩니다.</li>
+                    <li lang="ja">横方向に伸ばすのが鍵。アイラインを目尻から3〜4mm出し、シャドウは外側半分に集中。</li>
+                    <li lang="ja">まつ毛は<b>外側だけ長く</b>。全体を均一に上げると丸さが強調されます。</li>
+                    <li lang="zh-CN">重点是横向延伸：眼线出眼尾 3–4mm，眼影集中在外半段。</li>
+                    <li lang="zh-CN">睫毛<b>只加长外侧</b>；整体均匀反而强化圆形感。</li>
+                    <li lang="zh-TW">重點是橫向延伸：眼線出眼尾 3–4mm，眼影集中在外半段。</li>
+                    <li lang="zh-TW">睫毛<b>只加長外側</b>；整體均勻反而強化圓形感。</li>
+                    <li lang="es">Trabaja en horizontal: prolonga el delineado 3–4 mm y concentra la sombra en la mitad exterior.</li>
+                    <li lang="es">Pestañas más largas solo en el extremo exterior; uniformes acentúan el círculo.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="type-card" id="between">
+            <div class="type-top">
+                <img class="eye-img" src="img/eye-aspect-between.svg" alt="" width="140" height="70" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                <svg class="eye-svg eye-fallback" viewBox="0 0 132 66" aria-hidden="true">
+                    <defs><clipPath id="cp-bt"><path d="M14,33 Q66,0 118,29 Q66,62 14,33 Z"/></clipPath></defs>
+                    <path d="M14,33 Q66,0 118,29 Q66,62 14,33 Z" fill="#fffdf8" stroke="#a9cf87" stroke-width="2" stroke-linejoin="round"/>
+                    <g clip-path="url(#cp-bt)"><circle cx="66" cy="30" r="13" fill="#8d6e4f"/><circle cx="66" cy="30" r="5.4" fill="#2b2118"/><circle cx="61.6" cy="25.6" r="2.4" fill="#fff" opacity=".9"/></g>
+                    <path d="M14,33 Q66,0 118,29" fill="none" stroke="#3d6b1f" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+                <div class="type-names">
+                    <div class="local"><span lang="en">Between the two</span><span lang="ko">그 중간</span><span lang="ja">その中間</span><span lang="zh-CN">介于两者之间</span><span lang="zh-TW">介於兩者之間</span><span lang="es">Entre ambos</span></div>
+                    <div class="intl"><span lang="en">Not a separate shape — a buffer band, so a slightly angled photo is never labelled as a type</span><span lang="ko">별도의 유형이 아니라 완충 구간이에요 — 살짝 비스듬한 사진을 단정하지 않기 위한 밴드입니다</span><span lang="ja">独立したタイプではなく緩衝帯です — 少し斜めの写真を断定しないための区間です</span><span lang="zh-CN">这不是独立类型，而是缓冲区间：避免把略微侧脸的照片武断归类</span><span lang="zh-TW">這不是獨立類型，而是緩衝區間：避免把略微側臉的照片武斷歸類</span><span lang="es">No es una forma aparte, sino una banda de seguridad para no etiquetar fotos algo giradas</span></div>
+                    <div class="range"><span lang="en">Width ÷ height 2.65–2.80</span><span lang="ko">가로÷세로 2.65~2.80</span><span lang="ja">横÷縦 2.65〜2.80</span><span lang="zh-CN">宽÷高 2.65–2.80</span><span lang="zh-TW">寬÷高 2.65–2.80</span><span lang="es">Ancho ÷ alto 2,65–2,80</span></div>
+                </div>
+            </div>
+            <div class="type-body">
+                <span lang="en">You sit between round and almond, so both sets of techniques below will suit you. If you keep landing here, try a few measurements facing the camera squarely in even light — the value often settles toward one side.</span>
+                <span lang="ko">동그란 눈매와 갸름한 눈매 사이라, 아래 두 유형의 방법이 모두 어울려요. 계속 이 구간이 나온다면 균일한 조명에서 정면으로 몇 번 더 측정해 보세요. 대개 한쪽으로 값이 정리됩니다.</span>
+                <span lang="ja">丸目とアーモンドの中間なので、両方の手法が使えます。この帯が続く場合は、均一な光で正面から数回測ってみてください。多くはどちらかに寄ります。</span>
+                <span lang="zh-CN">介于圆眼与杏仁眼之间，两类技巧都适用。若一直落在此区间，请在均匀光线下正面多测几次，数值通常会偏向一侧。</span>
+                <span lang="zh-TW">介於圓眼與杏仁眼之間，兩類技巧都適用。若一直落在此區間，請在均勻光線下正面多測幾次，數值通常會偏向一側。</span>
+                <span lang="es">Estás entre redondo y almendrado, así que ambas técnicas te sirven. Si siempre caes aquí, mide varias veces de frente con luz pareja: el valor suele definirse.</span>
+            </div>
+        </div>
+
+        <div class="type-card" id="almond">
+            <div class="type-top">
+                <img class="eye-img" src="img/eye-aspect-almond.svg" alt="" width="140" height="70" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                <svg class="eye-svg eye-fallback" viewBox="0 0 132 66" aria-hidden="true">
+                    <defs><clipPath id="cp-am"><path d="M14,33 Q66,8 118,29 Q66,54 14,33 Z"/></clipPath></defs>
+                    <path d="M14,33 Q66,8 118,29 Q66,54 14,33 Z" fill="#fffdf8" stroke="#a9cf87" stroke-width="2" stroke-linejoin="round"/>
+                    <g clip-path="url(#cp-am)"><circle cx="66" cy="30" r="12.5" fill="#8d6e4f"/><circle cx="66" cy="30" r="5.2" fill="#2b2118"/><circle cx="62" cy="26.4" r="2.2" fill="#fff" opacity=".9"/></g>
+                    <path d="M14,33 Q66,8 118,29" fill="none" stroke="#3d6b1f" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+                <div class="type-names">
+                    <div class="local"><span lang="en">Almond</span><span lang="ko">길고 갸름한 눈매 (아몬드형)</span><span lang="ja">アーモンド型（切れ長）</span><span lang="zh-CN">杏仁眼（细长）</span><span lang="zh-TW">杏仁眼（細長）</span><span lang="es">Almendrado</span></div>
+                    <div class="intl"><span lang="en">In Korea this is 갸름한 눈매 / 切れ長 in Japan — described as "long and tapered" rather than by a nut</span><span lang="ko">'아몬드(almond)'는 서구권 뷰티에서 가장 널리 쓰는 기준 표현이에요. 우리말의 '길고 갸름한 눈'에 해당합니다</span><span lang="ja">英語の「almond（アーモンド）」は欧米で最も標準的な呼称で、日本語の「切れ長」にあたります</span><span lang="zh-CN">英文 almond（杏仁）是欧美最通用的说法，对应中文的“细长眼”</span><span lang="zh-TW">英文 almond（杏仁）是歐美最通用的說法，對應中文的「細長眼」</span><span lang="es">En Corea: 갸름한 눈매 (alargado y afilado), la misma forma con otro nombre</span></div>
+                    <div class="range"><span lang="en">Width ÷ height above 2.80</span><span lang="ko">가로÷세로 2.80 초과</span><span lang="ja">横÷縦 2.80 超</span><span lang="zh-CN">宽÷高 高于 2.80</span><span lang="zh-TW">寬÷高 高於 2.80</span><span lang="es">Ancho ÷ alto mayor a 2,80</span></div>
+                </div>
+            </div>
+            <div class="type-body">
+                <span lang="en">A long opening with a gentle taper at both corners. Western beauty writing treats this as the reference shape, and East Asian writing praises the same look as 갸름한 / 切れ長 — a composed, mature impression that suits strong liner and minimal makeup equally.</span>
+                <span lang="ko">눈이 길게 열리고 양쪽 끝이 부드럽게 좁아지는 형태예요. 서구권에서는 이 모양을 기준형으로 두고, 동아시아에서는 '갸름한 눈매'로 선호해 왔습니다 — 부르는 말이 다를 뿐 같은 눈매예요. 차분하고 성숙한 인상이라 진한 라인도, 노메이크업도 잘 어울립니다.</span>
+                <span lang="ja">横に長く開き、両端がなだらかに細くなる形。欧米では基準形とされ、東アジアでは「切れ長」として好まれてきました — 呼び名が違うだけで同じ目もとです。落ち着いた印象で、濃いラインもすっぴん風も似合います。</span>
+                <span lang="zh-CN">眼裂细长、两端自然收窄。欧美视其为基准眼型，东亚则称“细长眼”并同样偏爱——只是叫法不同。气质沉稳成熟，浓眼线与淡妆都驾驭得住。</span>
+                <span lang="zh-TW">眼裂細長、兩端自然收窄。歐美視其為基準眼型，東亞則稱「細長眼」並同樣偏愛——只是叫法不同。氣質沉穩成熟，濃眼線與淡妝都駕馭得住。</span>
+                <span lang="es">Abertura alargada que se afina en ambos extremos. Occidente la toma como forma de referencia y en Asia Oriental se aprecia como 갸름한/切れ長: el mismo ojo con otro nombre. Da una mirada serena y madura.</span>
+            </div>
+            <div class="tips">
+                <span class="tip-label"><span lang="en">Makeup that works with it</span><span lang="ko">이 눈매를 살리는 메이크업</span><span lang="ja">この目もとを活かすメイク</span><span lang="zh-CN">适合的妆容</span><span lang="zh-TW">適合的妝容</span><span lang="es">Maquillaje que le favorece</span></span>
+                <ul>
+                    <li lang="en">Add height, not length: a light shade in the centre of the lid and a soft under-eye highlight open the shape vertically.</li>
+                    <li lang="en">Curl the centre lashes most. Extending the liner outward is the one move that can make the eye look narrow.</li>
+                    <li lang="ko">길이보다 <b>세로 폭</b>을 더하세요 — 눈두덩 중앙에 밝은 톤, 눈 밑에 은은한 하이라이트를 넣으면 시원해 보입니다.</li>
+                    <li lang="ko">속눈썹은 중앙을 가장 강하게 컬링. 라인을 바깥으로 길게 빼는 것만이 눈을 좁아 보이게 하는 유일한 실수예요.</li>
+                    <li lang="ja">長さより<b>縦幅</b>を。まぶた中央に明るい色、目の下にほんのりハイライトで開放感が出ます。</li>
+                    <li lang="ja">まつ毛は中央を最も強くカール。ラインを外へ長く引くのだけは、目が細く見える原因になります。</li>
+                    <li lang="zh-CN">补<b>纵向</b>而非横向：眼皮中央提亮、下眼睑淡淡打亮，眼睛更开阔。</li>
+                    <li lang="zh-CN">睫毛重点夹翘中段；唯一要避免的是把眼线往外拉长，会显得眼睛更窄。</li>
+                    <li lang="zh-TW">補<b>縱向</b>而非橫向：眼皮中央提亮、下眼瞼淡淡打亮，眼睛更開闊。</li>
+                    <li lang="zh-TW">睫毛重點夾翹中段；唯一要避免的是把眼線往外拉長，會顯得眼睛更窄。</li>
+                    <li lang="es">Suma <b>altura</b>, no largo: tono claro en el centro del párpado y un toque de iluminador bajo el ojo.</li>
+                    <li lang="es">Riza sobre todo las pestañas centrales; alargar el delineado hacia fuera es lo único que estrecha la mirada.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="axis-head" id="cover">
+            <h2><span lang="en">3 · Lid coverage</span><span lang="ko">3 · 눈꺼풀 덮임</span><span lang="ja">3 · まぶたの被り</span><span lang="zh-CN">3 · 眼睑覆盖</span><span lang="zh-TW">3 · 眼瞼覆蓋</span><span lang="es">3 · Cobertura del párpado</span></h2>
+            <p class="axis-sub">
+                <span lang="en">How much of the iris the upper lid rests over. This is the axis most affected by sleep, swelling and age — the best one to track over time.</span>
+                <span lang="ko">윗눈꺼풀이 홍채를 얼마나 덮고 있는지예요. 수면·붓기·나이의 영향을 가장 많이 받는 축이라, 장기 변화를 지켜보기에 가장 좋습니다.</span>
+                <span lang="ja">上まぶたが虹彩をどれだけ覆っているか。睡眠・むくみ・加齢の影響を最も受ける軸で、経過観察に最適です。</span>
+                <span lang="zh-CN">上眼睑覆盖虹膜的程度。这一维度最易受睡眠、水肿与年龄影响，最适合长期追踪。</span>
+                <span lang="zh-TW">上眼瞼覆蓋虹膜的程度。這一維度最易受睡眠、水腫與年齡影響，最適合長期追蹤。</span>
+                <span lang="es">Cuánto cubre el párpado superior al iris. Es el eje más sensible al sueño, la hinchazón y la edad: ideal para seguir su evolución.</span>
+            </p>
+            <span class="axis-metric">
+                <span lang="en">Reported together with MRD1, the same measurement expressed as a distance in millimetres.</span>
+                <span lang="ko">같은 현상을 mm 거리로 표현한 MRD1 값과 함께 표시됩니다.</span>
+                <span lang="ja">同じ現象をmmの距離で表したMRD1と併せて表示されます。</span>
+                <span lang="zh-CN">与 MRD1 一并显示，后者是同一测量的毫米距离表示。</span>
+                <span lang="zh-TW">與 MRD1 一併顯示，後者是同一測量的毫米距離表示。</span>
+                <span lang="es">Se muestra junto con MRD1, la misma medida expresada en milímetros.</span>
+            </span>
+        </div>
+
+        <div class="type-card" id="open">
+            <div class="type-top">
+                <img class="eye-img" src="img/eye-cover-open.svg" alt="" width="140" height="70" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                <svg class="eye-svg eye-fallback" viewBox="0 0 132 66" aria-hidden="true">
+                    <defs><clipPath id="cp-op"><path d="M14,33 Q66,0 118,29 Q66,62 14,33 Z"/></clipPath></defs>
+                    <path d="M14,33 Q66,0 118,29 Q66,62 14,33 Z" fill="#fffdf8" stroke="#a9cf87" stroke-width="2" stroke-linejoin="round"/>
+                    <g clip-path="url(#cp-op)"><circle cx="66" cy="33" r="13" fill="#8d6e4f"/><circle cx="66" cy="33" r="5.4" fill="#2b2118"/><circle cx="61.6" cy="28.6" r="2.4" fill="#fff" opacity=".9"/></g>
+                    <path d="M14,33 Q66,0 118,29" fill="none" stroke="#3d6b1f" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+                <div class="type-names">
+                    <div class="local"><span lang="en">Bright, open eyes</span><span lang="ko">시원하게 열린 눈매</span><span lang="ja">ぱっちり開いた目もと</span><span lang="zh-CN">明亮开阔的眼型</span><span lang="zh-TW">明亮開闊的眼型</span><span lang="es">Mirada abierta y luminosa</span></div>
+                    <div class="intl"><span lang="en">Low lid coverage · in Korea often described as 또렷한 눈</span><span lang="ko">국제 표현: Low lid coverage / open eyes</span><span lang="ja">国際的には low lid coverage（開きが大きい）</span><span lang="zh-CN">国际称 low lid coverage（眼睑覆盖少）</span><span lang="zh-TW">國際稱 low lid coverage（眼瞼覆蓋少）</span><span lang="es">Baja cobertura palpebral</span></div>
+                    <div class="range"><span lang="en">Coverage below 12%</span><span lang="ko">덮임 12% 미만</span><span lang="ja">被り 12% 未満</span><span lang="zh-CN">覆盖率低于 12%</span><span lang="zh-TW">覆蓋率低於 12%</span><span lang="es">Cobertura menor al 12 %</span></div>
+                </div>
+            </div>
+            <div class="type-body">
+                <span lang="en">The upper lid barely rests on the iris, so the eye reads wide awake. There is plenty of visible lid space, which means eyeshadow shows fully — gradients need to be blended more carefully than on other types.</span>
+                <span lang="ko">윗눈꺼풀이 홍채를 거의 덮지 않아 또렷하고 시원해 보여요. 보이는 눈두덩 면적이 넓어서 섀도가 그대로 드러나는 만큼, 그라데이션을 다른 유형보다 꼼꼼히 펴 주는 게 좋습니다.</span>
+                <span lang="ja">上まぶたが虹彩にほとんど掛からず、ぱっちりした印象。見えるまぶたの面積が広くシャドウがそのまま出るため、他タイプより丁寧なぼかしが必要です。</span>
+                <span lang="zh-CN">上眼睑几乎不压虹膜，显得炯炯有神。可见眼皮面积大，眼影会完整呈现，因此更需仔细晕染。</span>
+                <span lang="zh-TW">上眼瞼幾乎不壓虹膜，顯得炯炯有神。可見眼皮面積大，眼影會完整呈現，因此更需仔細暈染。</span>
+                <span lang="es">El párpado apenas cubre el iris: mirada muy despierta. Hay bastante párpado visible, así que la sombra se ve entera y conviene difuminar con más cuidado.</span>
+            </div>
+            <div class="tips">
+                <span class="tip-label"><span lang="en">Makeup that works with it</span><span lang="ko">이 눈매를 살리는 메이크업</span><span lang="ja">この目もとを活かすメイク</span><span lang="zh-CN">适合的妆容</span><span lang="zh-TW">適合的妝容</span><span lang="es">Maquillaje que le favorece</span></span>
+                <ul>
+                    <li lang="en">Keep the upper line thin — a thick line eats the openness that is your strength.</li>
+                    <li lang="en">A medium tone in the crease adds depth so the wide lid doesn't look flat under strong light.</li>
+                    <li lang="ko">윗라인은 <b>얇게</b>. 두꺼운 라인은 이 눈매의 강점인 개방감을 깎아먹어요.</li>
+                    <li lang="ko">쌍꺼풀 라인 위쪽에 중간 톤을 얹어 깊이를 주면, 강한 조명에서도 눈두덩이 밋밋해 보이지 않습니다.</li>
+                    <li lang="ja">上ラインは<b>細く</b>。太いラインは持ち味の開放感を損ないます。</li>
+                    <li lang="ja">二重の上に中間色をのせて奥行きを。強い照明でものっぺり見えません。</li>
+                    <li lang="zh-CN">上眼线要<b>细</b>；过粗会削弱这类眼型的开阔感。</li>
+                    <li lang="zh-CN">在双眼皮褶皱上方叠中间色制造层次，强光下也不会显得扁平。</li>
+                    <li lang="zh-TW">上眼線要<b>細</b>；過粗會削弱這類眼型的開闊感。</li>
+                    <li lang="zh-TW">在雙眼皮褶皺上方疊中間色製造層次，強光下也不會顯得扁平。</li>
+                    <li lang="es">Delineado superior fino: uno grueso se come la apertura que es tu punto fuerte.</li>
+                    <li lang="es">Un tono medio en la cuenca aporta profundidad y evita que el párpado se vea plano.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="type-card" id="medium">
+            <div class="type-top">
+                <img class="eye-img" src="img/eye-cover-medium.svg" alt="" width="140" height="70" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                <svg class="eye-svg eye-fallback" viewBox="0 0 132 66" aria-hidden="true">
+                    <defs><clipPath id="cp-md"><path d="M14,33 Q66,0 118,29 Q66,62 14,33 Z"/></clipPath></defs>
+                    <path d="M14,33 Q66,0 118,29 Q66,62 14,33 Z" fill="#fffdf8" stroke="#a9cf87" stroke-width="2" stroke-linejoin="round"/>
+                    <g clip-path="url(#cp-md)"><circle cx="66" cy="29" r="13" fill="#8d6e4f"/><circle cx="66" cy="29" r="5.4" fill="#2b2118"/><circle cx="61.6" cy="24.6" r="2.4" fill="#fff" opacity=".9"/></g>
+                    <path d="M14,33 Q66,0 118,29" fill="none" stroke="#3d6b1f" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+                <div class="type-names">
+                    <div class="local"><span lang="en">Natural openness</span><span lang="ko">자연스러운 개방감</span><span lang="ja">自然な開き</span><span lang="zh-CN">自然开合</span><span lang="zh-TW">自然開合</span><span lang="es">Apertura natural</span></div>
+                    <div class="intl"><span lang="en">Typical lid coverage — the most common band</span><span lang="ko">국제 표현: Typical lid coverage — 가장 흔한 구간이에요</span><span lang="ja">国際的には typical lid coverage — 最も多い帯です</span><span lang="zh-CN">国际称 typical lid coverage — 最常见的区间</span><span lang="zh-TW">國際稱 typical lid coverage — 最常見的區間</span><span lang="es">Cobertura típica: la banda más común</span></div>
+                    <div class="range"><span lang="en">Coverage 12–25%</span><span lang="ko">덮임 12~25%</span><span lang="ja">被り 12〜25%</span><span lang="zh-CN">覆盖率 12–25%</span><span lang="zh-TW">覆蓋率 12–25%</span><span lang="es">Cobertura 12–25 %</span></div>
+                </div>
+            </div>
+            <div class="type-body">
+                <span lang="en">A comfortable middle. Watch this number rather than its label: a drop of several points from your own baseline usually means fatigue or swelling, not a change in shape.</span>
+                <span lang="ko">가장 편안한 중간값이에요. 라벨보다 <b>숫자의 변화</b>를 보세요. 평소 내 값에서 몇 %p 떨어졌다면 눈매가 변한 게 아니라 피로나 붓기일 가능성이 큽니다.</span>
+                <span lang="ja">最も落ち着いた中間値。ラベルより<b>数値の変化</b>に注目を。普段の値から数ポイント下がっていれば、形の変化ではなく疲れやむくみのことが多いです。</span>
+                <span lang="zh-CN">最舒适的中间值。请关注<b>数值变化</b>而非标签：比平时低几个百分点，多半是疲劳或水肿，而非眼型改变。</span>
+                <span lang="zh-TW">最舒適的中間值。請關注<b>數值變化</b>而非標籤：比平時低幾個百分點，多半是疲勞或水腫，而非眼型改變。</span>
+                <span lang="es">Un punto medio cómodo. Fíjate en el <b>cambio</b> más que en la etiqueta: bajar unos puntos respecto a tu base suele indicar cansancio o hinchazón.</span>
+            </div>
+        </div>
+
+        <div class="type-card" id="deep">
+            <div class="type-top">
+                <img class="eye-img" src="img/eye-cover-deep.svg" alt="" width="140" height="70" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                <svg class="eye-svg eye-fallback" viewBox="0 0 132 66" aria-hidden="true">
+                    <defs><clipPath id="cp-dp"><path d="M14,33 Q66,0 118,29 Q66,62 14,33 Z"/></clipPath></defs>
+                    <path d="M14,33 Q66,0 118,29 Q66,62 14,33 Z" fill="#fffdf8" stroke="#a9cf87" stroke-width="2" stroke-linejoin="round"/>
+                    <g clip-path="url(#cp-dp)"><circle cx="66" cy="24" r="13" fill="#8d6e4f"/><circle cx="66" cy="24" r="5.4" fill="#2b2118"/><circle cx="61.6" cy="19.6" r="2.4" fill="#fff" opacity=".9"/></g>
+                    <path d="M14,33 Q66,0 118,29" fill="none" stroke="#3d6b1f" stroke-width="3" stroke-linecap="round"/>
+                    <path d="M20,24 Q66,-9 114,20" fill="none" stroke="#c3ddaa" stroke-width="1.8" stroke-linecap="round"/>
+                </svg>
+                <div class="type-names">
+                    <div class="local"><span lang="en">Deep-set look</span><span lang="ko">그윽한 눈매</span><span lang="ja">奥行きのある目もと</span><span lang="zh-CN">深邃眼型</span><span lang="zh-TW">深邃眼型</span><span lang="es">Mirada profunda</span></div>
+                    <div class="intl"><span lang="en">Hooded / deep-set · common with 무쌍 (monolid) and 속쌍 (hidden crease)</span><span lang="ko">국제 표현: Hooded / deep-set eyes — 무쌍·속쌍에서 흔히 나오는 값이에요</span><span lang="ja">国際的には hooded / deep-set eyes — 一重・奥二重に多い値です</span><span lang="zh-CN">国际称 hooded / deep-set eyes — 单眼皮、内双常见</span><span lang="zh-TW">國際稱 hooded / deep-set eyes — 單眼皮、內雙常見</span><span lang="es">Hooded / deep-set · frecuente con monolid (무쌍) y pliegue oculto (속쌍)</span></div>
+                    <div class="range"><span lang="en">Coverage above 25%</span><span lang="ko">덮임 25% 초과</span><span lang="ja">被り 25% 超</span><span lang="zh-CN">覆盖率高于 25%</span><span lang="zh-TW">覆蓋率高於 25%</span><span lang="es">Cobertura mayor al 25 %</span></div>
+                </div>
+            </div>
+            <div class="type-body">
+                <span lang="en">The upper lid sits over a good part of the iris, giving a calm, composed depth. The practical catch is that most makeup tutorials are shot on visible-crease eyes, so the usual instructions disappear once you open your eyes.</span>
+                <span lang="ko">윗눈꺼풀이 홍채를 넉넉히 덮어 차분하고 깊이 있는 인상을 줍니다. 현실적인 문제는 대부분의 메이크업 튜토리얼이 겉쌍 눈을 기준으로 촬영된다는 점이에요 — 그대로 따라 하면 눈을 떴을 때 안 보입니다.</span>
+                <span lang="ja">上まぶたが虹彩をしっかり覆い、落ち着いた奥行きのある印象に。問題は、多くのメイク動画が二重の目を基準にしていること — そのまま真似ると目を開けたとき見えません。</span>
+                <span lang="zh-CN">上眼睑覆盖较多虹膜，显得沉稳深邃。现实问题在于多数教程以双眼皮拍摄，照做后睁眼便看不见。</span>
+                <span lang="zh-TW">上眼瞼覆蓋較多虹膜，顯得沉穩深邃。現實問題在於多數教學以雙眼皮拍攝，照做後睜眼便看不見。</span>
+                <span lang="es">El párpado cubre buena parte del iris y aporta profundidad serena. El problema práctico: casi todos los tutoriales se graban en ojos con pliegue visible y, al abrir los tuyos, el maquillaje desaparece.</span>
+            </div>
+            <div class="tips">
+                <span class="tip-label"><span lang="en">Makeup that works with it</span><span lang="ko">이 눈매를 살리는 메이크업</span><span lang="ja">この目もとを活かすメイク</span><span lang="zh-CN">适合的妆容</span><span lang="zh-TW">適合的妝容</span><span lang="es">Maquillaje que le favorece</span></span>
+                <ul>
+                    <li lang="en">Draw with your eyes <b>open</b>, not closed, and place colour only where it still shows.</li>
+                    <li lang="en">Curl lashes hard and use a smudge-proof formula; matte shadow holds better than shimmer against the lid.</li>
+                    <li lang="ko">눈을 <b>뜬 상태</b>에서 그리세요. 감고 그리면 떴을 때 다 가려집니다. 보이는 위치에만 색을 올리는 게 핵심이에요.</li>
+                    <li lang="ko">속눈썹은 강하게 컬링하고 번짐에 강한 제형으로. 눈꺼풀이 닿는 부위엔 펄보다 <b>매트</b>가 오래갑니다.</li>
+                    <li lang="ja">目を<b>開けた状態</b>で描き、見える位置だけに色をのせるのがコツ。</li>
+                    <li lang="ja">まつ毛はしっかりカール、滲みにくい処方で。触れる部分はラメよりマットが持ちます。</li>
+                    <li lang="zh-CN"><b>睁眼</b>画，只在睁眼时可见的位置上色。</li>
+                    <li lang="zh-CN">睫毛用力夹翘并选防晕染配方；接触眼皮处哑光比珠光更持久。</li>
+                    <li lang="zh-TW"><b>睜眼</b>畫，只在睜眼時可見的位置上色。</li>
+                    <li lang="zh-TW">睫毛用力夾翹並選防暈染配方；接觸眼皮處霧面比珠光更持久。</li>
+                    <li lang="es">Maquíllate con los ojos <b>abiertos</b> y coloca el color solo donde siga viéndose.</li>
+                    <li lang="es">Riza bien las pestañas y usa fórmulas a prueba de transferencia; el mate aguanta mejor que el brillo.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="axis-head" id="glossary">
+            <h2><span lang="en">Terms across languages</span><span lang="ko">나라별 용어 사전</span><span lang="ja">国ごとの用語辞典</span><span lang="zh-CN">跨语言术语对照</span><span lang="zh-TW">跨語言術語對照</span><span lang="es">Términos entre idiomas</span></h2>
+            <p class="axis-sub">
+                <span lang="en">Korean beauty vocabulary describes eyes by impression; Western vocabulary describes them by geometry. Same eyes, different maps.</span>
+                <span lang="ko">한국 뷰티 용어는 '인상'으로, 서구 용어는 '형태'로 눈매를 부릅니다. 같은 눈을 다른 지도로 그린 셈이에요.</span>
+                <span lang="ja">韓国の美容用語は「印象」で、欧米の用語は「形」で目を表します。同じ目を別の地図で描いているだけです。</span>
+                <span lang="zh-CN">韩式美妆用语以“印象”命名，欧美用语以“几何形状”命名。同样的眼睛，不同的地图。</span>
+                <span lang="zh-TW">韓式美妝用語以「印象」命名，歐美用語以「幾何形狀」命名。同樣的眼睛，不同的地圖。</span>
+                <span lang="es">El vocabulario coreano describe los ojos por impresión; el occidental, por geometría. Los mismos ojos, mapas distintos.</span>
+            </p>
+        </div>
+
+        <div class="glossary">
+            <div class="gl-row">
+                <div class="gl-term">강아지상 · 고양이상<span class="rom">gang-a-ji-sang · go-yang-i-sang</span></div>
+                <div class="gl-def"><span class="intl-term">Downturned · Upturned</span>
+                    <p><span lang="en">Literally "puppy type" and "cat type". They describe the tilt of the eye corners, not the shape of the eye — a puppy-type eye can still be almond.</span><span lang="ko">직역하면 '강아지 같은', '고양이 같은'. 눈의 <b>모양</b>이 아니라 <b>눈꼬리 기울기</b>를 가리키는 말이라, 강아지상이면서 갸름한 눈매일 수 있어요.</span><span lang="ja">直訳は「子犬っぽい」「猫っぽい」。目の<b>形</b>ではなく<b>目尻の傾き</b>を指すため、たれ目かつ切れ長もあり得ます。</span><span lang="zh-CN">直译为“小狗型”“猫型”，指的是<b>眼尾倾斜</b>而非眼型，因此小狗眼也可以是杏仁眼。</span><span lang="zh-TW">直譯為「小狗型」「貓型」，指的是<b>眼尾傾斜</b>而非眼型，因此小狗眼也可以是杏仁眼。</span><span lang="es">Literalmente "tipo cachorro" y "tipo gato": describen la inclinación del rabillo, no la forma; un ojo caído puede ser almendrado.</span></p>
+                </div>
+            </div>
+            <div class="gl-row">
+                <div class="gl-term">사슴상<span class="rom">sa-seum-sang</span></div>
+                <div class="gl-def"><span class="intl-term">Doe eyes · Round</span>
+                    <p><span lang="en">"Deer type" — large, round, slightly downturned eyes. The closest English term is doe eyes.</span><span lang="ko">'사슴 같은' 눈. 크고 둥글며 눈꼬리가 살짝 내려간 인상을 말해요. 영어로는 doe eyes가 가장 가깝습니다.</span><span lang="ja">「鹿のような」目。大きく丸く、目尻がやや下がった印象。英語では doe eyes が近い表現です。</span><span lang="zh-CN">“鹿眼”，大而圆、眼尾略垂。英文最接近的说法是 doe eyes。</span><span lang="zh-TW">「鹿眼」，大而圓、眼尾略垂。英文最接近的說法是 doe eyes。</span><span lang="es">"Tipo ciervo": ojos grandes, redondos y algo caídos. En inglés, doe eyes.</span></p>
+                </div>
+            </div>
+            <div class="gl-row">
+                <div class="gl-term">무쌍 · 속쌍 · 겉쌍<span class="rom">mu-ssang · sok-ssang · geot-ssang</span></div>
+                <div class="gl-def"><span class="intl-term">Monolid · Hidden crease · Visible crease</span>
+                    <p><span lang="en">No crease / a crease tucked under the lid when open / a crease visible when open. East Asian eyes span all three, and one eye can differ from the other.</span><span lang="ko">쌍꺼풀이 없는 눈 / 떴을 때 접혀 들어가는 속쌍 / 떴을 때도 보이는 겉쌍. 세 가지가 모두 흔하고, 좌우가 서로 다른 경우도 많아요.</span><span lang="ja">二重のない目／開けると隠れる奥二重／開けても見える二重。三つとも一般的で、左右で違うこともよくあります。</span><span lang="zh-CN">无褶皱／睁眼时隐藏的内双／睁眼可见的外双。三者都很常见，左右眼不同也很普遍。</span><span lang="zh-TW">無褶皺／睜眼時隱藏的內雙／睜眼可見的外雙。三者都很常見，左右眼不同也很普遍。</span><span lang="es">Sin pliegue / pliegue oculto al abrir / pliegue visible. Los tres son comunes y pueden diferir entre un ojo y otro.</span></p>
+                </div>
+            </div>
+            <div class="gl-row">
+                <div class="gl-term">애교살<span class="rom">aegyo-sal</span></div>
+                <div class="gl-def"><span class="intl-term">Lower-lid fullness</span>
+                    <p><span lang="en">The small ridge of muscle right under the lash line that appears when you smile. It is <b>not</b> an eye bag: aegyo-sal sits directly against the lashes, while a bag sits lower and casts a shadow.</span><span lang="ko">웃을 때 아래 속눈썹 바로 밑에 생기는 작은 근육 볼륨이에요. <b>눈밑지방(다크서클)과는 다릅니다</b> — 애교살은 속눈썹에 붙어 있고, 눈밑지방은 더 아래에서 그림자를 만들어요.</span><span lang="ja">笑うと下まつ毛のすぐ下に現れる筋肉のふくらみ。<b>目袋とは別物</b>で、涙袋はまつ毛に接し、目袋はより下で影を作ります。</span><span lang="zh-CN">微笑时下睫毛正下方浮现的小肌肉隆起。<b>与眼袋不同</b>：卧蚕紧贴睫毛，眼袋位置更低并投下阴影。</span><span lang="zh-TW">微笑時下睫毛正下方浮現的小肌肉隆起。<b>與眼袋不同</b>：臥蠶緊貼睫毛，眼袋位置更低並投下陰影。</span><span lang="es">El pequeño relieve muscular bajo las pestañas inferiores que aparece al sonreír. <b>No es una bolsa</b>: el aegyo-sal toca las pestañas; la bolsa queda más abajo y da sombra.</span></p>
+                </div>
+            </div>
+            <div class="gl-row">
+                <div class="gl-term">몽고주름<span class="rom">mongo-jureum</span></div>
+                <div class="gl-def"><span class="intl-term">Epicanthal fold</span>
+                    <p><span lang="en">A small fold of skin covering the inner corner, present in most East Asian eyes. It makes the eye read shorter and the crease start higher.</span><span lang="ko">눈머리를 덮는 작은 피부 주름으로, 동아시아인에게 흔합니다. 눈이 짧아 보이고 쌍꺼풀 라인이 높은 곳에서 시작하게 만들어요.</span><span lang="ja">目頭を覆う小さな皮膚のひだ。東アジアに多く、目が短く見え、二重の始まりが高くなります。</span><span lang="zh-CN">覆盖内眼角的小皮褶，东亚人常见。会让眼睛显短、双眼皮起点偏高。</span><span lang="zh-TW">覆蓋內眼角的小皮褶，東亞人常見。會讓眼睛顯短、雙眼皮起點偏高。</span><span lang="es">Pliegue cutáneo que cubre el lagrimal, común en ojos del este asiático. Acorta visualmente el ojo.</span></p>
+                </div>
+            </div>
+            <div class="gl-row">
+                <div class="gl-term">앞트임 · 뒤트임<span class="rom">ap-teurim · dwi-teurim</span></div>
+                <div class="gl-def"><span class="intl-term">Epicanthoplasty · Lateral canthoplasty</span>
+                    <p><span lang="en">Surgical terms you will meet in Korean beauty content: opening the inner corner and the outer corner. Listed here so the words are readable — not a recommendation.</span><span lang="ko">한국 뷰티 콘텐츠에서 자주 보이는 시술 용어로, 각각 눈머리와 눈꼬리를 트는 수술이에요. 용어 이해를 돕기 위한 설명이며 권유가 아닙니다.</span><span lang="ja">韓国の美容コンテンツで頻出する施術用語で、目頭と目尻を切開する手術です。用語理解のための記載で、推奨ではありません。</span><span lang="zh-CN">韩国美妆内容中常见的手术用语，分别指开内眼角与开外眼角。此处仅作释义，并非建议。</span><span lang="zh-TW">韓國美妝內容中常見的手術用語，分別指開內眼角與開外眼角。此處僅作釋義，並非建議。</span><span lang="es">Términos quirúrgicos habituales en el contenido coreano: abrir el ángulo interno y el externo. Se explican para entenderlos, no como recomendación.</span></p>
+                </div>
+            </div>
+            <div class="gl-row">
+                <div class="gl-term">Almond · Hooded<span class="rom">영어권 표준 용어 / English terms</span></div>
+                <div class="gl-def"><span class="intl-term">갸름한 눈매 · 그윽한 눈매</span>
+                    <p><span lang="en">Western writing names shapes after objects (almond) and structure (hooded). Korean writing names the impression instead — which is why a direct word-for-word translation rarely exists.</span><span lang="ko">서구권은 사물(아몬드)과 구조(hooded, 덮인)로 이름을 붙이고, 한국은 인상으로 이름을 붙여요. 그래서 1:1로 딱 떨어지는 번역어가 없는 경우가 많습니다 — almond는 '길고 갸름한 눈', hooded는 '눈꺼풀이 덮인 그윽한 눈'으로 이해하면 됩니다.</span><span lang="ja">欧米は物（アーモンド）や構造（hooded＝被さった）で命名し、韓国は印象で命名します。そのため一対一の訳語がないことが多く、almond＝切れ長、hooded＝奥行きのある被さった目、と捉えると分かりやすいです。</span><span lang="zh-CN">欧美以物体（杏仁）与结构（hooded＝被覆盖）命名，韩国则以印象命名，因此常无法逐字对应：almond 即“细长眼”，hooded 即“上睑覆盖的深邃眼”。</span><span lang="zh-TW">歐美以物體（杏仁）與結構（hooded＝被覆蓋）命名，韓國則以印象命名，因此常無法逐字對應：almond 即「細長眼」，hooded 即「上瞼覆蓋的深邃眼」。</span><span lang="es">Occidente nombra por objeto (almendra) y estructura (hooded); Corea, por impresión. Por eso rara vez hay traducción literal: almond ≈ ojo alargado; hooded ≈ ojo cubierto y profundo.</span></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="note-card">
+            <h3><span lang="en">Getting an accurate reading</span><span lang="ko">정확하게 측정하려면</span><span lang="ja">正確に測るには</span><span lang="zh-CN">如何测得更准</span><span lang="zh-TW">如何測得更準</span><span lang="es">Para una medición fiable</span></h3>
+            <ul>
+                <li lang="en">Face the camera squarely. A turned head shortens the width only, pushing the proportion toward "round".</li>
+                <li lang="en">Use even, neutral light. Strong side light deepens the crease shadow and inflates lid coverage.</li>
+                <li lang="en">Keep hair off the brows, look straight ahead, and don't widen your eyes on purpose.</li>
+                <li lang="en">Measure a few times across different days — the app uses the median of recent records so a single tired morning won't flip your type.</li>
+                <li lang="ko">정면을 바라보세요. 고개가 돌아가면 가로만 짧아져 비율이 '동그란' 쪽으로 밀립니다.</li>
+                <li lang="ko">균일하고 중성적인 조명에서. 측면 강한 빛은 쌍꺼풀 그림자를 깊게 만들어 덮임 값을 부풀립니다.</li>
+                <li lang="ko">앞머리를 눈썹 위로 넘기고, 정면을 응시하되 <b>일부러 크게 뜨지 마세요</b>.</li>
+                <li lang="ko">며칠에 걸쳐 여러 번 측정하세요. 앱은 최근 기록의 중앙값으로 유형을 정하므로, 피곤한 날 하루로 라벨이 바뀌지 않습니다.</li>
+                <li lang="ja">正面を向いて。顔が横を向くと横幅だけ縮み、比率が「丸目」寄りになります。</li>
+                <li lang="ja">均一で中性的な照明で。強い横光は二重の影を深くし、被り値を大きくします。</li>
+                <li lang="ja">前髪を眉から上げ、正面を見て、<b>意識して見開かない</b>こと。</li>
+                <li lang="ja">数日にわたり複数回測定を。アプリは直近記録の中央値を使うため、疲れた一日でタイプは変わりません。</li>
+                <li lang="zh-CN">正对镜头。侧头只会缩短横向，使比例偏向“圆眼”。</li>
+                <li lang="zh-CN">使用均匀中性的光线。强侧光会加深褶皱阴影，抬高覆盖率。</li>
+                <li lang="zh-CN">把刘海拨到眉毛以上，平视前方，<b>不要刻意瞪大眼睛</b>。</li>
+                <li lang="zh-CN">分几天多测几次。应用取近期记录的中位数，一天的疲惫不会改变类型。</li>
+                <li lang="zh-TW">正對鏡頭。側頭只會縮短橫向，使比例偏向「圓眼」。</li>
+                <li lang="zh-TW">使用均勻中性的光線。強側光會加深褶皺陰影，抬高覆蓋率。</li>
+                <li lang="zh-TW">把瀏海撥到眉毛以上，平視前方，<b>不要刻意瞪大眼睛</b>。</li>
+                <li lang="zh-TW">分幾天多測幾次。應用取近期紀錄的中位數，一天的疲憊不會改變類型。</li>
+                <li lang="es">Mira de frente: girar la cabeza acorta solo el ancho y empuja la proporción hacia "redondo".</li>
+                <li lang="es">Luz pareja y neutra. La luz lateral fuerte profundiza la sombra del pliegue e infla la cobertura.</li>
+                <li lang="es">Aparta el flequillo, mira al frente y <b>no abras los ojos a propósito</b>.</li>
+                <li lang="es">Mide varias veces en días distintos: la app usa la mediana reciente, así que un día de cansancio no cambia tu tipo.</li>
+            </ul>
+        </div>
+
+        <p class="disclaimer">
+            <span lang="en">Eye shape changes naturally with age, sleep and condition. These are impression types, not scores, and nothing here is a medical assessment. If one eye opens noticeably less than the other and it persists, an eye doctor is the right place to ask.</span>
+            <span lang="ko">눈매는 나이·수면·컨디션에 따라 자연스럽게 변하는 부위입니다. 좋고 나쁨이 아니라 인상의 유형이며, 의학적 판단이 아닙니다. 한쪽 눈이 눈에 띄게 덜 떠지는 상태가 지속된다면 안과에서 확인해 보세요.</span>
+            <span lang="ja">目もとは年齢・睡眠・体調で自然に変化します。優劣ではなく印象のタイプであり、医学的判断ではありません。片方だけ明らかに開きにくい状態が続く場合は眼科でご相談ください。</span>
+            <span lang="zh-CN">眼型会随年龄、睡眠与身体状态自然变化。这是印象类型而非优劣评分，也不构成医学判断。若一侧眼睛明显睁不开且持续，请就医检查。</span>
+            <span lang="zh-TW">眼型會隨年齡、睡眠與身體狀態自然變化。這是印象類型而非優劣評分，也不構成醫學判斷。若一側眼睛明顯睜不開且持續，請就醫檢查。</span>
+            <span lang="es">La forma de los ojos cambia con la edad, el sueño y el estado físico. Son tipos de impresión, no puntuaciones, y no constituyen un diagnóstico médico. Si un ojo se abre notablemente menos de forma persistente, consulta a un oftalmólogo.</span>
+        </p>
+    </div>
+
+    <script>
+        var VALID_LANGS = ['en','ko','ja','zh-CN','zh-TW','es'];
+        var AXES = { tilt: ['downturned','balanced','upturned'], aspect: ['round','between','almond'], cover: ['open','medium','deep'] };
+        var VALID_SECTIONS = ['tilt','aspect','cover','glossary','downturned','balanced','upturned','round','between','almond','open','medium','deep'];
+        function setLang(lang) {
+            VALID_LANGS.forEach(function(c){ document.body.classList.remove('lang-' + c); });
+            document.body.classList.add('lang-' + lang);
+            document.querySelectorAll('.lang-btn').forEach(function(b){
+                b.classList.toggle('active', b.getAttribute('onclick').indexOf("'" + lang + "'") !== -1);
+            });
+            try { localStorage.setItem('preferred-lang', lang); } catch (e) {}
+        }
+        function axisOf(id) {
+            for (var a in AXES) { if (AXES[a].indexOf(id) !== -1) return a; }
+            return VALID_SECTIONS.indexOf(id) !== -1 ? id : null;
+        }
+        function markActiveChip(id) {
+            var axis = axisOf(id);
+            document.querySelectorAll('.section-chip').forEach(function(c){
+                c.classList.toggle('active', c.getAttribute('href') === '#' + axis);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', function () {
+            var params = new URLSearchParams(location.search);
+            var lang = params.get('lang') || (function(){ try { return localStorage.getItem('preferred-lang'); } catch (e) { return null; } })() || 'en';
+            if (VALID_LANGS.indexOf(lang) === -1) lang = 'en';
+            setLang(lang);
+            // 점프 대상: #hash > ?type= > ?tilt= > ?aspect= > ?cover=
+            var target = null;
+            var hash = (location.hash || '').replace('#', '');
+            if (VALID_SECTIONS.indexOf(hash) !== -1) target = hash;
+            if (!target) {
+                var order = ['type','tilt','aspect','cover'];
+                for (var i = 0; i < order.length && !target; i++) {
+                    var v = (params.get(order[i]) || '').toLowerCase();
+                    if (VALID_SECTIONS.indexOf(v) !== -1) target = v;
+                }
+            }
+            if (target) {
+                markActiveChip(target);
+                var jump = function () {
+                    var el = document.getElementById(target);
+                    if (!el) return;
+                    var y = el.getBoundingClientRect().top + window.pageYOffset - 12;
+                    window.scrollTo(0, y); location.hash = target;
+                };
+                // 이미지·폰트 로딩으로 높이가 바뀌므로 두 번 시도한다 (DOM 준비 직후 + 완전 로드 후)
+                setTimeout(jump, 150);
+                window.addEventListener('load', function () { setTimeout(jump, 120); });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 132 66">
+  <!-- x=66 actual midpoint: upper y=22, lower y=44 (opening 22); iris r=15 -->
+  <defs><clipPath id="clip-eye-aspect-almond"><path d="M14 33 Q66 11 118 33 Q66 55 14 33 Z"/></clipPath></defs>
+  <path d="M14 33 Q66 11 118 33 Q66 55 14 33 Z" fill="#fffdf8"/>
+  <g clip-path="url(#clip-eye-aspect-almond)">
+    <circle cx="66" cy="33" r="15" fill="#8d6e4f"/>
+    <circle cx="66" cy="33" r="6.3" fill="#2b2118"/>
+    <circle cx="61" cy="28" r="2.6" fill="#fff"/>
+  </g>
+  <path d="M14 33 Q66 11 118 33 Q66 55 14 33 Z" fill="none" stroke="#3d6b1f" stroke-width="3" stroke-linejoin="round"/>
+</svg>
