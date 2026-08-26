@@ -1,11 +1,29 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 132 66">
-  <!-- x=66 actual midpoint: upper y=19, lower y=53 (opening 34); iris r=17 -->
-  <defs><clipPath id="clip-eye-tilt-downturned"><path d="M14 26 Q66 2 118 46 Q66 70 14 26 Z"/></clipPath></defs>
-  <path d="M14 26 Q66 2 118 46 Q66 70 14 26 Z" fill="#fffdf8"/>
-  <g clip-path="url(#clip-eye-tilt-downturned)">
-    <circle cx="66" cy="36" r="17" fill="#8d6e4f"/>
-    <circle cx="66" cy="36" r="7.14" fill="#2b2118"/>
-    <circle cx="60.3" cy="30.3" r="2.8" fill="#fff"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 132 66" role="img" aria-label="eye tilt-downturned">
+  <!-- anchors: inner (13,26), outer (119,46), upper-center (66,19), lower-center (66,53); iris r=17, hidden-top≈2 -->
+  <defs>
+    <clipPath id="clip_tilt_downturned"><path d="M13 26 C27 19 46 19 66 19 C86 19 105 39 119 46 C105 53 86 53 66 53 C46 53 27 33 13 26 Z"/></clipPath>
+    <radialGradient id="sclera_tilt_downturned" cx="52%" cy="45%" r="65%"><stop offset="0" stop-color="#fffefa"/><stop offset=".78" stop-color="#f8f4ea"/><stop offset="1" stop-color="#e8ddd1"/></radialGradient>
+    <radialGradient id="iris_tilt_downturned" cx="38%" cy="32%" r="69%"><stop offset="0" stop-color="#c9a77a"/><stop offset=".5" stop-color="#987046"/><stop offset=".82" stop-color="#704d2f"/><stop offset="1" stop-color="#3f2c20"/></radialGradient>
+    <linearGradient id="lash_tilt_downturned" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#211915"/><stop offset="1" stop-color="#554438"/></linearGradient>
+  </defs>
+
+  <path d="M13 26 C27 19 46 19 66 19 C86 19 105 39 119 46 C105 53 86 53 66 53 C46 53 27 33 13 26 Z" fill="url(#sclera_tilt_downturned)" stroke="#9d8978" stroke-width=".7"/>
+  <g clip-path="url(#clip_tilt_downturned)">
+    <path d="M13 26 C27 19 46 19 66 19 C86 19 105 39 119 46 L119 52 C99 44 86 24 66 24 C46 24 29 25 13 29Z" fill="#715b4d" opacity=".12"/>
+    <circle cx="66" cy="31" r="17" fill="url(#iris_tilt_downturned)"/>
+    <g stroke="#d5b17c" stroke-width=".55" opacity=".18" stroke-linecap="round">
+      <path d="M74 31L80.5 31 M71.68 36.68L76.295 41.295 M66 39V45.5 M60.32 36.68L55.705 41.295 M58 31H51.5 M60.32 25.32L55.705 20.705 M66 23V16.5 M71.68 25.32L76.295 20.705"/>
+    </g>
+    <circle cx="66" cy="31" r="17" fill="none" stroke="#39281d" stroke-width="1.8" opacity=".9"/>
+    <circle cx="66" cy="31" r="6.1" fill="#171312"/>
+    <circle cx="57.8" cy="21.5" r="1.8" fill="#fff" opacity=".9"/>
+    <circle cx="73.3" cy="39.800000000000004" r=".7" fill="#fff" opacity=".42"/>
   </g>
-  <path d="M14 26 Q66 2 118 46 Q66 70 14 26 Z" fill="none" stroke="#3d6b1f" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M13 26 C29 33 47 53 66 53 C86 53 104 53 119 46" fill="none" stroke="#9f8b7b" stroke-width="1.05" stroke-linecap="round"/>
+  <path d="M21 29.5 C38 51.3 51 51.8 66 51.8 C82 51.8 101 49.6 114 47.2" fill="none" stroke="#fff" stroke-width=".7" opacity=".72" stroke-linecap="round"/>
+  <path d="M13 26 C27 19 46 19 66 19 C86 19 105 39 119 46 C103 45.2 85 21.15 66 21.15 C45 21.15 28 24.3 13 26Z" fill="url(#lash_tilt_downturned)"/>
+  <path d="M13 26 C27 19 46 19 66 19 C86 19 105 39 119 46" fill="none" stroke="#2b211b" stroke-width=".85" stroke-linecap="round"/>
+  <path d="M18 25 C32 21 48 20 66 20 C85 20 102 37 116 44" fill="none" stroke="#a28c79" stroke-width=".8" opacity=".34" stroke-linecap="round"/>
+  <g fill="none" stroke="#31251f" stroke-width=".82" stroke-linecap="round" opacity=".78"><path d="M86 20.4q3-2.1 5.4-1.2 M97 22.2q2.8-2.2 5.1-1.1 M107 42.5q2.4-1.8 4.4-.8"/></g>
+  <path d="M13 26 q-4.7 1.8-3.2 5.2 3.1-.8 5.6-3.6-1.1-.6-2.4-1.6Z" fill="#d99589"/><path d="M10.7 29.7q2.1-1.4 4.1-1.8" fill="none" stroke="#b8736c" stroke-width=".65"/>
 </svg>
