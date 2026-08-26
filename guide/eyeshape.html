@@ -687,9 +687,16 @@
                     var y = el.getBoundingClientRect().top + window.pageYOffset - 12;
                     window.scrollTo(0, y); location.hash = target;
                 };
-                // 이미지·폰트 로딩으로 높이가 바뀌므로 두 번 시도한다 (DOM 준비 직후 + 완전 로드 후)
-                setTimeout(jump, 150);
-                window.addEventListener('load', function () { setTimeout(jump, 120); });
+                // 이미지·폰트 로딩으로 높이가 바뀌므로 시간차로 재시도한다.
+                // 사용자가 직접 스크롤하기 시작하면 중단. (hair.html과 동일 패턴, 2026-08-27)
+                var _us = false;
+                ['wheel', 'touchstart'].forEach(function (e) {
+                    window.addEventListener(e, function () { _us = true; }, { passive: true, once: true });
+                });
+                [0, 150, 400, 800, 1500].forEach(function (ms) {
+                    setTimeout(function () { if (!_us) jump(); }, ms);
+                });
+                window.addEventListener('load', function () { setTimeout(function(){ if (!_us) jump(); }, 120); });
             }
         });
     </script>

@@ -583,7 +583,18 @@
             if (target) {
                 markActiveChip(target);
                 var el = document.getElementById(target);
-                if (el) { setTimeout(function(){ el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 120); }
+                if (el) {
+                    // WKWebView는 초기 로드 시 스크롤을 놓치고, 이미지·폰트가 늦게 붙어 높이가 또 바뀐다.
+                    // 한 번만 시도하면 엉뚱한 위치에 서거나 아예 안 움직인다 → 시간차 재시도.
+                    // 사용자가 직접 스크롤하기 시작하면 중단. (hair.html과 동일 패턴, 2026-08-27)
+                    var _us = false;
+                    ['wheel', 'touchstart'].forEach(function (e) {
+                        window.addEventListener(e, function () { _us = true; }, { passive: true, once: true });
+                    });
+                    [0, 150, 400, 800, 1500].forEach(function (ms) {
+                        setTimeout(function () { if (!_us) el.scrollIntoView({ block: 'start' }); }, ms);
+                    });
+                }
             }
         });
     </script>
