@@ -22,6 +22,8 @@ ul{margin:12px 0 12px 22px}
 li{margin:6px 0}
 .muted{color:var(--muted);font-size:15px}
 b,strong{font-weight:700}
+a{color:var(--acc)}
+figure a{display:block}
 code{background:var(--band);padding:1px 7px;border-radius:6px;font-size:14px}
 figure{margin:20px 0}
 figure img{width:100%;border-radius:14px;border:1px solid #E3DED6;display:block;
@@ -70,7 +72,7 @@ footer{margin-top:52px;padding-top:26px;border-top:2px solid var(--band);
 
 <h3>面部大小</h3>
 <figure>
-  <img src="screens/01_face_size.png" alt="面部大小分析">
+  <a href="screens/01_face_size.png" target="_blank"><img src="screens/01_face_size.png" alt="面部大小分析"></a>
   <figcaption>面部面积 287.7cm² · 纵向 21.2cm · 横向 14.8cm（演示模特的数值）</figcaption>
 </figure>
 <p>大家说「脸大脸小」，量的通常是从下巴到头顶 —— 这样头发的厚度也算进去了。
@@ -81,8 +83,8 @@ Renka 量的是脸真正结束的位置，所以换发型数值也不会变。</
 <p>同一张脸有<b>两个标准</b>：医学（眉间→鼻下）6.6cm，美容（眼下→上唇）7.4cm。
 App 里可以切换，直接叠在自己脸上。</p>
 <div class="shots">
-  <figure><img src="screens/03_thirds_med.png" alt="医学标准"><figcaption>医学标准</figcaption></figure>
-  <figure><img src="screens/04_thirds_cos.png" alt="美容标准"><figcaption>美容标准</figcaption></figure>
+  <figure><a href="screens/03_thirds_med.png" target="_blank"><img src="screens/03_thirds_med.png" alt="医学标准"></a><figcaption>医学标准</figcaption></figure>
+  <figure><a href="screens/04_thirds_cos.png" target="_blank"><img src="screens/04_thirds_cos.png" alt="美容标准"></a><figcaption>美容标准</figcaption></figure>
 </div>
 <div class="tip"><b>如果讲这个</b>：切换的时候线会动，不用解释就能看出差别。也是一直以来反响最好的题材。
 <b>实时滤镜里也有同样的功能</b>（「医学三等分」「美容三等分」），
@@ -90,8 +92,8 @@ App 里可以切换，直接叠在自己脸上。</p>
 
 <h3>浮肿</h3>
 <div class="shots">
-  <figure><img src="screens/05_swelling_map.png" alt="浮肿热力图"><figcaption>热力图</figcaption></figure>
-  <figure><img src="screens/06_swelling.png" alt="浮肿分区"><figcaption>分区分析</figcaption></figure>
+  <figure><a href="screens/05_swelling_map.png" target="_blank"><img src="screens/05_swelling_map.png" alt="浮肿热力图"></a><figcaption>热力图</figcaption></figure>
+  <figure><a href="screens/06_swelling.png" target="_blank"><img src="screens/06_swelling.png" alt="浮肿分区"></a><figcaption>分区分析</figcaption></figure>
 </div>
 <div class="tip"><b>如果打算讲这个</b>：建议从体验初期开始每天测一次。
 浮肿是<b>和你自己过去的测量值比较</b>的，第一次测会显示 0（因为还没有基准值）。
@@ -101,7 +103,7 @@ App 里可以切换，直接叠在自己脸上。</p>
 
 <h3>黄金比例</h3>
 <figure>
-  <img src="screens/08_golden_ratio.png" alt="黄金比例">
+  <a href="screens/08_golden_ratio.png" target="_blank"><img src="screens/08_golden_ratio.png" alt="黄金比例"></a>
   <figcaption>8 个项目的「理想值 vs 实际值」对照表</figcaption>
 </figure>
 <p>一屏信息量大，适合拿来当结果画面。</p>
@@ -110,7 +112,7 @@ App 里可以切换，直接叠在自己脸上。</p>
 
 <h3>个人色彩 · 脸型</h3>
 <figure>
-  <img src="screens/07_personal_color.png" alt="个人色彩">
+  <a href="screens/07_personal_color.png" target="_blank"><img src="screens/07_personal_color.png" alt="个人色彩"></a>
   <figcaption>皮肤与色调 · 个人色彩</figcaption>
 </figure>
 <div class="tip"><b>如果讲这个</b>：接着展示<b>实时滤镜的试戴功能</b>会很顺 ——
@@ -155,13 +157,25 @@ App 里可以切换，直接叠在自己脸上。</p>
 
 <h2>素材</h2>
 <div class="icons">
-  <img src="resources/renka_icon_rounded_512.png" alt="Renka App 图标">
-  <img src="resources/renka_logo.png" alt="Renka Logo">
+  <a href="resources/renka_icon_rounded.png" target="_blank"><img src="resources/renka_icon_rounded_512.png" alt="Renka App 图标"></a>
+  <a href="resources/renka_logo.png" target="_blank"><img src="resources/renka_logo.png" alt="Renka Logo"></a>
 </div>
 <ul>
-  <li><b>圆角 App 图标</b>：<code>resources/renka_icon_rounded.png</code>（1024）·
-      <code>_512.png</code> —— 就是主屏幕图标的样子，适合放进视频和封面</li>
-  <li><b>Logo 图案</b>：<code>resources/renka_logo.png</code></li>
+  <li><b>全部素材打包</b>：<a href="renka-kit.zip"><b>renka-kit.zip</b></a>（截图 8 张 + 图标·Logo，约 5MB）</li>
+  <li><b>圆角 App 图标</b>：<a href="resources/renka_icon_rounded.png" target="_blank">1024</a> ·
+      <a href="resources/renka_icon_rounded_512.png" target="_blank">512</a> ——
+      就是主屏幕图标的样子，适合放进视频和封面</li>
+  <li><b>Logo 图案</b>：<a href="resources/renka_logo.png" target="_blank">renka_logo.png</a></li>
+  <li><b>截图原图</b>：
+      <a href="screens/01_face_size.png" target="_blank">面部大小</a> ·
+      <a href="screens/02_midface.png" target="_blank">中面部</a> ·
+      <a href="screens/03_thirds_med.png" target="_blank">医学三等分</a> ·
+      <a href="screens/04_thirds_cos.png" target="_blank">美容三等分</a> ·
+      <a href="screens/05_swelling_map.png" target="_blank">浮肿热力图</a> ·
+      <a href="screens/06_swelling.png" target="_blank">浮肿分区</a> ·
+      <a href="screens/07_personal_color.png" target="_blank">个人色彩</a> ·
+      <a href="screens/08_golden_ratio.png" target="_blank">黄金比例</a>
+      <span class="muted">（正文里的截图点开也是原图，长按可保存）</span></li>
   <li><b>官方名称</b>：中国区 App Store「<b>Renka - 3D脸部分析仪</b>」· 搜索「Renka」就能找到</li>
   <li><b>App Store 链接</b>：https://apps.apple.com/cn/app/id6756908316</li>
 </ul>
