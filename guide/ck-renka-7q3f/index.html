@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Renka 介绍资料</title>
+<style>
+:root{--bg:#F7F5F2;--ink:#2A2622;--muted:#6B6259;--acc:#8B6FC7;--band:#EFEBF7;--warn:#C2705F}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);
+  font:16px/1.8 "PingFang SC","Hiragino Sans GB",-apple-system,sans-serif;
+  padding:0 20px 80px}
+.wrap{max-width:720px;margin:0 auto}
+header{padding:56px 0 32px;border-bottom:2px solid var(--band)}
+h1{font-size:30px;font-weight:700;letter-spacing:-.01em}
+header p{margin-top:14px;color:var(--muted)}
+h2{margin:52px 0 10px;font-size:22px;font-weight:700}
+h3{margin:40px 0 6px;font-size:18px;font-weight:700}
+p{margin:12px 0}
+ul{margin:12px 0 12px 22px}
+li{margin:6px 0}
+.muted{color:var(--muted);font-size:15px}
+b,strong{font-weight:700}
+code{background:var(--band);padding:1px 7px;border-radius:6px;font-size:14px}
+figure{margin:20px 0}
+figure img{width:100%;border-radius:14px;border:1px solid #E3DED6;display:block;
+  box-shadow:0 10px 28px rgba(42,38,34,.08)}
+figure figcaption{margin-top:9px;color:var(--muted);font-size:13px;text-align:center}
+.shots{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.oneliner{margin:20px 0;padding:22px 24px;border-radius:14px;background:#fff;
+  border:1px solid #DCD3EE;font-size:19px;font-weight:700;text-align:center}
+.key{margin:20px 0;padding:20px 22px;border-radius:14px;background:#fff;border:1px solid #DCD3EE}
+.key .h{font-weight:700;color:var(--acc);margin-bottom:10px}
+.tip{margin:14px 0;padding:14px 18px;border-left:3px solid var(--acc);background:#fff;
+  border-radius:0 12px 12px 0}
+.warn{margin:20px 0;padding:20px 22px;border-radius:14px;background:#FBF0EE;border:1px solid #EBD5D0}
+.warn .h{font-weight:700;color:var(--warn);margin-bottom:10px}
+.icons{display:flex;gap:22px;align-items:center;margin:18px 0}
+.icons img{width:96px;height:96px;display:block}
+.notes{margin-top:52px;padding-top:28px;border-top:2px solid var(--band)}
+footer{margin-top:52px;padding-top:26px;border-top:2px solid var(--band);
+  color:var(--muted);font-size:15px}
+@media (max-width:560px){.shots{grid-template-columns:1fr}h1{font-size:25px}}
+</style>
+</head>
+<body><div class="wrap">
+
+<header>
+  <h1>Renka 介绍资料</h1>
+  <p>感谢你参与体验。这份资料是<b>功能清单 + 每个功能有什么看点</b>的参考。
+  没有规定的结构和顺序，按你自己的风格创作就好。</p>
+</header>
+
+<h2>一句话介绍</h2>
+<p class="muted">可以直接用，也可以改。</p>
+<div class="oneliner">Renka 是把脸做 3D 测量、用数字呈现的 App。</div>
+
+<h2>这个 App 和别的有什么不同</h2>
+<p><b>别的 App 是把一张平面照片传到 AI 服务器，再把结果拿回来。</b>
+那是人用眼睛看也能下的判断。</p>
+<p><b>Renka 用的是 iPhone 的面部 3D 测量。</b> 不是把照片送出去，而是直接量脸的立体形状。
+所以能给出面积、长度、角度这些<b>照片做不到的数值</b>，而且测量在手机上就完成了。</p>
+<p>如果你想讲「这 App 有什么不一样」，重点就在这里。</p>
+<div class="tip"><b>一个拍摄小建议</b>：测量的过程本身就很好看。扫脸的画面只有视频才能呈现，
+而且不用解释就证明了「是 3D 在测」。</div>
+
+<h2>各功能的看点</h2>
+<p class="muted">顺序没有意义，挑感兴趣的看就行。</p>
+
+<h3>面部大小</h3>
+<figure>
+  <img src="screens/01_face_size.png" alt="面部大小分析">
+  <figcaption>面部面积 287.7cm² · 纵向 21.2cm · 横向 14.8cm（演示模特的数值）</figcaption>
+</figure>
+<p>大家说「脸大脸小」，量的通常是从下巴到头顶 —— 这样头发的厚度也算进去了。
+Renka 量的是脸真正结束的位置，所以换发型数值也不会变。</p>
+<p class="muted"><code>头部长度</code> 旁边标着「估算」—— 那是推算值，不是实测值。</p>
+
+<h3>中面部长度</h3>
+<p>同一张脸有<b>两个标准</b>：医学（眉间→鼻下）6.6cm，美容（眼下→上唇）7.4cm。
+App 里可以切换，直接叠在自己脸上。</p>
+<div class="shots">
+  <figure><img src="screens/03_thirds_med.png" alt="医学标准"><figcaption>医学标准</figcaption></figure>
+  <figure><img src="screens/04_thirds_cos.png" alt="美容标准"><figcaption>美容标准</figcaption></figure>
+</div>
+<div class="tip"><b>如果讲这个</b>：切换的时候线会动，不用解释就能看出差别。也是一直以来反响最好的题材。
+<b>实时滤镜里也有同样的功能</b>（「医学三等分」「美容三等分」），
+把实时叠加的画面和静态报告放在一起，观众会更快理解。</div>
+
+<h3>浮肿</h3>
+<div class="shots">
+  <figure><img src="screens/05_swelling_map.png" alt="浮肿热力图"><figcaption>热力图</figcaption></figure>
+  <figure><img src="screens/06_swelling.png" alt="浮肿分区"><figcaption>分区分析</figcaption></figure>
+</div>
+<div class="tip"><b>如果打算讲这个</b>：建议从体验初期开始每天测一次。
+浮肿是<b>和你自己过去的测量值比较</b>的，第一次测会显示 0（因为还没有基准值）。
+积累几天，到拍摄时就有「吃咸了的第二天」这样的对比了。<br><br>
+<b>赶时间的话</b>：拍摄前连续测几次也能用 —— 从第二次开始就有对比。
+只是同一天内变化小，效果不如积累几天的明显。</div>
+
+<h3>黄金比例</h3>
+<figure>
+  <img src="screens/08_golden_ratio.png" alt="黄金比例">
+  <figcaption>8 个项目的「理想值 vs 实际值」对照表</figcaption>
+</figure>
+<p>一屏信息量大，适合拿来当结果画面。</p>
+
+<h2>还有这些</h2>
+
+<h3>个人色彩 · 脸型</h3>
+<figure>
+  <img src="screens/07_personal_color.png" alt="个人色彩">
+  <figcaption>皮肤与色调 · 个人色彩</figcaption>
+</figure>
+<div class="tip"><b>如果讲这个</b>：接着展示<b>实时滤镜的试戴功能</b>会很顺 ——
+脸型 → 适合的发型和眼镜，个人色彩 → 适合的颜色。结果听人说，不如看它叠在脸上来得直接。
+位置：测量完成后的画面 → 实时滤镜。（我们没有中文截图，需要你自己录制。）</div>
+<p class="muted">不太建议把试戴单独当主题 —— 在中国用户的脸上效果如何，我们还没有把握。
+像上面那样搭配着展示比较好。</p>
+
+<h3>卡路里相机</h3>
+<p>拍食物就能看到热量和营养信息。<b>不用付费就能用</b>，食物识别在手机上完成。</p>
+<div class="tip"><b>如果讲这个</b>：很多人不知道脸部 App 里还有这个，
+容易出「这也行？」的反应。也请顺便说明它是免费的。</div>
+
+<h3>Rena AI 咨询</h3>
+<p>可以拿着测量结果和 AI 对话。</p>
+<div class="warn">
+  <div class="h">我们还在确认</div>
+  <p>这个功能需要连服务器，中国大陆能不能正常访问还没确认。
+  想讲的话请先打开试一次，不行就告诉我们。
+  （卡路里相机的 Rena 辅助识别也是同样情况 —— 基础识别在手机上完成，没有问题。）</p>
+</div>
+
+<h2>观众看到的画面可能和你不一样</h2>
+<div class="key">
+  <p>体验码开通的是 <b>Pro 全部功能</b>。普通用户是这样：</p>
+  <ul>
+    <li><b>测量和基本结果、卡路里相机</b> —— 免费</li>
+    <li><b>详细报告</b>（中面部、黄金比例、浮肿详情等，上面截图的大部分）—— Pro</li>
+    <li><b>实时滤镜</b> —— 每天有免费次数，更多需要 Pro</li>
+  </ul>
+  <p>如果评论区有人问「为什么我没有这个画面」，回答「详细报告是 Pro 功能」就可以了。</p>
+</div>
+
+<div class="notes">
+  <p><b>测量在手机上完成。</b> 不需要上传照片到服务器。</p>
+  <p><b>中国目前只有 iPhone 版。</b> 安卓还没有在中国上架。</p>
+  <p><b>关于分数</b>：App 里有些地方显示 <code>XX/100</code>。想讲「分数没什么用」这个角度
+  完全可以 —— 我们自己也是这么说的。</p>
+  <p><b>只有一个请求</b>：不要说成医美效果或术前术后对比。
+  讲「这个部位是这样，看起来会是那样」就好，不要讲「怎么改」。</p>
+</div>
+
+<h2>素材</h2>
+<div class="icons">
+  <img src="resources/renka_icon_rounded_512.png" alt="Renka App 图标">
+  <img src="resources/renka_logo.png" alt="Renka Logo">
+</div>
+<ul>
+  <li><b>圆角 App 图标</b>：<code>resources/renka_icon_rounded.png</code>（1024）·
+      <code>_512.png</code> —— 就是主屏幕图标的样子，适合放进视频和封面</li>
+  <li><b>Logo 图案</b>：<code>resources/renka_logo.png</code></li>
+  <li><b>官方名称</b>：中国区 App Store「<b>Renka - 3D脸部分析仪</b>」· 搜索「Renka」就能找到</li>
+  <li><b>App Store 链接</b>：https://apps.apple.com/cn/app/id6756908316</li>
+</ul>
+
+<footer>
+  <p><b>体验码</b> —— 如果兑换遇到问题，请不要在 App 内输入代码，直接点链接兑换。
+  兑换码和链接会另外发给你。App 内输入会先经过我们的服务器，
+  而那台服务器在中国大陆访问不稳定。</p>
+  <p style="margin-top:18px">有任何问题随时联系我们。</p>
+</footer>
+
+</div></body></html>
