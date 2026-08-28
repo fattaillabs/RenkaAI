@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Renka ご紹介資料</title>
+<style>
+:root{--bg:#F7F5F2;--ink:#2A2622;--muted:#6B6259;--acc:#8B6FC7;--band:#EFEBF7;--warn:#C2705F}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);
+  font:16px/1.85 "Hiragino Sans","Hiragino Kaku Gothic ProN",-apple-system,sans-serif;
+  padding:0 20px 80px}
+.wrap{max-width:720px;margin:0 auto}
+header{padding:56px 0 32px;border-bottom:2px solid var(--band)}
+h1{font-size:29px;font-weight:700;letter-spacing:-.01em}
+header p{margin-top:14px;color:var(--muted)}
+.lang{margin-top:10px;font-size:14px}
+h2{margin:52px 0 10px;font-size:22px;font-weight:700}
+h3{margin:40px 0 6px;font-size:18px;font-weight:700}
+p{margin:12px 0}
+ul{margin:12px 0 12px 22px}
+li{margin:6px 0}
+.muted{color:var(--muted);font-size:15px}
+b,strong{font-weight:700}
+a{color:var(--acc)}
+code{background:var(--band);padding:1px 7px;border-radius:6px;font-size:14px}
+figure{margin:20px 0}
+figure a{display:block}
+figure img{width:100%;border-radius:14px;border:1px solid #E3DED6;display:block;
+  box-shadow:0 10px 28px rgba(42,38,34,.08)}
+figure figcaption{margin-top:9px;color:var(--muted);font-size:13px;text-align:center}
+.shots{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.oneliner{margin:20px 0;padding:22px 24px;border-radius:14px;background:#fff;
+  border:1px solid #DCD3EE;font-size:19px;font-weight:700;text-align:center}
+.key{margin:20px 0;padding:20px 22px;border-radius:14px;background:#fff;border:1px solid #DCD3EE}
+.tip{margin:14px 0;padding:14px 18px;border-left:3px solid var(--acc);background:#fff;
+  border-radius:0 12px 12px 0}
+.icons{display:flex;gap:22px;align-items:center;margin:18px 0}
+.icons img{width:96px;height:96px;display:block}
+.notes{margin-top:52px;padding-top:28px;border-top:2px solid var(--band)}
+footer{margin-top:52px;padding-top:26px;border-top:2px solid var(--band);
+  color:var(--muted);font-size:15px}
+@media (max-width:560px){.shots{grid-template-columns:1fr}h1{font-size:24px}}
+</style>
+</head>
+<body><div class="wrap">
+
+<header>
+  <h1>Renka ご紹介資料</h1>
+  <p>体験にご参加いただきありがとうございます。この資料は<b>どんな機能があって、
+  それぞれ何が見どころか</b>をまとめた参考用です。決まった構成や順番はありません。
+  ご自身のスタイルで自由に作ってください。</p>
+  <p class="lang"><a href="ko.html">한국어版はこちら →</a></p>
+</header>
+
+<h2>ひとこと紹介</h2>
+<p class="muted">そのまま使っても、アレンジしても大丈夫です。</p>
+<div class="oneliner">Renkaは、顔を3Dで測って数字で見せるアプリです。</div>
+
+<h2>ほかのアプリと何が違うか</h2>
+<p><b>ほかのアプリは、平面の写真1枚をAIサーバーに送って結果を受け取るだけです。</b>
+人が目で見てもできる判断です。</p>
+<p><b>Renkaは顔の3D測定を使います。</b> 写真を送るのではなく、顔の立体形状を直接測ります。
+だから面積・長さ・角度という<b>写真では出ない数値</b>が出て、測定は端末の中で完結します。</p>
+<p>「このアプリ、何が違うの？」を扱うなら、ここがポイントです。</p>
+<div class="tip"><b>撮影のコツをひとつ</b>：測定している画面そのものが良い絵になります。
+顔をスキャンする過程は結果画面と違って<b>動画でしか見せられない</b>もので、
+「3Dで測っている」ことを言葉なしで証明してくれます。</div>
+
+<h2>機能ごとの見どころ</h2>
+<p class="muted">順番に意味はありません。気になるものだけどうぞ。</p>
+
+<h3>顔サイズ</h3>
+<figure>
+  <a href="screens/01_face_size.png" target="_blank"><img src="screens/01_face_size.png" alt="顔サイズ分析"></a>
+  <figcaption>顔の表面積 287.7cm² · 縦 21.2cm · 横 14.8cm（デモモデルの数値です）</figcaption>
+</figure>
+<p>「顔が大きい/小さい」は普通、顎先から頭頂まで測ったもの —— それだと髪の厚みも入ってしまいます。
+Renkaは私たちが勝手に引いた線ではなく、<b>Appleのエンジニアが考案した顔メッシュの基準</b>
+—— 顔だけを覆って終わるその境界 —— までを測ります。だから髪型が変わっても数値は変わらず、
+誰にとっても同じ基準です。</p>
+<p class="muted"><code>頭の長さ</code> の横には「推定」と付いています —— 実測ではなく推算値です。</p>
+
+<h3>中顔面の長さ</h3>
+<p>同じ顔に<b>基準が2つ</b>あります。医学的（眉間→鼻下）6.6cm、美容的（目の下→上唇）7.4cm。
+アプリ内で切り替えて自分の顔に重ねられます —— <b>アプリの画面にも美容的基準に
+「日本で主に使用」と表示されています。</b> 日本で通用しているあの基準です。</p>
+<figure>
+  <a href="screens/02_midface.png" target="_blank"><img src="screens/02_midface.png" alt="中顔面の長さ"></a>
+  <figcaption>医学 6.6cm / 美容 7.4cm · 三分割 32:33:35</figcaption>
+</figure>
+<div class="shots">
+  <figure><a href="screens/03_thirds_med.png" target="_blank"><img src="screens/03_thirds_med.png" alt="医学的基準"></a><figcaption>医学的基準</figcaption></figure>
+  <figure><a href="screens/04_thirds_cos.png" target="_blank"><img src="screens/04_thirds_cos.png" alt="美容的基準"></a><figcaption>美容的基準</figcaption></figure>
+</div>
+<div class="tip"><b>これを扱うなら</b>：切り替えると線が動くので、説明なしでも違いが見えます。
+これまで一番反応が良かった題材です。<b>ライブフィルターにも同じ機能があり</b>
+（「医学的3分割」「美容的3分割」）、リアルタイムに重なる画面と静止レポートを
+一緒に見せると伝わりが早いです。</div>
+
+<h3>むくみ</h3>
+<div class="shots">
+  <figure><a href="screens/05_swelling_map.png" target="_blank"><img src="screens/05_swelling_map.png" alt="むくみヒートマップ"></a><figcaption>ヒートマップ</figcaption></figure>
+  <figure><a href="screens/06_swelling.png" target="_blank"><img src="screens/06_swelling.png" alt="むくみ部位別"></a><figcaption>部位別分析</figcaption></figure>
+</div>
+<div class="tip"><b>これを扱うつもりなら</b>：体験の初日から1日1回測っておくのがおすすめです。
+むくみは<b>自分の過去の測定値と比較</b>する機能なので、初回は0と表示されます
+（まだ基準値がないため）。数日ためておくと、撮影のころには
+「塩分をとった翌日」のような比較ができあがっています。<br><br>
+<b>急ぐ場合</b>：撮影直前に続けて数回測っても動きます —— 2回目から比較が出ます。
+ただ同じ日の変化なので、数日ためたものより差は小さく見えます。</div>
+
+<h3>黄金比</h3>
+<figure>
+  <a href="screens/08_golden_ratio.png" target="_blank"><img src="screens/08_golden_ratio.png" alt="黄金比"></a>
+  <figcaption>8項目の「理想値 vs 実測値」対照表</figcaption>
+</figure>
+<p>一画面に情報が多いので、結果画面を映すときに使いやすいです。</p>
+
+<h2>こんなものもあります</h2>
+
+<h3>パーソナルカラー · 顔の形</h3>
+<figure>
+  <a href="screens/07_personal_color.png" target="_blank"><img src="screens/07_personal_color.png" alt="パーソナルカラー"></a>
+  <figcaption>肌&amp;トーン · パーソナルカラー</figcaption>
+</figure>
+<div class="tip"><b>これを扱うなら</b>：続けて<b>ライブフィルターの試着機能</b>を見せると流れが自然です ——
+顔の形 → 似合う髪型・メガネ、パーソナルカラー → 似合う色。
+結果を言葉で聞くより、顔に重なるのを見るほうがずっと伝わります。
+場所：測定完了画面 → ライブフィルター。（スクリーンショットがないので、ご自身で録画をお願いします。）</div>
+
+<h3>カロリーカメラ</h3>
+<p>食べ物を撮るとカロリーと栄養情報が出ます。<b>課金なしで使えて</b>、食品認識は端末内で動きます。</p>
+<div class="tip"><b>これを扱うなら</b>：顔のアプリにこれが入っていると知らない人が多く、
+「これもできるの？」という反応が出やすいです。無料であることも一緒に伝えてもらえると嬉しいです。</div>
+
+<h3>Rena AI相談</h3>
+<p>測定結果をもとにAIと会話できます。測って出た数字を踏まえて答えてくれるのが特徴です。
+カロリーカメラでもRenaの補助認識が1日3回まで無料です。</p>
+
+<h2>視聴者に見える画面は違うことがあります</h2>
+<div class="key">
+  <p>体験コードでは<b>Proの全機能</b>が開いています。一般ユーザーはこうです：</p>
+  <ul>
+    <li><b>測定と基本結果、カロリーカメラ</b> —— 無料</li>
+    <li><b>詳細レポート</b>（中顔面・黄金比・むくみ詳細など、上のスクリーンショットの大部分）—— Pro</li>
+    <li><b>ライブフィルター</b> —— 毎日無料回数があり、それ以上はPro</li>
+  </ul>
+  <p>コメントで「この画面が出ない」と聞かれたら、「詳細レポートはPro機能です」と
+  答えていただければ大丈夫です。</p>
+</div>
+
+<div class="notes">
+  <p><b>測定は端末の中で完結します。</b> 写真をサーバーにアップロードしません。</p>
+  <p><b>iPhoneとAndroid、両方あります。</b></p>
+  <p><b>スコアについて</b>：アプリのところどころに <code>XX/100</code> が表示されます。
+  「スコアはあまり意味がない」という切り口で行っても大丈夫です —— 私たちもそう言っています。</p>
+  <p><b>ひとつだけお願い</b>：美容施術の効果や術前術後の比較に見えないようにしてください。
+  「この部位がこうだと、こう見える」までにして、「どう直すか」には行かないでほしいです。</p>
+</div>
+
+<h2>素材</h2>
+<div class="icons">
+  <a href="resources/renka_icon_rounded.png" target="_blank"><img src="resources/renka_icon_rounded_512.png" alt="Renka アイコン"></a>
+  <a href="resources/renka_logo.png" target="_blank"><img src="resources/renka_logo.png" alt="Renka ロゴ"></a>
+</div>
+<ul>
+  <li><b>素材一括ダウンロード</b>：<a href="renka-kit.zip"><b>renka-kit.zip</b></a>（スクリーンショット8枚 + アイコン・ロゴ）</li>
+  <li><b>角丸アイコン</b>：<a href="resources/renka_icon_rounded.png" target="_blank">1024</a> ·
+      <a href="resources/renka_icon_rounded_512.png" target="_blank">512</a> —— ホーム画面アイコンの形そのままなので、動画やサムネイルに載せやすいです</li>
+  <li><b>ロゴ</b>：<a href="resources/renka_logo.png" target="_blank">renka_logo.png</a></li>
+  <li><b>スクリーンショット原寸</b>：
+      <a href="screens/01_face_size.png" target="_blank">顔サイズ</a> ·
+      <a href="screens/02_midface.png" target="_blank">中顔面</a> ·
+      <a href="screens/03_thirds_med.png" target="_blank">医学的3分割</a> ·
+      <a href="screens/04_thirds_cos.png" target="_blank">美容的3分割</a> ·
+      <a href="screens/05_swelling_map.png" target="_blank">むくみヒートマップ</a> ·
+      <a href="screens/06_swelling.png" target="_blank">むくみ部位別</a> ·
+      <a href="screens/07_personal_color.png" target="_blank">パーソナルカラー</a> ·
+      <a href="screens/08_golden_ratio.png" target="_blank">黄金比</a>
+      <span class="muted">（本文の画像もタップで原寸が開きます）</span></li>
+  <li><b>正式名称</b>：App Store「<b>Renka - 3D顔アナライザー</b>」· 検索は「Renka」でヒットします</li>
+  <li><b>App Store</b>：<a href="https://apps.apple.com/jp/app/id6756908316" target="_blank">apps.apple.com/jp/app/id6756908316</a></li>
+  <li><b>Google Play</b>：<a href="https://play.google.com/store/apps/details?id=com.fattail.renka" target="_blank">play.google.com/store/apps/details?id=com.fattail.renka</a></li>
+  <li><b>公式サイト（日本語）</b>：<a href="https://fattaillabs.com/RenkaAI/ja/" target="_blank">fattaillabs.com/RenkaAI/ja/</a>
+      —— 機能紹介とFAQがあります。動画の文面の参考にどうぞ</li>
+</ul>
+
+<footer>
+  <p><b>体験コード</b> —— コードは別途お送りします。お送りする<b>引き換えリンクをタップするのが確実</b>で、
+  アプリ内の「プロモーションコード」入力でも使えます。</p>
+  <p style="margin-top:18px">ご不明な点はいつでもご連絡ください。</p>
+</footer>
+
+</div></body></html>
