@@ -92,4 +92,55 @@ footer a{color:var(--muted)}
      <a href="../../privacy-policy.html">プライバシーポリシー</a></p>
 </footer>
 
-</div></body></html>
+</div>
+
+<!-- 유입 UTM 을 스토어 링크로 넘긴다. 메인 페이지들과 같은 규격.
+     파라미터 없이 들어오면 위에 박아둔 정적 기본값(tiktok_promote_ja)이 그대로 쓰인다. -->
+<script>
+(function () {
+    var APPLE_PT = '128379849';
+    var UTM  = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+    var CLID = ['ttclid', 'fbclid', 'igshid', 'gclid'];
+    var KEY  = 'renka_campaign';
+
+    function params() {
+        var q = new URLSearchParams(location.search), got = {};
+        UTM.concat(CLID).forEach(function (k) { var v = q.get(k); if (v) got[k] = v; });
+        if (Object.keys(got).length) {
+            try { sessionStorage.setItem(KEY, JSON.stringify(got)); } catch (e) {}
+            return got;
+        }
+        try { return JSON.parse(sessionStorage.getItem(KEY) || '{}'); } catch (e) { return {}; }
+    }
+
+    var p = params();
+    if (!Object.keys(p).length) return;      // 정적 기본값 유지
+
+    var referrer = encodeURIComponent(
+        Object.keys(p).map(function (k) { return k + '=' + p[k]; }).join('&'));
+
+    // 애플 ct 는 40자 + 영숫자/._- 만 안전하다
+    function slug(v) {
+        var out = (v || '').replace(/[^A-Za-z0-9._-]/g, '-').slice(0, 40);
+        return /[A-Za-z0-9]/.test(out) ? out : '';
+    }
+    var ct = slug(p.utm_campaign) || slug(p.utm_source);
+
+    document.querySelectorAll('a[href*="play.google.com"]').forEach(function (a) {
+        a.href = a.href.indexOf('referrer=') === -1
+            ? a.href + '&referrer=' + referrer
+            : a.href.replace(/([?&])referrer=[^&]*/, '$1referrer=' + referrer);
+    });
+    if (APPLE_PT && ct) {
+        document.querySelectorAll('a[href*="apps.apple.com"]').forEach(function (a) {
+            var id = (a.href.match(/id(\d+)/) || [])[1];
+            if (!id) return;
+            a.href = 'https://apps.apple.com/app/apple-store/id' + id +
+                     '?pt=' + encodeURIComponent(APPLE_PT) +
+                     '&ct=' + encodeURIComponent(ct) + '&mt=8';
+        });
+    }
+})();
+</script>
+
+</body></html>
