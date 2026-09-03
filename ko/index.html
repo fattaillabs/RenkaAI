@@ -499,14 +499,14 @@
                 <span lang="zh-TW">Renka 以 TrueScale 技術掃描臉部 1,200 多個超精密特徵點——黃金比例、對稱性、輪廓與每日浮腫，以毫米級精度測量。不是照片猜測，而是真實幾何。</span>
             </p>
             <div class="hero-ctas" id="download">
-                <a class="store-badge" href="https://apps.apple.com/kr/app/renka-3d-face-analyzer/id6756908316">
+                <a class="store-badge" href="../go/appstore/">
                     <span lang="en"><img src="../assets/badges/appstore-en.svg" alt="Download on the App Store"></span><span lang="id"><img src="../assets/badges/appstore-en.svg" alt="Download on the App Store"></span><span lang="es"><img src="../assets/badges/appstore-en.svg" alt="Download on the App Store"></span>
                     <span lang="ko"><img src="../assets/badges/appstore-ko.svg" alt="App Store에서 다운로드"></span>
                     <span lang="ja"><img src="../assets/badges/appstore-ja.svg" alt="App Storeでダウンロード"></span>
                     <span lang="zh-CN"><img src="../assets/badges/appstore-zh-CN.svg" alt="在 App Store 下载"></span>
                     <span lang="zh-TW"><img src="../assets/badges/appstore-zh-TW.svg" alt="在 App Store 下載"></span>
                 </a>
-                <a class="store-badge play-live" href="https://play.google.com/store/apps/details?id=com.fattail.renka&hl=ko"><img src="../assets/badges/googleplay-en.png" alt="Get it on Google Play"></a>
+                <a class="store-badge play-live" href="../go/googleplay/"><img src="../assets/badges/googleplay-en.png" alt="Get it on Google Play"></a>
                 <span class="hero-note">
                     <span lang="en">Free · iPhone with Face ID · Android 8.0+</span><span lang="id">Gratis · iPhone dengan Face ID · Android 8.0+</span><span lang="es">Gratis · iPhone con Face ID · Android 8.0+</span>
                     <span lang="ko">무료 · Face ID 지원 아이폰 · Android 8.0 이상</span>
@@ -956,14 +956,14 @@
                 <span lang="zh-CN">免费下载 · 支持 Face ID 的 iPhone 与 Android 8.0 以上均可使用。</span>
                 <span lang="zh-TW">免費下載 · 支援 Face ID 的 iPhone 與 Android 8.0 以上均可使用。</span>
             </p>
-            <a class="store-badge" href="https://apps.apple.com/kr/app/renka-3d-face-analyzer/id6756908316">
+            <a class="store-badge" href="../go/appstore/">
                     <span lang="en"><img src="../assets/badges/appstore-en.svg" alt="Download on the App Store"></span><span lang="id"><img src="../assets/badges/appstore-en.svg" alt="Download on the App Store"></span><span lang="es"><img src="../assets/badges/appstore-en.svg" alt="Download on the App Store"></span>
                     <span lang="ko"><img src="../assets/badges/appstore-ko.svg" alt="App Store에서 다운로드"></span>
                     <span lang="ja"><img src="../assets/badges/appstore-ja.svg" alt="App Storeでダウンロード"></span>
                     <span lang="zh-CN"><img src="../assets/badges/appstore-zh-CN.svg" alt="在 App Store 下载"></span>
                     <span lang="zh-TW"><img src="../assets/badges/appstore-zh-TW.svg" alt="在 App Store 下載"></span>
                 </a>
-                <a class="store-badge play-live" href="https://play.google.com/store/apps/details?id=com.fattail.renka&hl=ko"><img src="../assets/badges/googleplay-en.png" alt="Get it on Google Play"></a>
+                <a class="store-badge play-live" href="../go/googleplay/"><img src="../assets/badges/googleplay-en.png" alt="Get it on Google Play"></a>
         </div>
     </section>
 
@@ -1088,20 +1088,9 @@
         }
         var ct = slug(p.utm_campaign) || slug(p.utm_source);
 
-        document.querySelectorAll('a[href*="play.google.com"]').forEach(function (a) {
-            if (a.href.indexOf('referrer=') === -1) a.href += '&referrer=' + referrer;
-        });
-        if (APPLE_PT && ct) {
-            document.querySelectorAll('a[href*="apps.apple.com"]').forEach(function (a) {
-                if (a.href.indexOf('ct=') !== -1) return;
-                var id = (a.href.match(/id(\d+)/) || [])[1];
-                if (!id) return;
-                a.href = 'https://apps.apple.com/app/apple-store/id' + id +
-                         '?pt=' + encodeURIComponent(APPLE_PT) +
-                         '&ct=' + encodeURIComponent(ct) + '&mt=8';
-            });
-        }
-    })();
+        // 스토어 링크는 /go/ 경유 페이지가 sessionStorage 의 이 값을 읽어 조립한다.
+        // 여기서 직접 재작성하지 않는다 — 경유 페이지를 거쳐야 클릭이 계측된다(2026-09-04).
+        })();
     </script>
 </body>
 </html>
