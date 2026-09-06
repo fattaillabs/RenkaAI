@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>얼굴 분석 앱 비교: 사진 앱, 웹 테스트, 3D 실측은 무엇이 다른가 | Renka</title>
+    <meta name="description" content="얼굴형 테스트 사이트, 사진 기반 얼굴 분석 앱, 깊이 센서 기반 3D 실측 앱의 원리와 정확도, 개인정보 처리 방식을 비교표로 정리하고 목적별로 어떤 방식이 맞는지 안내합니다.">
+    <link rel="canonical" href="https://fattaillabs.com/RenkaAI/ko/learn/face-analysis-app-comparison.html">
+    <link rel="icon" type="image/x-icon" href="../../assets/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-32.png">
+    <link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+    <link rel="stylesheet" href="learn.css">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Renka">
+    <meta property="og:title" content="얼굴 분석 앱 비교: 사진 앱, 웹 테스트, 3D 실측은 무엇이 다른가">
+    <meta property="og:description" content="얼굴형 테스트 사이트, 사진 기반 얼굴 분석 앱, 깊이 센서 기반 3D 실측 앱의 원리와 정확도, 개인정보 처리 방식을 비교표로 정리하고 목적별로 어떤 방식이 맞는지 안내합니다.">
+    <meta property="og:url" content="https://fattaillabs.com/RenkaAI/ko/learn/face-analysis-app-comparison.html">
+    <meta property="og:image" content="https://fattaillabs.com/RenkaAI/assets/og.jpg">
+    <meta property="og:locale" content="ko_KR">
+    <meta property="article:published_time" content="2026-09-07">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="얼굴 분석 앱 비교: 사진 앱, 웹 테스트, 3D 실측은 무엇이 다른가">
+    <meta name="twitter:description" content="얼굴형 테스트 사이트, 사진 기반 얼굴 분석 앱, 깊이 센서 기반 3D 실측 앱의 원리와 정확도, 개인정보 처리 방식을 비교표로 정리하고 목적별로 어떤 방식이 맞는지 안내합니다.">
+    <meta name="twitter:image" content="https://fattaillabs.com/RenkaAI/assets/og.jpg">
+    <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Article", "@id": "https://fattaillabs.com/RenkaAI/ko/learn/face-analysis-app-comparison.html#article", "headline": "얼굴 분석 앱 비교: 사진 앱, 웹 테스트, 3D 실측은 무엇이 다른가", "description": "얼굴형 테스트 사이트, 사진 기반 얼굴 분석 앱, 깊이 센서 기반 3D 실측 앱의 원리와 정확도, 개인정보 처리 방식을 비교표로 정리하고 목적별로 어떤 방식이 맞는지 안내합니다.", "inLanguage": "ko", "datePublished": "2026-09-07", "dateModified": "2026-09-07", "mainEntityOfPage": "https://fattaillabs.com/RenkaAI/ko/learn/face-analysis-app-comparison.html", "author": {"@type": "Organization", "name": "Renka (FatTail Labs)", "url": "https://fattaillabs.com/RenkaAI/ko/"}, "publisher": {"@id": "https://fattaillabs.com/#org"}, "image": "https://fattaillabs.com/RenkaAI/assets/og.jpg"}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Renka", "item": "https://fattaillabs.com/RenkaAI/ko/"}, {"@type": "ListItem", "position": 2, "name": "얼굴 분석 읽을거리", "item": "https://fattaillabs.com/RenkaAI/ko/learn/"}, {"@type": "ListItem", "position": 3, "name": "얼굴 분석 앱 비교: 사진 앱, 웹 테스트, 3D 실측은 무엇이 다른가", "item": "https://fattaillabs.com/RenkaAI/ko/learn/face-analysis-app-comparison.html"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "얼굴 분석 앱은 정확한가요?", "acceptedAnswer": {"@type": "Answer", "text": "방식에 따라 다릅니다. 사진 기반 앱은 촬영 거리와 각도에 따라 결과가 바뀌고 실제 길이는 알 수 없습니다. 깊이 센서 기반 3D 실측은 촬영 조건의 영향이 적고 mm 단위 결과가 나옵니다. 같은 사진을 두 번 넣어 결과가 같은지 시험해 보면 됩니다."}}, {"@type": "Question", "name": "얼굴 분석 앱에 올린 사진은 어디로 가나요?", "acceptedAnswer": {"@type": "Answer", "text": "앱마다 다릅니다. 서버로 업로드해 분석하는 앱이 많고, 기기 안에서만 처리하는 앱도 있습니다. 개인정보 처리방침에서 사진 전송 여부를 확인하세요. 렌카는 사진과 3D 데이터를 기기 밖으로 내보내지 않습니다."}}, {"@type": "Question", "name": "안드로이드에서도 3D 얼굴 실측이 되나요?", "acceptedAnswer": {"@type": "Answer", "text": "안드로이드 대부분의 기종에는 아이폰 Face ID 같은 깊이 센서가 없어서, 카메라 영상에서 3D 얼굴 모델을 추정하는 방식으로 근사합니다. 깊이 센서 실측보다 정밀도는 낮지만 사진 한 장 방식보다 촬영 조건의 영향이 적습니다."}}, {"@type": "Question", "name": "매력도 점수는 믿을 만한가요?", "acceptedAnswer": {"@type": "Answer", "text": "점수는 비율·대칭 같은 기하 지표를 하나로 요약한 값이고, 매력은 그 외 요소가 훨씬 많습니다. 점수 자체보다 어느 항목이 어떻게 나왔는지, 그리고 시간에 따라 어떻게 변하는지를 보는 용도로 쓰는 것이 맞습니다."}}]}]}</script>
+</head>
+<body>
+<nav class="nav"><div class="nav-in">
+    <a class="brand" href="../"><img src="../../logo.png" alt="Renka 로고">Renka</a>
+    <div class="nav-links"><a href="./">읽을거리</a><a href="../../Renka-FAQ.html">FAQ</a><a href="../">앱 소개</a></div>
+</div></nav>
+<main class="wrap">
+    <div class="crumb"><a href="../">Renka</a> › <a href="./">얼굴 분석 읽을거리</a> › 비교</div>
+    <h1>얼굴 분석 앱 비교: 사진 앱, 웹 테스트, 3D 실측은 무엇이 다른가</h1>
+    <p class="meta">2026-09-07 · 읽는 데 약 3분 · Renka 팀</p>
+    <p class="lead">"얼굴 분석 앱"으로 검색하면 사진 한 장으로 점수를 매기는 앱부터 얼굴형을 알려 주는 웹사이트, 깊이 센서로 mm 를 재는 앱까지 뒤섞여 나옵니다. 이름은 비슷해도 원리가 다르고, 원리가 다르면 믿을 수 있는 범위도 다릅니다. 세 방식을 같은 잣대로 비교했습니다.</p>
+    <div class="tldr"><strong>요약</strong><ul><li>얼굴 분석 서비스는 원리상 <b>사진(2D) 기반</b>, <b>웹 사진 테스트</b>, <b>깊이 센서(3D) 실측</b> 세 갈래입니다.</li><li>2D 방식은 촬영 거리·각도에 따라 결과가 바뀌고 mm 단위는 알 수 없습니다. 3D 실측은 mm 가 나오지만 지원 기기가 제한됩니다.</li><li>사진이 서버로 올라가는지, 기기 안에서만 처리되는지가 큰 차이입니다. 결정 전에 개인정보 처리방침에서 <b>사진 업로드 여부</b>를 확인하세요.</li></ul></div>
+    
+<h2>세 갈래의 원리</h2>
+<h3>1. 사진 기반 얼굴 분석 앱</h3>
+<p>스마트폰 사진에서 눈, 코, 입, 턱선의 점(랜드마크)을 찾고 그 점들의 픽셀 거리로 비율과 점수를 계산합니다. 사진만 있으면 되니 어떤 폰에서도 동작하고, 매력도 점수나 닮은 연예인처럼 재미 요소를 얹기 쉽습니다. 대신 픽셀 거리는 촬영 거리와 각도에 따라 바뀌므로 같은 사람도 사진마다 결과가 다르고, 실제 길이(mm)는 원리상 알 수 없습니다.</p>
+<h3>2. 웹 얼굴형 테스트</h3>
+<p>브라우저에서 사진을 올리거나 문항에 답해 얼굴형을 알려 주는 방식입니다. 설치가 필요 없고 가볍습니다. 사진을 올리는 경우 위 사진 기반 방식과 같은 한계를 갖고, 문항형은 본인의 주관적 판단에 의존합니다. 사진이 어느 서버로 가는지 표시가 없는 곳이 많습니다.</p>
+<h3>3. 깊이 센서 기반 3D 실측 앱</h3>
+<p>아이폰 Face ID(TrueDepth) 같은 깊이 센서로 얼굴 표면의 3차원 좌표를 받아 실제 mm 거리를 계산합니다. 촬영 거리와 무관하게 크기가 나오고, 코 높이나 광대 돌출처럼 앞뒤 방향 치수도 잽니다. 대신 깊이 센서가 있는 기기가 필요하고(안드로이드는 카메라 영상에서 3D 모델을 추정하는 방식으로 근사), 재미보다는 측정에 초점이 있어 결과가 숫자 위주입니다.</p>
+
+<h2>비교표</h2>
+<div class="table-wrap"><table>
+<tr><th></th><th>사진 기반 앱</th><th>웹 테스트</th><th>3D 실측 앱</th></tr>
+<tr><td>측정 원리</td><td>2D 랜드마크 픽셀 거리</td><td>2D 랜드마크 또는 설문</td><td>깊이 센서 3D 좌표</td></tr>
+<tr><td>결과 단위</td><td>비율·점수</td><td>유형 분류</td><td>mm, 비율, 점수</td></tr>
+<tr><td>촬영 거리·각도 영향</td><td>큼</td><td>큼</td><td>작음</td></tr>
+<tr><td>깊이 치수(코 높이, 광대 돌출)</td><td>불가</td><td>불가</td><td>가능</td></tr>
+<tr><td>같은 사람 반복 측정 일관성</td><td>낮음</td><td>낮음</td><td>높음</td></tr>
+<tr><td>변화 추적(붓기, 교정 전후)</td><td>어려움</td><td>불가</td><td>가능</td></tr>
+<tr><td>지원 기기</td><td>대부분의 폰</td><td>브라우저</td><td>Face ID 아이폰(안드로이드는 근사)</td></tr>
+<tr><td>사진 처리 위치</td><td>앱마다 다름(서버 업로드 흔함)</td><td>대개 서버</td><td>앱마다 다름</td></tr>
+<tr><td>강점</td><td>재미, 접근성</td><td>가벼움</td><td>정확도, 추적</td></tr>
+</table></div>
+
+<h2>고를 때 확인할 다섯 가지</h2>
+<ol>
+<li><b>결과가 mm 인가 점수인가.</b> 헤어스타일 고르기나 재미가 목적이면 점수로 충분하고, 붓기·교정·시술 전후를 비교하려면 mm 가 있어야 합니다.</li>
+<li><b>같은 얼굴을 두 번 찍으면 같은 결과가 나오는가.</b> 사진 두 장으로 직접 시험해 보면 방식의 안정성이 바로 드러납니다.</li>
+<li><b>사진이 어디로 가는가.</b> 개인정보 처리방침에서 사진이 서버로 전송되는지, 기기 안에서만 처리되는지 확인합니다. 얼굴은 바꿀 수 없는 생체 정보입니다.</li>
+<li><b>분석 뒤에 무엇이 있는가.</b> 점수만 주고 끝나는지, 얼굴형·비율에 맞는 헤어·메이크업·관리 가이드로 이어지는지.</li>
+<li><b>무료 범위.</b> 측정 자체가 무료인지, 결과 일부만 보여 주고 결제를 요구하는지.</li>
+</ol>
+
+<h2>목적별 추천</h2>
+<ul>
+<li><b>재미로 매력도 점수, 닮은꼴</b>: 사진 기반 앱. 결과를 진지하게 받아들이지 않는다는 전제로.</li>
+<li><b>얼굴형만 빨리 알고 싶다</b>: 웹 테스트 또는 <a href="face-shape-test.html">직접 재는 방법</a>. 경계에 걸치면 실측이 낫습니다.</li>
+<li><b>비율·대칭을 정확히, 변화까지 추적</b>: 3D 실측 앱. 예를 들어 렌카(Renka)는 Face ID 아이폰에서 얼굴 표면 1,200개 이상의 점을 mm 로 재고, 황금비·3등분·대칭·윤곽(턱선 각도, fWHR)을 리포트로 보여 주며, 아침 붓기 지수를 날짜별로 기록합니다. 사진은 기기 밖으로 나가지 않고 기본 측정은 무료입니다. 안드로이드 버전은 카메라 영상에서 3D 모델을 추정해 같은 항목을 계산합니다.</li>
+</ul>
+<div class="note">어느 방식이든 결과는 "그 조건에서의 값"입니다. 다른 앱, 다른 사진끼리 점수를 비교하는 것은 의미가 없고, 한 가지 방식으로 같은 조건에서 반복한 값끼리 비교해야 합니다.</div>
+
+    <section class="faq"><h2>자주 묻는 질문</h2><h3>얼굴 분석 앱은 정확한가요?</h3><p>방식에 따라 다릅니다. 사진 기반 앱은 촬영 거리와 각도에 따라 결과가 바뀌고 실제 길이는 알 수 없습니다. 깊이 센서 기반 3D 실측은 촬영 조건의 영향이 적고 mm 단위 결과가 나옵니다. 같은 사진을 두 번 넣어 결과가 같은지 시험해 보면 됩니다.</p><h3>얼굴 분석 앱에 올린 사진은 어디로 가나요?</h3><p>앱마다 다릅니다. 서버로 업로드해 분석하는 앱이 많고, 기기 안에서만 처리하는 앱도 있습니다. 개인정보 처리방침에서 사진 전송 여부를 확인하세요. 렌카는 사진과 3D 데이터를 기기 밖으로 내보내지 않습니다.</p><h3>안드로이드에서도 3D 얼굴 실측이 되나요?</h3><p>안드로이드 대부분의 기종에는 아이폰 Face ID 같은 깊이 센서가 없어서, 카메라 영상에서 3D 얼굴 모델을 추정하는 방식으로 근사합니다. 깊이 센서 실측보다 정밀도는 낮지만 사진 한 장 방식보다 촬영 조건의 영향이 적습니다.</p><h3>매력도 점수는 믿을 만한가요?</h3><p>점수는 비율·대칭 같은 기하 지표를 하나로 요약한 값이고, 매력은 그 외 요소가 훨씬 많습니다. 점수 자체보다 어느 항목이 어떻게 나왔는지, 그리고 시간에 따라 어떻게 변하는지를 보는 용도로 쓰는 것이 맞습니다.</p></section>
+    <section class="cta">
+        <h2>내 얼굴을 mm 로 재 보기</h2>
+        <p>렌카(Renka)는 Face ID 아이폰의 깊이 센서로 얼굴 1,200개 이상의 점을 실측해 비율·대칭·얼굴형·붓기를 리포트로 보여 줍니다. 기본 측정은 무료이고 사진은 기기 밖으로 나가지 않습니다.</p>
+        <div class="btns"><a class="btn dark" href="../../go/appstore/">App Store</a><a class="btn light" href="../../go/googleplay/">Google Play</a><a class="btn light" href="../">앱 자세히 보기</a></div>
+    </section>
+    <section class="related"><h2>함께 읽기</h2><ul><li><a href="morning-face-swelling.html">아침 얼굴 붓기 원인과 빼는 법, 그리고 붓기를 숫자로 재는 법</a></li><li><a href="face-golden-ratio.html">얼굴 황금비율이란? 3등분·5등분으로 내 얼굴 비율 직접 계산하는 법</a></li><li><a href="how-to-measure-face-size.html">얼굴 크기 재는 법: 줄자, 사진, 3D 스캔 중 무엇이 정확할까</a></li></ul></section>
+</main>
+<footer class="footer">© 2026 FatTail Labs · <a href="../../privacy-policy.html">개인정보처리방침</a> · <a href="../../terms-of-service.html">이용약관</a> · 이 글은 일반적인 정보이며 의학적 진단을 대신하지 않습니다.</footer>
+</body>
+</html>
