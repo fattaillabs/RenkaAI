@@ -1,0 +1,86 @@
+{
+  "en": {
+    "html_lang": "en",
+    "title": "Renka — True 3D Face Analyzer | Real-mm Face Measurement, Attractiveness Report & Beauty Simulator",
+    "description": "Renka measures your face in real millimeters with TrueScale technology. Face shape analysis, golden-ratio & symmetry attractiveness reports, a plastic-surgery simulator and puffiness tracking — all on-device. Your photos never leave your phone.",
+    "keywords": "렌카, Renka, 얼굴 크기 측정, 얼굴 실측, 얼굴형 분석, 얼굴형 테스트, 매력도 테스트, 황금비율, 좌우대칭, 성형 시뮬레이션, 붓기 관리, 뷰티 앱, TrueScale, face measurement app, face analyzer, golden ratio face, face symmetry, beauty simulator",
+    "og_title": "Renka — True 3D Face Analyzer",
+    "og_description": "Real-mm face measurement with TrueScale. Face shape, golden ratio & symmetry reports, and a beauty simulator — all on-device.",
+    "og_locale": "en_US",
+    "ld_description": "Renka measures your face in real millimeters with TrueScale technology: face shape analysis, golden-ratio and symmetry attractiveness reports, a beauty simulator and puffiness tracking, processed entirely on-device.",
+    "play_hl": "",
+    "dir": ""
+  },
+  "ko": {
+    "html_lang": "ko",
+    "title": "Renka(렌카) — 얼굴 실측 · 매력도 분석 · 성형 시뮬레이션 앱 | True 3D Face Analyzer",
+    "description": "렌카 앱(Renka)은 TrueScale 기술로 얼굴 크기를 mm 단위로 실측하는 얼굴 분석 앱입니다. 얼굴형 분석, 황금비율·좌우대칭 매력도 리포트, 성형 시뮬레이션, 붓기 관리까지 — 사진은 기기 밖으로 나가지 않습니다.",
+    "keywords": "렌카, 렌카 앱, 렌카 얼굴 측정, Renka, Renka app, 얼굴 크기 측정, 얼굴 실측, 얼굴형 분석, 얼굴형 테스트, 매력도 테스트, 황금비율, 좌우대칭, 성형 시뮬레이션, 붓기 관리, 뷰티 앱, TrueScale, face measurement app, face analyzer, golden ratio face, face symmetry, beauty simulator",
+    "og_title": "Renka(렌카) — 얼굴 실측 · 매력도 분석 · 성형 시뮬레이션 앱",
+    "og_description": "TrueScale 기술로 얼굴을 mm 단위로 실측. 얼굴형·황금비율·좌우대칭 분석과 성형 시뮬레이션을 한 앱에서. 사진은 기기 밖으로 나가지 않습니다.",
+    "og_locale": "ko_KR",
+    "ld_description": "TrueScale 기술로 얼굴을 mm 단위로 실측하는 얼굴 분석 앱. 얼굴형 분석, 황금비율·좌우대칭 매력도 리포트, 성형 시뮬레이션, 붓기 관리 기능을 제공하며 모든 분석은 기기 안에서 처리됩니다.",
+    "play_hl": "ko",
+    "dir": "ko/"
+  },
+  "ja": {
+    "html_lang": "ja",
+    "title": "Renka(レンカ) — 顔実測・魅力度分析・整形シミュレーションアプリ | True 3D Face Analyzer",
+    "description": "RenkaはTrueScale技術で顔をmm単位で実測する顔分析アプリです。顔型分析、黄金比・左右対称の魅力度レポート、整形シミュレーション、むくみ管理まで。写真は端末の外に出ません。",
+    "keywords": "렌카, Renka, 얼굴 크기 측정, 얼굴 실측, 얼굴형 분석, 얼굴형 테스트, 매력도 테스트, 황금비율, 좌우대칭, 성형 시뮬레이션, 붓기 관리, 뷰티 앱, TrueScale, face measurement app, face analyzer, golden ratio face, face symmetry, beauty simulator",
+    "og_title": "Renka(レンカ) — 顔実測・魅力度分析・整形シミュレーションアプリ",
+    "og_description": "TrueScale技術で顔をmm単位で実測。顔型・黄金比・左右対称の分析と整形シミュレーションをひとつのアプリで。",
+    "og_locale": "ja_JP",
+    "ld_description": "TrueScale技術で顔をmm単位で実測する顔分析アプリ。顔型分析、黄金比・左右対称の魅力度レポート、整形シミュレーション、むくみ管理機能を提供し、すべての分析は端末内で処理されます。",
+    "play_hl": "ja",
+    "dir": "ja/"
+  },
+  "zh-CN": {
+    "html_lang": "zh-CN",
+    "title": "Renka — 毫米级面部实测·颜值分析·整形模拟App | True 3D Face Analyzer",
+    "description": "Renka 使用 TrueScale 技术以毫米为单位实测面部尺寸。脸型分析、黄金比例与对称性颜值报告、整形模拟、浮肿管理——所有分析均在设备端完成，照片不会离开您的手机。",
+    "keywords": "렌카, Renka, 얼굴 크기 측정, 얼굴 실측, 얼굴형 분석, 얼굴형 테스트, 매력도 테스트, 황금비율, 좌우대칭, 성형 시뮬레이션, 붓기 관리, 뷰티 앱, TrueScale, face measurement app, face analyzer, golden ratio face, face symmetry, beauty simulator",
+    "og_title": "Renka — 毫米级面部实测·颜值分析·整形模拟App",
+    "og_description": "TrueScale 技术毫米级实测面部。脸型、黄金比例与对称性分析加整形模拟，一个App搞定。",
+    "og_locale": "zh_CN",
+    "ld_description": "使用 TrueScale 技术以毫米为单位实测面部尺寸的面部分析App。提供脸型分析、黄金比例与对称性颜值报告、整形模拟和浮肿管理，所有分析均在设备端完成。",
+    "play_hl": "zh-CN",
+    "dir": "zh-cn/"
+  },
+  "zh-TW": {
+    "html_lang": "zh-TW",
+    "title": "Renka — 毫米級臉部實測·顏值分析·整形模擬App | True 3D Face Analyzer",
+    "description": "Renka 使用 TrueScale 技術以毫米為單位實測臉部尺寸。臉型分析、黃金比例與對稱性顏值報告、整形模擬、浮腫管理——所有分析皆在裝置端完成，照片不會離開您的手機。",
+    "keywords": "렌카, Renka, 얼굴 크기 측정, 얼굴 실측, 얼굴형 분석, 얼굴형 테스트, 매력도 테스트, 황금비율, 좌우대칭, 성형 시뮬레이션, 붓기 관리, 뷰티 앱, TrueScale, face measurement app, face analyzer, golden ratio face, face symmetry, beauty simulator",
+    "og_title": "Renka — 毫米級臉部實測·顏值分析·整形模擬App",
+    "og_description": "TrueScale 技術毫米級實測臉部。臉型、黃金比例與對稱性分析加整形模擬，一個App搞定。",
+    "og_locale": "zh_TW",
+    "ld_description": "使用 TrueScale 技術以毫米為單位實測臉部尺寸的臉部分析App。提供臉型分析、黃金比例與對稱性顏值報告、整形模擬和浮腫管理，所有分析皆在裝置端完成。",
+    "play_hl": "zh-TW",
+    "dir": "zh-tw/"
+  },
+  "es": {
+    "dir": "es/",
+    "html_lang": "es",
+    "og_locale": "es_ES",
+    "play_hl": "es",
+    "title": "Renka — Analizador facial 3D real | Medición del rostro en mm, informe de atractivo y simulador de belleza",
+    "description": "Renka mide tu rostro en milímetros reales con la tecnología TrueScale. Análisis de la forma del rostro, informes de atractivo por proporción áurea y simetría, simulador de cirugía estética y seguimiento de la hinchazón, todo en tu dispositivo. Tus fotos nunca salen del teléfono.",
+    "keywords": "Renka, app de medición facial, analizador facial, forma del rostro, proporción áurea del rostro, simetría facial, simulador de cirugía estética, app de belleza, TrueScale",
+    "og_title": "Renka — Analizador facial 3D real",
+    "og_description": "Medición del rostro en mm reales con TrueScale. Forma del rostro, proporción áurea y simetría, y un simulador de belleza, todo en tu dispositivo.",
+    "ld_description": "Renka mide el rostro en milímetros reales con la tecnología TrueScale: análisis de la forma del rostro, informes de atractivo por proporción áurea y simetría, simulador de belleza y seguimiento de la hinchazón, procesado por completo en el dispositivo."
+  },
+  "id": {
+    "dir": "id/",
+    "html_lang": "id",
+    "og_locale": "id_ID",
+    "play_hl": "id",
+    "title": "Renka — Analisis Wajah 3D Sejati | Ukur Wajah dalam mm, Laporan Daya Tarik & Simulator Kecantikan",
+    "description": "Renka mengukur wajahmu dalam milimeter nyata dengan teknologi TrueScale. Analisis bentuk wajah, laporan daya tarik rasio emas dan simetri, simulator operasi plastik, dan pelacakan bengkak, semuanya di perangkat. Fotomu tidak pernah keluar dari ponsel.",
+    "keywords": "Renka, aplikasi ukur wajah, analisis wajah, bentuk wajah, rasio emas wajah, simetri wajah, simulator operasi plastik, aplikasi kecantikan, TrueScale",
+    "og_title": "Renka — Analisis Wajah 3D Sejati",
+    "og_description": "Pengukuran wajah dalam mm nyata dengan TrueScale. Bentuk wajah, rasio emas dan simetri, serta simulator kecantikan, semuanya di perangkat.",
+    "ld_description": "Renka mengukur wajah dalam milimeter nyata dengan teknologi TrueScale: analisis bentuk wajah, laporan daya tarik rasio emas dan simetri, simulator kecantikan, dan pelacakan bengkak, semuanya diproses di perangkat."
+  }
+}
