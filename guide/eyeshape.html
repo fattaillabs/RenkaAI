@@ -148,6 +148,7 @@
             <a href="#tilt" class="section-chip"><span lang="en">Corner tilt</span><span lang="ko">눈꼬리 각도</span><span lang="ja">目尻の角度</span><span lang="zh-CN">眼尾角度</span><span lang="zh-TW">眼尾角度</span><span lang="es">Inclinación</span><span lang="id">Kemiringan sudut</span></a>
             <a href="#aspect" class="section-chip"><span lang="en">Proportion</span><span lang="ko">눈매 비율</span><span lang="ja">目の比率</span><span lang="zh-CN">眼型比例</span><span lang="zh-TW">眼型比例</span><span lang="es">Proporción</span><span lang="id">Proporsi</span></a>
             <a href="#cover" class="section-chip"><span lang="en">Lid coverage</span><span lang="ko">눈꺼풀 덮임</span><span lang="ja">まぶたの被り</span><span lang="zh-CN">眼睑覆盖</span><span lang="zh-TW">眼瞼覆蓋</span><span lang="es">Cobertura</span><span lang="id">Tutupan kelopak</span></a>
+            <a href="#brow" class="section-chip"><span lang="en">Brows</span><span lang="ko">눈썹</span><span lang="ja">眉</span><span lang="zh-CN">眉毛</span><span lang="zh-TW">眉毛</span><span lang="es">Cejas</span><span lang="id">Alis</span></a>
             <a href="#glossary" class="section-chip"><span lang="en">Terms</span><span lang="ko">용어 사전</span><span lang="ja">用語辞典</span><span lang="zh-CN">术语对照</span><span lang="zh-TW">術語對照</span><span lang="es">Términos</span><span lang="id">Istilah</span></a>
         </nav>
 
@@ -829,7 +830,7 @@
     <script>
         var VALID_LANGS = ['en','ko','ja','zh-CN','zh-TW','es', 'id'];
         var AXES = { tilt: ['downturned','balanced','upturned'], aspect: ['round','between','almond'], cover: ['open','medium','deep'] };
-        var VALID_SECTIONS = ['tilt','aspect','cover','glossary','downturned','balanced','upturned','round','between','almond','open','medium','deep'];
+        var VALID_SECTIONS = ['tilt','aspect','cover','brow','glossary','downturned','balanced','upturned','round','between','almond','open','medium','deep','brow-down','brow-balanced','brow-up','brow-gap'];
         function setLang(lang) {
             VALID_LANGS.forEach(function(c){ document.body.classList.remove('lang-' + c); });
             document.body.classList.add('lang-' + lang);
