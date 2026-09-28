@@ -103,7 +103,7 @@ def build(lang, cfg, master):
 
     # ── 히어로 사진: JS 없이도 로케일에 맞는 모델이 보이게 ──
     if lang == "en":
-        s = s.replace('src="assets/hero-face.jpg"', 'src="assets/hero-face-en.jpg"', 1)
+        s = s.replace('src="assets/hero-face.jpg"', 'src="assets/hero-face-en.jpg"')   # 히어로 + 스캔 여정 무대
         s = s.replace('src="assets/face-male.jpg"', 'src="assets/face-male-en.jpg"', 1)
 
     # ── 언어 버튼·body class ──
