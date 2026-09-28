@@ -927,7 +927,7 @@
         function goLang(lang) {
             localStorage.setItem('preferred-lang', lang);
             if (lang === PAGE_LANG) return;
-            location.href = LANG_HOME[lang];
+            location.href = LANG_HOME[lang] + location.search + location.hash;
         }
         function setLang(lang) {
             document.body.className = 'lang-' + lang;
@@ -969,7 +969,14 @@
             if (langParam && supportedLangs.includes(langParam)) {
                 setLang(langParam);
             } else {
-                setLang(PAGE_LANG);
+                const saved = localStorage.getItem('preferred-lang');
+                if (saved && supportedLangs.includes(saved) && saved !== PAGE_LANG && LANG_HOME[saved]) {
+                    // 리다이렉트에 쿼리·해시를 실어 보낸다 — 안 그러면 광고 링크의 utm_* 가
+                    // 주소창에서 사라져 링크가 살아 있는지 확인할 방법이 없어진다(세션 캡처는 이미 끝난 뒤다).
+                    location.replace(LANG_HOME[saved] + location.search + location.hash);
+                } else {
+                    setLang(PAGE_LANG);
+                }
             }
 
             // 스크롤 리빌
