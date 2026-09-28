@@ -113,9 +113,13 @@ def build(lang, cfg, master):
 
     # 로케일 페이지는 저장된 선호 언어로 되돌리지 않는다(URL이 곧 선택).
     if lang != "en":
-        s = re.sub(r"const saved = localStorage\.getItem\('preferred-lang'\);\s*"
-                   r"if \(saved && [^\n]*\) \{\s*location\.replace\(LANG_HOME\[saved\]\);\s*\} else \{\s*"
-                   r"setLang\(PAGE_LANG\);\s*\}", "setLang(PAGE_LANG);", s, count=1)
+        # ⚠️ 원본의 리다이렉트 문장 모양이 바뀌면(주석 추가·쿼리 이어붙이기) 이 치환이 조용히 빗나가
+        #    로케일 페이지에 리다이렉트가 새어 들어간다(2026-09-28 실제로 그랬다). 그래서 안쪽을 느슨하게 잡고,
+        #    못 찾으면 빌드를 멈춘다.
+        s, n = re.subn(r"const saved = localStorage\.getItem\('preferred-lang'\);\s*"
+                       r"if \(saved && [^\n]*\) \{.*?location\.replace\([^\n]*\);\s*\} else \{\s*"
+                       r"setLang\(PAGE_LANG\);\s*\}", "setLang(PAGE_LANG);", s, count=1, flags=re.S)
+        assert n == 1, "saved-lang redirect block not found — 원본 문장 모양이 바뀌었다"
 
     # ── 본문에서 다른 언어 제거 ──
     head, body = s.split("<body", 1)
