@@ -126,9 +126,24 @@ footer a{color:var(--muted)}
     }
     var ct = slug(p.utm_campaign) || slug(p.utm_source);
 
-    // 스토어 링크는 /go/ 경유 페이지가 sessionStorage 의 이 값을 읽어 조립한다.
-        // 여기서 직접 재작성하지 않는다 — 경유 페이지를 거쳐야 클릭이 계측된다(2026-09-04).
+    // 스토어 링크는 /go/ 경유 페이지가 조립한다 — 경유를 거쳐야 클릭이 계측된다(2026-09-04).
+        // ⚠️ sessionStorage 만으로는 못 넘긴다(틱톡 인앱 브라우저에서 유실, 2026-10-07 실측).
+        // 링크 자체에도 실어 보낸다 — /go/ 에 location.search 폴백이 있어 둘 중 하나만 살아도 복구된다.
+        var qs = Object.keys(p).map(function (k) {
+            return encodeURIComponent(k) + '=' + encodeURIComponent(p[k]);
+        }).join('&');
+        if (qs) {
+            Array.prototype.forEach.call(document.querySelectorAll('a[href*="/go/"]'), function (a) {
+                var h = a.getAttribute('href');
+                if (!h || h.indexOf('utm_') > -1) return;
+                a.setAttribute('href', h + (h.indexOf('?') > -1 ? '&' : '?') + qs);
+            });
+        }
         })();
 </script>
 
+<!-- Cloudflare Web Analytics — 2026-10-01 추가.
+     이 페이지는 일본 인스타 부스트의 목적지인데 비콘이 빠져 있어서
+     메타가 보고한 웹사이트 방문(9/27 종료분 351 · 진행분 90)이 CF 에 0 으로 보였다. -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "ba73547384174772b4b3b8938d8c6406"}'></script>
 </body></html>

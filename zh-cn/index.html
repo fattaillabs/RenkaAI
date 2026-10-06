@@ -1162,8 +1162,21 @@
         }
         var ct = slug(p.utm_campaign) || slug(p.utm_source);
 
-        // 스토어 링크는 /go/ 경유 페이지가 sessionStorage 의 이 값을 읽어 조립한다.
-        // 여기서 직접 재작성하지 않는다 — 경유 페이지를 거쳐야 클릭이 계측된다(2026-09-04).
+        // 스토어 링크는 /go/ 경유 페이지가 조립한다 — 경유를 거쳐야 클릭이 계측된다(2026-09-04).
+        // ⚠️ 다만 sessionStorage 만으로는 못 넘긴다. 틱톡 인앱 브라우저에서 /go/ 로 넘어갈 때
+        // 세션이 유실돼 ct 가 통째로 날아갔다(2026-10-07 실측: 광고 유입 631 방문에 ASC 귀속 0건,
+        // 같은 기간 인스타 바이오는 정상 귀속). 그래서 링크 자체에도 실어 보낸다 —
+        // /go/ 쪽에 이미 `location.search` 폴백이 있어 둘 중 하나만 살아도 복구된다.
+        var qs = Object.keys(p).map(function (k) {
+            return encodeURIComponent(k) + '=' + encodeURIComponent(p[k]);
+        }).join('&');
+        if (qs) {
+            Array.prototype.forEach.call(document.querySelectorAll('a[href*="/go/"]'), function (a) {
+                var h = a.getAttribute('href');
+                if (!h || h.indexOf('utm_') > -1) return;   // 이미 붙어 있으면 건드리지 않는다
+                a.setAttribute('href', h + (h.indexOf('?') > -1 ? '&' : '?') + qs);
+            });
+        }
         })();
     </script>
     <!-- 모션(히어로 메쉬·스캔 여정·개인정보·CTA) — 점진적 향상, 없어도 페이지는 그대로 (2026-09-29) -->
