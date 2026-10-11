@@ -23,6 +23,8 @@
         h1 { font-size: 29px; font-weight: 800; margin-bottom: 8px; color: #fff; letter-spacing: -0.3px; text-shadow: 0 1px 0 #6aa83a, 0 2px 0 #5d9931, 2px 3px 7px rgba(80,140,40,0.35); }
         .subtitle { font-size: 14px; color: #6b7a60; margin-bottom: 30px; }
 
+        .cat-head { font-size: 13px; font-weight: 800; color: #6aa83a; letter-spacing: 0.3px; margin: 22px 0 10px 4px; text-transform: uppercase; }
+        .cat-head:first-of-type { margin-top: 4px; }
         .cat-card { display: block; text-decoration: none; color: inherit; background: rgba(255,255,255,0.5); border: 1px solid rgba(255,255,255,0.65); border-radius: 18px; padding: 22px; margin-bottom: 14px; box-shadow: 0 2px 12px rgba(99,150,55,0.1); transition: all 0.2s; }
         .cat-card.active:hover { background: rgba(255,255,255,0.7); box-shadow: 0 5px 18px rgba(99,150,55,0.2); transform: translateY(-2px); }
         .cat-card.soon { opacity: 0.65; cursor: default; box-shadow: 0 1px 6px rgba(99,150,55,0.07); }
@@ -87,17 +89,12 @@
             <span lang="es">Consejos de estilo adaptados a tus rasgos faciales medidos.</span><span lang="id">Tips penataan yang disesuaikan dengan fitur wajah hasil pengukuranmu.</span>
         </p>
 
+        <h3 class="cat-head"><span lang="en">Face shape &amp; contour</span><span lang="ko">얼굴형·윤곽</span><span lang="ja">顔型・輪郭</span><span lang="zh-CN">脸型·轮廓</span><span lang="zh-TW">臉型·輪廓</span><span lang="es">Forma y contorno</span><span lang="id">Bentuk &amp; kontur wajah</span></h3>
         <!-- 헤어 (활성) -->
         <a class="cat-card active" href="hair.html">
             <span class="cat-arrow">›</span>
             <div class="cat-title">💇 <span lang="en">Hairstyles by Face Shape</span><span lang="ko">얼굴형별 헤어스타일</span><span lang="ja">顔型別ヘアスタイル</span><span lang="zh-CN">脸型对应发型</span><span lang="zh-TW">臉型對應髮型</span><span lang="es">Peinados según la forma del rostro</span><span lang="id">Gaya Rambut Sesuai Bentuk Wajah</span></div>
             <div class="cat-desc"><span lang="en">Cuts that suit your face shape, and what to avoid.</span><span lang="ko">내 얼굴형에 어울리는 컷과 피해야 할 스타일.</span><span lang="ja">顔型に似合うカットと避けたいスタイル。</span><span lang="zh-CN">适合您脸型的发型与应避免的造型。</span><span lang="zh-TW">適合您臉型的髮型與應避免的造型。</span><span lang="es">Cortes que favorecen la forma de tu rostro y los que conviene evitar.</span><span lang="id">Potongan yang cocok untuk bentuk wajahmu, dan yang sebaiknya dihindari.</span></div>
-        </a>
-        <!-- 중안부 메이크업 (활성) -->
-        <a class="cat-card active" href="makeup.html">
-            <span class="cat-arrow">›</span>
-            <div class="cat-title">💄 <span lang="en">Makeup by Midface Ratio</span><span lang="ko">중안부 메이크업 가이드</span><span lang="ja">中顔面メイクガイド</span><span lang="zh-CN">中庭妆容指南</span><span lang="zh-TW">中庭妝容指南</span><span lang="es">Maquillaje según la proporción del tercio medio</span><span lang="id">Makeup Sesuai Rasio Wajah Tengah</span></div>
-            <div class="cat-desc"><span lang="en">Makeup tips tuned to your measured midface length.</span><span lang="ko">측정된 중안부 길이에 맞춘 메이크업 보정 팁.</span><span lang="ja">測定された中顔面の長さに合わせたメイクのコツ。</span><span lang="zh-CN">针对测得的中庭长度的妆容修饰技巧。</span><span lang="zh-TW">針對測得的中庭長度的妝容修飾技巧。</span><span lang="es">Consejos de maquillaje ajustados a la longitud medida de tu tercio medio.</span><span lang="id">Tips makeup yang disesuaikan dengan panjang wajah tengah hasil pengukuran.</span></div>
         </a>
         <!-- 컨투어링 (활성) -->
         <a class="cat-card active" href="contouring.html">
@@ -105,17 +102,24 @@
             <div class="cat-title">🪞 <span lang="en">Contouring by Face Shape</span><span lang="ko">얼굴형별 컨투어링</span><span lang="ja">顔型別コントゥアリング</span><span lang="zh-CN">脸型修容指南</span><span lang="zh-TW">臉型修容指南</span><span lang="es">Contouring según la forma del rostro</span><span lang="id">Contouring Sesuai Bentuk Wajah</span></div>
             <div class="cat-desc"><span lang="en">Where to shade and highlight for your measured face shape.</span><span lang="ko">측정된 얼굴형에 맞춰 음영·하이라이트를 넣을 위치.</span><span lang="ja">測定された顔型に合わせたシェーディングとハイライトの位置。</span><span lang="zh-CN">根据测得的脸型确定阴影与高光的位置。</span><span lang="zh-TW">根據測得的臉型確定陰影與高光的位置。</span><span lang="es">Dónde sombrear e iluminar según la forma medida de tu rostro.</span><span lang="id">Di mana perlu shading dan highlight untuk bentuk wajah hasil pengukuranmu.</span></div>
         </a>
+        <!-- 볼륨 밸런스 메이크업 (활성, 2026-10-12) -->
+        <a class="cat-card active" href="sculpting.html">
+            <span class="cat-arrow">›</span>
+            <div class="cat-title">🧊 <span lang="en">Face Sculpting Makeup</span><span lang="ko">볼륨 밸런스 메이크업</span><span lang="ja">ボリュームバランスメイク</span><span lang="zh-CN">容积平衡修容妆</span><span lang="zh-TW">體積平衡修容妝</span><span lang="es">Maquillaje de esculpido facial</span><span lang="id">Makeup Sculpting Wajah</span></div>
+            <div class="cat-desc"><span lang="en">Highlight or shade each region by your measured volume balance.</span><span lang="ko">측정된 볼륨 밸런스에 맞춰 부위별로 밝히거나 음영을 넣는 법.</span><span lang="ja">測定されたボリュームバランスに合わせた部位別ハイライト・シェーディング。</span><span lang="zh-CN">按测得的体积平衡，分部位提亮或打阴影。</span><span lang="zh-TW">按測得的體積平衡，分部位提亮或打陰影。</span><span lang="es">Dónde iluminar o sombrear cada zona según tu balance de volumen medido.</span><span lang="id">Cara menerangkan atau membayangi tiap area sesuai keseimbangan volume hasil pengukuran.</span></div>
+        </a>
+        <!-- 옆얼굴 스타일링 (활성) -->
+        <a class="cat-card active" href="profile.html">
+            <span class="cat-arrow">›</span>
+            <div class="cat-title">🧍 <span lang="en">Side-Profile Styling</span><span lang="ko">옆얼굴형별 스타일링</span><span lang="ja">横顔タイプ別スタイリング</span><span lang="zh-CN">侧脸类型造型</span><span lang="zh-TW">側臉類型造型</span><span lang="es">Estilismo según el perfil lateral</span><span lang="id">Penataan Profil Samping</span></div>
+            <div class="cat-desc"><span lang="en">Hair &amp; makeup to balance your measured profile (convex / concave).</span><span lang="ko">측정된 옆얼굴형(볼록·오목)에 맞춘 헤어·메이크업 균형 팁.</span><span lang="ja">測定された横顔タイプ（凸・凹）に合わせたヘア・メイクのバランス。</span><span lang="zh-CN">针对测得的侧脸类型（凸/凹）的发型与妆容平衡技巧。</span><span lang="zh-TW">針對測得的側臉類型（凸/凹）的髮型與妝容平衡技巧。</span><span lang="es">Peinado y maquillaje para equilibrar tu perfil medido (convexo / cóncavo).</span><span lang="id">Rambut &amp; makeup untuk menyeimbangkan profil samping hasil pengukuranmu (cembung / cekung).</span></div>
+        </a>
+        <h3 class="cat-head"><span lang="en">Eyes &amp; skin</span><span lang="ko">눈·피부</span><span lang="ja">目もと・肌</span><span lang="zh-CN">眼部·肌肤</span><span lang="zh-TW">眼部·肌膚</span><span lang="es">Ojos y piel</span><span lang="id">Mata &amp; kulit</span></h3>
         <!-- 눈매 (활성) -->
         <a class="cat-card active" href="eyeshape.html">
             <span class="cat-arrow">›</span>
             <div class="cat-title">👁️ <span lang="en">Eye Shape</span><span lang="ko">눈매</span><span lang="ja">目もと</span><span lang="zh-CN">眼型</span><span lang="zh-TW">眼型</span><span lang="es">Forma de ojos</span><span lang="id">Bentuk Mata</span></div>
             <div class="cat-desc"><span lang="en">Your tilt, proportion and lid coverage — with makeup that suits each, and a Korean–English term guide.</span><span lang="ko">눈꼬리 각도·비율·눈꺼풀 덮임별 메이크업과, 한국식·국제 용어 대조 사전.</span><span lang="ja">目尻の角度・比率・まぶたの被り別のメイクと、韓国式・国際用語の対照辞典。</span><span lang="zh-CN">按眼尾角度、比例与眼睑覆盖的妆容建议，附韩式与国际术语对照。</span><span lang="zh-TW">按眼尾角度、比例與眼瞼覆蓋的妝容建議，附韓式與國際術語對照。</span><span lang="es">Inclinación, proporción y cobertura, con maquillaje para cada una y glosario coreano–internacional.</span><span lang="id">Kemiringan, proporsi, dan tutupan kelopak matamu — dengan makeup yang cocok untuk masing-masing, plus panduan istilah Korea–internasional.</span></div>
-        </a>
-        <!-- 퍼스널 컬러 (활성) -->
-        <a class="cat-card active" href="personalcolor.html">
-            <span class="cat-arrow">›</span>
-            <div class="cat-title">🎨 <span lang="en">Personal Color</span><span lang="ko">퍼스널 컬러</span><span lang="ja">パーソナルカラー</span><span lang="zh-CN">个人色彩</span><span lang="zh-TW">個人色彩</span><span lang="es">Color personal</span><span lang="id">Warna Personal</span></div>
-            <div class="cat-desc"><span lang="en">Colors, makeup and foundation tones for your analyzed season.</span><span lang="ko">분석된 시즌에 맞춘 컬러·메이크업·파운데이션 톤.</span><span lang="ja">診断シーズンに合わせたカラー・メイク・ファンデのトーン。</span><span lang="zh-CN">针对诊断季型的色彩、妆容与粉底色调。</span><span lang="zh-TW">針對診斷季型的色彩、妝容與粉底色調。</span><span lang="es">Colores, maquillaje y tonos de base para tu temporada analizada.</span><span lang="id">Warna, makeup, dan tone foundation untuk musim (season) hasil analisismu.</span></div>
         </a>
         <!-- 피부 케어 (활성) -->
         <a class="cat-card active" href="skin.html">
@@ -129,11 +133,18 @@
             <div class="cat-title">💧 <span lang="en">Face De-puffing Care</span><span lang="ko">붓기 빼는 페이스 케어</span><span lang="ja">むくみ取りケア</span><span lang="zh-CN">面部消肿护理</span><span lang="zh-TW">面部消腫護理</span><span lang="es">Cuidado facial antihinchazón</span><span lang="id">Perawatan Mengempiskan Bengkak Wajah</span></div>
             <div class="cat-desc"><span lang="en">Area-by-area lymph massage and habits, matched to your measured swelling.</span><span lang="ko">측정된 붓기에 맞춘 부위별 림프 마사지와 식이·생활 습관.</span><span lang="ja">測定されたむくみに合わせた部位別リンパマッサージと習慣。</span><span lang="zh-CN">针对测得浮肿的分部位淋巴按摩与生活习惯。</span><span lang="zh-TW">針對測得浮腫的分部位淋巴按摩與生活習慣。</span><span lang="es">Masaje linfático por zonas y hábitos, adaptados a la hinchazón medida.</span><span lang="id">Pijat limfatik per area dan kebiasaan harian, disesuaikan dengan bengkak hasil pengukuranmu.</span></div>
         </a>
-        <!-- 옆얼굴 스타일링 (활성) -->
-        <a class="cat-card active" href="profile.html">
+        <h3 class="cat-head"><span lang="en">Makeup &amp; color</span><span lang="ko">메이크업·컬러</span><span lang="ja">メイク・カラー</span><span lang="zh-CN">妆容·色彩</span><span lang="zh-TW">妝容·色彩</span><span lang="es">Maquillaje y color</span><span lang="id">Makeup &amp; warna</span></h3>
+        <!-- 중안부 메이크업 (활성) -->
+        <a class="cat-card active" href="makeup.html">
             <span class="cat-arrow">›</span>
-            <div class="cat-title">🧍 <span lang="en">Side-Profile Styling</span><span lang="ko">옆얼굴형별 스타일링</span><span lang="ja">横顔タイプ別スタイリング</span><span lang="zh-CN">侧脸类型造型</span><span lang="zh-TW">側臉類型造型</span><span lang="es">Estilismo según el perfil lateral</span><span lang="id">Penataan Profil Samping</span></div>
-            <div class="cat-desc"><span lang="en">Hair &amp; makeup to balance your measured profile (convex / concave).</span><span lang="ko">측정된 옆얼굴형(볼록·오목)에 맞춘 헤어·메이크업 균형 팁.</span><span lang="ja">測定された横顔タイプ（凸・凹）に合わせたヘア・メイクのバランス。</span><span lang="zh-CN">针对测得的侧脸类型（凸/凹）的发型与妆容平衡技巧。</span><span lang="zh-TW">針對測得的側臉類型（凸/凹）的髮型與妝容平衡技巧。</span><span lang="es">Peinado y maquillaje para equilibrar tu perfil medido (convexo / cóncavo).</span><span lang="id">Rambut &amp; makeup untuk menyeimbangkan profil samping hasil pengukuranmu (cembung / cekung).</span></div>
+            <div class="cat-title">💄 <span lang="en">Makeup by Midface Ratio</span><span lang="ko">중안부 메이크업 가이드</span><span lang="ja">中顔面メイクガイド</span><span lang="zh-CN">中庭妆容指南</span><span lang="zh-TW">中庭妝容指南</span><span lang="es">Maquillaje según la proporción del tercio medio</span><span lang="id">Makeup Sesuai Rasio Wajah Tengah</span></div>
+            <div class="cat-desc"><span lang="en">Makeup tips tuned to your measured midface length.</span><span lang="ko">측정된 중안부 길이에 맞춘 메이크업 보정 팁.</span><span lang="ja">測定された中顔面の長さに合わせたメイクのコツ。</span><span lang="zh-CN">针对测得的中庭长度的妆容修饰技巧。</span><span lang="zh-TW">針對測得的中庭長度的妝容修飾技巧。</span><span lang="es">Consejos de maquillaje ajustados a la longitud medida de tu tercio medio.</span><span lang="id">Tips makeup yang disesuaikan dengan panjang wajah tengah hasil pengukuran.</span></div>
+        </a>
+        <!-- 퍼스널 컬러 (활성) -->
+        <a class="cat-card active" href="personalcolor.html">
+            <span class="cat-arrow">›</span>
+            <div class="cat-title">🎨 <span lang="en">Personal Color</span><span lang="ko">퍼스널 컬러</span><span lang="ja">パーソナルカラー</span><span lang="zh-CN">个人色彩</span><span lang="zh-TW">個人色彩</span><span lang="es">Color personal</span><span lang="id">Warna Personal</span></div>
+            <div class="cat-desc"><span lang="en">Colors, makeup and foundation tones for your analyzed season.</span><span lang="ko">분석된 시즌에 맞춘 컬러·메이크업·파운데이션 톤.</span><span lang="ja">診断シーズンに合わせたカラー・メイク・ファンデのトーン。</span><span lang="zh-CN">针对诊断季型的色彩、妆容与粉底色调。</span><span lang="zh-TW">針對診斷季型的色彩、妝容與粉底色調。</span><span lang="es">Colores, maquillaje y tonos de base para tu temporada analizada.</span><span lang="id">Warna, makeup, dan tone foundation untuk musim (season) hasil analisismu.</span></div>
         </a>
     </div>
 

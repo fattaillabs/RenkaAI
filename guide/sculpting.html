@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <script src="gate.js"></script>
+    <title>Face Sculpting Makeup by Volume Balance - Renka</title>
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../assets/favicon-192.png">
+    <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Apple SD Gothic Neo', sans-serif; background: linear-gradient(160deg, #f2fae8 0%, #e2f3d0 100%); background-attachment: fixed; color: #33402d; line-height: 1.75; }
+        .container { max-width: 700px; margin: 0 auto; padding: 36px 20px 80px; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 22px; flex-wrap: wrap; gap: 12px; }
+        .back-link { display: inline-flex; align-items: center; gap: 6px; color: #4e8a2c; text-decoration: none; font-size: 14px; font-weight: 600; }
+        .back-link:hover { text-decoration: underline; }
+        .lang-switcher { display: flex; gap: 6px; flex-wrap: wrap; }
+        .lang-btn { background: rgba(255,255,255,0.7); border: 1px solid #cfe6b5; border-radius: 8px; padding: 7px 10px; font-size: 18px; cursor: pointer; transition: all 0.2s; }
+        .lang-btn:hover { background: #fff; }
+        .lang-btn.active { background: #fff; border-color: #7cb342; box-shadow: 0 1px 5px rgba(124,179,66,0.35); }
+
+        /* 제목 — 흰색 글씨 + 초록 그림자로 포인트 */
+        h1 { font-size: 28px; font-weight: 800; margin-bottom: 8px; color: #fff; letter-spacing: -0.3px; text-shadow: 0 1px 0 #6aa83a, 0 2px 0 #5d9931, 2px 3px 7px rgba(80,140,40,0.35); }
+        .subtitle { font-size: 14px; color: #6b7a60; margin-bottom: 14px; }
+        .auto-note { font-size: 12.5px; color: #87937c; margin-bottom: 24px; }
+
+        /* 중안부 분류 빠른 이동 칩 */
+        .section-nav { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px; }
+        .section-chip { display: inline-block; padding: 7px 13px; font-size: 13px; font-weight: 600; color: #4e6b39; background: rgba(255,255,255,0.75); border: 1px solid #d4e8bd; border-radius: 20px; text-decoration: none; transition: all 0.2s; }
+        .section-chip:hover { background: #fff; border-color: #7cb342; color: #3d6b1f; }
+        .section-chip.active { background: #fff; border-color: #7cb342; color: #3d6b1f; box-shadow: 0 1px 5px rgba(124,179,66,0.35); }
+
+        /* 분류 카드 — 반투명 흰 레이어 (배경 연두가 비쳐 가볍고 산뜻) */
+        .guide-card { scroll-margin-top: 16px; background: rgba(255,255,255,0.5); border: 1px solid rgba(255,255,255,0.65); border-radius: 18px; padding: 24px 22px; margin-bottom: 18px; box-shadow: 0 2px 12px rgba(99,150,55,0.1); }
+        .guide-card h2 { font-size: 22px; font-weight: 800; margin-bottom: 4px; display: flex; align-items: baseline; gap: 8px; color: #3d6b1f; flex-wrap: wrap; }
+        .guide-card h2 .en-name { font-size: 13px; color: #6aa83a; font-weight: 600; }
+        .feature { font-size: 14.5px; color: #56624e; margin: 10px 0 18px; }
+
+        .block-label { font-size: 13px; font-weight: 800; letter-spacing: 0.2px; margin: 16px 0 8px; display: inline-flex; align-items: center; gap: 6px; }
+        .block-label.rec { color: #4e8a2c; }
+        .block-label.avoid { color: #c4882f; }
+        ul.tips { list-style: none; }
+        ul.tips li { position: relative; padding-left: 18px; margin-bottom: 7px; font-size: 14.5px; color: #3f4a39; }
+        ul.tips li::before { content: ''; position: absolute; left: 2px; top: 10px; width: 6px; height: 6px; border-radius: 50%; }
+        ul.tips.rec li::before { background: #7cb342; }
+        ul.tips.avoid li::before { background: #e0ad5f; }
+        /* 번호 매기는 추천 리스트 (이미지의 ①②③ 원과 매칭) */
+        ul.tips.rec.numbered { counter-reset: pt; }
+        ul.tips.rec.numbered li { counter-increment: pt; padding-left: 26px; }
+        ul.tips.rec.numbered li::before { content: counter(pt); width: 17px; height: 17px; left: 0; top: 3px; background: #7cb342; color: #fff; font-size: 10px; font-weight: 800; line-height: 17px; text-align: center; border-radius: 50%; }
+        ul.tips.rec.numbered li.no-num { counter-increment: none; }
+        ul.tips.rec.numbered li.no-num::before { content: ''; width: 6px; height: 6px; left: 2px; top: 10px; line-height: 0; }
+
+        /* 이미지 (분류당 1장) → 사진 넣으면 자동 표시 */
+        .img-row { display: flex; gap: 10px; margin-top: 16px; justify-content: center; }
+        .face-img { width: 240px; max-width: 70%; margin: 0; }
+        .face-img img { width: 100%; height: auto; border-radius: 14px; display: block; background: #eef3e6; }
+        .face-img figcaption { display: none; }
+        .face-img.pending img { display: none; }
+        .face-img.pending { aspect-ratio: 4 / 5; border: 1.5px dashed #b9d49a; border-radius: 14px; display: flex; align-items: center; justify-content: center; text-align: center; background: rgba(255,255,255,0.5); }
+        .face-img.pending figcaption { display: block; font-size: 11px; color: #8aa372; line-height: 1.5; padding: 8px; }
+        .face-img[data-race="caucasian"] { display: none; }
+        body.race-caucasian .face-img[data-race="asian"] { display: none; }
+        body.race-caucasian .face-img[data-race="caucasian"] { display: block; }
+
+        .adapt-note { margin-top: 26px; font-size: 12.5px; color: #5e6d54; line-height: 1.7; background: rgba(255,255,255,0.45); border: 1px solid rgba(255,255,255,0.6); border-radius: 12px; padding: 14px 16px; }
+        body.lang-en .adapt-note .en-extra { display: block; margin-top: 8px; color: #6b7a60; }
+        .footer-note { margin-top: 18px; font-size: 12px; color: #87937c; text-align: center; line-height: 1.7; }
+
+        /* ===== 다국어 표시 제어 (기존 사이트와 동일 메커니즘) ===== */
+        [lang]:not([lang="en"]) { display: none; }
+        body.lang-ko [lang="ko"] { display: block; }
+        body.lang-ko [lang="en"], body.lang-ko [lang="ja"], body.lang-ko [lang="zh-CN"], body.lang-ko [lang="zh-TW"], body.lang-ko [lang="es"], body.lang-ko [lang="id"] { display: none; }
+        body.lang-ja [lang="ja"] { display: block; }
+        body.lang-ja [lang="en"], body.lang-ja [lang="ko"], body.lang-ja [lang="zh-CN"], body.lang-ja [lang="zh-TW"], body.lang-ja [lang="es"], body.lang-ja [lang="id"] { display: none; }
+        body.lang-en [lang="en"] { display: block; }
+        body.lang-en [lang="ko"], body.lang-en [lang="ja"], body.lang-en [lang="zh-CN"], body.lang-en [lang="zh-TW"], body.lang-en [lang="es"], body.lang-en [lang="id"] { display: none; }
+        body.lang-zh-CN [lang="zh-CN"] { display: block; }
+        body.lang-zh-CN [lang="en"], body.lang-zh-CN [lang="ko"], body.lang-zh-CN [lang="ja"], body.lang-zh-CN [lang="zh-TW"], body.lang-zh-CN [lang="es"], body.lang-zh-CN [lang="id"] { display: none; }
+        body.lang-zh-TW [lang="zh-TW"] { display: block; }
+        body.lang-zh-TW [lang="en"], body.lang-zh-TW [lang="ko"], body.lang-zh-TW [lang="ja"], body.lang-zh-TW [lang="zh-CN"], body.lang-zh-TW [lang="es"], body.lang-zh-TW [lang="id"] { display: none; }
+        body.lang-es [lang="es"] { display: block; }
+        body.lang-id [lang="id"] { display: block; }
+        body.lang-es [lang="en"], body.lang-es [lang="ko"], body.lang-es [lang="ja"], body.lang-es [lang="zh-CN"], body.lang-es [lang="zh-TW"], body.lang-es [lang="id"] { display: none; }
+        body.lang-id [lang="en"], body.lang-id [lang="ko"], body.lang-id [lang="ja"], body.lang-id [lang="zh-CN"], body.lang-id [lang="zh-TW"], body.lang-id [lang="es"] { display: none; }
+        /* inline 요소용 */
+        span[lang] { display: none; }
+        body.lang-en span[lang="en"] { display: inline; }
+        body.lang-ko span[lang="ko"] { display: inline; }
+        body.lang-ja span[lang="ja"] { display: inline; }
+        body.lang-zh-CN span[lang="zh-CN"] { display: inline; }
+        body.lang-zh-TW span[lang="zh-TW"] { display: inline; }
+        body.lang-es span[lang="es"] { display: inline; }
+        body.lang-id span[lang="id"] { display: inline; }
+    
+    
+        /* (올리브영 블록 없음) */
+        .oy-rec { margin-top: 18px; padding: 16px 16px 14px; background: rgba(255,255,255,0.45); border: 1px solid rgba(255,255,255,0.6); border-radius: 14px; }
+        .oy-rec .oy-head { font-size: 14px; font-weight: 800; color: #4e8a2c; display: flex; align-items: center; gap: 6px; }
+        .oy-rec .oy-disc { font-size: 11px; color: #8a9483; margin: 11px 0 0; line-height: 1.5; }
+        .oy-list { display: flex; flex-direction: column; gap: 8px; margin-top: 12px; }
+        .oy-item { display: flex; align-items: center; gap: 10px; }
+        .oy-item .oy-cat { font-size: 12px; font-weight: 800; color: #56624e; flex: 0 0 64px; }
+        .oy-item a { flex: 1; display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 13px; font-weight: 700; color: #3d6b1f; text-decoration: none; background: rgba(120,180,70,0.12); border: 1px solid rgba(120,180,70,0.25); border-radius: 10px; padding: 9px 12px; transition: background .15s; }
+        .oy-item a:hover { background: rgba(120,180,70,0.2); }
+        .oy-item a .arr { font-size: 11px; font-weight: 600; color: #6aa83a; white-space: nowrap; }
+            /* 인종 분기 (caucasian, EN/ES 텍스트) */
+        body.lang-en span[lang="en"][data-race="caucasian"] { display: none; }
+        body.lang-en.race-caucasian span[lang="en"][data-race="asian"] { display: none; }
+        body.lang-en.race-caucasian span[lang="en"][data-race="caucasian"] { display: inline; }
+        body.lang-es span[lang="es"][data-race="caucasian"] { display: none; }
+        body.lang-id span[lang="id"][data-race="caucasian"] { display: none; }
+        body.lang-es.race-caucasian span[lang="es"][data-race="asian"] { display: none; }
+        body.lang-id.race-caucasian span[lang="id"][data-race="asian"] { display: none; }
+        body.lang-es.race-caucasian span[lang="es"][data-race="caucasian"] { display: inline; }
+        body.lang-id.race-caucasian span[lang="id"][data-race="caucasian"] { display: inline; }
+
+        /* 볼륨 가이드 전용 */
+        .legend { display: flex; gap: 10px; flex-wrap: wrap; margin: 0 0 22px; }
+        .legend span.k { display: inline-flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 700; color: #4e6b39; background: rgba(255,255,255,0.7); border: 1px solid #d4e8bd; border-radius: 20px; padding: 7px 13px; }
+        .legend i { width: 16px; height: 16px; border-radius: 50%; display: inline-block; border: 1.5px solid #fff; box-shadow: 0 0 0 1px rgba(0,0,0,0.08); }
+        .legend i.add { background: #FFD24A; } .legend i.ease { background: #9C6B4E; }
+        .block-label.ease { color: #8a5a3c; }
+        ul.tips.ease li::before { background: #9C6B4E; }
+        .measure { font-size: 13px; color: #6b7a60; margin: 8px 0 12px; padding: 10px 12px; background: rgba(255,255,255,0.45); border: 1px solid rgba(255,255,255,0.6); border-radius: 10px; line-height: 1.6; }
+        .measure b { color: #4e8a2c; font-weight: 800; margin-right: 6px; }
+        .fig-wrap { margin: 14px 0 6px; }
+        .fig-wrap img { width: 100%; max-width: 420px; height: auto; display: block; margin: 0 auto; border-radius: 14px; }
+        .fig-cap { display: flex; justify-content: space-around; max-width: 420px; margin: 6px auto 0; font-size: 12px; color: #6b7a60; font-weight: 600; }
+        .guide-card.flagged { border: 1.5px solid #7cb342; box-shadow: 0 4px 16px rgba(124,179,66,0.25); }
+        .my-badge { display: none; font-size: 12px; font-weight: 800; border-radius: 12px; padding: 3px 10px; vertical-align: middle; }
+        .guide-card.flagged .my-badge { display: inline-block; }
+        .my-badge.add { background: #FFF1C2; color: #7a5a00; border: 1px solid #f0cf5a; }
+        .my-badge.ease { background: #F0E1D6; color: #6e4328; border: 1px solid #cfa98f; }
+        .result-banner { display: none; border-radius: 14px; padding: 13px 16px; margin-bottom: 22px; background: rgba(124,179,66,0.13); border: 1px solid rgba(124,179,66,0.34); font-size: 13.5px; color: #3f4a39; line-height: 1.7; }
+        .result-banner.active { display: block; }
+        .result-banner strong { color: #3d6b1f; }
+        .result-banner .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+        .result-banner .chips a { text-decoration: none; }
+        .result-banner .chips .my-badge { display: inline-block; }
+        .result-banner .bal { font-size: 12.5px; color: #6b7a60; margin-top: 8px; }
+    </style>
+</head>
+<body class="lang-en">
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="back-link">← <span lang="en">Style Guide</span><span lang="ko">스타일 가이드</span><span lang="ja">スタイルガイド</span><span lang="zh-CN">风格指南</span><span lang="zh-TW">風格指南</span><span lang="es">Guía de estilo</span><span lang="id">Panduan Gaya</span></a>
+            <div class="lang-switcher">
+                <button class="lang-btn active" onclick="setLang('en')" title="English">🇺🇸</button>
+                <button class="lang-btn" onclick="setLang('ko')" title="한국어">🇰🇷</button>
+                <button class="lang-btn" onclick="setLang('ja')" title="日本語">🇯🇵</button>
+                <button class="lang-btn" onclick="setLang('zh-CN')" title="简体中文">🇨🇳</button>
+                <button class="lang-btn" onclick="setLang('zh-TW')" title="繁體中文">🇹🇼</button>
+                <button class="lang-btn" onclick="setLang('es')" title="Español">🇪🇸</button>
+                <button class="lang-btn" onclick="setLang('id')" title="Bahasa Indonesia">🇮🇩</button>
+            </div>
+        </div>
+
+
+        <h1>
+            <span lang="en">Face Sculpting Makeup by Volume Balance</span><span lang="ko">볼륨 밸런스 메이크업 가이드</span><span lang="ja">ボリュームバランス メイクガイド</span><span lang="zh-CN">容积平衡 修容妆容指南</span><span lang="zh-TW">體積平衡 修容妝容指南</span><span lang="es">Maquillaje de esculpido facial por balance de volumen</span><span lang="id">Panduan Makeup Sculpting Berdasarkan Keseimbangan Volume</span>
+            <span class="en-name" lang="ko">Face Sculpting Makeup</span><span class="en-name" lang="ja">Face Sculpting Makeup</span><span class="en-name" lang="zh-CN">Face Sculpting Makeup</span><span class="en-name" lang="zh-TW">Face Sculpting Makeup</span><span class="en-name" lang="es">Face Sculpting Makeup</span><span class="en-name" lang="id">Face Sculpting Makeup</span>
+        </h1>
+        <p class="subtitle"><span lang="en">Highlight where volume helps, shade where it doesn&#x27;t — region by region.</span><span lang="ko">볼륨을 더할 부위는 밝게, 덜어낼 부위는 음영으로 — 부위별로 정리했어요.</span><span lang="ja">ボリュームを足す部位は明るく、引く部位は影で — 部位別にまとめました。</span><span lang="zh-CN">需要增加体积的部位提亮，需要减少的部位打阴影——按部位整理。</span><span lang="zh-TW">需要增加體積的部位提亮，需要減少的部位打陰影——按部位整理。</span><span lang="es">Ilumina donde falta volumen y sombrea donde sobra, zona por zona.</span><span lang="id">Terangkan area yang perlu volume, beri bayangan pada area yang berlebih — per area.</span></p>
+        <p class="auto-note"><span lang="en">Opened from your report, the regions the app flagged are highlighted and listed first.</span><span lang="ko">리포트에서 열면 앱이 판정한 부위가 강조되고 맨 위에 정리돼요.</span><span lang="ja">レポートから開くと、アプリが判定した部位が強調され上にまとまります。</span><span lang="zh-CN">从报告打开时，应用判定的部位会被高亮并排在最前。</span><span lang="zh-TW">從報告開啟時，App 判定的部位會被突顯並排在最前。</span><span lang="es">Si lo abres desde tu informe, las zonas señaladas por la app se resaltan y aparecen primero.</span><span lang="id">Jika dibuka dari laporan, area yang ditandai aplikasi akan disorot dan ditampilkan paling atas.</span></p>
+
+        <div class="legend">
+            <span class="k"><i class="add"></i>＋ <span lang="en">Add = highlight / fill in</span><span lang="ko">보강 = 하이라이트·채우기</span><span lang="ja">補強 = ハイライト・埋める</span><span lang="zh-CN">补强 = 提亮/填充</span><span lang="zh-TW">補強 = 提亮/填充</span><span lang="es">Reforzar = iluminar / rellenar</span><span lang="id">Perkuat = highlight / isi</span></span>
+            <span class="k"><i class="ease"></i>－ <span lang="en">Reduce = shade / tone down</span><span lang="ko">여유 = 쉐딩·눌러 주기</span><span lang="ja">余裕 = シェーディング・抑える</span><span lang="zh-CN">留白 = 阴影/收敛</span><span lang="zh-TW">留白 = 陰影/收斂</span><span lang="es">Suavizar = sombrear / rebajar</span><span lang="id">Kurangi = bayangan / redam</span></span>
+        </div>
+
+        <!-- 앱 판정 배너 (?regions= 로 자동) -->
+        <div class="result-banner" id="resultBanner">
+            <strong><span lang="en">From your report</span><span lang="ko">내 리포트 판정</span><span lang="ja">あなたの判定</span><span lang="zh-CN">你的判定</span><span lang="zh-TW">你的判定</span><span lang="es">Según tu informe</span><span lang="id">Dari laporanmu</span></strong>
+            <div class="chips" id="resultChips"></div>
+            <div class="bal"><span lang="en">Regions not listed were measured as balanced — keep them as they are.</span><span lang="ko">목록에 없는 부위는 균형 범위로 측정됐어요. 그대로 두면 돼요.</span><span lang="ja">一覧にない部位はバランス範囲でした。そのままでOK。</span><span lang="zh-CN">未列出的部位处于平衡范围，保持即可。</span><span lang="zh-TW">未列出的部位處於平衡範圍，保持即可。</span><span lang="es">Las zonas no listadas se midieron equilibradas: déjalas como están.</span><span lang="id">Area yang tidak tercantum terukur seimbang — biarkan apa adanya.</span></div>
+        </div>
+
+        <div class="section-nav">
+            <a class="section-chip" href="#forehead"><span lang="en">Forehead</span><span lang="ko">이마</span><span lang="ja">額</span><span lang="zh-CN">额头</span><span lang="zh-TW">額頭</span><span lang="es">Frente</span><span lang="id">Dahi</span></a><a class="section-chip" href="#temple"><span lang="en">Temples</span><span lang="ko">관자놀이</span><span lang="ja">こめかみ</span><span lang="zh-CN">太阳穴</span><span lang="zh-TW">太陽穴</span><span lang="es">Sienes</span><span lang="id">Pelipis</span></a><a class="section-chip" href="#under_eye"><span lang="en">Under-eye</span><span lang="ko">눈밑</span><span lang="ja">目の下</span><span lang="zh-CN">眼下</span><span lang="zh-TW">眼下</span><span lang="es">Bajo los ojos</span><span lang="id">Bawah mata</span></a><a class="section-chip" href="#cheek_front"><span lang="en">Front cheek</span><span lang="ko">앞광대</span><span lang="ja">前頬骨</span><span lang="zh-CN">前颧骨</span><span lang="zh-TW">前顴骨</span><span lang="es">Pómulo frontal</span><span lang="id">Pipi depan</span></a><a class="section-chip" href="#cheek_side"><span lang="en">Side cheekbone</span><span lang="ko">옆광대</span><span lang="ja">横頬骨</span><span lang="zh-CN">侧颧骨</span><span lang="zh-TW">側顴骨</span><span lang="es">Pómulo lateral</span><span lang="id">Tulang pipi samping</span></a><a class="section-chip" href="#lower_cheek"><span lang="en">Lower cheek</span><span lang="ko">아랫볼(볼살)</span><span lang="ja">頬の下部</span><span lang="zh-CN">下颊（颊脂）</span><span lang="zh-TW">下頰（頰脂）</span><span lang="es">Mejilla inferior</span><span lang="id">Pipi bawah</span></a><a class="section-chip" href="#nose"><span lang="en">Nose</span><span lang="ko">코</span><span lang="ja">鼻</span><span lang="zh-CN">鼻子</span><span lang="zh-TW">鼻子</span><span lang="es">Nariz</span><span lang="id">Hidung</span></a><a class="section-chip" href="#lips"><span lang="en">Lips</span><span lang="ko">입술</span><span lang="ja">唇</span><span lang="zh-CN">嘴唇</span><span lang="zh-TW">嘴唇</span><span lang="es">Labios</span><span lang="id">Bibir</span></a><a class="section-chip" href="#chin"><span lang="en">Chin</span><span lang="ko">턱끝</span><span lang="ja">顎先</span><span lang="zh-CN">下巴</span><span lang="zh-TW">下巴</span><span lang="es">Mentón</span><span lang="id">Dagu</span></a><a class="section-chip" href="#jawline"><span lang="en">Jawline</span><span lang="ko">턱선</span><span lang="ja">フェイスライン</span><span lang="zh-CN">下颌线</span><span lang="zh-TW">下顎線</span><span lang="es">Línea mandibular</span><span lang="id">Garis rahang</span></a>
+        </div>
+
+        <section class="guide-card" id="how">
+            <h2><span lang="en">How to read this</span><span lang="ko">해석 방법</span><span lang="ja">見方</span><span lang="zh-CN">解读方法</span><span lang="zh-TW">解讀方式</span><span lang="es">Cómo interpretarlo</span><span lang="id">Cara membaca</span></h2>
+            <p class="feature"><span lang="en">Using the face mesh, we measure projection, hollows and width ratios by region and mark where adding (Add) or taking away (Reduce) volume would improve balance. Balanced ranges come from aesthetic references such as the facial convexity angle, the E-line, the ogee curve and the Goode ratio.</span><span lang="ko">얼굴 메시로 부위별 돌출·함몰·폭 비를 재어, 볼륨을 더하면(보강) 또는 덜어내면(여유) 입체 균형이 좋아지는 부위를 표시합니다. 균형 범위는 미용 해부학의 기준(옆얼굴 볼록각·E-라인·오지 커브·Goode 비율 등)에서 가져왔습니다.</span><span lang="ja">顔メッシュで部位ごとの突出・くぼみ・幅の比率を測り、ボリュームを足す（足す）か引く（引く）とバランスが良くなる部位を示します。バランス範囲は顔面凸角・Eライン・オジーカーブ・Goode比などの美容基準に基づきます。</span><span lang="zh-CN">利用面部网格测量各部位的突出、凹陷和宽度比例，标出增加或减少饱满度能改善平衡的部位。均衡范围来自面部凸角、E线、Ogee曲线、Goode比例等美学参考。</span><span lang="zh-TW">利用面部網格測量各部位的突出、凹陷和寬度比例，標出增加或減少飽滿度能改善平衡的部位。均衡範圍來自面部凸角、E線、Ogee曲線、Goode比例等美學參考。</span><span lang="es">Con la malla facial medimos proyección, hundimientos y proporciones de anchura por zona y marcamos dónde añadir o reducir volumen mejoraría el equilibrio. Los rangos equilibrados proceden de referencias estéticas (ángulo de convexidad facial, línea E, curva ogee, proporción de Goode).</span><span lang="id">Dengan mesh wajah, kami mengukur tonjolan, cekungan, dan rasio lebar per area, lalu menandai area yang akan lebih seimbang jika volumenya ditambah (Tambah) atau dikurangi (Kurangi). Rentang seimbang diambil dari acuan estetika seperti sudut konveksitas wajah, garis E, kurva ogee, dan rasio Goode.</span></p>
+            <p class="feature"><span lang="en">The app&#x27;s Add / Reduce labels are about balance, not about what is &#x27;good&#x27; or &#x27;bad&#x27;. Pick only the regions you want to change, and start with a light hand — the drawings show where, not how much.</span><span lang="ko">앱의 보강·여유는 균형 기준이지 좋고 나쁨이 아니에요. 바꾸고 싶은 부위만 고르고, 처음엔 옅게 시작하세요. 그림은 &#x27;어디에&#x27;를 보여 주지 &#x27;얼마나&#x27;를 정하진 않아요.</span><span lang="ja">アプリの補強・余裕はバランスの基準であって、良し悪しではありません。変えたい部位だけ選び、最初は薄く。図は「どこに」を示すもので「どれだけ」は決めません。</span><span lang="zh-CN">应用中的补强/留白只是平衡的参考，不代表好坏。只挑想调整的部位，先从淡一点开始——图示说明的是&quot;位置&quot;，不是&quot;程度&quot;。</span><span lang="zh-TW">App 中的補強/留白只是平衡的參考，不代表好壞。只挑想調整的部位，先從淡一點開始——圖示說明的是「位置」，不是「程度」。</span><span lang="es">Reforzar y suavizar hablan de equilibrio, no de &#x27;bien&#x27; o &#x27;mal&#x27;. Elige solo las zonas que quieras cambiar y empieza con poca cantidad: los dibujos muestran dónde, no cuánto.</span><span lang="id">Label perkuat / kurangi di aplikasi soal keseimbangan, bukan &#x27;baik&#x27; atau &#x27;buruk&#x27;. Pilih hanya area yang ingin diubah dan mulailah tipis — gambar menunjukkan di mana, bukan seberapa banyak.</span></p>
+        </section>
+
+        <!-- =================== forehead =================== -->
+        <section class="guide-card" id="forehead" data-region="forehead">
+            <h2>
+                <span lang="en">Forehead</span><span lang="ko">이마</span><span lang="ja">額</span><span lang="zh-CN">额头</span><span lang="zh-TW">額頭</span><span lang="es">Frente</span><span lang="id">Dahi</span>
+                <span class="en-name" lang="ko">Forehead</span><span class="en-name" lang="ja">Forehead</span><span class="en-name" lang="zh-CN">Forehead</span><span class="en-name" lang="zh-TW">Forehead</span><span class="en-name" lang="es">Forehead</span><span class="en-name" lang="id">Forehead</span>
+                <span class="my-badge" data-badge></span>
+            </h2>
+            <div class="measure"><b><span lang="en">What the app measures</span><span lang="ko">앱이 재는 것</span><span lang="ja">アプリが測るもの</span><span lang="zh-CN">应用测量的内容</span><span lang="zh-TW">App 測量的內容</span><span lang="es">Qué mide la app</span><span lang="id">Yang diukur aplikasi</span></b><span lang="en">Measures how rounded the forehead curve is from the brow to the top of the mesh (convexity, mm). 2.5–8 mm is balanced; flatter is marked as a region that would benefit from more volume.</span><span lang="ko">미간에서 이마 윗경계까지의 곡선이 얼마나 둥근지(볼록량, mm)를 잽니다. 2.5~8 mm를 균형으로 보고, 더 평평하면 볼륨을 더했을 때 균형이 좋아지는 부위로 표시합니다.</span><span lang="ja">眉間からメッシュ上端までの額のカーブの丸み（ふくらみ量, mm）を測ります。2.5〜8 mmをバランス範囲とし、それより平らならボリュームを足すと良い部位として示します。</span><span lang="zh-CN">测量从眉间到网格顶端的额头曲线有多圆润（凸度，mm）。2.5–8 mm 为均衡；更平则标为增加饱满度会更好的部位。</span><span lang="zh-TW">測量從眉間到網格頂端的額頭曲線有多圓潤（凸度，mm）。2.5–8 mm 為均衡；更平則標為增加飽滿度會更好的部位。</span><span lang="es">Mide cuán redondeada es la curva de la frente desde el entrecejo hasta el borde superior (convexidad, mm). 2,5–8 mm es equilibrado; si es más plana se marca como zona que mejoraría con más volumen.</span><span lang="id">Mengukur seberapa membulat lengkung dahi dari alis ke batas atas mesh (kecembungan, mm). 2,5–8 mm dianggap seimbang; lebih datar ditandai sebagai area yang akan lebih baik dengan tambahan volume.</span></div>
+            <div class="fig-wrap">
+                <img src="img/sculpt-forehead.svg" alt="Forehead sculpting map" loading="lazy" width="320" height="200">
+                <div class="fig-cap"><span>＋ <span lang="en">Add: highlight / fill</span><span lang="ko">보강: 밝게·채우기</span><span lang="ja">補強: 明るく・埋める</span><span lang="zh-CN">补强：提亮/填充</span><span lang="zh-TW">補強：提亮/填充</span><span lang="es">Reforzar: iluminar / rellenar</span><span lang="id">Perkuat: highlight / isi</span></span><span>－ <span lang="en">Reduce: shade</span><span lang="ko">여유: 음영</span><span lang="ja">余裕: 影</span><span lang="zh-CN">留白：阴影</span><span lang="zh-TW">留白：陰影</span><span lang="es">Suavizar: sombra</span><span lang="id">Kurangi: bayangan</span></span></div>
+            </div>
+            <div class="block-label rec">＋ <span lang="en">When it&#x27;s Add (+)</span><span lang="ko">보강(+)일 때</span><span lang="ja">補強(+)のとき</span><span lang="zh-CN">判定为补强(+)时</span><span lang="zh-TW">判定為補強(+)時</span><span lang="es">Si es Reforzar (+)</span><span lang="id">Jika Perkuat (+)</span></div>
+            <ul class="tips rec">
+                <li><span lang="en">Sweep a light highlighter across the center of the forehead to bring out a rounded look.</span><span lang="ko">이마 가운데에 밝은 하이라이터를 넓게 펴 바르면 둥근 볼륨감이 살아나요.</span><span lang="ja">額の中央に明るいハイライトを広めにのせると、丸みのある立体感が出ます。</span><span lang="zh-CN">在额头中央大面积扫上浅色高光，能衬出圆润的饱满感。</span><span lang="zh-TW">在額頭中央大面積掃上淺色高光，能襯出圓潤的飽滿感。</span><span lang="es">Aplica iluminador claro en el centro de la frente para dar un efecto redondeado.</span><span lang="id">Baurkan highlighter terang di tengah dahi agar terlihat lebih berisi.</span></li>
+                <li><span lang="en">Fade the highlighter from the center outward — a visible edge kills the rounded look.</span><span lang="ko">하이라이터는 이마 중앙에서 바깥으로 갈수록 옅게 — 경계가 보이면 둥근 느낌이 깨져요.</span><span lang="ja">ハイライトは額の中央から外へ薄く — 境目が見えると丸みが崩れます。</span><span lang="zh-CN">高光从额头中央向外渐淡——有边界就显不出圆润。</span><span lang="zh-TW">高光從額頭中央向外漸淡——有邊界就顯不出圓潤。</span><span lang="es">Difumina el iluminador del centro hacia fuera; un borde visible rompe el efecto redondeado.</span><span lang="id">Baurkan highlighter dari tengah ke luar — garis tepi yang terlihat merusak kesan bulat.</span></li>
+            </ul>
+            <div class="block-label ease">－ <span lang="en">When it&#x27;s Reduce (−)</span><span lang="ko">여유(−)일 때</span><span lang="ja">余裕(−)のとき</span><span lang="zh-CN">判定为留白(−)时</span><span lang="zh-TW">判定為留白(−)時</span><span lang="es">Si es Suavizar (−)</span><span lang="id">Jika Kurangi (−)</span></div>
+            <ul class="tips ease">
+                <li><span lang="en">Add a thin line of contour just inside the hairline to soften the forehead.</span><span lang="ko">헤어라인 안쪽에 쉐딩을 얇게 넣어 이마 돌출을 눌러 주세요.</span><span lang="ja">生え際の内側に薄くシェーディングを入れ、額の張り出しを抑えます。</span><span lang="zh-CN">在发际线内侧薄薄地打一层阴影，收敛额头的突出感。</span><span lang="zh-TW">在髮際線內側薄薄地打一層陰影，收斂額頭的突出感。</span><span lang="es">Aplica un poco de contorno junto a la línea del cabello para suavizar la frente.</span><span lang="id">Tambahkan contour tipis di dalam garis rambut untuk meredam tonjolan dahi.</span></li>
+                <li><span lang="en">Keep the shade to a 1 cm band inside the hairline — pulling it down toward the brows darkens the whole face.</span><span lang="ko">쉐딩은 헤어라인 안쪽 1cm 띠로만. 눈썹 쪽으로 내려오면 얼굴이 어두워 보여요.</span><span lang="ja">シェーディングはヘアライン内側1cmの帯だけ。眉まで下げると顔全体が暗く見えます。</span><span lang="zh-CN">阴影只打在发际线内侧约1cm的带状区域，往眉毛方向拉会显得整张脸发暗。</span><span lang="zh-TW">陰影只打在髮際線內側約1cm的帶狀區域，往眉毛方向拉會顯得整張臉發暗。</span><span lang="es">Limita la sombra a una franja de 1 cm bajo el nacimiento del pelo; si baja hacia las cejas oscurece toda la cara.</span><span lang="id">Batasi bayangan pada pita 1 cm di dalam garis rambut — jika turun ke alis, seluruh wajah tampak gelap.</span></li>
+            </ul>
+        </section>
+        <!-- =================== temple =================== -->
+        <section class="guide-card" id="temple" data-region="temple">
+            <h2>
+                <span lang="en">Temples</span><span lang="ko">관자놀이</span><span lang="ja">こめかみ</span><span lang="zh-CN">太阳穴</span><span lang="zh-TW">太陽穴</span><span lang="es">Sienes</span><span lang="id">Pelipis</span>
+                <span class="en-name" lang="ko">Temples</span><span class="en-name" lang="ja">Temples</span><span class="en-name" lang="zh-CN">Temples</span><span class="en-name" lang="zh-TW">Temples</span><span class="en-name" lang="es">Temples</span><span class="en-name" lang="id">Temples</span>
+                <span class="my-badge" data-badge></span>
+            </h2>
+            <div class="measure"><b><span lang="en">What the app measures</span><span lang="ko">앱이 재는 것</span><span lang="ja">アプリが測るもの</span><span lang="zh-CN">应用测量的内容</span><span lang="zh-TW">App 測量的內容</span><span lang="es">Qué mide la app</span><span lang="id">Yang diukur aplikasi</span></b><span lang="en">Measures how deep the temple sits below the chord of a horizontal section at brow level (hollow depth, mm). Over 2 mm is marked as a region where added volume would soften the upper outline.</span><span lang="ko">눈썹 높이의 수평 단면에서 관자놀이가 얼마나 들어가 있는지(함몰 깊이, mm)를 잽니다. 2 mm를 넘으면 볼륨을 더했을 때 얼굴 윗부분의 선이 부드러워지는 부위로 표시합니다.</span><span lang="ja">眉の高さの水平断面で、こめかみが弦よりどれだけくぼんでいるか（深さ, mm）を測ります。2 mmを超えるとボリュームを足すと上部の輪郭がやわらぐ部位として示します。</span><span lang="zh-CN">在眉毛高度的水平截面上测量太阳穴低于弦线的深度（凹陷，mm）。超过 2 mm 标为增加饱满度能柔和上部轮廓的部位。</span><span lang="zh-TW">在眉毛高度的水平截面上測量太陽穴低於弦線的深度（凹陷，mm）。超過 2 mm 標為增加飽滿度能柔和上部輪廓的部位。</span><span lang="es">Mide cuánto se hunde la sien respecto a la cuerda de una sección horizontal a la altura de la ceja (profundidad, mm). Más de 2 mm se marca como zona donde añadir volumen suavizaría el contorno superior.</span><span lang="id">Mengukur seberapa dalam pelipis berada di bawah garis potong horizontal setinggi alis (kedalaman cekung, mm). Lebih dari 2 mm ditandai sebagai area yang garis atasnya akan lebih halus jika ditambah volume.</span></div>
+            <div class="fig-wrap">
+                <img src="img/sculpt-temple.svg" alt="Temples sculpting map" loading="lazy" width="320" height="200">
+                <div class="fig-cap"><span>＋ <span lang="en">Add: highlight / fill</span><span lang="ko">보강: 밝게·채우기</span><span lang="ja">補強: 明るく・埋める</span><span lang="zh-CN">补强：提亮/填充</span><span lang="zh-TW">補強：提亮/填充</span><span lang="es">Reforzar: iluminar / rellenar</span><span lang="id">Perkuat: highlight / isi</span></span><span>－ <span lang="en">Reduce: shade</span><span lang="ko">여유: 음영</span><span lang="ja">余裕: 影</span><span lang="zh-CN">留白：阴影</span><span lang="zh-TW">留白：陰影</span><span lang="es">Suavizar: sombra</span><span lang="id">Kurangi: bayangan</span></span></div>
+            </div>
+            <div class="block-label rec">＋ <span lang="en">When it&#x27;s Add (+)</span><span lang="ko">보강(+)일 때</span><span lang="ja">補強(+)のとき</span><span lang="zh-CN">判定为补强(+)时</span><span lang="zh-TW">判定為補強(+)時</span><span lang="es">Si es Reforzar (+)</span><span lang="id">Jika Perkuat (+)</span></div>
+            <ul class="tips rec">
+                <li><span lang="en">Fill the temples with concealer or highlighter one shade lighter than your skin.</span><span lang="ko">관자놀이에 피부보다 한 톤 밝은 컨실러나 하이라이터로 채워 주세요.</span><span lang="ja">こめかみに肌より1トーン明るいコンシーラーやハイライトをのせて埋めます。</span><span lang="zh-CN">在太阳穴用比肤色亮一号的遮瑕或高光填补。</span><span lang="zh-TW">在太陽穴用比膚色亮一號的遮瑕或高光填補。</span><span lang="es">Rellena las sienes con corrector o iluminador un tono más claro que tu piel.</span><span lang="id">Isi pelipis dengan concealer atau highlighter satu tingkat lebih terang dari kulit.</span></li>
+                <li><span lang="en">Blend the edge toward the hairline so the hollow disappears instead of showing a patch.</span><span lang="ko">채운 뒤 경계를 헤어라인 쪽으로 블렌딩하면 함몰이 눈에 안 띄어요.</span><span lang="ja">埋めたら境目をヘアライン側へぼかすと、くぼみが目立ちません。</span><span lang="zh-CN">填补后把边缘向发际线方向晕开，凹陷就不明显了。</span><span lang="zh-TW">填補後把邊緣向髮際線方向暈開，凹陷就不明顯了。</span><span lang="es">Difumina el borde hacia el nacimiento del pelo para que el hueco desaparezca sin dejar un parche.</span><span lang="id">Baurkan tepinya ke arah garis rambut agar cekungan hilang tanpa terlihat bercak.</span></li>
+            </ul>
+            <div class="block-label ease">－ <span lang="en">When it&#x27;s Reduce (−)</span><span lang="ko">여유(−)일 때</span><span lang="ja">余裕(−)のとき</span><span lang="zh-CN">判定为留白(−)时</span><span lang="zh-TW">判定為留白(−)時</span><span lang="es">Si es Suavizar (−)</span><span lang="id">Jika Kurangi (−)</span></div>
+            <ul class="tips ease">
+                <li><span lang="en">The temples can be left as they are.</span><span lang="ko">관자놀이는 그대로 두어도 괜찮아요.</span><span lang="ja">こめかみはそのままで大丈夫です。</span><span lang="zh-CN">太阳穴保持原样即可。</span><span lang="zh-TW">太陽穴保持原樣即可。</span><span lang="es">Las sienes pueden quedar como están.</span><span lang="id">Pelipis bisa dibiarkan apa adanya.</span></li>
+                <li><span lang="en">Temples aren&#x27;t a shading target — just keep cheekbone shading from creeping up into them.</span><span lang="ko">관자놀이는 쉐딩 대상이 아니에요. 광대 쉐딩이 관자놀이까지 올라오지 않게만 주의하세요.</span><span lang="ja">こめかみはシェーディング対象ではありません。頬骨の影がこめかみまで上がらないようにだけ注意。</span><span lang="zh-CN">太阳穴不需要打阴影，只要注意颧骨阴影别延伸到太阳穴。</span><span lang="zh-TW">太陽穴不需要打陰影，只要注意顴骨陰影別延伸到太陽穴。</span><span lang="es">Las sienes no se sombrean; solo evita que la sombra del pómulo suba hasta ellas.</span><span lang="id">Pelipis bukan area bayangan — pastikan saja bayangan tulang pipi tidak naik ke pelipis.</span></li>
+            </ul>
+        </section>
+        <!-- =================== under_eye =================== -->
+        <section class="guide-card" id="under_eye" data-region="under_eye">
+            <h2>
+                <span lang="en">Under-eye</span><span lang="ko">눈밑</span><span lang="ja">目の下</span><span lang="zh-CN">眼下</span><span lang="zh-TW">眼下</span><span lang="es">Bajo los ojos</span><span lang="id">Bawah mata</span>
+                <span class="en-name" lang="ko">Under-eye</span><span class="en-name" lang="ja">Under-eye</span><span class="en-name" lang="zh-CN">Under-eye</span><span class="en-name" lang="zh-TW">Under-eye</span><span class="en-name" lang="es">Under-eye</span><span class="en-name" lang="id">Under-eye</span>
+                <span class="my-badge" data-badge></span>
+            </h2>
+            <div class="measure"><b><span lang="en">What the app measures</span><span lang="ko">앱이 재는 것</span><span lang="ja">アプリが測るもの</span><span lang="zh-CN">应用测量的内容</span><span lang="zh-TW">App 測量的內容</span><span lang="es">Qué mide la app</span><span lang="id">Yang diukur aplikasi</span></b><span lang="en">Measures how sunken the under-eye is along a vertical line below the pupil (hollow depth, mm). Over 1.5 mm is marked as a region where added volume would reduce the shadow; a bulge is noted as such.</span><span lang="ko">동공 아래 수직선에서 눈밑이 얼마나 꺼져 있는지(함몰 깊이, mm)를 잽니다. 1.5 mm를 넘으면 볼륨을 더했을 때 그늘이 줄어드는 부위로, 반대로 볼록하면 그렇게 표시합니다.</span><span lang="ja">瞳孔の下の垂直線で目の下がどれだけくぼんでいるか（深さ, mm）を測ります。1.5 mmを超えるとボリュームを足すと影が減る部位として、逆にふくらんでいればその旨を示します。</span><span lang="zh-CN">沿瞳孔下方的垂直线测量眼下凹陷的深度（mm）。超过 1.5 mm 标为增加饱满度能减轻阴影的部位；若是凸起则如实标注。</span><span lang="zh-TW">沿瞳孔下方的垂直線測量眼下凹陷的深度（mm）。超過 1.5 mm 標為增加飽滿度能減輕陰影的部位；若是凸起則如實標註。</span><span lang="es">Mide cuánto se hunde la zona bajo el ojo en una vertical bajo la pupila (profundidad, mm). Más de 1,5 mm se marca como zona donde añadir volumen reduciría la sombra; si está abultada se indica.</span><span lang="id">Mengukur seberapa cekung area bawah mata pada garis vertikal di bawah pupil (kedalaman, mm). Lebih dari 1,5 mm ditandai sebagai area yang bayangannya berkurang jika ditambah volume; jika menonjol, ditandai demikian.</span></div>
+            <div class="fig-wrap">
+                <img src="img/sculpt-under_eye.svg" alt="Under-eye sculpting map" loading="lazy" width="320" height="200">
+                <div class="fig-cap"><span>＋ <span lang="en">Add: highlight / fill</span><span lang="ko">보강: 밝게·채우기</span><span lang="ja">補強: 明るく・埋める</span><span lang="zh-CN">补强：提亮/填充</span><span lang="zh-TW">補強：提亮/填充</span><span lang="es">Reforzar: iluminar / rellenar</span><span lang="id">Perkuat: highlight / isi</span></span><span>－ <span lang="en">Reduce: shade</span><span lang="ko">여유: 음영</span><span lang="ja">余裕: 影</span><span lang="zh-CN">留白：阴影</span><span lang="zh-TW">留白：陰影</span><span lang="es">Suavizar: sombra</span><span lang="id">Kurangi: bayangan</span></span></div>
+            </div>
+            <div class="block-label rec">＋ <span lang="en">When it&#x27;s Add (+)</span><span lang="ko">보강(+)일 때</span><span lang="ja">補強(+)のとき</span><span lang="zh-CN">判定为补强(+)时</span><span lang="zh-TW">判定為補強(+)時</span><span lang="es">Si es Reforzar (+)</span><span lang="id">Jika Perkuat (+)</span></div>
+            <ul class="tips rec">
+                <li><span lang="en">Layer a light concealer thinly along the under-eye hollow to lift the shadow.</span><span lang="ko">눈밑 함몰 라인을 따라 밝은 컨실러를 얇게 겹쳐 그늘을 지워 주세요.</span><span lang="ja">目の下のくぼみに沿って明るいコンシーラーを薄く重ね、影を消します。</span><span lang="zh-CN">沿眼下凹陷处薄涂叠加浅色遮瑕，淡化阴影。</span><span lang="zh-TW">沿眼下凹陷處薄塗疊加淺色遮瑕，淡化陰影。</span><span lang="es">Aplica capas finas de corrector claro siguiendo el hueco bajo el ojo para borrar la sombra.</span><span lang="id">Lapisi tipis concealer terang mengikuti cekungan bawah mata untuk menghapus bayangan.</span></li>
+                <li><span lang="en">Put concealer only in the hollow&#x27;s groove, in two thin layers — not the whole under-eye triangle.</span><span lang="ko">컨실러는 눈밑 삼각형 전체가 아니라 함몰 라인 &#x27;골&#x27;에만 얇게 두 번 겹치세요.</span><span lang="ja">コンシーラーは目の下の三角ではなく、くぼみの「溝」だけに薄く2回重ねて。</span><span lang="zh-CN">遮瑕只薄涂在凹陷的沟里、叠两层，不要铺满整个眼下三角区。</span><span lang="zh-TW">遮瑕只薄塗在凹陷的溝裡、疊兩層，不要鋪滿整個眼下三角區。</span><span lang="es">Aplica el corrector solo en el surco del hueco, en dos capas finas, no en todo el triángulo bajo el ojo.</span><span lang="id">Oleskan concealer hanya di lekukan cekungan, dua lapis tipis — bukan seluruh segitiga bawah mata.</span></li>
+            </ul>
+            <div class="block-label ease">－ <span lang="en">When it&#x27;s Reduce (−)</span><span lang="ko">여유(−)일 때</span><span lang="ja">余裕(−)のとき</span><span lang="zh-CN">判定为留白(−)时</span><span lang="zh-TW">判定為留白(−)時</span><span lang="es">Si es Suavizar (−)</span><span lang="id">Jika Kurangi (−)</span></div>
+            <ul class="tips ease">
+                <li><span lang="en">A very light contour just below the puffy area makes it look flatter.</span><span lang="ko">눈밑 볼록한 부분 아래 경계에 아주 옅은 쉐딩으로 평평하게 보이게 해요.</span><span lang="ja">ふくらみの下の境目にごく薄いシェーディングを入れ、平らに見せます。</span><span lang="zh-CN">在眼下凸起的下缘打极浅的阴影，让它看起来更平整。</span><span lang="zh-TW">在眼下凸起的下緣打極淺的陰影，讓它看起來更平整。</span><span lang="es">Un contorno muy suave justo debajo de la zona abultada la hace ver más plana.</span><span lang="id">Contour sangat tipis tepat di bawah bagian yang menonjol membuatnya tampak lebih rata.</span></li>
+                <li><span lang="en">A bright concealer on top of the bulge makes it look puffier — use a shade that matches your skin.</span><span lang="ko">밝은 컨실러를 볼록한 부분 위에 올리면 더 부풀어 보여요. 피부색 그대로의 톤을 쓰세요.</span><span lang="ja">ふくらみの上に明るいコンシーラーを乗せると余計に腫れて見えます。肌色と同じトーンで。</span><span lang="zh-CN">在凸起处涂亮色遮瑕会更显肿，用与肤色一致的色号。</span><span lang="zh-TW">在凸起處塗亮色遮瑕會更顯腫，用與膚色一致的色號。</span><span lang="es">Un corrector claro sobre el abultamiento lo hincha más: usa un tono igual a tu piel.</span><span lang="id">Concealer terang di atas tonjolan membuatnya tampak makin bengkak — pakai warna yang sama dengan kulit.</span></li>
+            </ul>
+        </section>
+        <!-- =================== cheek_front =================== -->
+        <section class="guide-card" id="cheek_front" data-region="cheek_front">
+            <h2>
+                <span lang="en">Front cheek</span><span lang="ko">앞광대</span><span lang="ja">前頬骨</span><span lang="zh-CN">前颧骨</span><span lang="zh-TW">前顴骨</span><span lang="es">Pómulo frontal</span><span lang="id">Pipi depan</span>
+                <span class="en-name" lang="ko">Front cheeks</span><span class="en-name" lang="ja">Front cheeks</span><span class="en-name" lang="zh-CN">Front cheeks</span><span class="en-name" lang="zh-TW">Front cheeks</span><span class="en-name" lang="es">Front cheeks</span><span class="en-name" lang="id">Front cheeks</span>
+                <span class="my-badge" data-badge></span>
+            </h2>
+            <div class="measure"><b><span lang="en">What the app measures</span><span lang="ko">앱이 재는 것</span><span lang="ja">アプリが測るもの</span><span lang="zh-CN">应用测量的内容</span><span lang="zh-TW">App 測量的內容</span><span lang="es">Qué mide la app</span><span lang="id">Yang diukur aplikasi</span></b><span lang="en">Measures how convex the horizontal cheek contour is at the level midway between the under-eye and the nose base (mm). 2–7 mm is balanced; flatter is marked as a region that would gain dimension from added volume, more convex as having spare volume.</span><span lang="ko">눈밑과 코밑의 중간 높이에서 볼의 가로 단면이 얼마나 볼록한지(mm)를 잽니다. 2~7 mm를 균형으로 보고, 더 평평하면 볼륨을 더했을 때 입체감이 살아나는 부위로, 더 볼록하면 여유로 표시합니다.</span><span lang="ja">目の下と鼻下の中間の高さで、頬の水平断面がどれだけふくらんでいるか（mm）を測ります。2〜7 mmをバランス範囲とし、平らならボリュームを足すと立体感が出る部位、ふくらみが強ければ引く側として示します。</span><span lang="zh-CN">在眼下与鼻底之间的高度测量脸颊水平轮廓的凸度（mm）。2–7 mm 为均衡；更平则标为增加饱满度能提升立体感的部位，更凸则标为可减少。</span><span lang="zh-TW">在眼下與鼻底之間的高度測量臉頰水平輪廓的凸度（mm）。2–7 mm 為均衡；更平則標為增加飽滿度能提升立體感的部位，更凸則標為可減少。</span><span lang="es">Mide cuán convexo es el contorno horizontal de la mejilla a media altura entre el párpado inferior y la base nasal (mm). 2–7 mm es equilibrado; si es más plano se marca como zona que ganaría volumen, y si es más convexo como zona con volumen de sobra.</span><span lang="id">Mengukur seberapa cembung kontur horizontal pipi pada ketinggian di antara bawah mata dan pangkal hidung (mm). 2–7 mm dianggap seimbang; lebih datar ditandai sebagai area yang akan lebih berdimensi jika ditambah volume, lebih cembung sebagai area dengan volume berlebih.</span></div>
+            <div class="fig-wrap">
+                <img src="img/sculpt-cheek_front.svg" alt="Front cheeks sculpting map" loading="lazy" width="320" height="200">
+                <div class="fig-cap"><span>＋ <span lang="en">Add: highlight / fill</span><span lang="ko">보강: 밝게·채우기</span><span lang="ja">補強: 明るく・埋める</span><span lang="zh-CN">补强：提亮/填充</span><span lang="zh-TW">補強：提亮/填充</span><span lang="es">Reforzar: iluminar / rellenar</span><span lang="id">Perkuat: highlight / isi</span></span><span>－ <span lang="en">Reduce: shade</span><span lang="ko">여유: 음영</span><span lang="ja">余裕: 影</span><span lang="zh-CN">留白：阴影</span><span lang="zh-TW">留白：陰影</span><span lang="es">Suavizar: sombra</span><span lang="id">Kurangi: bayangan</span></span></div>
+            </div>
+            <div class="block-label rec">＋ <span lang="en">When it&#x27;s Add (+)</span><span lang="ko">보강(+)일 때</span><span lang="ja">補強(+)のとき</span><span lang="zh-CN">判定为补强(+)时</span><span lang="zh-TW">判定為補強(+)時</span><span lang="es">Si es Reforzar (+)</span><span lang="id">Jika Perkuat (+)</span></div>
+            <ul class="tips rec">
+                <li><span lang="en">Highlighter on the highest point of the front cheek brings back dimension.</span><span lang="ko">앞광대 가장 높은 지점에 하이라이터를 올리면 입체감이 살아나요.</span><span lang="ja">前頬骨のいちばん高い位置にハイライトをのせると立体感が出ます。</span><span lang="zh-CN">在前颧骨最高点扫上高光，立体感就回来了。</span><span lang="zh-TW">在前顴骨最高點掃上高光，立體感就回來了。</span><span lang="es">Iluminador en el punto más alto del pómulo frontal devuelve el volumen.</span><span lang="id">Highlighter di titik tertinggi pipi depan mengembalikan dimensi wajah.</span></li>
+                <li><span lang="en">Blush goes high and round on the cheek, with highlighter only on its single highest point.</span><span lang="ko">블러셔를 광대 위로 둥글게 올리고 하이라이터는 그 정점 한 점에만 올려요.</span><span lang="ja">チークは頬の高い位置に丸く、ハイライトはその頂点一点だけに。</span><span lang="zh-CN">腮红在颧骨上方打圆形，高光只点在最高点一处。</span><span lang="zh-TW">腮紅在顴骨上方打圓形，高光只點在最高點一處。</span><span lang="es">El colorete va alto y redondeado en la mejilla, con iluminador solo en el punto más alto.</span><span lang="id">Blush dibentuk bulat di atas pipi, highlighter hanya di satu titik tertinggi.</span></li>
+            </ul>
+            <div class="block-label ease">－ <span lang="en">When it&#x27;s Reduce (−)</span><span lang="ko">여유(−)일 때</span><span lang="ja">余裕(−)のとき</span><span lang="zh-CN">判定为留白(−)时</span><span lang="zh-TW">判定為留白(−)時</span><span lang="es">Si es Suavizar (−)</span><span lang="id">Jika Kurangi (−)</span></div>
+            <ul class="tips ease">
+                <li><span lang="en">Contour diagonally just under the front cheek to soften the projection.</span><span lang="ko">앞광대 아래쪽에 쉐딩을 사선으로 넣어 돌출을 부드럽게 눌러 주세요.</span><span lang="ja">前頬骨の下に斜めにシェーディングを入れ、張り出しをやわらげます。</span><span lang="zh-CN">在前颧骨下方斜向打阴影，柔化突出感。</span><span lang="zh-TW">在前顴骨下方斜向打陰影，柔化突出感。</span><span lang="es">Aplica contorno en diagonal bajo el pómulo frontal para suavizar la proyección.</span><span lang="id">Contour secara diagonal di bawah pipi depan untuk melembutkan tonjolan.</span></li>
+                <li><span lang="en">Shade diagonally in the hollow just under the apple and skip highlighter on top of it.</span><span lang="ko">쉐딩은 앞광대 아래 그늘 자리에 사선으로 넣고, 광대 위 하이라이터는 생략하세요.</span><span lang="ja">影は頬の下の陰の位置に斜めに。頬の上のハイライトは省略。</span><span lang="zh-CN">阴影斜打在苹果肌下方的凹陷处，颧骨上方不再提亮。</span><span lang="zh-TW">陰影斜打在蘋果肌下方的凹陷處，顴骨上方不再提亮。</span><span lang="es">Sombrea en diagonal justo bajo la manzana de la mejilla y omite el iluminador encima.</span><span lang="id">Bayangan diagonal tepat di bawah apple cheek, dan lewati highlighter di atasnya.</span></li>
+            </ul>
+        </section>
+        <!-- =================== cheek_side =================== -->
+        <section class="guide-card" id="cheek_side" data-region="cheek_side">
+            <h2>
+                <span lang="en">Side cheekbone</span><span lang="ko">옆광대</span><span lang="ja">横頬骨</span><span lang="zh-CN">侧颧骨</span><span lang="zh-TW">側顴骨</span><span lang="es">Pómulo lateral</span><span lang="id">Tulang pipi samping</span>
+                <span class="en-name" lang="ko">Side cheekbones</span><span class="en-name" lang="ja">Side cheekbones</span><span class="en-name" lang="zh-CN">Side cheekbones</span><span class="en-name" lang="zh-TW">Side cheekbones</span><span class="en-name" lang="es">Side cheekbones</span><span class="en-name" lang="id">Side cheekbones</span>
+                <span class="my-badge" data-badge></span>
+            </h2>
+            <div class="measure"><b><span lang="en">What the app measures</span><span lang="ko">앱이 재는 것</span><span lang="ja">アプリが測るもの</span><span lang="zh-CN">应用测量的内容</span><span lang="zh-TW">App 測量的內容</span><span lang="es">Qué mide la app</span><span lang="id">Yang diukur aplikasi</span></b><span lang="en">Compares cheekbone width with forehead and jaw width. If the cheekbones exceed 1.15× the forehead or 1.5× the jaw, the side cheekbones are marked as prominent.</span><span lang="ko">광대폭을 이마폭·턱폭과 비교합니다. 광대폭이 이마폭의 1.15배 또는 턱폭의 1.5배를 넘으면 옆광대가 두드러지는 편으로 표시합니다.</span><span lang="ja">頬骨幅を額幅・顎幅と比べます。頬骨幅が額幅の1.15倍または顎幅の1.5倍を超えると横頬骨が目立つ側として示します。</span><span lang="zh-CN">将颧骨宽度与额宽、下颌宽比较。颧宽超过额宽的 1.15 倍或下颌宽的 1.5 倍时，标为侧颧骨偏明显。</span><span lang="zh-TW">將顴骨寬度與額寬、下頜寬比較。顴寬超過額寬的 1.15 倍或下頜寬的 1.5 倍時，標為側顴骨偏明顯。</span><span lang="es">Compara la anchura de los pómulos con la de la frente y la mandíbula. Si supera 1,15× la frente o 1,5× la mandíbula, los pómulos laterales se marcan como prominentes.</span><span lang="id">Membandingkan lebar tulang pipi dengan lebar dahi dan rahang. Jika melebihi 1,15× dahi atau 1,5× rahang, tulang pipi samping ditandai menonjol.</span></div>
+            <div class="fig-wrap">
+                <img src="img/sculpt-cheek_side.svg" alt="Side cheekbones sculpting map" loading="lazy" width="320" height="200">
+                <div class="fig-cap"><span>＋ <span lang="en">Add: highlight / fill</span><span lang="ko">보강: 밝게·채우기</span><span lang="ja">補強: 明るく・埋める</span><span lang="zh-CN">补强：提亮/填充</span><span lang="zh-TW">補強：提亮/填充</span><span lang="es">Reforzar: iluminar / rellenar</span><span lang="id">Perkuat: highlight / isi</span></span><span>－ <span lang="en">Reduce: shade</span><span lang="ko">여유: 음영</span><span lang="ja">余裕: 影</span><span lang="zh-CN">留白：阴影</span><span lang="zh-TW">留白：陰影</span><span lang="es">Suavizar: sombra</span><span lang="id">Kurangi: bayangan</span></span></div>
+            </div>
+            <div class="block-label rec">＋ <span lang="en">When it&#x27;s Add (+)</span><span lang="ko">보강(+)일 때</span><span lang="ja">補強(+)のとき</span><span lang="zh-CN">判定为补强(+)时</span><span lang="zh-TW">判定為補強(+)時</span><span lang="es">Si es Reforzar (+)</span><span lang="id">Jika Perkuat (+)</span></div>
+            <ul class="tips rec">
+                <li><span lang="en">A long stroke of highlighter on the side cheekbone defines the outline.</span><span lang="ko">옆광대에 하이라이터를 길게 넣어 얼굴 옆선을 살려 주세요.</span><span lang="ja">横頬骨にハイライトを長めに入れ、顔の輪郭を際立たせます。</span><span lang="zh-CN">在侧颧骨拉长扫上高光，勾勒脸部侧线。</span><span lang="zh-TW">在側顴骨拉長掃上高光，勾勒臉部側線。</span><span lang="es">Un trazo largo de iluminador en el pómulo lateral define el contorno.</span><span lang="id">Sapuan panjang highlighter di tulang pipi samping menegaskan garis wajah.</span></li>
+                <li><span lang="en">A cream product half a shade lighter than your skin adds volume without shine, where highlighter may glare.</span><span lang="ko">하이라이터 대신 피부보다 반 톤 밝은 크림 제품을 쓰면 번들거림 없이 볼륨만 살아요.</span><span lang="ja">ハイライトの代わりに肌より半トーン明るいクリームを使うと、テカらずボリュームだけ出ます。</span><span lang="zh-CN">用比肤色亮半个色号的膏状产品代替高光，不泛油光只显体积。</span><span lang="zh-TW">用比膚色亮半個色號的膏狀產品代替高光，不泛油光只顯體積。</span><span lang="es">Una crema medio tono más clara que tu piel da volumen sin brillo, cuando el iluminador deslumbra.</span><span lang="id">Produk krim setengah tingkat lebih terang dari kulit menambah volume tanpa kilap, saat highlighter terlalu mencolok.</span></li>
+            </ul>
+            <div class="block-label ease">－ <span lang="en">When it&#x27;s Reduce (−)</span><span lang="ko">여유(−)일 때</span><span lang="ja">余裕(−)のとき</span><span lang="zh-CN">判定为留白(−)时</span><span lang="zh-TW">判定為留白(−)時</span><span lang="es">Si es Suavizar (−)</span><span lang="id">Jika Kurangi (−)</span></div>
+            <ul class="tips ease">
+                <li><span lang="en">Contour from the outer cheekbone toward the jaw to visually narrow the width.</span><span lang="ko">옆광대 바깥쪽에서 턱선 방향으로 쉐딩을 넣어 폭을 좁혀 보여 주세요.</span><span lang="ja">横頬骨の外側から顎に向けてシェーディングを入れ、幅を狭く見せます。</span><span lang="zh-CN">从侧颧骨外侧向下颌方向打阴影，在视觉上收窄宽度。</span><span lang="zh-TW">從側顴骨外側向下頜方向打陰影，在視覺上收窄寬度。</span><span lang="es">Aplica contorno desde el pómulo externo hacia la mandíbula para estrechar visualmente.</span><span lang="id">Contour dari tulang pipi luar ke arah rahang agar lebar wajah tampak lebih sempit.</span></li>
+                <li><span lang="en">Start the shade at mid-ear height and aim it toward the mouth corner — running it down to the jaw lengthens the face.</span><span lang="ko">쉐딩 시작점은 귀 중간 높이, 끝은 입꼬리 방향 — 턱선까지 내리면 얼굴이 길어 보여요.</span><span lang="ja">影の始点は耳の中央の高さ、終点は口角方向へ。あごまで下ろすと顔が長く見えます。</span><span lang="zh-CN">阴影从耳朵中部高度起笔，朝嘴角方向收——拉到下颌线会显脸长。</span><span lang="zh-TW">陰影從耳朵中部高度起筆，朝嘴角方向收——拉到下頜線會顯臉長。</span><span lang="es">Empieza la sombra a la altura media de la oreja y dirígela hacia la comisura; si llega a la mandíbula alarga la cara.</span><span lang="id">Mulai bayangan dari tinggi tengah telinga menuju sudut bibir — jika sampai ke rahang, wajah tampak panjang.</span></li>
+            </ul>
+        </section>
+        <!-- =================== lower_cheek =================== -->
+        <section class="guide-card" id="lower_cheek" data-region="lower_cheek">
+            <h2>
+                <span lang="en">Lower cheek</span><span lang="ko">아랫볼(볼살)</span><span lang="ja">頬の下部</span><span lang="zh-CN">下颊（颊脂）</span><span lang="zh-TW">下頰（頰脂）</span><span lang="es">Mejilla inferior</span><span lang="id">Pipi bawah</span>
+                <span class="en-name" lang="ko">Lower cheeks</span><span class="en-name" lang="ja">Lower cheeks</span><span class="en-name" lang="zh-CN">Lower cheeks</span><span class="en-name" lang="zh-TW">Lower cheeks</span><span class="en-name" lang="es">Lower cheeks</span><span class="en-name" lang="id">Lower cheeks</span>
+                <span class="my-badge" data-badge></span>
+            </h2>
+            <div class="measure"><b><span lang="en">What the app measures</span><span lang="ko">앱이 재는 것</span><span lang="ja">アプリが測るもの</span><span lang="zh-CN">应用测量的内容</span><span lang="zh-TW">App 測量的內容</span><span lang="es">Qué mide la app</span><span lang="id">Yang diukur aplikasi</span></b><span lang="en">Measures how far the cheek at mouth level projects beyond a vertical line from the cheekbone to the jaw border (mm, average of three lateral points). 6–12 mm is balanced; more indicates fuller cheeks (volume to spare), less indicates sunken cheeks. The range is still being calibrated on a small sample.</span><span lang="ko">광대 높이와 턱 경계를 잇는 세로 선에 비해 입 높이의 볼이 얼마나 앞으로 나와 있는지(mm, 가쪽 세 지점 평균)를 잽니다. 6~12 mm를 균형으로 보고, 더 나와 있으면 볼살이 많은 편(덜어내면 균형), 덜 나와 있으면 볼이 꺼진 편으로 표시합니다. 표본이 적어 기준은 조정 중입니다.</span><span lang="ja">頬骨と顎の境界を結ぶ縦線に対し、口の高さの頬がどれだけ前に出ているか（mm、外側3点の平均）を測ります。6〜12 mmをバランス範囲とし、それ以上は頬の肉が多い側（引くとバランス）、以下は頬がこけた側として示します。標本が少なく基準は調整中です。</span><span lang="zh-CN">测量嘴部高度的脸颊相对于颧骨到下颌边缘垂线向前突出多少（mm，三个外侧点平均）。6–12 mm 为均衡；更多表示颊脂较多（可减少），更少表示脸颊凹陷。样本较少，范围仍在校准。</span><span lang="zh-TW">測量嘴部高度的臉頰相對於顴骨到下頜邊緣垂線向前突出多少（mm，三個外側點平均）。6–12 mm 為均衡；更多表示頰脂較多（可減少），更少表示臉頰凹陷。樣本較少，範圍仍在校準。</span><span lang="es">Mide cuánto sobresale la mejilla a la altura de la boca respecto a una vertical del pómulo al borde mandibular (mm, media de tres puntos laterales). 6–12 mm es equilibrado; más indica mejillas llenas (volumen de sobra), menos indica mejillas hundidas. El rango aún se calibra con una muestra pequeña.</span><span lang="id">Mengukur seberapa jauh pipi setinggi mulut menonjol melewati garis vertikal dari tulang pipi ke tepi rahang (mm, rata-rata tiga titik lateral). 6–12 mm dianggap seimbang; lebih besar berarti pipi penuh (volume berlebih), lebih kecil berarti pipi cekung. Rentang masih dikalibrasi dengan sampel kecil.</span></div>
+            <div class="fig-wrap">
+                <img src="img/sculpt-lower_cheek.svg" alt="Lower cheeks sculpting map" loading="lazy" width="320" height="200">
+                <div class="fig-cap"><span>＋ <span lang="en">Add: highlight / fill</span><span lang="ko">보강: 밝게·채우기</span><span lang="ja">補強: 明るく・埋める</span><span lang="zh-CN">补强：提亮/填充</span><span lang="zh-TW">補強：提亮/填充</span><span lang="es">Reforzar: iluminar / rellenar</span><span lang="id">Perkuat: highlight / isi</span></span><span>－ <span lang="en">Reduce: shade</span><span lang="ko">여유: 음영</span><span lang="ja">余裕: 影</span><span lang="zh-CN">留白：阴影</span><span lang="zh-TW">留白：陰影</span><span lang="es">Suavizar: sombra</span><span lang="id">Kurangi: bayangan</span></span></div>
+            </div>
+            <div class="block-label rec">＋ <span lang="en">When it&#x27;s Add (+)</span><span lang="ko">보강(+)일 때</span><span lang="ja">補強(+)のとき</span><span lang="zh-CN">判定为补强(+)时</span><span lang="zh-TW">判定為補強(+)時</span><span lang="es">Si es Reforzar (+)</span><span lang="id">Jika Perkuat (+)</span></div>
+            <ul class="tips rec">
+                <li><span lang="en">If the lower cheeks look hollow, dab cream blush in a round shape beside the mouth corners to fill them in.</span><span lang="ko">아랫볼이 꺼져 보이면 입꼬리 옆 볼에 크림 블러셔를 둥글게 올려 채워 주세요.</span><span lang="ja">頬の下部がこけて見えるなら、口角の横にクリームチークを丸くのせて埋めます。</span><span lang="zh-CN">下颊显凹陷时，在嘴角旁用膏状腮红打圆填补。</span><span lang="zh-TW">下頰顯凹陷時，在嘴角旁用膏狀腮紅打圓填補。</span><span lang="es">Si las mejillas inferiores se ven hundidas, aplica colorete en crema en forma redonda junto a las comisuras.</span><span lang="id">Jika pipi bawah tampak cekung, bubuhkan cream blush berbentuk bulat di samping sudut mulut untuk mengisinya.</span></li>
+                <li><span lang="en">Pat cream blush onto the spot that rises when you smile — it reads fuller than powder.</span><span lang="ko">크림 블러셔를 웃을 때 올라오는 볼 위치에 손가락으로 톡톡 — 파우더보다 자연스럽게 차 보여요.</span><span lang="ja">笑ったとき盛り上がる位置にクリームチークを指でトントン。パウダーよりふっくら見えます。</span><span lang="zh-CN">在微笑时鼓起的位置用手指轻拍膏状腮红，比粉状更显饱满。</span><span lang="zh-TW">在微笑時鼓起的位置用手指輕拍膏狀腮紅，比粉狀更顯飽滿。</span><span lang="es">Da toques de colorete en crema donde la mejilla sube al sonreír: se ve más lleno que el polvo.</span><span lang="id">Tepuk cream blush di titik pipi yang naik saat tersenyum — tampak lebih penuh daripada bedak.</span></li>
+            </ul>
+            <div class="block-label ease">－ <span lang="en">When it&#x27;s Reduce (−)</span><span lang="ko">여유(−)일 때</span><span lang="ja">余裕(−)のとき</span><span lang="zh-CN">判定为留白(−)时</span><span lang="zh-TW">判定為留白(−)時</span><span lang="es">Si es Suavizar (−)</span><span lang="id">Jika Kurangi (−)</span></div>
+            <ul class="tips ease">
+                <li><span lang="en">Contour diagonally from under the cheekbone toward the jaw and keep blush high on the cheekbone to slim the lower cheek.</span><span lang="ko">광대 아래에서 턱선 쪽으로 사선 쉐딩을 넣고 블러셔는 광대 위쪽에만 올리면 아랫볼이 가벼워 보여요.</span><span lang="ja">頬骨の下から顎に向けて斜めにシェーディングを入れ、チークは頬骨の上だけにのせると頬の下部がすっきり見えます。</span><span lang="zh-CN">从颧骨下方向下颌斜向打阴影，腮红只扫在颧骨上方，下颊会显得轻盈。</span><span lang="zh-TW">從顴骨下方向下頜斜向打陰影，腮紅只掃在顴骨上方，下頰會顯得輕盈。</span><span lang="es">Aplica contorno en diagonal desde debajo del pómulo hacia la mandíbula y mantén el colorete alto para afinar la mejilla inferior.</span><span lang="id">Contour diagonal dari bawah tulang pipi ke arah rahang dan letakkan blush hanya di bagian atas pipi agar pipi bawah tampak lebih ramping.</span></li>
+                <li><span lang="en">Keep blush high on the cheekbone — dragging it toward the lower cheek makes it look heavier.</span><span lang="ko">블러셔는 광대 위쪽에만 올리세요. 아랫볼 쪽으로 내려 바르면 더 처져 보여요.</span><span lang="ja">チークは頬骨の上側だけ。下のほうに広げるとたるんで見えます。</span><span lang="zh-CN">腮红只打在颧骨上方，往下腮方向涂会显得更垂。</span><span lang="zh-TW">腮紅只打在顴骨上方，往下腮方向塗會顯得更垂。</span><span lang="es">Mantén el colorete alto en el pómulo; si baja hacia la mejilla inferior la hace más pesada.</span><span lang="id">Jaga blush tetap tinggi di tulang pipi — menariknya ke pipi bawah membuatnya tampak lebih berat.</span></li>
+            </ul>
+        </section>
+        <!-- =================== nose =================== -->
+        <section class="guide-card" id="nose" data-region="nose">
+            <h2>
+                <span lang="en">Nose</span><span lang="ko">코</span><span lang="ja">鼻</span><span lang="zh-CN">鼻子</span><span lang="zh-TW">鼻子</span><span lang="es">Nariz</span><span lang="id">Hidung</span>
+                <span class="en-name" lang="ko">Nose</span><span class="en-name" lang="ja">Nose</span><span class="en-name" lang="zh-CN">Nose</span><span class="en-name" lang="zh-TW">Nose</span><span class="en-name" lang="es">Nose</span><span class="en-name" lang="id">Nose</span>
+                <span class="my-badge" data-badge></span>
+            </h2>
+            <div class="measure"><b><span lang="en">What the app measures</span><span lang="ko">앱이 재는 것</span><span lang="ja">アプリが測るもの</span><span lang="zh-CN">应用测量的内容</span><span lang="zh-TW">App 測量的內容</span><span lang="es">Qué mide la app</span><span lang="id">Yang diukur aplikasi</span></b><span lang="en">Uses the Goode ratio (nasal projection ÷ nasal length), the same value as in the golden ratio table. On this app&#x27;s scale 0.42–0.66 is balanced; lower is marked as a region that would benefit from more height.</span><span lang="ko">코 돌출을 코 길이로 나눈 Goode 비율로 봅니다(황금비 표와 같은 값). 앱 측정 기준 0.42~0.66을 균형으로 보고, 낮으면 높이를 더했을 때 균형이 좋아지는 부위로 표시합니다.</span><span lang="ja">鼻の突出を鼻の長さで割ったGoode比で見ます（黄金比の表と同じ値）。このアプリの基準では0.42〜0.66をバランス範囲とし、低ければ高さを足すと良い部位として示します。</span><span lang="zh-CN">采用 Goode 比例（鼻突出 ÷ 鼻长），与黄金比例表中的数值相同。按本应用的尺度 0.42–0.66 为均衡；偏低则标为增加高度会更好的部位。</span><span lang="zh-TW">採用 Goode 比例（鼻突出 ÷ 鼻長），與黃金比例表中的數值相同。按本應用的尺度 0.42–0.66 為均衡；偏低則標為增加高度會更好的部位。</span><span lang="es">Usa la proporción de Goode (proyección nasal ÷ longitud nasal), el mismo valor de la tabla de proporción áurea. En la escala de la app 0,42–0,66 es equilibrado; si es menor se marca como zona que mejoraría con más altura.</span><span lang="id">Menggunakan rasio Goode (tonjolan hidung ÷ panjang hidung), nilai yang sama dengan tabel rasio emas. Pada skala aplikasi ini 0,42–0,66 dianggap seimbang; lebih rendah ditandai sebagai area yang lebih baik dengan tambahan tinggi.</span></div>
+            <div class="fig-wrap">
+                <img src="img/sculpt-nose.svg" alt="Nose sculpting map" loading="lazy" width="320" height="200">
+                <div class="fig-cap"><span>＋ <span lang="en">Add: highlight / fill</span><span lang="ko">보강: 밝게·채우기</span><span lang="ja">補強: 明るく・埋める</span><span lang="zh-CN">补强：提亮/填充</span><span lang="zh-TW">補強：提亮/填充</span><span lang="es">Reforzar: iluminar / rellenar</span><span lang="id">Perkuat: highlight / isi</span></span><span>－ <span lang="en">Reduce: shade</span><span lang="ko">여유: 음영</span><span lang="ja">余裕: 影</span><span lang="zh-CN">留白：阴影</span><span lang="zh-TW">留白：陰影</span><span lang="es">Suavizar: sombra</span><span lang="id">Kurangi: bayangan</span></span></div>
+            </div>
+            <div class="block-label rec">＋ <span lang="en">When it&#x27;s Add (+)</span><span lang="ko">보강(+)일 때</span><span lang="ja">補強(+)のとき</span><span lang="zh-CN">判定为补强(+)时</span><span lang="zh-TW">判定為補強(+)時</span><span lang="es">Si es Reforzar (+)</span><span lang="id">Jika Perkuat (+)</span></div>
+            <ul class="tips rec">
+                <li><span lang="en">A thin highlight down the bridge with contour on both sides adds height.</span><span lang="ko">콧대 가운데에 하이라이터를 가늘게 넣고 양옆에 쉐딩을 더해 높이를 살려요.</span><span lang="ja">鼻筋の中央に細くハイライト、両脇にシェーディングで高さを出します。</span><span lang="zh-CN">鼻梁中央细细打高光，两侧加阴影，衬出高度。</span><span lang="zh-TW">鼻樑中央細細打高光，兩側加陰影，襯出高度。</span><span lang="es">Un iluminador fino en el puente y contorno a ambos lados dan altura.</span><span lang="id">Highlight tipis di batang hidung dengan contour di kedua sisi menambah kesan tinggi.</span></li>
+                <li><span lang="en">Keep the bridge highlight thin, from the brow gap down to just above the tip — reaching the tip lengthens the nose.</span><span lang="ko">콧대 하이라이트는 미간부터 코끝 직전까지 가늘게. 코끝까지 이으면 코가 길어 보여요.</span><span lang="ja">鼻筋のハイライトは眉間から鼻先の手前まで細く。鼻先までつなぐと鼻が長く見えます。</span><span lang="zh-CN">鼻梁高光从眉心细细画到鼻尖之前，连到鼻尖会显鼻子长。</span><span lang="zh-TW">鼻樑高光從眉心細細畫到鼻尖之前，連到鼻尖會顯鼻子長。</span><span lang="es">El iluminador del puente va fino desde el entrecejo hasta justo antes de la punta; si llega a la punta alarga la nariz.</span><span lang="id">Highlight batang hidung dibuat tipis dari antara alis sampai tepat sebelum ujung — jika sampai ujung, hidung tampak panjang.</span></li>
+            </ul>
+            <div class="block-label ease">－ <span lang="en">When it&#x27;s Reduce (−)</span><span lang="ko">여유(−)일 때</span><span lang="ja">余裕(−)のとき</span><span lang="zh-CN">判定为留白(−)时</span><span lang="zh-TW">判定為留白(−)時</span><span lang="es">Si es Suavizar (−)</span><span lang="id">Jika Kurangi (−)</span></div>
+            <ul class="tips ease">
+                <li><span lang="en">Skip the bridge highlight and add light contour on the tip to reduce projection.</span><span lang="ko">콧대 하이라이트는 생략하고 코끝에 옅은 쉐딩을 넣어 돌출을 눌러요.</span><span lang="ja">鼻筋のハイライトは省き、鼻先に薄くシェーディングを入れて突出を抑えます。</span><span lang="zh-CN">省去鼻梁高光，在鼻尖打浅阴影收敛突出感。</span><span lang="zh-TW">省去鼻樑高光，在鼻尖打淺陰影收斂突出感。</span><span lang="es">Omite el iluminador del puente y aplica contorno suave en la punta.</span><span lang="id">Lewati highlight batang hidung dan beri contour tipis di ujung untuk meredam tonjolan.</span></li>
+                <li><span lang="en">Tip shading is a fingernail-sized touch under the tip, between the nostrils — done right, it&#x27;s barely visible after blending.</span><span lang="ko">코끝 쉐딩은 콧방울 사이 아래쪽에 손톱만큼만. 블렌딩 후 거의 안 보여야 성공이에요.</span><span lang="ja">鼻先の影は小鼻の間の下に爪ほどの大きさだけ。ぼかしてほぼ見えなくなれば成功。</span><span lang="zh-CN">鼻尖阴影只在两鼻翼之间的下方点指甲大小，晕开后几乎看不见才对。</span><span lang="zh-TW">鼻尖陰影只在兩鼻翼之間的下方點指甲大小，暈開後幾乎看不見才對。</span><span lang="es">La sombra de la punta es un toque del tamaño de una uña bajo la punta; bien difuminada apenas se nota.</span><span lang="id">Bayangan ujung hidung hanya sebesar kuku di bawah ujung, di antara cuping — setelah dibaurkan hampir tak terlihat.</span></li>
+            </ul>
+        </section>
+        <!-- =================== lips =================== -->
+        <section class="guide-card" id="lips" data-region="lips">
+            <h2>
+                <span lang="en">Lips</span><span lang="ko">입술</span><span lang="ja">唇</span><span lang="zh-CN">嘴唇</span><span lang="zh-TW">嘴唇</span><span lang="es">Labios</span><span lang="id">Bibir</span>
+                <span class="en-name" lang="ko">Lips</span><span class="en-name" lang="ja">Lips</span><span class="en-name" lang="zh-CN">Lips</span><span class="en-name" lang="zh-TW">Lips</span><span class="en-name" lang="es">Lips</span><span class="en-name" lang="id">Lips</span>
+                <span class="my-badge" data-badge></span>
+            </h2>
+            <div class="measure"><b><span lang="en">What the app measures</span><span lang="ko">앱이 재는 것</span><span lang="ja">アプリが測るもの</span><span lang="zh-CN">应用测量的内容</span><span lang="zh-TW">App 測量的內容</span><span lang="es">Qué mide la app</span><span lang="id">Yang diukur aplikasi</span></b><span lang="en">Measures how far the upper and lower lips sit behind the E-line from nose tip to chin (mm). For East Asian faces, upper −1 to 5 mm and lower −2 to 4 mm is balanced.</span><span lang="ko">코끝과 턱끝을 잇는 E-라인에서 윗입술·아랫입술이 얼마나 뒤에 있는지(mm)를 잽니다. 동양인 기준으로 윗 −1~5 mm, 아랫 −2~4 mm를 균형으로 봅니다.</span><span lang="ja">鼻先と顎先を結ぶEラインから上唇・下唇がどれだけ後ろにあるか（mm）を測ります。東アジア人基準で上 −1〜5 mm、下 −2〜4 mmをバランス範囲とします。</span><span lang="zh-CN">测量上唇、下唇位于鼻尖—下巴 E 线后方多少（mm）。按东亚面孔标准，上唇 −1~5 mm、下唇 −2~4 mm 为均衡。</span><span lang="zh-TW">測量上唇、下唇位於鼻尖—下巴 E 線後方多少（mm）。按東亞面孔標準，上唇 −1~5 mm、下唇 −2~4 mm 為均衡。</span><span lang="es">Mide cuánto quedan los labios superior e inferior detrás de la línea E (punta de la nariz–mentón, mm). Para rostros asiáticos, superior −1 a 5 mm e inferior −2 a 4 mm es equilibrado.</span><span lang="id">Mengukur seberapa jauh bibir atas dan bawah berada di belakang garis E dari ujung hidung ke dagu (mm). Untuk wajah Asia Timur, atas −1 hingga 5 mm dan bawah −2 hingga 4 mm dianggap seimbang.</span></div>
+            <div class="fig-wrap">
+                <img src="img/sculpt-lips.svg" alt="Lips sculpting map" loading="lazy" width="320" height="200">
+                <div class="fig-cap"><span>＋ <span lang="en">Add: highlight / fill</span><span lang="ko">보강: 밝게·채우기</span><span lang="ja">補強: 明るく・埋める</span><span lang="zh-CN">补强：提亮/填充</span><span lang="zh-TW">補強：提亮/填充</span><span lang="es">Reforzar: iluminar / rellenar</span><span lang="id">Perkuat: highlight / isi</span></span><span>－ <span lang="en">Reduce: shade</span><span lang="ko">여유: 음영</span><span lang="ja">余裕: 影</span><span lang="zh-CN">留白：阴影</span><span lang="zh-TW">留白：陰影</span><span lang="es">Suavizar: sombra</span><span lang="id">Kurangi: bayangan</span></span></div>
+            </div>
+            <div class="block-label rec">＋ <span lang="en">When it&#x27;s Add (+)</span><span lang="ko">보강(+)일 때</span><span lang="ja">補強(+)のとき</span><span lang="zh-CN">判定为补强(+)时</span><span lang="zh-TW">判定為補強(+)時</span><span lang="es">Si es Reforzar (+)</span><span lang="id">Jika Perkuat (+)</span></div>
+            <ul class="tips rec">
+                <li><span lang="en">Gloss or a lighter shade on the cupid&#x27;s bow and center of the lower lip adds fullness.</span><span lang="ko">입술 산과 아랫입술 가운데에 글로스나 밝은 컬러를 올려 볼륨감을 더해요.</span><span lang="ja">唇の山と下唇の中央にグロスや明るい色をのせ、ボリューム感を足します。</span><span lang="zh-CN">在唇峰和下唇中央点上唇蜜或浅色，增加饱满感。</span><span lang="zh-TW">在唇峰和下唇中央點上唇蜜或淺色，增加飽滿感。</span><span lang="es">Gloss o un tono más claro en el arco de Cupido y el centro del labio inferior dan volumen.</span><span lang="id">Gloss atau warna lebih terang di cupid&#x27;s bow dan tengah bibir bawah menambah kesan penuh.</span></li>
+                <li><span lang="en">Gloss only the center of the lips and leave the edges matte — the volume reads stronger.</span><span lang="ko">입술 가운데에만 글로스를 올리고 가장자리는 매트하게 두면 볼륨이 더 도드라져요.</span><span lang="ja">グロスは唇の中央だけ、端はマットに残すとボリュームが際立ちます。</span><span lang="zh-CN">唇釉只点在唇中央，唇缘保持雾面，立体感更突出。</span><span lang="zh-TW">唇釉只點在唇中央，唇緣保持霧面，立體感更突出。</span><span lang="es">Pon gloss solo en el centro y deja los bordes mate: el volumen resalta más.</span><span lang="id">Oleskan gloss hanya di tengah bibir, biarkan tepinya matte — volume tampak lebih menonjol.</span></li>
+            </ul>
+            <div class="block-label ease">－ <span lang="en">When it&#x27;s Reduce (−)</span><span lang="ko">여유(−)일 때</span><span lang="ja">余裕(−)のとき</span><span lang="zh-CN">判定为留白(−)时</span><span lang="zh-TW">判定為留白(−)時</span><span lang="es">Si es Suavizar (−)</span><span lang="id">Jika Kurangi (−)</span></div>
+            <ul class="tips ease">
+                <li><span lang="en">Stay inside the natural lip line and finish matte to downplay projection.</span><span lang="ko">입술 라인 바깥을 그리지 말고 매트 질감으로 마무리하면 돌출이 덜 보여요.</span><span lang="ja">唇の輪郭をオーバーに描かず、マットに仕上げると突出が目立ちません。</span><span lang="zh-CN">不要画出唇线之外，用哑光质地收尾，突出感会减弱。</span><span lang="zh-TW">不要畫出唇線之外，用霧面質地收尾，突出感會減弱。</span><span lang="es">No sobrepases la línea natural y termina en mate para disimular la proyección.</span><span lang="id">Jangan melewati garis bibir alami dan akhiri dengan tekstur matte agar tonjolan tersamar.</span></li>
+                <li><span lang="en">Line slightly inside the natural edge and pick a mid-tone — dark colors make protrusion more visible.</span><span lang="ko">입술 라인은 안쪽으로 살짝, 색은 중간 톤으로 — 진한 색은 돌출을 더 보이게 해요.</span><span lang="ja">リップラインは少し内側に、色は中間トーンで。濃い色は突出を強調します。</span><span lang="zh-CN">唇线稍微画在唇缘内侧，颜色选中间调——深色会放大前凸。</span><span lang="zh-TW">唇線稍微畫在唇緣內側，顏色選中間調——深色會放大前凸。</span><span lang="es">Perfila un poco por dentro del borde natural y elige un tono medio; los oscuros acentúan la protrusión.</span><span lang="id">Garis bibir sedikit di dalam tepi alami dan pilih warna sedang — warna gelap membuat tonjolan lebih terlihat.</span></li>
+            </ul>
+        </section>
+        <!-- =================== chin =================== -->
+        <section class="guide-card" id="chin" data-region="chin">
+            <h2>
+                <span lang="en">Chin</span><span lang="ko">턱끝</span><span lang="ja">顎先</span><span lang="zh-CN">下巴</span><span lang="zh-TW">下巴</span><span lang="es">Mentón</span><span lang="id">Dagu</span>
+                <span class="en-name" lang="ko">Chin</span><span class="en-name" lang="ja">Chin</span><span class="en-name" lang="zh-CN">Chin</span><span class="en-name" lang="zh-TW">Chin</span><span class="en-name" lang="es">Chin</span><span class="en-name" lang="id">Chin</span>
+                <span class="my-badge" data-badge></span>
+            </h2>
+            <div class="measure"><b><span lang="en">What the app measures</span><span lang="ko">앱이 재는 것</span><span lang="ja">アプリが測るもの</span><span lang="zh-CN">应用测量的内容</span><span lang="zh-TW">App 測量的內容</span><span lang="es">Qué mide la app</span><span lang="id">Yang diukur aplikasi</span></b><span lang="en">Looks at how far the chin projects beyond the deepest point below the lower lip (labiomental fold, mm) and the facial convexity angle (brow–nose base–chin). A chin at least 2 mm ahead of the fold with a convexity of 162–176° is balanced; a receding chin is marked as a region where added volume would improve the profile.</span><span lang="ko">턱끝이 아랫입술 아래 가장 깊은 곳(이순구)보다 얼마나 앞으로 나와 있는지(mm)와 옆얼굴 볼록각(미간–코밑–턱끝)을 봅니다. 턱끝이 이순구보다 2 mm 이상 앞이고 볼록각 162~176°면 균형, 뒤로 물러나 있으면 볼륨을 더했을 때 옆선이 좋아지는 부위로 표시합니다.</span><span lang="ja">下唇の下でいちばん深い点（オトガイ唇溝）より顎先がどれだけ前に出ているか（mm）と、顔面凸角（眉間–鼻下–顎先）を見ます。顎先が溝より2 mm以上前で凸角162〜176°ならバランス範囲、後退していればボリュームを足すと横顔が整う部位として示します。</span><span lang="zh-CN">看下巴比下唇下方最深点（颏唇沟）向前突出多少（mm），以及面部凸角（眉间—鼻底—下巴）。下巴比颏唇沟靠前 2 mm 以上且凸角 162–176° 为均衡；后缩则标为增加饱满度能改善侧脸线条的部位。</span><span lang="zh-TW">看下巴比下唇下方最深點（頦唇溝）向前突出多少（mm），以及面部凸角（眉間—鼻底—下巴）。下巴比頦唇溝靠前 2 mm 以上且凸角 162–176° 為均衡；後縮則標為增加飽滿度能改善側臉線條的部位。</span><span lang="es">Observa cuánto sobresale el mentón respecto al punto más profundo bajo el labio inferior (surco mentolabial, mm) y el ángulo de convexidad facial (entrecejo–base nasal–mentón). Un mentón al menos 2 mm por delante del surco con 162–176° es equilibrado; si retrocede, se marca como zona donde añadir volumen mejoraría el perfil.</span><span lang="id">Melihat seberapa jauh dagu menonjol melewati titik terdalam di bawah bibir bawah (lipatan dagu, mm) dan sudut konveksitas wajah (alis–pangkal hidung–dagu). Dagu minimal 2 mm di depan lipatan dengan sudut 162–176° dianggap seimbang; dagu yang mundur ditandai sebagai area yang profilnya membaik jika ditambah volume.</span></div>
+            <div class="fig-wrap">
+                <img src="img/sculpt-chin.svg" alt="Chin sculpting map" loading="lazy" width="320" height="200">
+                <div class="fig-cap"><span>＋ <span lang="en">Add: highlight / fill</span><span lang="ko">보강: 밝게·채우기</span><span lang="ja">補強: 明るく・埋める</span><span lang="zh-CN">补强：提亮/填充</span><span lang="zh-TW">補強：提亮/填充</span><span lang="es">Reforzar: iluminar / rellenar</span><span lang="id">Perkuat: highlight / isi</span></span><span>－ <span lang="en">Reduce: shade</span><span lang="ko">여유: 음영</span><span lang="ja">余裕: 影</span><span lang="zh-CN">留白：阴影</span><span lang="zh-TW">留白：陰影</span><span lang="es">Suavizar: sombra</span><span lang="id">Kurangi: bayangan</span></span></div>
+            </div>
+            <div class="block-label rec">＋ <span lang="en">When it&#x27;s Add (+)</span><span lang="ko">보강(+)일 때</span><span lang="ja">補強(+)のとき</span><span lang="zh-CN">判定为补强(+)时</span><span lang="zh-TW">判定為補強(+)時</span><span lang="es">Si es Reforzar (+)</span><span lang="id">Jika Perkuat (+)</span></div>
+            <ul class="tips rec">
+                <li><span lang="en">A small dot of highlighter on the center of the chin makes it look more forward.</span><span lang="ko">턱끝 가운데에 하이라이터를 작게 올려 앞으로 나와 보이게 해요.</span><span lang="ja">顎先の中央に小さくハイライトをのせ、前に出て見せます。</span><span lang="zh-CN">在下巴中央点一小块高光，让它看起来更向前。</span><span lang="zh-TW">在下巴中央點一小塊高光，讓它看起來更向前。</span><span lang="es">Un toque pequeño de iluminador en el centro del mentón lo proyecta hacia delante.</span><span lang="id">Sedikit highlighter di tengah dagu membuatnya tampak lebih maju.</span></li>
+                <li><span lang="en">Keep the chin highlight pea-sized and pair it with a faint shade just under the chin — the projection pops.</span><span lang="ko">턱끝 하이라이터는 콩알 크기로, 바로 아래 턱 밑에는 옅은 쉐딩을 함께 넣으면 돌출이 선명해져요.</span><span lang="ja">あご先のハイライトは豆粒大。すぐ下のあご裏に薄い影を添えると突出が際立ちます。</span><span lang="zh-CN">下巴高光只点豌豆大小，再在下巴底部补一点浅阴影，前凸就清晰了。</span><span lang="zh-TW">下巴高光只點豌豆大小，再在下巴底部補一點淺陰影，前凸就清晰了。</span><span lang="es">Iluminador en la barbilla del tamaño de un guisante, con una sombra suave justo debajo: la proyección destaca.</span><span lang="id">Highlighter di dagu sebesar kacang polong, ditambah bayangan tipis tepat di bawah dagu — tonjolan jadi jelas.</span></li>
+            </ul>
+            <div class="block-label ease">－ <span lang="en">When it&#x27;s Reduce (−)</span><span lang="ko">여유(−)일 때</span><span lang="ja">余裕(−)のとき</span><span lang="zh-CN">判定为留白(−)时</span><span lang="zh-TW">判定為留白(−)時</span><span lang="es">Si es Suavizar (−)</span><span lang="id">Jika Kurangi (−)</span></div>
+            <ul class="tips ease">
+                <li><span lang="en">Contour under the chin to shorten its length and projection.</span><span lang="ko">턱끝 아래쪽에 쉐딩을 넣어 길이와 돌출을 눌러 주세요.</span><span lang="ja">顎先の下にシェーディングを入れ、長さと突出を抑えます。</span><span lang="zh-CN">在下巴下方打阴影，收敛长度和突出感。</span><span lang="zh-TW">在下巴下方打陰影，收斂長度和突出感。</span><span lang="es">Aplica contorno bajo el mentón para acortar su largo y proyección.</span><span lang="id">Contour di bawah dagu untuk mengurangi kesan panjang dan tonjolan.</span></li>
+                <li><span lang="en">Skip highlighter on the chin and keep the shade under the jaw, just below the tip.</span><span lang="ko">턱끝 하이라이터는 생략하고, 쉐딩은 턱 밑에서 턱끝 바로 아래까지만 넣으세요.</span><span lang="ja">あご先のハイライトは省略。影はあご裏からあご先のすぐ下までに。</span><span lang="zh-CN">下巴不提亮，阴影只打在下巴底部到下巴尖正下方。</span><span lang="zh-TW">下巴不提亮，陰影只打在下巴底部到下巴尖正下方。</span><span lang="es">Omite el iluminador en la barbilla y limita la sombra a bajo la mandíbula, justo debajo de la punta.</span><span lang="id">Lewati highlighter di dagu dan batasi bayangan di bawah rahang, tepat di bawah ujung dagu.</span></li>
+            </ul>
+        </section>
+        <!-- =================== jawline =================== -->
+        <section class="guide-card" id="jawline" data-region="jawline">
+            <h2>
+                <span lang="en">Jawline</span><span lang="ko">턱선</span><span lang="ja">フェイスライン</span><span lang="zh-CN">下颌线</span><span lang="zh-TW">下顎線</span><span lang="es">Línea mandibular</span><span lang="id">Garis rahang</span>
+                <span class="en-name" lang="ko">Jawline</span><span class="en-name" lang="ja">Jawline</span><span class="en-name" lang="zh-CN">Jawline</span><span class="en-name" lang="zh-TW">Jawline</span><span class="en-name" lang="es">Jawline</span><span class="en-name" lang="id">Jawline</span>
+                <span class="my-badge" data-badge></span>
+            </h2>
+            <div class="measure"><b><span lang="en">What the app measures</span><span lang="ko">앱이 재는 것</span><span lang="ja">アプリが測るもの</span><span lang="zh-CN">应用测量的内容</span><span lang="zh-TW">App 測量的內容</span><span lang="es">Qué mide la app</span><span lang="id">Yang diukur aplikasi</span></b><span lang="en">Uses the jaw-to-cheekbone width ratio and the gonial angle. A ratio of 0.88 or more, or an angle under 116°, is marked as angular; under 0.70 or over 138° as a soft jawline.</span><span lang="ko">턱폭을 광대폭으로 나눈 비율과 하악각으로 봅니다. 비율 0.88 이상이거나 하악각 116° 미만이면 각진 편, 0.70 미만이거나 138° 초과면 턱선이 약한 편으로 표시합니다.</span><span lang="ja">顎幅÷頬骨幅の比率と下顎角で見ます。比率0.88以上または角度116°未満は角張った側、0.70未満または138°超はフェイスラインが弱い側として示します。</span><span lang="zh-CN">采用下颌宽÷颧宽的比例和下颌角。比例 ≥0.88 或角度 &lt;116° 标为偏方；&lt;0.70 或 &gt;138° 标为下颌线偏弱。</span><span lang="zh-TW">採用下頜寬÷顴寬的比例和下頜角。比例 ≥0.88 或角度 &lt;116° 標為偏方；&lt;0.70 或 &gt;138° 標為下頜線偏弱。</span><span lang="es">Usa la proporción anchura mandíbula/pómulos y el ángulo goníaco. Una proporción ≥0,88 o un ángulo &lt;116° se marca como angulosa; &lt;0,70 o &gt;138° como línea mandibular suave.</span><span lang="id">Menggunakan rasio lebar rahang terhadap tulang pipi dan sudut gonial. Rasio 0,88 ke atas atau sudut di bawah 116° ditandai bersudut; di bawah 0,70 atau di atas 138° ditandai garis rahang lemah.</span></div>
+            <div class="fig-wrap">
+                <img src="img/sculpt-jawline.svg" alt="Jawline sculpting map" loading="lazy" width="320" height="200">
+                <div class="fig-cap"><span>＋ <span lang="en">Add: highlight / fill</span><span lang="ko">보강: 밝게·채우기</span><span lang="ja">補強: 明るく・埋める</span><span lang="zh-CN">补强：提亮/填充</span><span lang="zh-TW">補強：提亮/填充</span><span lang="es">Reforzar: iluminar / rellenar</span><span lang="id">Perkuat: highlight / isi</span></span><span>－ <span lang="en">Reduce: shade</span><span lang="ko">여유: 음영</span><span lang="ja">余裕: 影</span><span lang="zh-CN">留白：阴影</span><span lang="zh-TW">留白：陰影</span><span lang="es">Suavizar: sombra</span><span lang="id">Kurangi: bayangan</span></span></div>
+            </div>
+            <div class="block-label rec">＋ <span lang="en">When it&#x27;s Add (+)</span><span lang="ko">보강(+)일 때</span><span lang="ja">補強(+)のとき</span><span lang="zh-CN">判定为补强(+)时</span><span lang="zh-TW">判定為補強(+)時</span><span lang="es">Si es Reforzar (+)</span><span lang="id">Jika Perkuat (+)</span></div>
+            <ul class="tips rec">
+                <li><span lang="en">Contour below the jawline and highlight just above it to sharpen the line.</span><span lang="ko">턱선 아래에 쉐딩을 넣고 턱선 위에 하이라이트를 더하면 선이 또렷해져요.</span><span lang="ja">フェイスラインの下にシェーディング、上にハイライトで線をはっきりさせます。</span><span lang="zh-CN">下颌线下方打阴影、上方提亮，线条会更清晰。</span><span lang="zh-TW">下顎線下方打陰影、上方提亮，線條會更清晰。</span><span lang="es">Contorno bajo la mandíbula e iluminador justo encima definen la línea.</span><span lang="id">Contour di bawah garis rahang dan highlight tepat di atasnya menegaskan garisnya.</span></li>
+                <li><span lang="en">Run the highlight along the jaw from under the ear toward the chin, thin — a thick line enlarges the jaw.</span><span lang="ko">턱선 바로 위 하이라이트는 귀 아래에서 턱끝 방향으로 얇게 — 선이 굵으면 턱이 커 보여요.</span><span lang="ja">あごのラインの上のハイライトは耳下からあご先へ細く。太いとあごが大きく見えます。</span><span lang="zh-CN">下颌线上方的高光从耳下向下巴细细带过，线条粗会显下巴大。</span><span lang="zh-TW">下頜線上方的高光從耳下向下巴細細帶過，線條粗會顯下巴大。</span><span lang="es">El iluminador sobre la mandíbula va fino desde bajo la oreja hacia la barbilla; una línea gruesa agranda la mandíbula.</span><span lang="id">Highlight di atas garis rahang dibuat tipis dari bawah telinga ke arah dagu — garis tebal membuat rahang tampak besar.</span></li>
+            </ul>
+            <div class="block-label ease">－ <span lang="en">When it&#x27;s Reduce (−)</span><span lang="ko">여유(−)일 때</span><span lang="ja">余裕(−)のとき</span><span lang="zh-CN">判定为留白(−)时</span><span lang="zh-TW">判定為留白(−)時</span><span lang="es">Si es Suavizar (−)</span><span lang="id">Jika Kurangi (−)</span></div>
+            <ul class="tips ease">
+                <li><span lang="en">Round out contour on the outer jaw angle to soften the squareness.</span><span lang="ko">턱 각 바깥쪽에 쉐딩을 둥글게 넣어 각진 느낌을 부드럽게 해요.</span><span lang="ja">エラの外側に丸くシェーディングを入れ、角ばった印象をやわらげます。</span><span lang="zh-CN">在下颌角外侧打圆形阴影，柔化方正感。</span><span lang="zh-TW">在下頜角外側打圓形陰影，柔化方正感。</span><span lang="es">Aplica contorno redondeado en el ángulo externo de la mandíbula para suavizar.</span><span lang="id">Contour melingkar di sudut rahang luar untuk melembutkan kesan kotak.</span></li>
+                <li><span lang="en">Shade the jaw corners in a half-circle and blend down into the neck so no edge shows.</span><span lang="ko">쉐딩은 턱 각 바깥쪽에 반원으로 넣고, 턱선 아래 목까지 블렌딩해 경계를 없애세요.</span><span lang="ja">影はエラの外側に半円状に。あご下から首へぼかして境目を消します。</span><span lang="zh-CN">阴影在下颌角外侧打半圆，并向颈部晕开，不留边界。</span><span lang="zh-TW">陰影在下頜角外側打半圓，並向頸部暈開，不留邊界。</span><span lang="es">Sombrea los ángulos de la mandíbula en semicírculo y difumina hacia el cuello para que no quede borde.</span><span lang="id">Beri bayangan setengah lingkaran di sudut rahang dan baurkan ke leher agar tidak ada batas.</span></li>
+            </ul>
+        </section>
+
+        <p class="footer-note"><span lang="en">Measurement-based reference only, not medical advice. Consult a specialist about any procedure.</span><span lang="ko">측정 기반 참고 정보이며 의학적 판단이 아닙니다. 시술은 전문의와 상담하세요.</span><span lang="ja">計測に基づく参考情報であり、医学的判断ではありません。施術は専門医にご相談ください。</span><span lang="zh-CN">基于测量的参考信息，并非医学判断。如需医美项目请咨询专科医生。</span><span lang="zh-TW">基於測量的參考資訊，並非醫學判斷。如需醫美療程請諮詢專科醫師。</span><span lang="es">Información de referencia basada en mediciones, no un criterio médico. Consulta a un especialista.</span><span lang="id">Informasi acuan berbasis pengukuran, bukan penilaian medis. Konsultasikan prosedur dengan dokter spesialis.</span></p>
+    </div>
+
+    <script>
+        var VALID_LANGS = ['en','ko','ja','zh-CN','zh-TW','es','id'];
+        var VALID_REGIONS = ["forehead", "temple", "under_eye", "cheek_front", "cheek_side", "lower_cheek", "nose", "lips", "chin", "jawline"];
+        var ADD_WORD = {"ko": "보강", "en": "Add", "es": "Añadir", "id": "Tambah", "ja": "足す", "zh-CN": "增加", "zh-TW": "增加"};
+        var EASE_WORD = {"ko": "여유", "en": "Reduce", "es": "Reducir", "id": "Kurangi", "ja": "引く", "zh-CN": "减少", "zh-TW": "減少"};
+
+        function setLang(lang) {
+            VALID_LANGS.forEach(function(c){ document.body.classList.remove('lang-' + c); });
+            document.body.classList.add('lang-' + lang);
+            document.querySelectorAll('.lang-btn').forEach(function(b){
+                b.classList.toggle('active', b.getAttribute('onclick').indexOf("'" + lang + "'") !== -1);
+            });
+            try { localStorage.setItem('preferred-lang', lang); } catch (e) {}
+            applyRaceForLang(); renderBadges();
+        }
+        var raceExplicit = false;
+        function setRaceSilent(r) { document.body.classList.remove('race-caucasian'); if (r === 'caucasian') document.body.classList.add('race-caucasian'); }
+        function applyRaceForLang() {
+            if (raceExplicit) return;
+            var m = document.body.className.match(/\blang-([A-Za-z-]+)\b/); var lng = m ? m[1] : 'en';
+            setRaceSilent((lng === 'en' || lng === 'es') ? 'caucasian' : 'asian');
+        }
+        function curLang() { var m = document.body.className.match(/\blang-([A-Za-z-]+)\b/); return m ? m[1] : 'en'; }
+        function markActiveChip(id) {
+            document.querySelectorAll('.section-chip').forEach(function(c){ c.classList.toggle('active', c.getAttribute('href') === '#' + id); });
+        }
+        // ?regions=cheek_side:-2,chin:1 → 판정 부위 강조·배지·맨 위로 정렬·배너
+        var FLAGGED = [];
+        function badgeText(g) {
+            var lng = curLang(); var w = g > 0 ? (ADD_WORD[lng] || ADD_WORD.en) : (EASE_WORD[lng] || EASE_WORD.en);
+            return w + ' ' + (g > 0 ? '+' + g : '−' + Math.abs(g));
+        }
+        function renderBadges() {
+            FLAGGED.forEach(function(f) {
+                var card = document.getElementById(f.key); if (!card) return;
+                var b = card.querySelector('[data-badge]'); b.textContent = badgeText(f.g); b.className = 'my-badge ' + (f.g > 0 ? 'add' : 'ease');
+            });
+            var chips = document.getElementById('resultChips'); if (!chips) return; chips.innerHTML = '';
+            FLAGGED.forEach(function(f) {
+                var card = document.getElementById(f.key); if (!card) return;
+                var name = card.querySelector('h2 span[lang="' + curLang() + '"]'); var a = document.createElement('a'); a.href = '#' + f.key;
+                var s = document.createElement('span'); s.className = 'my-badge ' + (f.g > 0 ? 'add' : 'ease'); s.textContent = (name ? name.textContent + ' · ' : '') + badgeText(f.g);
+                a.appendChild(s); chips.appendChild(a);
+            });
+        }
+        function applyRegions(spec) {
+            spec.split(',').forEach(function(tok) {
+                var p = tok.split(':'); var key = p[0]; var g = parseInt(p[1] || '0', 10);
+                if (VALID_REGIONS.indexOf(key) !== -1 && g !== 0 && !isNaN(g)) FLAGGED.push({key: key, g: Math.max(-2, Math.min(2, g))});
+            });
+            if (!FLAGGED.length) return;
+            var how = document.getElementById('how');
+            // 판정 부위를 '해석 방법' 바로 뒤에, 등급 절댓값 큰 순서로 모은다
+            FLAGGED.slice().sort(function(a, b) { return Math.abs(b.g) - Math.abs(a.g); }).reverse().forEach(function(f) {
+                var card = document.getElementById(f.key); if (card) { card.classList.add('flagged'); how.insertAdjacentElement('afterend', card); }
+            });
+            document.getElementById('resultBanner').classList.add('active');
+            renderBadges();
+        }
+        document.addEventListener('DOMContentLoaded', function () {
+            var params = new URLSearchParams(location.search);
+            var lang = params.get('lang') || (function(){ try { return localStorage.getItem('preferred-lang'); } catch (e) { return null; } })() || 'en';
+            if (VALID_LANGS.indexOf(lang) === -1) lang = 'en';
+            var raceParam = params.get('race'); if (raceParam) { raceExplicit = true; setRaceSilent(raceParam); }
+            var regions = params.get('regions'); if (regions) applyRegions(regions);
+            setLang(lang);
+            var target = null; var hash = (location.hash || '').replace('#', '');
+            if (VALID_REGIONS.indexOf(hash) !== -1) target = hash; else if (FLAGGED.length) target = FLAGGED[0].key;
+            if (target) {
+                markActiveChip(target); var el = document.getElementById(FLAGGED.length && !hash ? 'resultBanner' : target);
+                if (el) {
+                    var _us = false;
+                    ['wheel', 'touchstart'].forEach(function (e) { window.addEventListener(e, function () { _us = true; }, { passive: true, once: true }); });
+                    [0, 150, 400, 800, 1500].forEach(function (ms) { setTimeout(function () { if (!_us) el.scrollIntoView({ block: 'start' }); }, ms); });
+                }
+            }
+        });
+    </script>
+</body>
+</html>
