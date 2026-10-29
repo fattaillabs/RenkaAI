@@ -18,7 +18,7 @@ header p{margin-top:14px;color:var(--muted)}
 h2{margin:52px 0 10px;font-size:22px;font-weight:700}
 h3{margin:40px 0 6px;font-size:18px;font-weight:700}
 p{margin:12px 0}
-ul{margin:12px 0 12px 22px}
+ul,ol{margin:12px 0 12px 22px}
 li{margin:6px 0}
 .muted{color:var(--muted);font-size:15px}
 b,strong{font-weight:700}
@@ -66,6 +66,35 @@ footer{margin-top:52px;padding-top:26px;border-top:2px solid var(--band);
 <p>如果你想讲「这 App 有什么不一样」，重点就在这里。</p>
 <div class="tip"><b>一个拍摄小建议</b>：测量的过程本身就很好看。扫脸的画面只有视频才能呈现，
 而且不用解释就证明了「是 3D 在测」。</div>
+
+<h2>最近新增 <span class="muted">（2026 年 10 月更新）</span></h2>
+<p class="muted">最近更新里变化最大的部分，欢迎优先介绍。</p>
+
+<h3>面部饱满平衡 · 面部雕塑 <span class="muted">（测试版）</span></h3>
+<figure>
+  <a href="screens/11_volume_balance.png" target="_blank"><img src="screens/11_volume_balance.png" alt="面部饱满平衡"></a>
+  <figcaption>蓝 = 增加饱满度更平衡 · 橙 = 减少饱满度更平衡 · 下方是分部位数值（示例报告画面）</figcaption>
+</figure>
+<p>用 3D 面部网格，以毫米为单位测量额头、太阳穴、眼下、苹果肌、颧骨外侧、下脸颊、鼻、唇、下巴、下颌线 <b>10 个部位</b>的突出和凹陷，
+在脸上用地图标出哪里饱满一点、哪里收一点会更平衡，并给出每个部位用化妆修饰的建议。</p>
+<div class="tip"><b>如果讲这个</b>：「照片看不出的立体感，用数字量出来」—— 这是最能体现 Renka 不同之处的功能。
+按「数值 → 化妆建议」的顺序讲会很自然。<b>请只讲化妆修饰，不要和医美项目（填充、注射等）联系起来。</b></div>
+
+<h3>AI 造型试戴（发型 · 眼镜）</h3>
+<figure>
+  <a href="screens/12_ai_fitting.png" target="_blank"><img src="screens/12_ai_fitting.png" alt="AI 造型试戴"></a>
+  <figcaption>挑选发型（剪发·刘海·烫发·发色）和眼镜，合成到自己的照片上 —— 适合脸型的款式会标「推荐」</figcaption>
+</figure>
+<p>用 AI 把新发型和眼镜「穿」到自己的照片上，选好后几秒就能看到逼真的预览。
+从测量结果画面或菜单进入；挑选人人可用，合成需要 Pro。</p>
+<div class="tip"><b>如果讲这个</b>：脸型分析 → 标「推荐」的款式 → 合成结果，连起来就能看出测量真的派上了用场。</div>
+
+<h3>其他</h3>
+<ul>
+  <li><b>眼型·法令纹·黑眼圈数值</b> —— 眼尾角度、上眼睑高度(MRD1)、眼睑遮盖、法令纹深度、黑眼圈指数，都会在详细报告里用数字呈现。</li>
+  <li><b>百日挑战报告</b> —— 每 100 天收到一份报告：和上一阶段的对比、全期间趋势图，以及 Rena 的 AI 摘要。可以先看示例报告。</li>
+  <li><b>美颜自拍</b> —— 实时美颜（皮肤·眼睛·鼻子）更自然，跟随脸部也更稳定。</li>
+</ul>
 
 <h2>各功能的看点</h2>
 <p class="muted">顺序没有意义，挑感兴趣的看就行。</p>
@@ -117,13 +146,13 @@ App 里可以切换，直接叠在自己脸上。</p>
 </figure>
 <p><b>皮肤状态图</b>会把泛红、瑕疵、色素集中在脸上的哪些位置用颜色叠出来。
 点开卡片展开后，还有粗糙度、均匀度等细项指标。</p>
-<div class="tip"><b>如果讲这个</b>：接着展示<b>实时滤镜的试戴功能</b>会很顺 ——
+<div class="tip"><b>如果讲这个</b>：接着展示上面的 <b>AI 造型试戴</b>或实时滤镜的试戴功能会很顺 ——
 脸型 → 适合的发型和眼镜，个人色彩 → 适合的颜色。结果听人说，不如看它叠在脸上来得直接。
-位置：测量完成后的画面 → 实时滤镜。（我们没有中文截图，需要你自己录制。）</div>
+实时滤镜从测量完成后的画面进入。（实时滤镜没有截图，需要你自己录制。）</div>
 <p class="muted">不太建议把试戴单独当主题 —— 在中国用户的脸上效果如何，我们还没有把握。
 像上面那样搭配着展示比较好。</p>
 
-<h3>你的焕颜建议 <span class="muted">(新功能)</span></h3>
+<h3>你的焕颜建议</h3>
 <figure>
   <a href="screens/09_glowup_tips.png" target="_blank"><img src="screens/09_glowup_tips.png" alt="你的焕颜建议"></a>
   <figcaption>按测得的类型(眼型·脸型·个人色彩·皮肤)组合出来的建议</figcaption>
@@ -133,7 +162,7 @@ App 里可以切换，直接叠在自己脸上。</p>
 <div class="tip"><b>如果讲这个</b>：测量画面 → 结果数字 → 建议，连成一条线来看最清楚。
 能用数字解释「为什么给我这条建议」，这一点会显出来。</div>
 
-<h3>更好的自己 <span class="muted">(新功能 · 内测)</span></h3>
+<h3>更好的自己 <span class="muted">(内测)</span></h3>
 <figure>
   <a href="screens/10_preview_face.png" target="_blank"><img src="screens/10_preview_face.png" alt="更好的自己"></a>
   <figcaption>用滑块比较现在 / 预期。画面上有内测标记和「AI 生成的预览」提示</figcaption>
@@ -163,10 +192,12 @@ App 里可以切换，直接叠在自己脸上。</p>
   <p>体验码开通的是 <b>Pro 全部功能</b>。普通用户是这样：</p>
   <ul>
     <li><b>测量和基本结果、卡路里相机</b> —— 免费</li>
-    <li><b>详细报告</b>（中面部、黄金比例、浮肿详情、皮肤状态图、焕颜建议、更好的自己等，上面截图的大部分）—— Pro</li>
+    <li><b>AI 造型试戴</b> —— 挑选款式免费，合成需要 Pro</li>
+    <li><b>详细报告</b>（中面部、黄金比例、浮肿详情、面部饱满平衡、皮肤状态图、焕颜建议、更好的自己、百日报告等，上面截图的大部分）—— Pro</li>
     <li><b>实时滤镜</b> —— 每天有免费次数，更多需要 Pro</li>
   </ul>
-  <p>如果评论区有人问「为什么我没有这个画面」，回答「详细报告是 Pro 功能」就可以了。</p>
+  <p>如果评论区有人问「为什么我没有这个画面」，回答「详细报告是 Pro 功能」就可以了。
+  App 里的「示例报告」谁都可以先看。</p>
 </div>
 
 <div class="notes">
@@ -190,7 +221,8 @@ App 里可以切换，直接叠在自己脸上。</p>
 <ul>
   <li><b>通用</b>：#变美日常　#自我管理　#干货分享　#自律变美</li>
   <li><b>按题材</b>：脸的大小 → #小脸 ／ 中面部 → #中面部 ／
-      浮肿 → #消肿 #去水肿 ／ 色彩 → #个人色彩 #冷暖皮测试 ／ 建议·预期脸 → #变美日常 #美容干货</li>
+      浮肿 → #消肿 #去水肿 ／ 色彩 → #个人色彩 #冷暖皮测试 ／ 建议·预期脸 → #变美日常 #美容干货 ／
+      发型·眼镜 → #发型推荐 #眼镜推荐</li>
   <li class="muted">请不要带医美类话题 —— 和上面的请求是同一个原因。</li>
 </ul>
 
@@ -200,7 +232,7 @@ App 里可以切换，直接叠在自己脸上。</p>
   <a href="resources/renka_logo.png" target="_blank"><img src="resources/renka_logo.png" alt="Renka Logo"></a>
 </div>
 <ul>
-  <li><b>全部素材打包</b>：<a href="renka-kit.zip"><b>renka-kit.zip</b></a>（截图 10 张 + 图标·Logo，约 6MB）</li>
+  <li><b>全部素材打包</b>：<a href="renka-kit.zip"><b>renka-kit.zip</b></a>（截图 12 张 + 图标·Logo，约 8MB）</li>
   <li><b>圆角 App 图标</b>：<a href="resources/renka_icon_rounded.png" target="_blank">1024</a> ·
       <a href="resources/renka_icon_rounded_512.png" target="_blank">512</a> ——
       就是主屏幕图标的样子，适合放进视频和封面</li>
@@ -215,7 +247,9 @@ App 里可以切换，直接叠在自己脸上。</p>
       <a href="screens/07_personal_color.png" target="_blank">个人色彩</a> ·
       <a href="screens/08_golden_ratio.png" target="_blank">黄金比例</a> ·
       <a href="screens/09_glowup_tips.png" target="_blank">焕颜建议</a> ·
-      <a href="screens/10_preview_face.png" target="_blank">更好的自己</a>
+      <a href="screens/10_preview_face.png" target="_blank">更好的自己</a> ·
+      <a href="screens/11_volume_balance.png" target="_blank">面部饱满平衡</a> ·
+      <a href="screens/12_ai_fitting.png" target="_blank">AI 造型试戴</a>
       <span class="muted">（正文里的截图点开也是原图，长按可保存）</span></li>
   <li><b>官方名称</b>：中国区 App Store「<b>Renka - 3D脸部分析仪</b>」· 搜索「Renka」就能找到</li>
   <li><b>App Store 链接</b>：<a href="https://apps.apple.com/cn/app/id6756908316" target="_blank">https://apps.apple.com/cn/app/id6756908316</a></li>
@@ -224,8 +258,20 @@ App 里可以切换，直接叠在自己脸上。</p>
 </ul>
 
 <footer>
-  <p><b>体验码</b> —— 兑换码和链接会另外发给你。<b>iPhone 请直接点兑换链接</b>（请用 Safari 打开，不要在微信内打开），
-  或在 App Store → 右上角头像 →「兑换充值卡或代码」中手动输入。当前版本在 iPhone 上无法通过 App 内输入兑换。</p>
+  <p><b>体验码</b> —— 兑换码和链接会另外发给你。<b>请把兑换链接复制到 iPhone 自带的 Safari 中打开</b>（不要在微信、小红书等 App 内打开），
+  或在 App Store → 右上角头像 →「兑换充值卡或代码」中手动输入。
+  如果这个 Apple ID 正在试用或订阅 Renka，苹果会拒绝兑换码。</p>
+  <p><b>链接也不行的话</b> —— 我们直接为你开通：</p>
+  <ol>
+    <li>先在 App Store 把 Renka 更新到最新版本。</li>
+    <li>打开 App → 菜单「设置与应用信息」→ 在「订阅」下方找到「客服 ID」，点一下即可复制。</li>
+    <li>把复制的 ID 发送到邮箱 <a href="mailto:bernard@fattaillabs.com">bernard@fattaillabs.com</a>，或者交给与你对接的 MCN 机构或合作平台负责人转达给我们。我们会在后台为你开通 Pro（1 年）。</li>
+    <li>收到我们「已开通」的通知后，请完全关闭 App 再重新打开，Pro 功能即可使用。</li>
+  </ol>
+  <figure style="max-width:440px">
+    <a href="help/support_id.png" target="_blank"><img src="help/support_id.png" alt="客服 ID 的位置"></a>
+    <figcaption>设置 › 订阅里的「客服 ID」（点一下即可复制）</figcaption>
+  </figure>
   <p style="margin-top:18px">有任何问题随时联系我们。</p>
 </footer>
 
