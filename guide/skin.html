@@ -115,6 +115,23 @@
         body.lang-id.race-caucasian span[lang="id"][data-race="asian"] { display: none; }
         body.lang-es.race-caucasian span[lang="es"][data-race="caucasian"] { display: inline; }
         body.lang-id.race-caucasian span[lang="id"][data-race="caucasian"] { display: inline; }
+        /* 내 측정 결과(앱 ?concerns=키:등급, 11/07) — 볼륨 가이드(sculpting.html)와 같은 모양 */
+        .result-banner { display: none; border-radius: 14px; padding: 13px 16px; margin-bottom: 22px; background: rgba(124,179,66,0.13); border: 1px solid rgba(124,179,66,0.34); font-size: 13.5px; color: #3f4a39; line-height: 1.7; }
+        .result-banner.active { display: block; }
+        .result-banner strong { color: #3d6b1f; }
+        .result-banner .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+        .result-banner .chips a { text-decoration: none; }
+        .result-banner .bal { font-size: 12.5px; color: #6b7a60; margin-top: 8px; }
+        .lv-chip { display: inline-block; font-size: 12.5px; font-weight: 800; border-radius: 12px; padding: 3px 10px; border: 1px solid; }
+        .lv-chip.lv2 { background: #FBE3DA; color: #a8432a; border-color: #eaa58c; }
+        .lv-chip.lv1 { background: #FFF1C2; color: #7a5a00; border-color: #f0cf5a; }
+        .lv-chip.lv0 { background: rgba(124,179,66,0.14); color: #3d6b1f; border-color: rgba(124,179,66,0.4); }
+        .guide-card.flagged { border: 1.5px solid #7cb342; box-shadow: 0 4px 16px rgba(124,179,66,0.25); }
+        .my-badge { display: inline-block; font-size: 12px; font-weight: 800; border-radius: 12px; padding: 3px 10px; vertical-align: middle; background: #7cb342; color: #fff; }
+        .guide-card.calm > :not(h2):not(.calm-note) { display: none; }
+        .calm-note { display: none; font-size: 13.5px; color: #6b7a60; margin-top: 6px; }
+        .guide-card.calm .calm-note { display: block; }
+        .calm-note button { margin-left: 6px; font-size: 13px; font-weight: 700; color: #4e8a2c; background: none; border: none; text-decoration: underline; cursor: pointer; padding: 0; }
     </style>
 </head>
 <body class="lang-en">
@@ -135,6 +152,12 @@
         <h1><span lang="en">Skin Care Guide</span><span lang="ko">피부 트러블 케어 가이드</span><span lang="ja">肌トラブルケアガイド</span><span lang="zh-CN">皮肤问题护理指南</span><span lang="zh-TW">皮膚問題護理指南</span><span lang="es">Guía de cuidado de la piel</span><span lang="id">Panduan Perawatan Kulit</span></h1>
         <p class="subtitle"><span lang="en">Care tips for blemishes, pigment spots and redness, matched to your skin map. A guide, not medical advice.</span><span lang="ko">피부 상태 맵에서 확인한 트러블·색소·홍조를 관리하는 방법. 의료 조언이 아닌 참고용 가이드입니다.</span><span lang="ja">肌状態マップで確認したトラブル・色素・赤みのケア方法。医療アドバイスではなく参考ガイドです。</span><span lang="zh-CN">针对皮肤状态图中的痘痘、色素与泛红的护理方法。仅供参考，非医疗建议。</span><span lang="zh-TW">針對皮膚狀態圖中的痘痘、色素與泛紅的護理方法。僅供參考，非醫療建議。</span><span lang="es">Cuidados para granos, manchas y rojez según tu mapa de piel. Una guía, no un consejo médico.</span><span lang="id">Tips perawatan untuk jerawat, bercak pigmen, dan kemerahan, disesuaikan dengan peta kulitmu. Ini panduan, bukan saran medis.</span></p>
 
+        <!-- 내 측정 결과 (?concerns= 로 자동, 11/07) -->
+        <div class="result-banner" id="resultBanner">
+            <strong><span lang="en">From your scan</span><span lang="ko">내 측정 결과</span><span lang="ja">あなたの測定結果</span><span lang="zh-CN">你的测量结果</span><span lang="zh-TW">你的測量結果</span><span lang="es">Según tu escaneo</span><span lang="id">Dari hasil pindaimu</span></strong>
+            <div class="chips" id="resultChips"></div>
+            <div class="bal"><span lang="en">Sorted from highest. Sections that barely apply to you are folded.</span><span lang="ko">높은 순서로 정리했고, 해당이 적은 항목은 접어 뒀어요.</span><span lang="ja">高い順に並べ、当てはまりにくい項目はたたんでいます。</span><span lang="zh-CN">按从高到低排列，不太相关的部分已折叠。</span><span lang="zh-TW">按從高到低排列，不太相關的部分已摺疊。</span><span lang="es">Ordenado de mayor a menor. Lo que apenas te aplica está plegado.</span><span lang="id">Diurutkan dari yang tertinggi. Bagian yang kurang relevan dilipat.</span></div>
+        </div>
         <div class="severity-banner" id="sevBanner" hidden>
   <div class="sev-row" data-sev="none"><span class="sev-icon">👍</span><p><strong><span lang="en">Skin looks calm.</span><span lang="ko">피부가 안정적이에요.</span><span lang="ja">肌は落ち着いています。</span><span lang="zh-CN">皮肤状态稳定。</span><span lang="zh-TW">皮膚狀態穩定。</span><span lang="es">Tu piel está tranquila.</span><span lang="id">Kulit terlihat tenang.</span></strong> <span lang="en">Keep your basic routine and sunscreen.</span><span lang="ko">기본 루틴과 자외선 차단만 유지하세요.</span><span lang="ja">基本ケアと日焼け止めを続けましょう。</span><span lang="zh-CN">保持基础护理和防晒即可。</span><span lang="zh-TW">保持基礎護理和防曬即可。</span><span lang="es">Mantén tu rutina básica y el protector solar.</span><span lang="id">Pertahankan rutinitas dasar dan tabir suryamu.</span></p></div>
   <div class="sev-row" data-sev="mild"><span class="sev-icon">🌱</span><p><strong><span lang="en">A few spots detected.</span><span lang="ko">약간의 트러블이 보여요.</span><span lang="ja">軽いトラブルがあります。</span><span lang="zh-CN">检测到少量痘痘。</span><span lang="zh-TW">檢測到少量痘痘。</span><span lang="es">Se detectaron algunos granitos.</span><span lang="id">Terdeteksi beberapa bercak.</span></strong> <span lang="en">Gentle cleansing and spot care usually settle these in days.</span><span lang="ko">순한 세안과 스팟 케어면 며칠 안에 가라앉는 경우가 많아요.</span><span lang="ja">やさしい洗顔とスポットケアで数日で落ち着くことが多いです。</span><span lang="zh-CN">温和清洁加局部护理，通常几天就能平复。</span><span lang="zh-TW">溫和清潔加局部護理，通常幾天就能平復。</span><span lang="es">Con limpieza suave y cuidado localizado suelen calmarse en días.</span><span lang="id">Pembersihan lembut dan perawatan titik biasanya meredakannya dalam beberapa hari.</span></p></div>
@@ -192,6 +215,63 @@
             });
         }
 
+
+        // ── 내 측정 결과(11/07, 앱 SkinCarePlan): concerns=키:등급(0 좋음·1 약간·2 높음), 앱이 정한 높은 순서 그대로 ──
+        // 판정은 앱 한 곳에서 — 웹은 배너 칩·내 섹션 배지·순서·'좋음' 섹션 접기만. 옛 앱(severity·region)은 아래 기존 동작
+        var CONCERN_SECTION = {trouble:'trouble', pigment:'pigment', melasma:'pigment', redness:'redness', darkcircle:'darkcircle', texture:'ingredients'};
+        var CONCERN_NAME = {"trouble": "<span lang=\"en\">Blemishes</span><span lang=\"ko\">트러블</span><span lang=\"ja\">ニキビ・トラブル</span><span lang=\"zh-CN\">痘痘</span><span lang=\"zh-TW\">痘痘</span><span lang=\"es\">Granos</span><span lang=\"id\">Jerawat</span>", "pigment": "<span lang=\"en\">Dark spots</span><span lang=\"ko\">색소·잡티</span><span lang=\"ja\">シミ</span><span lang=\"zh-CN\">色斑</span><span lang=\"zh-TW\">色斑</span><span lang=\"es\">Manchas</span><span lang=\"id\">Flek</span>", "melasma": "<span lang=\"en\">Melasma</span><span lang=\"ko\">넓은 기미</span><span lang=\"ja\">肝斑</span><span lang=\"zh-CN\">黄褐斑</span><span lang=\"zh-TW\">黃褐斑</span><span lang=\"es\">Melasma</span><span lang=\"id\">Melasma</span>", "redness": "<span lang=\"en\">Redness</span><span lang=\"ko\">홍조</span><span lang=\"ja\">赤み</span><span lang=\"zh-CN\">泛红</span><span lang=\"zh-TW\">泛紅</span><span lang=\"es\">Rojez</span><span lang=\"id\">Kemerahan</span>", "darkcircle": "<span lang=\"en\">Dark circles</span><span lang=\"ko\">다크서클</span><span lang=\"ja\">目のくま</span><span lang=\"zh-CN\">黑眼圈</span><span lang=\"zh-TW\">黑眼圈</span><span lang=\"es\">Ojeras</span><span lang=\"id\">Lingkaran hitam</span>", "texture": "<span lang=\"en\">Texture</span><span lang=\"ko\">피부결</span><span lang=\"ja\">キメ</span><span lang=\"zh-CN\">肤质纹理</span><span lang=\"zh-TW\">膚質紋理</span><span lang=\"es\">Textura</span><span lang=\"id\">Tekstur</span>"};
+        var LEVEL_NAME = {"0": "<span lang=\"en\">Good</span><span lang=\"ko\">좋음</span><span lang=\"ja\">良好</span><span lang=\"zh-CN\">良好</span><span lang=\"zh-TW\">良好</span><span lang=\"es\">Bien</span><span lang=\"id\">Baik</span>", "1": "<span lang=\"en\">Mild</span><span lang=\"ko\">약간</span><span lang=\"ja\">やや</span><span lang=\"zh-CN\">轻微</span><span lang=\"zh-TW\">輕微</span><span lang=\"es\">Leve</span><span lang=\"id\">Ringan</span>", "2": "<span lang=\"en\">High</span><span lang=\"ko\">높음</span><span lang=\"ja\">高め</span><span lang=\"zh-CN\">较高</span><span lang=\"zh-TW\">較高</span><span lang=\"es\">Alto</span><span lang=\"id\">Tinggi</span>"};
+        var TXT = {"title": "<span lang=\"en\">From your scan</span><span lang=\"ko\">내 측정 결과</span><span lang=\"ja\">あなたの測定結果</span><span lang=\"zh-CN\">你的测量结果</span><span lang=\"zh-TW\">你的測量結果</span><span lang=\"es\">Según tu escaneo</span><span lang=\"id\">Dari hasil pindaimu</span>", "note": "<span lang=\"en\">Sorted from highest. Sections that barely apply to you are folded.</span><span lang=\"ko\">높은 순서로 정리했고, 해당이 적은 항목은 접어 뒀어요.</span><span lang=\"ja\">高い順に並べ、当てはまりにくい項目はたたんでいます。</span><span lang=\"zh-CN\">按从高到低排列，不太相关的部分已折叠。</span><span lang=\"zh-TW\">按從高到低排列，不太相關的部分已摺疊。</span><span lang=\"es\">Ordenado de mayor a menor. Lo que apenas te aplica está plegado.</span><span lang=\"id\">Diurutkan dari yang tertinggi. Bagian yang kurang relevan dilipat.</span>", "rank1": "<span lang=\"en\">My #1</span><span lang=\"ko\">내 1순위</span><span lang=\"ja\">わたしの1位</span><span lang=\"zh-CN\">我的第1位</span><span lang=\"zh-TW\">我的第1位</span><span lang=\"es\">Mi n.º 1</span><span lang=\"id\">Prioritas #1</span>", "rank2": "<span lang=\"en\">My #2</span><span lang=\"ko\">내 2순위</span><span lang=\"ja\">わたしの2位</span><span lang=\"zh-CN\">我的第2位</span><span lang=\"zh-TW\">我的第2位</span><span lang=\"es\">Mi n.º 2</span><span lang=\"id\">Prioritas #2</span>", "rankN": "<span lang=\"en\">Next</span><span lang=\"ko\">그다음</span><span lang=\"ja\">次に</span><span lang=\"zh-CN\">其次</span><span lang=\"zh-TW\">其次</span><span lang=\"es\">Después</span><span lang=\"id\">Berikutnya</span>", "calm": "<span lang=\"en\">Your results show little here for now.</span><span lang=\"ko\">내 결과로는 지금 해당이 적어요.</span><span lang=\"ja\">今の結果では、ここは当てはまりにくいです。</span><span lang=\"zh-CN\">从你的结果看，这部分目前不太需要。</span><span lang=\"zh-TW\">從你的結果看，這部分目前不太需要。</span><span lang=\"es\">Según tus resultados, ahora esto apenas aplica.</span><span lang=\"id\">Menurut hasilmu, bagian ini belum terlalu perlu.</span>", "open": "<span lang=\"en\">Show anyway</span><span lang=\"ko\">그래도 펼쳐 보기</span><span lang=\"ja\">それでも開く</span><span lang=\"zh-CN\">仍然展开</span><span lang=\"zh-TW\">仍然展開</span><span lang=\"es\">Mostrar igualmente</span><span lang=\"id\">Tetap tampilkan</span>"};
+        var MY_FIRST = null;
+        function applyConcerns(spec) {
+            var list = [];
+            spec.split(',').forEach(function(tok) {
+                var p = tok.split(':'); var k = p[0]; var lv = parseInt(p[1] || '0', 10);
+                if (CONCERN_SECTION[k] && !isNaN(lv)) list.push({key: k, lv: Math.max(0, Math.min(2, lv))});
+            });
+            if (!list.length) return false;
+            var chips = document.getElementById('resultChips');
+            list.forEach(function(c) {
+                var a = document.createElement('a'); a.href = '#' + CONCERN_SECTION[c.key];
+                a.innerHTML = '<span class="lv-chip lv' + c.lv + '">' + CONCERN_NAME[c.key] + ' · ' + LEVEL_NAME[String(c.lv)] + '</span>';
+                chips.appendChild(a);
+            });
+            // 섹션별: 걸린 고민 중 가장 높은 등급·가장 앞 순위
+            var sec = {};
+            list.forEach(function(c, i) {
+                var id = CONCERN_SECTION[c.key];
+                if (!sec[id]) sec[id] = {lv: c.lv, rank: i, all0: c.lv === 0};
+                else { if (c.lv > sec[id].lv) sec[id].lv = c.lv; if (c.lv > 0) sec[id].all0 = false; }
+            });
+            var flagged = [];
+            list.forEach(function(c) { var id = CONCERN_SECTION[c.key]; if (c.lv > 0 && flagged.indexOf(id) === -1) flagged.push(id); });
+            var calm = Object.keys(sec).filter(function(id) { return sec[id].all0 && id !== 'ingredients'; });
+            flagged.forEach(function(id, i) {
+                var card = document.getElementById(id); if (!card) return;
+                card.classList.add('flagged');
+                var h2 = card.querySelector('h2');
+                if (h2) { var b = document.createElement('span'); b.className = 'my-badge'; b.innerHTML = i === 0 ? TXT.rank1 : (i === 1 ? TXT.rank2 : TXT.rankN); h2.appendChild(b); }
+            });
+            calm.forEach(function(id) {
+                var card = document.getElementById(id); if (!card) return;
+                card.classList.add('calm');
+                var note = document.createElement('div'); note.className = 'calm-note';
+                note.innerHTML = TXT.calm + '<button type="button">' + TXT.open + '</button>';
+                note.querySelector('button').addEventListener('click', function() { card.classList.remove('calm'); });
+                var h2 = card.querySelector('h2'); if (h2) h2.insertAdjacentElement('afterend', note);
+            });
+            // 순서: 내 섹션(순위대로) → 나머지 → 접은 섹션
+            var nav = document.querySelector('.section-nav');
+            var cards = Array.prototype.slice.call(document.querySelectorAll('section.guide-card'));
+            var rest = cards.filter(function(c) { return flagged.indexOf(c.id) === -1 && calm.indexOf(c.id) === -1; });
+            var order = flagged.map(function(id) { return document.getElementById(id); }).filter(Boolean)
+                .concat(rest).concat(calm.map(function(id) { return document.getElementById(id); }).filter(Boolean));
+            var after = nav;
+            order.forEach(function(c) { after.insertAdjacentElement('afterend', c); after = c; });
+            document.getElementById('resultBanner').classList.add('active');
+            MY_FIRST = flagged.length ? flagged[0] : null;
+            return true;
+        }
         document.addEventListener('DOMContentLoaded', function () {
             var params = new URLSearchParams(location.search);
 
@@ -202,8 +282,10 @@
             var raceParam = params.get('race');
             if (raceParam) { raceExplicit = true; setRaceSilent(raceParam); }
 
+            var concerns = params.get('concerns');
+            var mine = concerns ? applyConcerns(concerns) : false;
             var sev = params.get('severity');
-            if (sev && VALID_SEV.indexOf(sev) !== -1) showBanner(sev);
+            if (!mine && sev && VALID_SEV.indexOf(sev) !== -1) showBanner(sev);   // 옛 앱 — 트러블 심각도 배너
 
             var target = null;
             var hash = (location.hash || '').replace('#', '');
@@ -216,7 +298,8 @@
 
             if (target) {
                 markActiveChip(target);
-                var el = document.getElementById(target);
+                // 내 측정 결과가 있으면(해시로 섹션을 지정하지 않은 한) 결과 배너부터 보이게
+                var el = document.getElementById(mine && !hash ? 'resultBanner' : target);
                 if (el) {
                     // WKWebView는 초기 로드 시 스크롤을 놓치고, 이미지·폰트가 늦게 붙어 높이가 또 바뀐다.
                     // 한 번만 시도하면 엉뚱한 위치에 서거나 아예 안 움직인다 → 시간차 재시도.
