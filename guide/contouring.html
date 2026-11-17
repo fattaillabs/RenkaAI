@@ -37,12 +37,19 @@
         .feature { font-size: 14.5px; color: #56624e; margin: 10px 0 14px; }
 
         .img-row { display: flex; justify-content: center; margin: 14px 0 6px; }
-        .face-img { width: 235px; max-width: 70%; margin: 0; }
-        .face-img img { width: 100%; height: auto; display: block; }
+        .face-img { width: 240px; max-width: 72%; margin: 0; }
+        .face-img img { width: 100%; height: auto; display: block; border-radius: 14px; background: #d9eee0; }
         .face-img figcaption { display: none; }
         .face-img.pending img { display: none; }
-        .face-img.pending { aspect-ratio: 475 / 494; border: 1.5px dashed #b9d49a; border-radius: 14px; display: flex; align-items: center; justify-content: center; text-align: center; background: rgba(255,255,255,0.5); }
+        .face-img.pending { aspect-ratio: 4 / 5; border: 1.5px dashed #b9d49a; border-radius: 14px; display: flex; align-items: center; justify-content: center; text-align: center; background: rgba(255,255,255,0.5); }
         .face-img.pending figcaption { display: block; font-size: 11px; color: #8aa372; line-height: 1.5; padding: 8px; }
+        .face-img[data-race="caucasian"] { display: none; }
+        body.race-caucasian .face-img[data-race="asian"] { display: none; }
+        body.race-caucasian .face-img[data-race="caucasian"] { display: block; }
+        .map-legend { display: flex; justify-content: center; align-items: center; gap: 6px; margin: 8px 0 2px; font-size: 12px; color: #6b7762; }
+        .map-legend .sw { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
+        .map-legend .sw.shade { background: #8f5c3b; }
+        .map-legend .sw.hl { background: #fff7e0; border: 1px solid #d9c98a; margin-left: 10px; }
 
         .block-label { font-size: 13px; font-weight: 800; letter-spacing: 0.2px; margin: 16px 0 8px; display: inline-flex; align-items: center; gap: 6px; }
         .block-label.shade { color: #a4713d; }
@@ -136,8 +143,10 @@
             </p>
 
             <div class="img-row">
-                <figure class="face-img"><img src="img/contour-oval.svg" alt="Oval contouring map" loading="lazy" width="300" height="480" onerror="this.closest('.face-img').classList.add('pending')"><figcaption>img/contour-oval.svg</figcaption></figure>
+                <figure class="face-img" data-race="asian"><img src="img/contour-oval.webp" alt="Oval contouring map" loading="lazy" width="800" height="1000" onerror="this.closest('.face-img').classList.add('pending')"><figcaption>img/contour-oval.webp</figcaption></figure>
+                <figure class="face-img" data-race="caucasian"><img src="img/contour-oval-c.webp" alt="Oval contouring map" loading="lazy" width="800" height="1000" onerror="this.closest('.face-img').classList.add('pending')"><figcaption>img/contour-oval-c.webp</figcaption></figure>
             </div>
+            <p class="map-legend"><span class="sw shade"></span><span lang="en">Shade</span><span lang="ko">셰이딩</span><span lang="ja">シェーディング</span><span lang="zh-CN">修容（阴影）</span><span lang="zh-TW">修容（陰影）</span><span lang="es">Sombras</span><span lang="id">Shading</span><span class="sw hl"></span><span lang="en">Highlight</span><span lang="ko">하이라이트</span><span lang="ja">ハイライト</span><span lang="zh-CN">高光</span><span lang="zh-TW">打亮</span><span lang="es">Iluminador</span><span lang="id">Highlight</span></p>
 
             <div class="block-label shade">🤎 <span lang="en">Shade</span><span lang="ko">셰이딩</span><span lang="ja">シェーディング</span><span lang="zh-CN">修容（阴影）</span><span lang="zh-TW">修容（陰影）</span><span lang="es">Sombras</span><span lang="id">Shading</span></div>
             <ul class="tips shade">
@@ -166,8 +175,10 @@
             </p>
 
             <div class="img-row">
-                <figure class="face-img"><img src="img/contour-round.svg" alt="Round contouring map" loading="lazy" width="300" height="480" onerror="this.closest('.face-img').classList.add('pending')"><figcaption>img/contour-round.svg</figcaption></figure>
+                <figure class="face-img" data-race="asian"><img src="img/contour-round.webp" alt="Round contouring map" loading="lazy" width="800" height="1000" onerror="this.closest('.face-img').classList.add('pending')"><figcaption>img/contour-round.webp</figcaption></figure>
+                <figure class="face-img" data-race="caucasian"><img src="img/contour-round-c.webp" alt="Round contouring map" loading="lazy" width="800" height="1000" onerror="this.closest('.face-img').classList.add('pending')"><figcaption>img/contour-round-c.webp</figcaption></figure>
             </div>
+            <p class="map-legend"><span class="sw shade"></span><span lang="en">Shade</span><span lang="ko">셰이딩</span><span lang="ja">シェーディング</span><span lang="zh-CN">修容（阴影）</span><span lang="zh-TW">修容（陰影）</span><span lang="es">Sombras</span><span lang="id">Shading</span><span class="sw hl"></span><span lang="en">Highlight</span><span lang="ko">하이라이트</span><span lang="ja">ハイライト</span><span lang="zh-CN">高光</span><span lang="zh-TW">打亮</span><span lang="es">Iluminador</span><span lang="id">Highlight</span></p>
 
             <div class="block-label shade">🤎 <span lang="en">Shade</span><span lang="ko">셰이딩</span><span lang="ja">シェーディング</span><span lang="zh-CN">修容（阴影）</span><span lang="zh-TW">修容（陰影）</span><span lang="es">Sombras</span><span lang="id">Shading</span></div>
             <ul class="tips shade">
@@ -196,8 +207,10 @@
             </p>
 
             <div class="img-row">
-                <figure class="face-img"><img src="img/contour-triangle.svg" alt="Triangle contouring map" loading="lazy" width="300" height="480" onerror="this.closest('.face-img').classList.add('pending')"><figcaption>img/contour-triangle.svg</figcaption></figure>
+                <figure class="face-img" data-race="asian"><img src="img/contour-triangle.webp" alt="Triangle contouring map" loading="lazy" width="800" height="1000" onerror="this.closest('.face-img').classList.add('pending')"><figcaption>img/contour-triangle.webp</figcaption></figure>
+                <figure class="face-img" data-race="caucasian"><img src="img/contour-triangle-c.webp" alt="Triangle contouring map" loading="lazy" width="800" height="1000" onerror="this.closest('.face-img').classList.add('pending')"><figcaption>img/contour-triangle-c.webp</figcaption></figure>
             </div>
+            <p class="map-legend"><span class="sw shade"></span><span lang="en">Shade</span><span lang="ko">셰이딩</span><span lang="ja">シェーディング</span><span lang="zh-CN">修容（阴影）</span><span lang="zh-TW">修容（陰影）</span><span lang="es">Sombras</span><span lang="id">Shading</span><span class="sw hl"></span><span lang="en">Highlight</span><span lang="ko">하이라이트</span><span lang="ja">ハイライト</span><span lang="zh-CN">高光</span><span lang="zh-TW">打亮</span><span lang="es">Iluminador</span><span lang="id">Highlight</span></p>
 
             <div class="block-label shade">🤎 <span lang="en">Shade</span><span lang="ko">셰이딩</span><span lang="ja">シェーディング</span><span lang="zh-CN">修容（阴影）</span><span lang="zh-TW">修容（陰影）</span><span lang="es">Sombras</span><span lang="id">Shading</span></div>
             <ul class="tips shade">
@@ -226,8 +239,10 @@
             </p>
 
             <div class="img-row">
-                <figure class="face-img"><img src="img/contour-rectangle.svg" alt="Rectangle contouring map" loading="lazy" width="300" height="480" onerror="this.closest('.face-img').classList.add('pending')"><figcaption>img/contour-rectangle.svg</figcaption></figure>
+                <figure class="face-img" data-race="asian"><img src="img/contour-rectangle.webp" alt="Rectangle contouring map" loading="lazy" width="800" height="1000" onerror="this.closest('.face-img').classList.add('pending')"><figcaption>img/contour-rectangle.webp</figcaption></figure>
+                <figure class="face-img" data-race="caucasian"><img src="img/contour-rectangle-c.webp" alt="Rectangle contouring map" loading="lazy" width="800" height="1000" onerror="this.closest('.face-img').classList.add('pending')"><figcaption>img/contour-rectangle-c.webp</figcaption></figure>
             </div>
+            <p class="map-legend"><span class="sw shade"></span><span lang="en">Shade</span><span lang="ko">셰이딩</span><span lang="ja">シェーディング</span><span lang="zh-CN">修容（阴影）</span><span lang="zh-TW">修容（陰影）</span><span lang="es">Sombras</span><span lang="id">Shading</span><span class="sw hl"></span><span lang="en">Highlight</span><span lang="ko">하이라이트</span><span lang="ja">ハイライト</span><span lang="zh-CN">高光</span><span lang="zh-TW">打亮</span><span lang="es">Iluminador</span><span lang="id">Highlight</span></p>
 
             <div class="block-label shade">🤎 <span lang="en">Shade</span><span lang="ko">셰이딩</span><span lang="ja">シェーディング</span><span lang="zh-CN">修容（阴影）</span><span lang="zh-TW">修容（陰影）</span><span lang="es">Sombras</span><span lang="id">Shading</span></div>
             <ul class="tips shade">
@@ -256,8 +271,10 @@
             </p>
 
             <div class="img-row">
-                <figure class="face-img"><img src="img/contour-square.svg" alt="Square contouring map" loading="lazy" width="300" height="480" onerror="this.closest('.face-img').classList.add('pending')"><figcaption>img/contour-square.svg</figcaption></figure>
+                <figure class="face-img" data-race="asian"><img src="img/contour-square.webp" alt="Square contouring map" loading="lazy" width="800" height="1000" onerror="this.closest('.face-img').classList.add('pending')"><figcaption>img/contour-square.webp</figcaption></figure>
+                <figure class="face-img" data-race="caucasian"><img src="img/contour-square-c.webp" alt="Square contouring map" loading="lazy" width="800" height="1000" onerror="this.closest('.face-img').classList.add('pending')"><figcaption>img/contour-square-c.webp</figcaption></figure>
             </div>
+            <p class="map-legend"><span class="sw shade"></span><span lang="en">Shade</span><span lang="ko">셰이딩</span><span lang="ja">シェーディング</span><span lang="zh-CN">修容（阴影）</span><span lang="zh-TW">修容（陰影）</span><span lang="es">Sombras</span><span lang="id">Shading</span><span class="sw hl"></span><span lang="en">Highlight</span><span lang="ko">하이라이트</span><span lang="ja">ハイライト</span><span lang="zh-CN">高光</span><span lang="zh-TW">打亮</span><span lang="es">Iluminador</span><span lang="id">Highlight</span></p>
 
             <div class="block-label shade">🤎 <span lang="en">Shade</span><span lang="ko">셰이딩</span><span lang="ja">シェーディング</span><span lang="zh-CN">修容（阴影）</span><span lang="zh-TW">修容（陰影）</span><span lang="es">Sombras</span><span lang="id">Shading</span></div>
             <ul class="tips shade">
@@ -286,8 +303,10 @@
             </p>
 
             <div class="img-row">
-                <figure class="face-img"><img src="img/contour-diamond.svg" alt="Diamond contouring map" loading="lazy" width="300" height="480" onerror="this.closest('.face-img').classList.add('pending')"><figcaption>img/contour-diamond.svg</figcaption></figure>
+                <figure class="face-img" data-race="asian"><img src="img/contour-diamond.webp" alt="Diamond contouring map" loading="lazy" width="800" height="1000" onerror="this.closest('.face-img').classList.add('pending')"><figcaption>img/contour-diamond.webp</figcaption></figure>
+                <figure class="face-img" data-race="caucasian"><img src="img/contour-diamond-c.webp" alt="Diamond contouring map" loading="lazy" width="800" height="1000" onerror="this.closest('.face-img').classList.add('pending')"><figcaption>img/contour-diamond-c.webp</figcaption></figure>
             </div>
+            <p class="map-legend"><span class="sw shade"></span><span lang="en">Shade</span><span lang="ko">셰이딩</span><span lang="ja">シェーディング</span><span lang="zh-CN">修容（阴影）</span><span lang="zh-TW">修容（陰影）</span><span lang="es">Sombras</span><span lang="id">Shading</span><span class="sw hl"></span><span lang="en">Highlight</span><span lang="ko">하이라이트</span><span lang="ja">ハイライト</span><span lang="zh-CN">高光</span><span lang="zh-TW">打亮</span><span lang="es">Iluminador</span><span lang="id">Highlight</span></p>
 
             <div class="block-label shade">🤎 <span lang="en">Shade</span><span lang="ko">셰이딩</span><span lang="ja">シェーディング</span><span lang="zh-CN">修容（阴影）</span><span lang="zh-TW">修容（陰影）</span><span lang="es">Sombras</span><span lang="id">Shading</span></div>
             <ul class="tips shade">
@@ -315,8 +334,10 @@
             </p>
 
             <div class="img-row">
-                <figure class="face-img"><img src="img/contour-oblong.svg" alt="Oblong contouring map" loading="lazy" width="300" height="480" onerror="this.closest('.face-img').classList.add('pending')"><figcaption>img/contour-oblong.svg</figcaption></figure>
+                <figure class="face-img" data-race="asian"><img src="img/contour-oblong.webp" alt="Oblong contouring map" loading="lazy" width="800" height="1000" onerror="this.closest('.face-img').classList.add('pending')"><figcaption>img/contour-oblong.webp</figcaption></figure>
+                <figure class="face-img" data-race="caucasian"><img src="img/contour-oblong-c.webp" alt="Oblong contouring map" loading="lazy" width="800" height="1000" onerror="this.closest('.face-img').classList.add('pending')"><figcaption>img/contour-oblong-c.webp</figcaption></figure>
             </div>
+            <p class="map-legend"><span class="sw shade"></span><span lang="en">Shade</span><span lang="ko">셰이딩</span><span lang="ja">シェーディング</span><span lang="zh-CN">修容（阴影）</span><span lang="zh-TW">修容（陰影）</span><span lang="es">Sombras</span><span lang="id">Shading</span><span class="sw hl"></span><span lang="en">Highlight</span><span lang="ko">하이라이트</span><span lang="ja">ハイライト</span><span lang="zh-CN">高光</span><span lang="zh-TW">打亮</span><span lang="es">Iluminador</span><span lang="id">Highlight</span></p>
 
             <div class="block-label shade">🤎 <span lang="en">Shade</span><span lang="ko">셰이딩</span><span lang="ja">シェーディング</span><span lang="zh-CN">修容（阴影）</span><span lang="zh-TW">修容（陰影）</span><span lang="es">Sombras</span><span lang="id">Shading</span></div>
             <ul class="tips shade">
@@ -345,8 +366,10 @@
             </p>
 
             <div class="img-row">
-                <figure class="face-img"><img src="img/contour-invertedTriangle.svg" alt="Inverted Triangle contouring map" loading="lazy" width="300" height="480" onerror="this.closest('.face-img').classList.add('pending')"><figcaption>img/contour-invertedTriangle.svg</figcaption></figure>
+                <figure class="face-img" data-race="asian"><img src="img/contour-invertedTriangle.webp" alt="Inverted Triangle contouring map" loading="lazy" width="800" height="1000" onerror="this.closest('.face-img').classList.add('pending')"><figcaption>img/contour-invertedTriangle.webp</figcaption></figure>
+                <figure class="face-img" data-race="caucasian"><img src="img/contour-invertedTriangle-c.webp" alt="Inverted Triangle contouring map" loading="lazy" width="800" height="1000" onerror="this.closest('.face-img').classList.add('pending')"><figcaption>img/contour-invertedTriangle-c.webp</figcaption></figure>
             </div>
+            <p class="map-legend"><span class="sw shade"></span><span lang="en">Shade</span><span lang="ko">셰이딩</span><span lang="ja">シェーディング</span><span lang="zh-CN">修容（阴影）</span><span lang="zh-TW">修容（陰影）</span><span lang="es">Sombras</span><span lang="id">Shading</span><span class="sw hl"></span><span lang="en">Highlight</span><span lang="ko">하이라이트</span><span lang="ja">ハイライト</span><span lang="zh-CN">高光</span><span lang="zh-TW">打亮</span><span lang="es">Iluminador</span><span lang="id">Highlight</span></p>
 
             <div class="block-label shade">🤎 <span lang="en">Shade</span><span lang="ko">셰이딩</span><span lang="ja">シェーディング</span><span lang="zh-CN">修容（阴影）</span><span lang="zh-TW">修容（陰影）</span><span lang="es">Sombras</span><span lang="id">Shading</span></div>
             <ul class="tips shade">
@@ -375,8 +398,10 @@
             </p>
 
             <div class="img-row">
-                <figure class="face-img"><img src="img/contour-heart.svg" alt="Heart contouring map" loading="lazy" width="300" height="480" onerror="this.closest('.face-img').classList.add('pending')"><figcaption>img/contour-heart.svg</figcaption></figure>
+                <figure class="face-img" data-race="asian"><img src="img/contour-heart.webp" alt="Heart contouring map" loading="lazy" width="800" height="1000" onerror="this.closest('.face-img').classList.add('pending')"><figcaption>img/contour-heart.webp</figcaption></figure>
+                <figure class="face-img" data-race="caucasian"><img src="img/contour-heart-c.webp" alt="Heart contouring map" loading="lazy" width="800" height="1000" onerror="this.closest('.face-img').classList.add('pending')"><figcaption>img/contour-heart-c.webp</figcaption></figure>
             </div>
+            <p class="map-legend"><span class="sw shade"></span><span lang="en">Shade</span><span lang="ko">셰이딩</span><span lang="ja">シェーディング</span><span lang="zh-CN">修容（阴影）</span><span lang="zh-TW">修容（陰影）</span><span lang="es">Sombras</span><span lang="id">Shading</span><span class="sw hl"></span><span lang="en">Highlight</span><span lang="ko">하이라이트</span><span lang="ja">ハイライト</span><span lang="zh-CN">高光</span><span lang="zh-TW">打亮</span><span lang="es">Iluminador</span><span lang="id">Highlight</span></p>
 
             <div class="block-label shade">🤎 <span lang="en">Shade</span><span lang="ko">셰이딩</span><span lang="ja">シェーディング</span><span lang="zh-CN">修容（阴影）</span><span lang="zh-TW">修容（陰影）</span><span lang="es">Sombras</span><span lang="id">Shading</span></div>
             <ul class="tips shade">
@@ -413,6 +438,19 @@
                 if (btn.getAttribute('onclick').includes("'" + lang + "'")) btn.classList.add('active');
             });
             localStorage.setItem('preferred-lang', lang);
+            applyRaceForLang();
+        }
+        // 그림 속 얼굴: ?race= 가 있으면 그 값, 없으면 언어로(en·es 는 서양, 나머지는 동양) — 중안부 가이드와 같은 규칙
+        var raceExplicit = false;
+        function setRaceSilent(r) {
+            document.body.classList.remove('race-caucasian');
+            if (r === 'caucasian') document.body.classList.add('race-caucasian');
+        }
+        function applyRaceForLang() {
+            if (raceExplicit) return;
+            var m = document.body.className.match(/\blang-([A-Za-z-]+)\b/);
+            var lng = m ? m[1] : 'en';
+            setRaceSilent((lng === 'en' || lng === 'es') ? 'caucasian' : 'asian');
         }
         // 언어 토글로 페이지 높이가 바뀌면 앵커 위치가 어긋나므로 재점프
         function rejumpToHash() {
@@ -435,15 +473,18 @@
             const urlParams = new URLSearchParams(window.location.search);
             const langParam = urlParams.get('lang');
             const supportedLangs = ['en', 'ko', 'ja', 'zh-CN', 'zh-TW', 'es', 'id'];
+            const raceParam = urlParams.get('race');
+            if (raceParam) { raceExplicit = true; setRaceSilent(raceParam); }
             if (langParam && supportedLangs.includes(langParam)) {
                 setLangSilent(langParam);
             } else {
                 const saved = localStorage.getItem('preferred-lang');
                 if (saved && supportedLangs.includes(saved)) setLangSilent(saved);
             }
+            applyRaceForLang();
             scheduleJumpRetries();
         });
-        // 무거운 SVG 로드로 레이아웃이 밀리면 앵커 위치가 어긋남 → 전체 로드 후 한 번 더 점프
+        // 그림 로드로 레이아웃이 밀리면 앵커 위치가 어긋남 → 전체 로드 후 한 번 더 점프
         window.addEventListener('load', rejumpToHash);
     </script>
 <script>(function(){try{var p=new URLSearchParams(location.search),q=[];['lang','race'].forEach(function(k){var v=p.get(k);if(v)q.push(k+'='+encodeURIComponent(v));});if(!q.length)return;document.querySelectorAll('a.xguide').forEach(function(a){a.href=a.getAttribute('href')+'?'+q.join('&');});}catch(e){}})();</script>
