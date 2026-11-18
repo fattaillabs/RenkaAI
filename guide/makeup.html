@@ -118,6 +118,36 @@
         body.lang-id.race-caucasian span[lang="id"][data-race="asian"] { display: none; }
         body.lang-es.race-caucasian span[lang="es"][data-race="caucasian"] { display: inline; }
         body.lang-id.race-caucasian span[lang="id"][data-race="caucasian"] { display: inline; }
+            /* 추천템 상자 — myFaceSize/tools/shopguide/build.py 가 넣는다(한국어에서만 보임) */
+        .shop { display: none; margin-top: 22px; padding-top: 16px; border-top: 1px solid rgba(86,98,78,0.16); scroll-margin-top: 16px; }
+        body.lang-ko .shop { display: block; }
+        .shop.alone { margin: 0 0 18px; padding: 18px 22px 16px; border: 1px solid rgba(255,255,255,0.65); border-radius: 18px; background: rgba(255,255,255,0.5); box-shadow: 0 2px 12px rgba(99,150,55,0.1); }
+        .shop-head { font-size: 14px; font-weight: 800; color: #4e8a2c; }
+        .shop-sub { font-size: 12px; color: #7d8a74; margin-top: 3px; line-height: 1.5; word-break: keep-all; }
+        .shop-tier { font-size: 11.5px; font-weight: 800; color: #56624e; margin: 14px 0 2px; display: flex; align-items: center; gap: 8px; }
+        .shop-tier::after { content: ""; flex: 1; height: 1px; background: rgba(86,98,78,0.16); }
+        .shop-item { display: flex; align-items: center; gap: 12px; padding: 9px 0; text-decoration: none; color: inherit; scroll-margin-top: 80px; }
+        .shop-item + .shop-item { border-top: 1px solid rgba(86,98,78,0.09); }
+        .shop-item:target { background: rgba(124,179,66,0.13); border-radius: 12px; box-shadow: 0 0 0 6px rgba(124,179,66,0.13); border-top-color: transparent; }
+        .shop-item img { flex: none; width: 58px; height: 58px; border-radius: 10px; background: #fff; border: 1px solid rgba(86,98,78,0.12); object-fit: cover; }
+        .shop-txt { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+        .shop-brand { font-size: 11px; font-weight: 700; color: #7d8a74; }
+        .shop-brand i { font-style: normal; font-weight: 600; color: #a8851a; margin-left: 6px; }
+        .shop-cat { display: inline-block; font-size: 10.5px; font-weight: 800; color: #4e8a2c; background: rgba(124,179,66,0.15); border-radius: 6px; padding: 1px 6px; margin-right: 6px; }
+        .shop-head + .shop-item, .shop-sub + .shop-item { margin-top: 8px; }
+        .shop-name { font-size: 13.5px; font-weight: 700; color: #33402b; line-height: 1.35; word-break: keep-all; }
+        .shop-why { font-size: 12px; color: #5e6d54; line-height: 1.4; margin-top: 1px; word-break: keep-all; }
+        .shop-meta { font-size: 11px; color: #8a9483; margin-top: 3px; }
+        .shop-meta b { color: #a8851a; font-weight: 700; }
+        .shop-go { flex: none; font-size: 17px; line-height: 1; color: #8fb86a; }
+        .shop-note { font-size: 11px; color: #8a9483; margin: 10px 0 0; line-height: 1.5; word-break: keep-all; }
+        .shop-disc { margin-top: 5px; color: #6f7b68; }
+        .shop-jump { display: none; margin-top: 14px; font-size: 12.5px; font-weight: 700; color: #4e8a2c; text-decoration: none; }
+        body.lang-ko .shop-jump { display: inline-block; }
+        .ing-shop { display: none; margin-top: 5px; font-size: 12px; color: #7d8a74; line-height: 1.6; word-break: keep-all; }
+        body.lang-ko .ing-shop { display: block; }
+        .ing-shop a { color: #3d6b1f; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }
+        /* 추천템 상자 끝 */
     </style>
 </head>
 <body class="lang-en">
@@ -198,15 +228,7 @@
                 <li><span lang="en" data-race="asian">A sharply drawn lip line: it emphasizes the philtrum and nose; a blurred lip looks softer.</span><span lang="en" data-race="caucasian">A sharply drawn lip line pulls focus to the center of the face; a softer, blurred lip balances it.</span><span lang="ko">또렷하게 그린 립라인: 인중·코가 강조돼요. 블러 립이 자연스러워요.</span><span lang="ja">くっきり描いたリップライン：人中や鼻が強調されます。ぼかしリップが自然。</span><span lang="zh-CN">描得过清的唇线——会强调人中和鼻子；晕染唇更自然。</span><span lang="zh-TW">描得過清的唇線——會強調人中和鼻子；暈染唇更自然。</span><span lang="es" data-race="asian">Una línea de labios muy marcada: resalta el filtrum y la nariz; unos labios difuminados se ven más suaves.</span><span lang="es" data-race="caucasian">Una línea de labios muy marcada atrae la atención al centro del rostro; unos labios difuminados lo equilibran.</span><span lang="id" data-race="asian">Garis bibir yang digambar tajam: menonjolkan philtrum dan hidung; bibir yang dibaurkan terlihat lebih lembut.</span><span lang="id" data-race="caucasian">Garis bibir yang digambar tajam menarik fokus ke tengah wajah; bibir yang lebih lembut dan dibaurkan menyeimbangkannya.</span></li>
             </ul>
             <!-- 추천템 (한국 전용) -->
-            <div class="oy-rec" lang="ko">
-                <div class="oy-head">🛍️ 추천템</div>
-                <div class="oy-list">
-                    <div class="oy-item"><span class="oy-cat">애교살</span><a href="https://oy.run/ccLCizsj3Mt67y" rel="sponsored nofollow noopener">페리페라 잉크 포켓 섀도우 팔레트 / 벚꽃필터·코랄 <span class="arr">올영에서 보기 ↗</span></a></div>
-                    <div class="oy-item"><span class="oy-cat">블러셔</span><a href="https://oy.run/tKSap3SxO2tT0O" rel="sponsored nofollow noopener">데이지크 블렌딩 무드 치크 <span class="arr">올영에서 보기 ↗</span></a></div>
-                    <div class="oy-item"><span class="oy-cat">컨실러</span><a href="https://oy.run/0FVi1hRP1Mk71v" rel="sponsored nofollow noopener">더샘 커버 퍼펙션 팁컨실러 / 클리어·내추럴 베이지 <span class="arr">올영에서 보기 ↗</span></a></div>
-                </div>
-                <div class="oy-disc">상기 추천 링크는 올리브영 쇼핑 큐레이터 활동의 일환으로, 구매 시 일정 금액의 수수료를 제공받습니다. (블러셔·립 색상은 퍼스널컬러 가이드를 참고하세요)</div>
-            </div>
+            <!-- shop:rec-short:START (myFaceSize/tools/shopguide/build.py 가 만든다 — 직접 고치지 말 것) --><div class="shop" lang="ko" id="shop-rec-short"><div class="shop-head">🛍️ 이 메이크업에 쓰는 제품</div><div class="shop-sub">블러셔·립 색상은 퍼스널컬러 가이드를 참고하세요.</div><a class="shop-item" id="p-A000000124399" href="https://oy.run/ccLCizsj3Mt67y" rel="sponsored nofollow noopener"><img src="img/shop/A000000124399.webp" alt="" loading="lazy" width="58" height="58"><span class="shop-txt"><span class="shop-brand"><b class="shop-cat">애교살</b>페리페라</span><span class="shop-name">잉크 포켓 섀도우 팔레트</span><span class="shop-why">추천 색: 벚꽃필터·코랄</span><span class="shop-meta">평점 <b>4.8</b>, 리뷰 2.4만, 1만 원대</span></span><span class="shop-go" aria-hidden="true">›</span></a><a class="shop-item" id="p-A000000164726" href="https://oy.run/tKSap3SxO2tT0O" rel="sponsored nofollow noopener"><img src="img/shop/A000000164726.webp" alt="" loading="lazy" width="58" height="58"><span class="shop-txt"><span class="shop-brand"><b class="shop-cat">블러셔</b>데이지크</span><span class="shop-name">블렌딩 무드 치크</span><span class="shop-why">4구 블러셔 팔레트</span><span class="shop-meta">평점 <b>4.7</b>, 리뷰 2.1만, 2만 원대</span></span><span class="shop-go" aria-hidden="true">›</span></a><a class="shop-item" id="p-A000000155982" href="https://oy.run/0FVi1hRP1Mk71v" rel="sponsored nofollow noopener"><img src="img/shop/A000000155982.webp" alt="" loading="lazy" width="58" height="58"><span class="shop-txt"><span class="shop-brand"><b class="shop-cat">컨실러</b>더샘</span><span class="shop-name">커버 퍼펙션 팁 컨실러</span><span class="shop-why">추천 색: 클리어·내추럴 베이지</span><span class="shop-meta">평점 <b>4.8</b>, 리뷰 3.8만, 1만 원 미만</span></span><span class="shop-go" aria-hidden="true">›</span></a><p class="shop-note">평점, 리뷰 수, 가격대는 2026년 11월 올리브영 기준이에요. 가격은 묶음 기획과 할인에 따라 달라져요. 제품을 누르면 올리브영 상품 화면이 열려요.</p><p class="shop-note shop-disc">이 포스팅은 올리브영 쇼핑 큐레이터 활동의 일환으로, 구매가 발생할 경우 일정액의 수수료를 제공받습니다.</p></div><!-- shop:rec-short:END -->
         </section>
 
         <!-- =================== 균형 중안부 (balanced) =================== -->
@@ -238,16 +260,7 @@
                 <li><span lang="en">Strong one-directional correction (heavy shortening or lengthening tricks): it can throw off a balance you already have.</span><span lang="ko">한쪽으로 치우친 강한 보정(과한 단축·연장 기법): 이미 갖춘 균형을 오히려 깨뜨려요.</span><span lang="ja">片寄った強い補正（やりすぎの短縮・延長テク）：せっかくのバランスを崩します。</span><span lang="zh-CN">单方向的强修饰（过度缩短或拉长）——会破坏你本有的平衡。</span><span lang="zh-TW">單方向的強修飾（過度縮短或拉長）——會破壞你本有的平衡。</span><span lang="es">Una corrección fuerte en una sola dirección (trucos excesivos para acortar o alargar): puede desequilibrar la armonía que ya tienes.</span><span lang="id">Koreksi kuat satu arah (trik memendekkan atau memanjangkan yang berat): bisa merusak keseimbangan yang sudah kamu miliki.</span></li>
             </ul>
             <!-- 추천템 (한국 전용) -->
-            <div class="oy-rec" lang="ko">
-                <div class="oy-head">🛍️ 추천템</div>
-                <div class="oy-list">
-                    <div class="oy-item"><span class="oy-cat">블러셔</span><a href="https://oy.run/tKSap3SxO2tT0O" rel="sponsored nofollow noopener">데이지크 블렌딩 무드 치크 <span class="arr">올영에서 보기 ↗</span></a></div>
-                    <div class="oy-item"><span class="oy-cat">립</span><a href="https://oy.run/Cn81jDMyxrrrFx" rel="sponsored nofollow noopener">롬앤 더 쥬시 래스팅 틴트 <span class="arr">올영에서 보기 ↗</span></a></div>
-                    <div class="oy-item"><span class="oy-cat">하이라이터</span><a href="https://oy.run/E8x7TBCjDJmxhE" rel="sponsored nofollow noopener">클리오 프리즘 하이라이터 / 골드위어 <span class="arr">올영에서 보기 ↗</span></a></div>
-                    <div class="oy-item"><span class="oy-cat">셰이딩</span><a href="https://oy.run/5m8mbnWkZ885Ge" rel="sponsored nofollow noopener">투쿨포스쿨 바이로댕 셰이딩 / 쿨 토프 <span class="arr">올영에서 보기 ↗</span></a></div>
-                </div>
-                <div class="oy-disc">상기 추천 링크는 올리브영 쇼핑 큐레이터 활동의 일환으로, 구매 시 일정 금액의 수수료를 제공받습니다. (블러셔·립 색상은 퍼스널컬러 가이드를 참고하세요)</div>
-            </div>
+            <!-- shop:rec-balanced:START (myFaceSize/tools/shopguide/build.py 가 만든다 — 직접 고치지 말 것) --><div class="shop" lang="ko" id="shop-rec-balanced"><div class="shop-head">🛍️ 이 메이크업에 쓰는 제품</div><div class="shop-sub">블러셔·립 색상은 퍼스널컬러 가이드를 참고하세요.</div><a class="shop-item" href="https://oy.run/tKSap3SxO2tT0O" rel="sponsored nofollow noopener"><img src="img/shop/A000000164726.webp" alt="" loading="lazy" width="58" height="58"><span class="shop-txt"><span class="shop-brand"><b class="shop-cat">블러셔</b>데이지크</span><span class="shop-name">블렌딩 무드 치크</span><span class="shop-why">4구 블러셔 팔레트</span><span class="shop-meta">평점 <b>4.7</b>, 리뷰 2.1만, 2만 원대</span></span><span class="shop-go" aria-hidden="true">›</span></a><a class="shop-item" id="p-A000000241210" href="https://oy.run/Cn81jDMyxrrrFx" rel="sponsored nofollow noopener"><img src="img/shop/A000000241210.webp" alt="" loading="lazy" width="58" height="58"><span class="shop-txt"><span class="shop-brand"><b class="shop-cat">립</b>롬앤</span><span class="shop-name">더 쥬시 래스팅 틴트</span><span class="shop-why">틴트. 올리브영 어워즈 수상</span><span class="shop-meta">평점 <b>4.7</b>, 리뷰 28.5만, 1만 원 미만</span></span><span class="shop-go" aria-hidden="true">›</span></a><a class="shop-item" id="p-A000000218380" href="https://oy.run/E8x7TBCjDJmxhE" rel="sponsored nofollow noopener"><img src="img/shop/A000000218380.webp" alt="" loading="lazy" width="58" height="58"><span class="shop-txt"><span class="shop-brand"><b class="shop-cat">하이라이터</b>클리오</span><span class="shop-name">프리즘 하이라이터 8g</span><span class="shop-why">추천 색: 골드위어</span><span class="shop-meta">평점 <b>4.8</b>, 리뷰 1.4만, 1만 원대</span></span><span class="shop-go" aria-hidden="true">›</span></a><a class="shop-item" id="p-A000000145650" href="https://oy.run/5m8mbnWkZ885Ge" rel="sponsored nofollow noopener"><img src="img/shop/A000000145650.webp" alt="" loading="lazy" width="58" height="58"><span class="shop-txt"><span class="shop-brand"><b class="shop-cat">셰이딩</b>투쿨포스쿨</span><span class="shop-name">바이로댕 쉐이딩</span><span class="shop-why">추천 색: 쿨 토프</span><span class="shop-meta">평점 <b>4.8</b>, 리뷰 5.5만, 1만 원대</span></span><span class="shop-go" aria-hidden="true">›</span></a><p class="shop-note">평점, 리뷰 수, 가격대는 2026년 11월 올리브영 기준이에요. 가격은 묶음 기획과 할인에 따라 달라져요. 제품을 누르면 올리브영 상품 화면이 열려요.</p><p class="shop-note shop-disc">이 포스팅은 올리브영 쇼핑 큐레이터 활동의 일환으로, 구매가 발생할 경우 일정액의 수수료를 제공받습니다.</p></div><!-- shop:rec-balanced:END -->
         </section>
 
         <!-- =================== 긴 중안부 (long) =================== -->
@@ -282,18 +295,7 @@
                 <li><span lang="en">High, round blush and a sharp vertical lip line: both pull the eye downward and lengthen.</span><span lang="ko">높은 위치의 동그란 블러셔, 또렷한 세로 립라인: 시선을 아래로 끌어 길어 보여요.</span><span lang="ja">高い位置の丸いチークや、くっきり縦のリップライン：視線が下がり長く見えます。</span><span lang="zh-CN">打太高的圆形腮红、清晰的竖向唇线——都会把视线下拉、显长。</span><span lang="zh-TW">打太高的圓形腮紅、清晰的豎向唇線——都會把視線下拉、顯長。</span><span lang="es">Un rubor alto y redondo y una línea de labios vertical muy marcada: ambos atraen la mirada hacia abajo y alargan.</span><span lang="id">Blush tinggi membulat dan garis bibir vertikal yang tajam: keduanya menarik pandangan ke bawah dan memanjangkan wajah.</span></li>
             </ul>
             <!-- 추천템 (한국 전용) -->
-            <div class="oy-rec" lang="ko">
-                <div class="oy-head">🛍️ 추천템</div>
-                <div class="oy-list">
-                    <div class="oy-item"><span class="oy-cat">셰이딩</span><a href="https://oy.run/5m8mbnWkZ885Ge" rel="sponsored nofollow noopener">투쿨포스쿨 바이로댕 셰이딩 / 쿨 토프 <span class="arr">올영에서 보기 ↗</span></a></div>
-                    <div class="oy-item"><span class="oy-cat">하이라이터</span><a href="https://oy.run/E8x7TBCjDJmxhE" rel="sponsored nofollow noopener">클리오 프리즘 하이라이터 / 골드위어 <span class="arr">올영에서 보기 ↗</span></a></div>
-                    <div class="oy-item"><span class="oy-cat">애교살</span><a href="https://oy.run/ccLCizsj3Mt67y" rel="sponsored nofollow noopener">페리페라 잉크 포켓 섀도우 팔레트 / 벚꽃필터·코랄 <span class="arr">올영에서 보기 ↗</span></a></div>
-                    <div class="oy-item"><span class="oy-cat">컨실러</span><a href="https://oy.run/0FVi1hRP1Mk71v" rel="sponsored nofollow noopener">더샘 커버 퍼펙션 팁컨실러 / 클리어·내추럴 베이지 <span class="arr">올영에서 보기 ↗</span></a></div>
-                    <div class="oy-item"><span class="oy-cat">립</span><a href="https://oy.run/Cn81jDMyxrrrFx" rel="sponsored nofollow noopener">롬앤 더 쥬시 래스팅 틴트 <span class="arr">올영에서 보기 ↗</span></a></div>
-                    <div class="oy-item"><span class="oy-cat">블러셔</span><a href="https://oy.run/tKSap3SxO2tT0O" rel="sponsored nofollow noopener">데이지크 블렌딩 무드 치크 <span class="arr">올영에서 보기 ↗</span></a></div>
-                </div>
-                <div class="oy-disc">상기 추천 링크는 올리브영 쇼핑 큐레이터 활동의 일환으로, 구매 시 일정 금액의 수수료를 제공받습니다. (블러셔·립 색상은 퍼스널컬러 가이드를 참고하세요)</div>
-            </div>
+            <!-- shop:rec-long:START (myFaceSize/tools/shopguide/build.py 가 만든다 — 직접 고치지 말 것) --><div class="shop" lang="ko" id="shop-rec-long"><div class="shop-head">🛍️ 이 메이크업에 쓰는 제품</div><div class="shop-sub">블러셔·립 색상은 퍼스널컬러 가이드를 참고하세요.</div><a class="shop-item" href="https://oy.run/5m8mbnWkZ885Ge" rel="sponsored nofollow noopener"><img src="img/shop/A000000145650.webp" alt="" loading="lazy" width="58" height="58"><span class="shop-txt"><span class="shop-brand"><b class="shop-cat">셰이딩</b>투쿨포스쿨</span><span class="shop-name">바이로댕 쉐이딩</span><span class="shop-why">추천 색: 쿨 토프</span><span class="shop-meta">평점 <b>4.8</b>, 리뷰 5.5만, 1만 원대</span></span><span class="shop-go" aria-hidden="true">›</span></a><a class="shop-item" href="https://oy.run/E8x7TBCjDJmxhE" rel="sponsored nofollow noopener"><img src="img/shop/A000000218380.webp" alt="" loading="lazy" width="58" height="58"><span class="shop-txt"><span class="shop-brand"><b class="shop-cat">하이라이터</b>클리오</span><span class="shop-name">프리즘 하이라이터 8g</span><span class="shop-why">추천 색: 골드위어</span><span class="shop-meta">평점 <b>4.8</b>, 리뷰 1.4만, 1만 원대</span></span><span class="shop-go" aria-hidden="true">›</span></a><a class="shop-item" href="https://oy.run/ccLCizsj3Mt67y" rel="sponsored nofollow noopener"><img src="img/shop/A000000124399.webp" alt="" loading="lazy" width="58" height="58"><span class="shop-txt"><span class="shop-brand"><b class="shop-cat">애교살</b>페리페라</span><span class="shop-name">잉크 포켓 섀도우 팔레트</span><span class="shop-why">추천 색: 벚꽃필터·코랄</span><span class="shop-meta">평점 <b>4.8</b>, 리뷰 2.4만, 1만 원대</span></span><span class="shop-go" aria-hidden="true">›</span></a><a class="shop-item" href="https://oy.run/0FVi1hRP1Mk71v" rel="sponsored nofollow noopener"><img src="img/shop/A000000155982.webp" alt="" loading="lazy" width="58" height="58"><span class="shop-txt"><span class="shop-brand"><b class="shop-cat">컨실러</b>더샘</span><span class="shop-name">커버 퍼펙션 팁 컨실러</span><span class="shop-why">추천 색: 클리어·내추럴 베이지</span><span class="shop-meta">평점 <b>4.8</b>, 리뷰 3.8만, 1만 원 미만</span></span><span class="shop-go" aria-hidden="true">›</span></a><a class="shop-item" href="https://oy.run/Cn81jDMyxrrrFx" rel="sponsored nofollow noopener"><img src="img/shop/A000000241210.webp" alt="" loading="lazy" width="58" height="58"><span class="shop-txt"><span class="shop-brand"><b class="shop-cat">립</b>롬앤</span><span class="shop-name">더 쥬시 래스팅 틴트</span><span class="shop-why">틴트. 올리브영 어워즈 수상</span><span class="shop-meta">평점 <b>4.7</b>, 리뷰 28.5만, 1만 원 미만</span></span><span class="shop-go" aria-hidden="true">›</span></a><a class="shop-item" href="https://oy.run/tKSap3SxO2tT0O" rel="sponsored nofollow noopener"><img src="img/shop/A000000164726.webp" alt="" loading="lazy" width="58" height="58"><span class="shop-txt"><span class="shop-brand"><b class="shop-cat">블러셔</b>데이지크</span><span class="shop-name">블렌딩 무드 치크</span><span class="shop-why">4구 블러셔 팔레트</span><span class="shop-meta">평점 <b>4.7</b>, 리뷰 2.1만, 2만 원대</span></span><span class="shop-go" aria-hidden="true">›</span></a><p class="shop-note">평점, 리뷰 수, 가격대는 2026년 11월 올리브영 기준이에요. 가격은 묶음 기획과 할인에 따라 달라져요. 제품을 누르면 올리브영 상품 화면이 열려요.</p><p class="shop-note shop-disc">이 포스팅은 올리브영 쇼핑 큐레이터 활동의 일환으로, 구매가 발생할 경우 일정액의 수수료를 제공받습니다.</p></div><!-- shop:rec-long:END -->
         </section>
 
         <div class="adapt-note">

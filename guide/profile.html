@@ -134,6 +134,36 @@
         .face-img[data-race="caucasian"] { display: none; }
         body.race-caucasian .face-img[data-race="asian"] { display: none; }
         body.race-caucasian .face-img[data-race="caucasian"] { display: block; }
+            /* 추천템 상자 — myFaceSize/tools/shopguide/build.py 가 넣는다(한국어에서만 보임) */
+        .shop { display: none; margin-top: 22px; padding-top: 16px; border-top: 1px solid rgba(86,98,78,0.16); scroll-margin-top: 16px; }
+        body.lang-ko .shop { display: block; }
+        .shop.alone { margin: 0 0 18px; padding: 18px 22px 16px; border: 1px solid rgba(255,255,255,0.65); border-radius: 18px; background: rgba(255,255,255,0.5); box-shadow: 0 2px 12px rgba(99,150,55,0.1); }
+        .shop-head { font-size: 14px; font-weight: 800; color: #4e8a2c; }
+        .shop-sub { font-size: 12px; color: #7d8a74; margin-top: 3px; line-height: 1.5; word-break: keep-all; }
+        .shop-tier { font-size: 11.5px; font-weight: 800; color: #56624e; margin: 14px 0 2px; display: flex; align-items: center; gap: 8px; }
+        .shop-tier::after { content: ""; flex: 1; height: 1px; background: rgba(86,98,78,0.16); }
+        .shop-item { display: flex; align-items: center; gap: 12px; padding: 9px 0; text-decoration: none; color: inherit; scroll-margin-top: 80px; }
+        .shop-item + .shop-item { border-top: 1px solid rgba(86,98,78,0.09); }
+        .shop-item:target { background: rgba(124,179,66,0.13); border-radius: 12px; box-shadow: 0 0 0 6px rgba(124,179,66,0.13); border-top-color: transparent; }
+        .shop-item img { flex: none; width: 58px; height: 58px; border-radius: 10px; background: #fff; border: 1px solid rgba(86,98,78,0.12); object-fit: cover; }
+        .shop-txt { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+        .shop-brand { font-size: 11px; font-weight: 700; color: #7d8a74; }
+        .shop-brand i { font-style: normal; font-weight: 600; color: #a8851a; margin-left: 6px; }
+        .shop-cat { display: inline-block; font-size: 10.5px; font-weight: 800; color: #4e8a2c; background: rgba(124,179,66,0.15); border-radius: 6px; padding: 1px 6px; margin-right: 6px; }
+        .shop-head + .shop-item, .shop-sub + .shop-item { margin-top: 8px; }
+        .shop-name { font-size: 13.5px; font-weight: 700; color: #33402b; line-height: 1.35; word-break: keep-all; }
+        .shop-why { font-size: 12px; color: #5e6d54; line-height: 1.4; margin-top: 1px; word-break: keep-all; }
+        .shop-meta { font-size: 11px; color: #8a9483; margin-top: 3px; }
+        .shop-meta b { color: #a8851a; font-weight: 700; }
+        .shop-go { flex: none; font-size: 17px; line-height: 1; color: #8fb86a; }
+        .shop-note { font-size: 11px; color: #8a9483; margin: 10px 0 0; line-height: 1.5; word-break: keep-all; }
+        .shop-disc { margin-top: 5px; color: #6f7b68; }
+        .shop-jump { display: none; margin-top: 14px; font-size: 12.5px; font-weight: 700; color: #4e8a2c; text-decoration: none; }
+        body.lang-ko .shop-jump { display: inline-block; }
+        .ing-shop { display: none; margin-top: 5px; font-size: 12px; color: #7d8a74; line-height: 1.6; word-break: keep-all; }
+        body.lang-ko .ing-shop { display: block; }
+        .ing-shop a { color: #3d6b1f; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }
+        /* 추천템 상자 끝 */
     </style>
 </head>
 <body class="lang-en">
@@ -253,15 +283,7 @@
                 <li><span lang="en">Shading under the chin tip: it pushes the already-receding chin even further back.</span><span lang="ko">턱끝 아래 셰이딩: 이미 물러난 턱을 더 뒤로 보이게 해요.</span><span lang="ja">あご先の下のシェーディング：すでに引っ込んだあごをさらに後ろに見せます。</span><span lang="zh-CN">下巴尖下方的修容——会让本就后缩的下巴更往后。</span><span lang="zh-TW">下巴尖下方的修容——會讓本就後縮的下巴更往後。</span><span lang="es">Sombreado bajo la punta del mentón: empuja aún más atrás el mentón ya retraído.</span><span lang="id">Shading di bawah ujung dagu, mendorong dagu yang sudah mundur makin ke belakang.</span></li>
             </ul>
             <!-- 추천템 (한국 전용) -->
-            <div class="oy-rec" lang="ko">
-                <div class="oy-head">🛍️ 추천템</div>
-                <div class="oy-list">
-                    <div class="oy-item"><span class="oy-cat">셰이딩</span><a href="https://oy.run/5m8mbnWkZ885Ge" rel="sponsored nofollow noopener">투쿨포스쿨 바이로댕 셰이딩 / 쿨 토프 <span class="arr">올영에서 보기 ↗</span></a></div>
-                    <div class="oy-item"><span class="oy-cat">하이라이터</span><a href="https://oy.run/E8x7TBCjDJmxhE" rel="sponsored nofollow noopener">클리오 프리즘 하이라이터 / 골드위어 <span class="arr">올영에서 보기 ↗</span></a></div>
-                    <div class="oy-item"><span class="oy-cat">컨실러</span><a href="https://oy.run/0FVi1hRP1Mk71v" rel="sponsored nofollow noopener">더샘 커버 퍼펙션 팁컨실러 / 클리어·내추럴 베이지 <span class="arr">올영에서 보기 ↗</span></a></div>
-                </div>
-                <div class="oy-disc">상기 추천 링크는 올리브영 쇼핑 큐레이터 활동의 일환으로, 구매 시 일정 금액의 수수료를 제공받습니다. (블러셔·립 색상은 퍼스널컬러 가이드를 참고하세요)</div>
-            </div>
+            <!-- shop:rec-convex:START (myFaceSize/tools/shopguide/build.py 가 만든다 — 직접 고치지 말 것) --><div class="shop" lang="ko" id="shop-rec-convex"><div class="shop-head">🛍️ 이 메이크업에 쓰는 제품</div><div class="shop-sub">블러셔·립 색상은 퍼스널컬러 가이드를 참고하세요.</div><a class="shop-item" id="p-A000000145650" href="https://oy.run/5m8mbnWkZ885Ge" rel="sponsored nofollow noopener"><img src="img/shop/A000000145650.webp" alt="" loading="lazy" width="58" height="58"><span class="shop-txt"><span class="shop-brand"><b class="shop-cat">셰이딩</b>투쿨포스쿨</span><span class="shop-name">바이로댕 쉐이딩</span><span class="shop-why">추천 색: 쿨 토프</span><span class="shop-meta">평점 <b>4.8</b>, 리뷰 5.5만, 1만 원대</span></span><span class="shop-go" aria-hidden="true">›</span></a><a class="shop-item" id="p-A000000218380" href="https://oy.run/E8x7TBCjDJmxhE" rel="sponsored nofollow noopener"><img src="img/shop/A000000218380.webp" alt="" loading="lazy" width="58" height="58"><span class="shop-txt"><span class="shop-brand"><b class="shop-cat">하이라이터</b>클리오</span><span class="shop-name">프리즘 하이라이터 8g</span><span class="shop-why">추천 색: 골드위어</span><span class="shop-meta">평점 <b>4.8</b>, 리뷰 1.4만, 1만 원대</span></span><span class="shop-go" aria-hidden="true">›</span></a><a class="shop-item" id="p-A000000155982" href="https://oy.run/0FVi1hRP1Mk71v" rel="sponsored nofollow noopener"><img src="img/shop/A000000155982.webp" alt="" loading="lazy" width="58" height="58"><span class="shop-txt"><span class="shop-brand"><b class="shop-cat">컨실러</b>더샘</span><span class="shop-name">커버 퍼펙션 팁 컨실러</span><span class="shop-why">추천 색: 클리어·내추럴 베이지</span><span class="shop-meta">평점 <b>4.8</b>, 리뷰 3.8만, 1만 원 미만</span></span><span class="shop-go" aria-hidden="true">›</span></a><p class="shop-note">평점, 리뷰 수, 가격대는 2026년 11월 올리브영 기준이에요. 가격은 묶음 기획과 할인에 따라 달라져요. 제품을 누르면 올리브영 상품 화면이 열려요.</p><p class="shop-note shop-disc">이 포스팅은 올리브영 쇼핑 큐레이터 활동의 일환으로, 구매가 발생할 경우 일정액의 수수료를 제공받습니다.</p></div><!-- shop:rec-convex:END -->
         </section>
 
         <!-- =================== 오목형 (concave) =================== -->
@@ -329,15 +351,7 @@
                 <li><span lang="en">Highlight on the chin tip: it emphasizes the projection you're trying to soften.</span><span lang="ko">턱끝 하이라이트: 완화하려는 돌출을 오히려 강조해요.</span><span lang="ja">あご先のハイライト：やわらげたい出っ張りを逆に強調します。</span><span lang="zh-CN">下巴尖的高光——会强调你想弱化的突出。</span><span lang="zh-TW">下巴尖的高光——會強調你想弱化的突出。</span><span lang="es">Iluminador en la punta del mentón: acentúa la proyección que intentas suavizar.</span><span lang="id">Highlight di ujung dagu, menonjolkan tonjolan yang justru ingin kamu lembutkan.</span></li>
             </ul>
             <!-- 추천템 (한국 전용) -->
-            <div class="oy-rec" lang="ko">
-                <div class="oy-head">🛍️ 추천템</div>
-                <div class="oy-list">
-                    <div class="oy-item"><span class="oy-cat">셰이딩</span><a href="https://oy.run/5m8mbnWkZ885Ge" rel="sponsored nofollow noopener">투쿨포스쿨 바이로댕 셰이딩 / 쿨 토프 <span class="arr">올영에서 보기 ↗</span></a></div>
-                    <div class="oy-item"><span class="oy-cat">하이라이터</span><a href="https://oy.run/E8x7TBCjDJmxhE" rel="sponsored nofollow noopener">클리오 프리즘 하이라이터 / 골드위어 <span class="arr">올영에서 보기 ↗</span></a></div>
-                    <div class="oy-item"><span class="oy-cat">컨실러</span><a href="https://oy.run/0FVi1hRP1Mk71v" rel="sponsored nofollow noopener">더샘 커버 퍼펙션 팁컨실러 / 클리어·내추럴 베이지 <span class="arr">올영에서 보기 ↗</span></a></div>
-                </div>
-                <div class="oy-disc">상기 추천 링크는 올리브영 쇼핑 큐레이터 활동의 일환으로, 구매 시 일정 금액의 수수료를 제공받습니다. (블러셔·립 색상은 퍼스널컬러 가이드를 참고하세요)</div>
-            </div>
+            <!-- shop:rec-concave:START (myFaceSize/tools/shopguide/build.py 가 만든다 — 직접 고치지 말 것) --><div class="shop" lang="ko" id="shop-rec-concave"><div class="shop-head">🛍️ 이 메이크업에 쓰는 제품</div><div class="shop-sub">블러셔·립 색상은 퍼스널컬러 가이드를 참고하세요.</div><a class="shop-item" href="https://oy.run/5m8mbnWkZ885Ge" rel="sponsored nofollow noopener"><img src="img/shop/A000000145650.webp" alt="" loading="lazy" width="58" height="58"><span class="shop-txt"><span class="shop-brand"><b class="shop-cat">셰이딩</b>투쿨포스쿨</span><span class="shop-name">바이로댕 쉐이딩</span><span class="shop-why">추천 색: 쿨 토프</span><span class="shop-meta">평점 <b>4.8</b>, 리뷰 5.5만, 1만 원대</span></span><span class="shop-go" aria-hidden="true">›</span></a><a class="shop-item" href="https://oy.run/E8x7TBCjDJmxhE" rel="sponsored nofollow noopener"><img src="img/shop/A000000218380.webp" alt="" loading="lazy" width="58" height="58"><span class="shop-txt"><span class="shop-brand"><b class="shop-cat">하이라이터</b>클리오</span><span class="shop-name">프리즘 하이라이터 8g</span><span class="shop-why">추천 색: 골드위어</span><span class="shop-meta">평점 <b>4.8</b>, 리뷰 1.4만, 1만 원대</span></span><span class="shop-go" aria-hidden="true">›</span></a><a class="shop-item" href="https://oy.run/0FVi1hRP1Mk71v" rel="sponsored nofollow noopener"><img src="img/shop/A000000155982.webp" alt="" loading="lazy" width="58" height="58"><span class="shop-txt"><span class="shop-brand"><b class="shop-cat">컨실러</b>더샘</span><span class="shop-name">커버 퍼펙션 팁 컨실러</span><span class="shop-why">추천 색: 클리어·내추럴 베이지</span><span class="shop-meta">평점 <b>4.8</b>, 리뷰 3.8만, 1만 원 미만</span></span><span class="shop-go" aria-hidden="true">›</span></a><p class="shop-note">평점, 리뷰 수, 가격대는 2026년 11월 올리브영 기준이에요. 가격은 묶음 기획과 할인에 따라 달라져요. 제품을 누르면 올리브영 상품 화면이 열려요.</p><p class="shop-note shop-disc">이 포스팅은 올리브영 쇼핑 큐레이터 활동의 일환으로, 구매가 발생할 경우 일정액의 수수료를 제공받습니다.</p></div><!-- shop:rec-concave:END -->
         </section>
 
         <div class="adapt-note">

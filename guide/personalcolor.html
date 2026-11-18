@@ -146,6 +146,36 @@
         body.lang-id.race-caucasian span[lang="id"][data-race="asian"] { display: none; }
         body.lang-es.race-caucasian span[lang="es"][data-race="caucasian"] { display: inline; }
         body.lang-id.race-caucasian span[lang="id"][data-race="caucasian"] { display: inline; }
+            /* 추천템 상자 — myFaceSize/tools/shopguide/build.py 가 넣는다(한국어에서만 보임) */
+        .shop { display: none; margin-top: 22px; padding-top: 16px; border-top: 1px solid rgba(86,98,78,0.16); scroll-margin-top: 16px; }
+        body.lang-ko .shop { display: block; }
+        .shop.alone { margin: 0 0 18px; padding: 18px 22px 16px; border: 1px solid rgba(255,255,255,0.65); border-radius: 18px; background: rgba(255,255,255,0.5); box-shadow: 0 2px 12px rgba(99,150,55,0.1); }
+        .shop-head { font-size: 14px; font-weight: 800; color: #4e8a2c; }
+        .shop-sub { font-size: 12px; color: #7d8a74; margin-top: 3px; line-height: 1.5; word-break: keep-all; }
+        .shop-tier { font-size: 11.5px; font-weight: 800; color: #56624e; margin: 14px 0 2px; display: flex; align-items: center; gap: 8px; }
+        .shop-tier::after { content: ""; flex: 1; height: 1px; background: rgba(86,98,78,0.16); }
+        .shop-item { display: flex; align-items: center; gap: 12px; padding: 9px 0; text-decoration: none; color: inherit; scroll-margin-top: 80px; }
+        .shop-item + .shop-item { border-top: 1px solid rgba(86,98,78,0.09); }
+        .shop-item:target { background: rgba(124,179,66,0.13); border-radius: 12px; box-shadow: 0 0 0 6px rgba(124,179,66,0.13); border-top-color: transparent; }
+        .shop-item img { flex: none; width: 58px; height: 58px; border-radius: 10px; background: #fff; border: 1px solid rgba(86,98,78,0.12); object-fit: cover; }
+        .shop-txt { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+        .shop-brand { font-size: 11px; font-weight: 700; color: #7d8a74; }
+        .shop-brand i { font-style: normal; font-weight: 600; color: #a8851a; margin-left: 6px; }
+        .shop-cat { display: inline-block; font-size: 10.5px; font-weight: 800; color: #4e8a2c; background: rgba(124,179,66,0.15); border-radius: 6px; padding: 1px 6px; margin-right: 6px; }
+        .shop-head + .shop-item, .shop-sub + .shop-item { margin-top: 8px; }
+        .shop-name { font-size: 13.5px; font-weight: 700; color: #33402b; line-height: 1.35; word-break: keep-all; }
+        .shop-why { font-size: 12px; color: #5e6d54; line-height: 1.4; margin-top: 1px; word-break: keep-all; }
+        .shop-meta { font-size: 11px; color: #8a9483; margin-top: 3px; }
+        .shop-meta b { color: #a8851a; font-weight: 700; }
+        .shop-go { flex: none; font-size: 17px; line-height: 1; color: #8fb86a; }
+        .shop-note { font-size: 11px; color: #8a9483; margin: 10px 0 0; line-height: 1.5; word-break: keep-all; }
+        .shop-disc { margin-top: 5px; color: #6f7b68; }
+        .shop-jump { display: none; margin-top: 14px; font-size: 12.5px; font-weight: 700; color: #4e8a2c; text-decoration: none; }
+        body.lang-ko .shop-jump { display: inline-block; }
+        .ing-shop { display: none; margin-top: 5px; font-size: 12px; color: #7d8a74; line-height: 1.6; word-break: keep-all; }
+        body.lang-ko .ing-shop { display: block; }
+        .ing-shop a { color: #3d6b1f; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }
+        /* 추천템 상자 끝 */
     </style>
 </head>
 <body class="lang-en">
@@ -305,16 +335,7 @@
             </div>
 <!-- /gen:spring -->
             <!-- 추천템 (한국 전용) -->
-            <div class="oy-rec" lang="ko">
-                <div class="oy-head">🛍️ 추천템</div>
-                <div class="oy-list">
-                    <div class="oy-item"><span class="oy-cat">립</span><a href="https://oy.run/Cn81jDMyxrrrFx" rel="sponsored nofollow noopener">롬앤 더 쥬시 래스팅 틴트 / 미스티 피치 <span class="arr">올영에서 보기 ↗</span></a></div>
-                    <div class="oy-item"><span class="oy-cat">블러셔</span><a href="https://oy.run/tKSap3SxO2tT0O" rel="sponsored nofollow noopener">데이지크 블렌딩 무드 치크 / 피치블렌딩 <span class="arr">올영에서 보기 ↗</span></a></div>
-                    <div class="oy-item"><span class="oy-cat">아이섀도</span><a href="https://oy.run/SZNcjF047XJ6vM" rel="sponsored nofollow noopener">클리오 프로아이팔레트 / 낮잠자는 치즈 <span class="arr">올영에서 보기 ↗</span></a></div>
-                    <div class="oy-item"><span class="oy-cat">하이라이터</span><a href="https://oy.run/IDXOluILSFIAyw" rel="sponsored nofollow noopener">투에이엔 퓨어 글래시 하이라이터 / 피치빔 <span class="arr">올영에서 보기 ↗</span></a></div>
-                </div>
-                <div class="oy-disc">상기 추천 링크는 올리브영 쇼핑 큐레이터 활동의 일환으로, 구매 시 일정 금액의 수수료를 제공받습니다.</div>
-            </div>
+            <!-- shop:rec-spring:START (myFaceSize/tools/shopguide/build.py 가 만든다 — 직접 고치지 말 것) --><div class="shop" lang="ko" id="shop-rec-spring"><div class="shop-head">🛍️ 봄 웜톤에 어울리는 제품과 색</div><a class="shop-item" id="p-A000000241210" href="https://oy.run/Cn81jDMyxrrrFx" rel="sponsored nofollow noopener"><img src="img/shop/A000000241210.webp" alt="" loading="lazy" width="58" height="58"><span class="shop-txt"><span class="shop-brand"><b class="shop-cat">립</b>롬앤</span><span class="shop-name">더 쥬시 래스팅 틴트</span><span class="shop-why">추천 색: 미스티 피치</span><span class="shop-meta">평점 <b>4.7</b>, 리뷰 28.5만, 1만 원 미만</span></span><span class="shop-go" aria-hidden="true">›</span></a><a class="shop-item" id="p-A000000164726" href="https://oy.run/tKSap3SxO2tT0O" rel="sponsored nofollow noopener"><img src="img/shop/A000000164726.webp" alt="" loading="lazy" width="58" height="58"><span class="shop-txt"><span class="shop-brand"><b class="shop-cat">블러셔</b>데이지크</span><span class="shop-name">블렌딩 무드 치크</span><span class="shop-why">추천 색: 피치블렌딩</span><span class="shop-meta">평점 <b>4.7</b>, 리뷰 2.1만, 2만 원대</span></span><span class="shop-go" aria-hidden="true">›</span></a><a class="shop-item" id="p-A000000188988" href="https://oy.run/SZNcjF047XJ6vM" rel="sponsored nofollow noopener"><img src="img/shop/A000000188988.webp" alt="" loading="lazy" width="58" height="58"><span class="shop-txt"><span class="shop-brand"><b class="shop-cat">아이섀도</b>클리오</span><span class="shop-name">프로 아이 팔레트 에어</span><span class="shop-why">추천 색: 낮잠자는 치즈</span><span class="shop-meta">평점 <b>4.8</b>, 리뷰 4.9만, 3만 원대</span></span><span class="shop-go" aria-hidden="true">›</span></a><a class="shop-item" id="p-A000000206084" href="https://oy.run/IDXOluILSFIAyw" rel="sponsored nofollow noopener"><img src="img/shop/A000000206084.webp" alt="" loading="lazy" width="58" height="58"><span class="shop-txt"><span class="shop-brand"><b class="shop-cat">하이라이터</b>투에이엔</span><span class="shop-name">퓨어 글래시 하이라이터</span><span class="shop-why">추천 색: 피치빔</span><span class="shop-meta">평점 <b>4.8</b>, 리뷰 2만, 1만 원대</span></span><span class="shop-go" aria-hidden="true">›</span></a><p class="shop-note">평점, 리뷰 수, 가격대는 2026년 11월 올리브영 기준이에요. 가격은 묶음 기획과 할인에 따라 달라져요. 제품을 누르면 올리브영 상품 화면이 열려요.</p><p class="shop-note shop-disc">이 포스팅은 올리브영 쇼핑 큐레이터 활동의 일환으로, 구매가 발생할 경우 일정액의 수수료를 제공받습니다.</p></div><!-- shop:rec-spring:END -->
         </section>
 
         <!-- ============ SUMMER COOL ============ -->
@@ -425,16 +446,7 @@
             </div>
 <!-- /gen:summer -->
             <!-- 추천템 (한국 전용) -->
-            <div class="oy-rec" lang="ko">
-                <div class="oy-head">🛍️ 추천템</div>
-                <div class="oy-list">
-                    <div class="oy-item"><span class="oy-cat">립</span><a href="https://oy.run/IiR3xOtKNfDm28" rel="sponsored nofollow noopener">롬앤 베어그레이프 제로 / 베어그레이프 <span class="arr">올영에서 보기 ↗</span></a></div>
-                    <div class="oy-item"><span class="oy-cat">블러셔</span><a href="https://oy.run/EZoJeTcXuAqfZn" rel="sponsored nofollow noopener">크리니크 치크 팝 / 발레리나 팝 <span class="arr">올영에서 보기 ↗</span></a></div>
-                    <div class="oy-item"><span class="oy-cat">아이섀도</span><a href="https://oy.run/9pubWeDORWP9xD" rel="sponsored nofollow noopener">에스쁘아 아이 코어 팔레트 / 세비지무브 <span class="arr">올영에서 보기 ↗</span></a></div>
-                    <div class="oy-item"><span class="oy-cat">하이라이터</span><a href="https://oy.run/q1KE5EuDAavlTF" rel="sponsored nofollow noopener">글린트 스틱 하이라이터 (쿨 핑크펄·실버) <span class="arr">올영에서 보기 ↗</span></a></div>
-                </div>
-                <div class="oy-disc">상기 추천 링크는 올리브영 쇼핑 큐레이터 활동의 일환으로, 구매 시 일정 금액의 수수료를 제공받습니다.</div>
-            </div>
+            <!-- shop:rec-summer:START (myFaceSize/tools/shopguide/build.py 가 만든다 — 직접 고치지 말 것) --><div class="shop" lang="ko" id="shop-rec-summer"><div class="shop-head">🛍️ 여름 쿨톤에 어울리는 제품과 색</div><a class="shop-item" id="p-A000000248293" href="https://oy.run/IiR3xOtKNfDm28" rel="sponsored nofollow noopener"><img src="img/shop/A000000248293.webp" alt="" loading="lazy" width="58" height="58"><span class="shop-txt"><span class="shop-brand"><b class="shop-cat">립</b>롬앤</span><span class="shop-name">더 쥬시 래스팅 틴트 제로</span><span class="shop-why">추천 색: 베어그레이프</span><span class="shop-meta">평점 <b>4.6</b>, 리뷰 284, 1만 원 미만</span></span><span class="shop-go" aria-hidden="true">›</span></a><a class="shop-item" id="p-A000000158991" href="https://oy.run/EZoJeTcXuAqfZn" rel="sponsored nofollow noopener"><img src="img/shop/A000000158991.webp" alt="" loading="lazy" width="58" height="58"><span class="shop-txt"><span class="shop-brand"><b class="shop-cat">블러셔</b>크리니크<i>백화점 브랜드</i></span><span class="shop-name">치크 팝</span><span class="shop-why">추천 색: 발레리나 팝</span><span class="shop-meta">평점 <b>4.8</b>, 리뷰 3.9만, 2만 원대</span></span><span class="shop-go" aria-hidden="true">›</span></a><a class="shop-item" id="p-A000000209174" href="https://oy.run/9pubWeDORWP9xD" rel="sponsored nofollow noopener"><img src="img/shop/A000000209174.webp" alt="" loading="lazy" width="58" height="58"><span class="shop-txt"><span class="shop-brand"><b class="shop-cat">아이섀도</b>에스쁘아</span><span class="shop-name">아이 코어 팔레트</span><span class="shop-why">추천 색: 세비지무브</span><span class="shop-meta">평점 <b>4.7</b>, 리뷰 8,243, 2만 원대</span></span><span class="shop-go" aria-hidden="true">›</span></a><a class="shop-item" id="p-A000000161214" href="https://oy.run/q1KE5EuDAavlTF" rel="sponsored nofollow noopener"><img src="img/shop/A000000161214.webp" alt="" loading="lazy" width="58" height="58"><span class="shop-txt"><span class="shop-brand"><b class="shop-cat">하이라이터</b>글린트</span><span class="shop-name">스틱 하이라이터</span><span class="shop-why">추천 색: 쿨 핑크펄·실버</span><span class="shop-meta">평점 <b>4.4</b>, 리뷰 2,135, 2만 원대</span></span><span class="shop-go" aria-hidden="true">›</span></a><p class="shop-note">평점, 리뷰 수, 가격대는 2026년 11월 올리브영 기준이에요. 가격은 묶음 기획과 할인에 따라 달라져요. 제품을 누르면 올리브영 상품 화면이 열려요.</p><p class="shop-note shop-disc">이 포스팅은 올리브영 쇼핑 큐레이터 활동의 일환으로, 구매가 발생할 경우 일정액의 수수료를 제공받습니다.</p></div><!-- shop:rec-summer:END -->
         </section>
 
         <!-- ============ AUTUMN WARM ============ -->
@@ -545,16 +557,7 @@
             </div>
 <!-- /gen:autumn -->
             <!-- 추천템 (한국 전용) -->
-            <div class="oy-rec" lang="ko">
-                <div class="oy-head">🛍️ 추천템</div>
-                <div class="oy-list">
-                    <div class="oy-item"><span class="oy-cat">립</span><a href="https://oy.run/Cn81jDMyxrrrFx" rel="sponsored nofollow noopener">롬앤 더 쥬시 래스팅 틴트 / 쥬쥬브 <span class="arr">올영에서 보기 ↗</span></a></div>
-                    <div class="oy-item"><span class="oy-cat">블러셔</span><a href="https://oy.run/l0HD26nocHEaTp" rel="sponsored nofollow noopener">페리페라 맑게물든 선샤인 치크 / 라떼달달해 <span class="arr">올영에서 보기 ↗</span></a></div>
-                    <div class="oy-item"><span class="oy-cat">아이섀도</span><a href="https://oy.run/MWJvj8JDbUwjEA" rel="sponsored nofollow noopener">3CE 멀티 아이 컬러 팔레트 / 테이크오버 <span class="arr">올영에서 보기 ↗</span></a></div>
-                    <div class="oy-item"><span class="oy-cat">하이라이터</span><a href="https://oy.run/28dhRK6XpL29XL" rel="sponsored nofollow noopener">오프라 미니 하이라이터 / 로데오 드라이브 <span class="arr">올영에서 보기 ↗</span></a></div>
-                </div>
-                <div class="oy-disc">상기 추천 링크는 올리브영 쇼핑 큐레이터 활동의 일환으로, 구매 시 일정 금액의 수수료를 제공받습니다.</div>
-            </div>
+            <!-- shop:rec-autumn:START (myFaceSize/tools/shopguide/build.py 가 만든다 — 직접 고치지 말 것) --><div class="shop" lang="ko" id="shop-rec-autumn"><div class="shop-head">🛍️ 가을 웜톤에 어울리는 제품과 색</div><a class="shop-item" href="https://oy.run/Cn81jDMyxrrrFx" rel="sponsored nofollow noopener"><img src="img/shop/A000000241210.webp" alt="" loading="lazy" width="58" height="58"><span class="shop-txt"><span class="shop-brand"><b class="shop-cat">립</b>롬앤</span><span class="shop-name">더 쥬시 래스팅 틴트</span><span class="shop-why">추천 색: 쥬쥬브</span><span class="shop-meta">평점 <b>4.7</b>, 리뷰 28.5만, 1만 원 미만</span></span><span class="shop-go" aria-hidden="true">›</span></a><a class="shop-item" id="p-A000000140263" href="https://oy.run/l0HD26nocHEaTp" rel="sponsored nofollow noopener"><img src="img/shop/A000000140263.webp" alt="" loading="lazy" width="58" height="58"><span class="shop-txt"><span class="shop-brand"><b class="shop-cat">블러셔</b>페리페라</span><span class="shop-name">맑게 물든 선샤인 치크</span><span class="shop-why">추천 색: 라떼달달해</span><span class="shop-meta">평점 <b>4.8</b>, 리뷰 7만, 1만 원 미만</span></span><span class="shop-go" aria-hidden="true">›</span></a><a class="shop-item" id="p-A000000255393" href="https://oy.run/MWJvj8JDbUwjEA" rel="sponsored nofollow noopener"><img src="img/shop/A000000255393.webp" alt="" loading="lazy" width="58" height="58"><span class="shop-txt"><span class="shop-brand"><b class="shop-cat">아이섀도</b>3CE</span><span class="shop-name">멀티 아이 컬러 팔레트</span><span class="shop-why">추천 색: 테이크오버</span><span class="shop-meta">평점 <b>4.8</b>, 리뷰 623, 2만 원대</span></span><span class="shop-go" aria-hidden="true">›</span></a><a class="shop-item" id="p-A000000238740" href="https://oy.run/28dhRK6XpL29XL" rel="sponsored nofollow noopener"><img src="img/shop/A000000238740.webp" alt="" loading="lazy" width="58" height="58"><span class="shop-txt"><span class="shop-brand"><b class="shop-cat">하이라이터</b>오프라</span><span class="shop-name">미니 하이라이터</span><span class="shop-why">추천 색: 로데오 드라이브</span><span class="shop-meta">평점 <b>4.8</b>, 리뷰 2.6만, 3만 원대</span></span><span class="shop-go" aria-hidden="true">›</span></a><p class="shop-note">평점, 리뷰 수, 가격대는 2026년 11월 올리브영 기준이에요. 가격은 묶음 기획과 할인에 따라 달라져요. 제품을 누르면 올리브영 상품 화면이 열려요.</p><p class="shop-note shop-disc">이 포스팅은 올리브영 쇼핑 큐레이터 활동의 일환으로, 구매가 발생할 경우 일정액의 수수료를 제공받습니다.</p></div><!-- shop:rec-autumn:END -->
         </section>
 
         <!-- ============ WINTER COOL ============ -->
@@ -665,16 +668,7 @@
             </div>
 <!-- /gen:winter -->
             <!-- 추천템 (한국 전용) -->
-            <div class="oy-rec" lang="ko">
-                <div class="oy-head">🛍️ 추천템</div>
-                <div class="oy-list">
-                    <div class="oy-item"><span class="oy-cat">립</span><a href="https://oy.run/Cn81jDMyxrrrFx" rel="sponsored nofollow noopener">롬앤 더 쥬시 래스팅 틴트 / 플럼 <span class="arr">올영에서 보기 ↗</span></a></div>
-                    <div class="oy-item"><span class="oy-cat">블러셔</span><a href="https://oy.run/EZoJeTcXuAqfZn" rel="sponsored nofollow noopener">크리니크 치크 팝 / 팬지 팝 <span class="arr">올영에서 보기 ↗</span></a></div>
-                    <div class="oy-item"><span class="oy-cat">아이섀도</span><a href="https://oy.run/mvCJgvasDzQC1R" rel="sponsored nofollow noopener">홀리카홀리카 마이페이브 피스 / 위스테리아 <span class="arr">올영에서 보기 ↗</span></a></div>
-                    <div class="oy-item"><span class="oy-cat">하이라이터</span><a href="https://oy.run/hjwvoRGSfYRLCi" rel="sponsored nofollow noopener">글린트 하이라이터 EX / 듀이문 <span class="arr">올영에서 보기 ↗</span></a></div>
-                </div>
-                <div class="oy-disc">상기 추천 링크는 올리브영 쇼핑 큐레이터 활동의 일환으로, 구매 시 일정 금액의 수수료를 제공받습니다.</div>
-            </div>
+            <!-- shop:rec-winter:START (myFaceSize/tools/shopguide/build.py 가 만든다 — 직접 고치지 말 것) --><div class="shop" lang="ko" id="shop-rec-winter"><div class="shop-head">🛍️ 겨울 쿨톤에 어울리는 제품과 색</div><a class="shop-item" href="https://oy.run/Cn81jDMyxrrrFx" rel="sponsored nofollow noopener"><img src="img/shop/A000000241210.webp" alt="" loading="lazy" width="58" height="58"><span class="shop-txt"><span class="shop-brand"><b class="shop-cat">립</b>롬앤</span><span class="shop-name">더 쥬시 래스팅 틴트</span><span class="shop-why">추천 색: 플럼</span><span class="shop-meta">평점 <b>4.7</b>, 리뷰 28.5만, 1만 원 미만</span></span><span class="shop-go" aria-hidden="true">›</span></a><a class="shop-item" href="https://oy.run/EZoJeTcXuAqfZn" rel="sponsored nofollow noopener"><img src="img/shop/A000000158991.webp" alt="" loading="lazy" width="58" height="58"><span class="shop-txt"><span class="shop-brand"><b class="shop-cat">블러셔</b>크리니크<i>백화점 브랜드</i></span><span class="shop-name">치크 팝</span><span class="shop-why">추천 색: 팬지 팝</span><span class="shop-meta">평점 <b>4.8</b>, 리뷰 3.9만, 2만 원대</span></span><span class="shop-go" aria-hidden="true">›</span></a><a class="shop-item" id="p-A000001005367" href="https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000001005367" rel="nofollow noopener"><img src="img/shop/A000001005367.webp" alt="" loading="lazy" width="58" height="58"><span class="shop-txt"><span class="shop-brand"><b class="shop-cat">아이섀도</b>홀리카홀리카</span><span class="shop-name">마이페이브 피스 아이섀도우</span><span class="shop-why">추천 색: 위스테리아</span><span class="shop-meta">평점 <b>4.8</b>, 리뷰 17.6만, 1만 원 미만</span></span><span class="shop-go" aria-hidden="true">›</span></a><a class="shop-item" id="p-A000000258889" href="https://oy.run/hjwvoRGSfYRLCi" rel="sponsored nofollow noopener"><img src="img/shop/A000000258889.webp" alt="" loading="lazy" width="58" height="58"><span class="shop-txt"><span class="shop-brand"><b class="shop-cat">하이라이터</b>글린트</span><span class="shop-name">하이라이터 EX</span><span class="shop-why">추천 색: 듀이문</span><span class="shop-meta">평점 <b>4.8</b>, 리뷰 3,888, 2만 원대</span></span><span class="shop-go" aria-hidden="true">›</span></a><p class="shop-note">평점, 리뷰 수, 가격대는 2026년 11월 올리브영 기준이에요. 가격은 묶음 기획과 할인에 따라 달라져요. 제품을 누르면 올리브영 상품 화면이 열려요.</p><p class="shop-note shop-disc">이 포스팅은 올리브영 쇼핑 큐레이터 활동의 일환으로, 구매가 발생할 경우 일정액의 수수료를 제공받습니다.</p></div><!-- shop:rec-winter:END -->
         </section>
 
 <!-- gen:between -->
