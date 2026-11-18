@@ -102,6 +102,33 @@
         body.lang-zh-TW li[lang="zh-TW"] { display: list-item; }
         body.lang-es li[lang="es"] { display: list-item; }
         body.lang-id li[lang="id"] { display: list-item; }
+            /* 추천템 상자 — myFaceSize/tools/shopguide/build.py 가 넣는다(한국어에서만 보임) */
+        .shop { display: none; margin-top: 22px; padding-top: 16px; border-top: 1px solid rgba(86,98,78,0.16); scroll-margin-top: 16px; }
+        body.lang-ko .shop { display: block; }
+        .shop.alone { margin: 0 0 18px; padding: 18px 22px 16px; border: 1px solid rgba(255,255,255,0.65); border-radius: 18px; background: rgba(255,255,255,0.5); box-shadow: 0 2px 12px rgba(99,150,55,0.1); }
+        .shop-head { font-size: 14px; font-weight: 800; color: #4e8a2c; }
+        .shop-sub { font-size: 12px; color: #7d8a74; margin-top: 3px; line-height: 1.5; word-break: keep-all; }
+        .shop-tier { font-size: 11.5px; font-weight: 800; color: #56624e; margin: 14px 0 2px; display: flex; align-items: center; gap: 8px; }
+        .shop-tier::after { content: ""; flex: 1; height: 1px; background: rgba(86,98,78,0.16); }
+        .shop-item { display: flex; align-items: center; gap: 12px; padding: 9px 0; text-decoration: none; color: inherit; scroll-margin-top: 80px; }
+        .shop-item + .shop-item { border-top: 1px solid rgba(86,98,78,0.09); }
+        .shop-item:target { background: rgba(124,179,66,0.13); border-radius: 12px; box-shadow: 0 0 0 6px rgba(124,179,66,0.13); border-top-color: transparent; }
+        .shop-item img { flex: none; width: 58px; height: 58px; border-radius: 10px; background: #fff; border: 1px solid rgba(86,98,78,0.12); object-fit: cover; }
+        .shop-txt { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+        .shop-brand { font-size: 11px; font-weight: 700; color: #7d8a74; }
+        .shop-brand i { font-style: normal; font-weight: 600; color: #a8851a; margin-left: 6px; }
+        .shop-name { font-size: 13.5px; font-weight: 700; color: #33402b; line-height: 1.35; word-break: keep-all; }
+        .shop-why { font-size: 12px; color: #5e6d54; line-height: 1.4; margin-top: 1px; word-break: keep-all; }
+        .shop-meta { font-size: 11px; color: #8a9483; margin-top: 3px; }
+        .shop-meta b { color: #a8851a; font-weight: 700; }
+        .shop-go { flex: none; font-size: 17px; line-height: 1; color: #8fb86a; }
+        .shop-note { font-size: 11px; color: #8a9483; margin: 10px 0 0; line-height: 1.5; word-break: keep-all; }
+        .shop-jump { display: none; margin-top: 14px; font-size: 12.5px; font-weight: 700; color: #4e8a2c; text-decoration: none; }
+        body.lang-ko .shop-jump { display: inline-block; }
+        .ing-shop { display: none; margin-top: 5px; font-size: 12px; color: #7d8a74; line-height: 1.6; word-break: keep-all; }
+        body.lang-ko .ing-shop { display: block; }
+        .ing-shop a { color: #3d6b1f; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }
+        /* 추천템 상자 끝 */
     </style>
 </head>
 <body class="lang-en">
@@ -212,6 +239,7 @@
                     <li lang="es">Riza las pestañas del centro al tercio exterior y evita una línea inferior muy marcada.</li><li lang="id">Akhiri eyeliner 2-3 mm melewati sudut luar, sedikit miring ke atas. Sapuan datar atau ke bawah memperdalam kesan menurun.</li><li lang="id">Jepit bulu mata dengan kuat di bagian tengah dan sepertiga luar; hindari garis bawah yang tebal, karena menarik mata makin ke bawah.</li>
                 </ul>
             </div>
+        <!-- shopjump --><a class="shop-jump" lang="ko" href="#shop-eye">🛍️ 아이 메이크업 제품 보기 <span aria-hidden="true">↓</span></a><!-- /shopjump -->
         </div>
         <div class="type-card" id="balanced">
             <div class="type-top">
@@ -253,6 +281,7 @@
                     <li lang="es">Al ser una base neutra, cambiar solo el <b>ángulo de las cejas</b> ya transforma la mirada.</li><li lang="id">Ingin lebih lembut? Tarik eyeliner lurus keluar. Ingin lebih tajam? Angkat ekornya 5 mm. Keduanya terlihat alami padamu.</li><li lang="id">Karena dasarnya netral, mengubah sudut alis saja sudah menggeser keseluruhan kesan.</li>
                 </ul>
             </div>
+        <!-- shopjump --><a class="shop-jump" lang="ko" href="#shop-eye">🛍️ 아이 메이크업 제품 보기 <span aria-hidden="true">↓</span></a><!-- /shopjump -->
         </div>
 
         <div class="type-card" id="upturned">
@@ -295,6 +324,7 @@
                     <li lang="es">Ilumina el centro del párpado y marca solo el tercio exterior inferior: redondea y suaviza la mirada.</li><li lang="id">Hentikan eyeliner sekitar 3 mm dari sudut luar. Sayap panjang menumpuk di atas angkatan yang sudah kamu miliki.</li><li lang="id">Tambahkan warna terang di tengah kelopak dan garis bawah lembut hanya di sepertiga luar, membulatkan mata dan melembutkan tepinya.</li>
                 </ul>
             </div>
+        <!-- shopjump --><a class="shop-jump" lang="ko" href="#shop-eye">🛍️ 아이 메이크업 제품 보기 <span aria-hidden="true">↓</span></a><!-- /shopjump -->
         </div>
         <div class="axis-head" id="aspect">
             <h2><span lang="en">2 · Eye proportion</span><span lang="ko">2 · 눈매 비율</span><span lang="ja">2 · 目の比率</span><span lang="zh-CN">2 · 眼型比例</span><span lang="zh-TW">2 · 眼型比例</span><span lang="es">2 · Proporción del ojo</span><span lang="id">2 · Proporsi mata</span></h2>
@@ -356,6 +386,7 @@
                     <li lang="es">Pestañas más largas solo en el extremo exterior; uniformes acentúan el círculo.</li><li lang="id">Kerjakan secara horizontal: tarik eyeliner 3-4 mm melewati sudut luar dan pusatkan shadow di separuh luar.</li><li lang="id">Bulu mata yang lebih panjang di tepi luar memanjangkan bentuknya; bulu mata yang rata di seluruh bagian menonjolkan lingkarannya.</li>
                 </ul>
             </div>
+        <!-- shopjump --><a class="shop-jump" lang="ko" href="#shop-eye">🛍️ 아이 메이크업 제품 보기 <span aria-hidden="true">↓</span></a><!-- /shopjump -->
         </div>
 
         <div class="type-card" id="between">
@@ -381,6 +412,7 @@
                 <span lang="zh-TW">介於圓眼與杏仁眼之間，兩類技巧都適用。若一直落在此區間，請在均勻光線下正面多測幾次，數值通常會偏向一側。</span>
                 <span lang="es">Estás entre redondo y almendrado, así que ambas técnicas te sirven. Si siempre caes aquí, mide varias veces de frente con luz pareja: el valor suele definirse.</span><span lang="id">Kamu berada di antara bulat dan almond, jadi kedua set teknik di bawah cocok untukmu. Jika terus mendarat di sini, coba beberapa pengukuran menghadap kamera lurus dalam cahaya merata. Nilainya sering menetap ke salah satu sisi.</span>
             </div>
+        <!-- shopjump --><a class="shop-jump" lang="ko" href="#shop-eye">🛍️ 아이 메이크업 제품 보기 <span aria-hidden="true">↓</span></a><!-- /shopjump -->
         </div>
 
         <div class="type-card" id="almond">
@@ -423,6 +455,7 @@
                     <li lang="es">Riza sobre todo las pestañas centrales; alargar el delineado hacia fuera es lo único que estrecha la mirada.</li><li lang="id">Tambahkan tinggi, bukan panjang: warna terang di tengah kelopak dan highlight lembut di bawah mata membuka bentuknya secara vertikal.</li><li lang="id">Jepit bulu mata tengah paling kuat. Memanjangkan eyeliner ke luar adalah satu-satunya langkah yang bisa membuat mata terlihat sempit.</li>
                 </ul>
             </div>
+        <!-- shopjump --><a class="shop-jump" lang="ko" href="#shop-eye">🛍️ 아이 메이크업 제품 보기 <span aria-hidden="true">↓</span></a><!-- /shopjump -->
         </div>
         <div class="axis-head" id="cover">
             <h2><span lang="en">3 · Lid coverage</span><span lang="ko">3 · 눈꺼풀 덮임</span><span lang="ja">3 · まぶたの被り</span><span lang="zh-CN">3 · 眼睑覆盖</span><span lang="zh-TW">3 · 眼瞼覆蓋</span><span lang="es">3 · Cobertura del párpado</span><span lang="id">3 · Tutupan kelopak</span></h2>
@@ -484,6 +517,7 @@
                     <li lang="es">Un tono medio en la cuenca aporta profundidad y evita que el párpado se vea plano.</li><li lang="id">Jaga garis atas tetap tipis. Garis tebal memakan keterbukaan yang menjadi kekuatanmu.</li><li lang="id">Warna sedang di lipatan kelopak menambah kedalaman agar kelopak yang lebar tidak terlihat datar di bawah cahaya kuat.</li>
                 </ul>
             </div>
+        <!-- shopjump --><a class="shop-jump" lang="ko" href="#shop-eye">🛍️ 아이 메이크업 제품 보기 <span aria-hidden="true">↓</span></a><!-- /shopjump -->
         </div>
 
         <div class="type-card" id="medium">
@@ -509,6 +543,7 @@
                 <span lang="zh-TW">最舒適的中間值。請關注<b>數值變化</b>而非標籤：比平時低幾個百分點，多半是疲勞或水腫，而非眼型改變。</span>
                 <span lang="es">Un punto medio cómodo. Fíjate en el <b>cambio</b> más que en la etiqueta: bajar unos puntos respecto a tu base suele indicar cansancio o hinchazón.</span><span lang="id">Posisi tengah yang nyaman. Perhatikan angkanya, bukan labelnya: penurunan beberapa poin dari dasarmu sendiri biasanya berarti kelelahan atau bengkak, bukan perubahan bentuk.</span>
             </div>
+        <!-- shopjump --><a class="shop-jump" lang="ko" href="#shop-eye">🛍️ 아이 메이크업 제품 보기 <span aria-hidden="true">↓</span></a><!-- /shopjump -->
         </div>
 
         <div class="type-card" id="deep">
@@ -552,6 +587,7 @@
                     <li lang="es">Riza bien las pestañas y usa fórmulas a prueba de transferencia; el mate aguanta mejor que el brillo.</li><li lang="id">Gambar dengan mata <b>terbuka</b>, bukan tertutup, dan letakkan warna hanya di tempat yang masih terlihat.</li><li lang="id">Jepit bulu mata dengan kuat dan gunakan formula tahan luntur; shadow matte lebih bertahan di kelopak dibanding shimmer.</li>
                 </ul>
             </div>
+        <!-- shopjump --><a class="shop-jump" lang="ko" href="#shop-eye">🛍️ 아이 메이크업 제품 보기 <span aria-hidden="true">↓</span></a><!-- /shopjump -->
         </div>
         <div class="axis-head" id="brow">
             <h2><span lang="en">4 · Brows change the eyes</span><span lang="ko">4 · 눈썹이 눈매를 바꾼다</span><span lang="ja">4 · 眉が目もとを変える</span><span lang="zh-CN">4 · 眉毛改变眼型印象</span><span lang="zh-TW">4 · 眉毛改變眼型印象</span><span lang="es">4 · Las cejas cambian la mirada</span><span lang="id">4 · Alis mengubah kesan mata</span></h2>
@@ -612,6 +648,7 @@
                     <li lang="id">Jangan akhiri ujung alis lebih rendah dari pangkalnya. Melewati sudut luar mata boleh; di bawah garis itu tidak.</li>
                 </ul>
             </div>
+        <!-- shopjump --><a class="shop-jump" lang="ko" href="#shop-eye">🛍️ 눈썹 제품 보기 <span aria-hidden="true">↓</span></a><!-- /shopjump -->
         </div>
 
         <div class="type-card" id="brow-balanced">
@@ -651,6 +688,7 @@
                     <li lang="id">Sisir rambut alis ke atas di pangkal dan mendatar di ujung. Arah rambut membentuk lebih dulu sebelum warna.</li>
                 </ul>
             </div>
+        <!-- shopjump --><a class="shop-jump" lang="ko" href="#shop-eye">🛍️ 눈썹 제품 보기 <span aria-hidden="true">↓</span></a><!-- /shopjump -->
         </div>
 
         <div class="type-card" id="brow-up">
@@ -690,6 +728,7 @@
                     <li lang="id">Biarkan pangkalnya lembut dan sedikit samar; awalan yang kotak membuat mata naik tampak makin galak.</li>
                 </ul>
             </div>
+        <!-- shopjump --><a class="shop-jump" lang="ko" href="#shop-eye">🛍️ 눈썹 제품 보기 <span aria-hidden="true">↓</span></a><!-- /shopjump -->
         </div>
 
         <div class="type-card" id="brow-gap">
@@ -729,7 +768,9 @@
                     <li lang="id">Lebar: isi sedikit tepi bawahnya alih-alih mengangkat seluruh alis; mengangkat justru melebarkan jaraknya.</li>
                 </ul>
             </div>
+        <!-- shopjump --><a class="shop-jump" lang="ko" href="#shop-eye">🛍️ 눈썹 제품 보기 <span aria-hidden="true">↓</span></a><!-- /shopjump -->
         </div>
+        <!-- shop:eye:START (myFaceSize/tools/shopguide/build.py 가 만든다 — 직접 고치지 말 것) --><div class="shop alone" lang="ko" id="shop-eye"><div class="shop-head">🛍️ 아이 메이크업에 많이 찾는 제품</div><div class="shop-tier">아이라이너</div><a class="shop-item" id="p-A000000198343" href="https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000198343" rel="nofollow noopener"><img src="img/shop/A000000198343.webp" alt="" loading="lazy" width="58" height="58"><span class="shop-txt"><span class="shop-brand">클리오</span><span class="shop-name">샤프 쏘 심플 워터프루프 펜슬라이너</span><span class="shop-why">워터프루프 펜슬 아이라이너</span><span class="shop-meta">평점 <b>4.8</b>, 리뷰 14.9만, 1만 원대</span></span><span class="shop-go" aria-hidden="true">›</span></a><a class="shop-item" id="p-A000000185974" href="https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000185974" rel="nofollow noopener"><img src="img/shop/A000000185974.webp" alt="" loading="lazy" width="58" height="58"><span class="shop-txt"><span class="shop-brand">키스미</span><span class="shop-name">스무스 리퀴드 아이라이너</span><span class="shop-why">붓펜 타입 리퀴드 아이라이너</span><span class="shop-meta">평점 <b>4.8</b>, 리뷰 5.4만, 1만 원대</span></span><span class="shop-go" aria-hidden="true">›</span></a><div class="shop-tier">섀도 팔레트</div><a class="shop-item" id="p-A000000180532" href="https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000180532" rel="nofollow noopener"><img src="img/shop/A000000180532.webp" alt="" loading="lazy" width="58" height="58"><span class="shop-txt"><span class="shop-brand">웨이크메이크</span><span class="shop-name">소프트 블러링 아이팔레트</span><span class="shop-why">16구 아이섀도 팔레트</span><span class="shop-meta">평점 <b>4.8</b>, 리뷰 8.6만, 2만 원대</span></span><span class="shop-go" aria-hidden="true">›</span></a><a class="shop-item" id="p-A000000147801" href="https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000147801" rel="nofollow noopener"><img src="img/shop/A000000147801.webp" alt="" loading="lazy" width="58" height="58"><span class="shop-txt"><span class="shop-brand">데이지크</span><span class="shop-name">섀도우 팔레트</span><span class="shop-why">9구 아이섀도 팔레트</span><span class="shop-meta">평점 <b>4.7</b>, 리뷰 4.3만, 2만 원대</span></span><span class="shop-go" aria-hidden="true">›</span></a><a class="shop-item" id="p-A000000256642" href="https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000256642" rel="nofollow noopener"><img src="img/shop/A000000256642.webp" alt="" loading="lazy" width="58" height="58"><span class="shop-txt"><span class="shop-brand">정샘물</span><span class="shop-name">아티스트 아이 팔레트 코어</span><span class="shop-why">메이크업 아티스트 브랜드의 아이 팔레트</span><span class="shop-meta">평점 <b>4.9</b>, 리뷰 1,659, 3만 원대</span></span><span class="shop-go" aria-hidden="true">›</span></a><div class="shop-tier">마스카라·뷰러</div><a class="shop-item" id="p-A000000203943" href="https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000203943" rel="nofollow noopener"><img src="img/shop/A000000203943.webp" alt="" loading="lazy" width="58" height="58"><span class="shop-txt"><span class="shop-brand">에뛰드</span><span class="shop-name">컬 픽스 마스카라</span><span class="shop-why">컬 고정용 마스카라. 올리브영 어워즈 수상</span><span class="shop-meta">평점 <b>4.8</b>, 리뷰 8.7만, 1만 원대</span></span><span class="shop-go" aria-hidden="true">›</span></a><a class="shop-item" id="p-A000000005500" href="https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000005500" rel="nofollow noopener"><img src="img/shop/A000000005500.webp" alt="" loading="lazy" width="58" height="58"><span class="shop-txt"><span class="shop-brand">시세이도</span><span class="shop-name">아이래쉬컬러 뷰러</span><span class="shop-why">기본형 뷰러. 리필 고무 포함</span><span class="shop-meta">평점 <b>4.8</b>, 리뷰 2.7만, 1만 원대</span></span><span class="shop-go" aria-hidden="true">›</span></a><a class="shop-item" id="p-A000000229361" href="https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000229361" rel="nofollow noopener"><img src="img/shop/A000000229361.webp" alt="" loading="lazy" width="58" height="58"><span class="shop-txt"><span class="shop-brand">랑콤<i>백화점 브랜드</i></span><span class="shop-name">래쉬 이돌 마스카라</span><span class="shop-why">랑콤의 마스카라</span><span class="shop-meta">평점 <b>4.7</b>, 리뷰 31, 4만 원대</span></span><span class="shop-go" aria-hidden="true">›</span></a><div class="shop-tier">애교살</div><a class="shop-item" id="p-A000000120656" href="https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000120656" rel="nofollow noopener"><img src="img/shop/A000000120656.webp" alt="" loading="lazy" width="58" height="58"><span class="shop-txt"><span class="shop-brand">투쿨포스쿨</span><span class="shop-name">프로타주 펜슬</span><span class="shop-why">섀도 펜슬. 애교살에 많이 쓰는 제품</span><span class="shop-meta">평점 <b>4.7</b>, 리뷰 9.3만, 1만 원대</span></span><span class="shop-go" aria-hidden="true">›</span></a><div class="shop-tier">눈썹</div><a class="shop-item" id="p-A000000138671" href="https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000138671" rel="nofollow noopener"><img src="img/shop/A000000138671.webp" alt="" loading="lazy" width="58" height="58"><span class="shop-txt"><span class="shop-brand">페리페라</span><span class="shop-name">스피디 스키니 브로우</span><span class="shop-why">가는 심 아이브로우 펜슬. 8가지 색</span><span class="shop-meta">평점 <b>4.8</b>, 리뷰 11만, 1만 원 미만</span></span><span class="shop-go" aria-hidden="true">›</span></a><a class="shop-item" id="p-A000000165912" href="https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000165912" rel="nofollow noopener"><img src="img/shop/A000000165912.webp" alt="" loading="lazy" width="58" height="58"><span class="shop-txt"><span class="shop-brand">에스쁘아</span><span class="shop-name">더브로우</span><span class="shop-why">브로우 펜슬과 브로우 마스카라 라인</span><span class="shop-meta">평점 <b>4.8</b>, 리뷰 4.5만, 1만 원대</span></span><span class="shop-go" aria-hidden="true">›</span></a><a class="shop-item" id="p-A000000131179" href="https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000131179" rel="nofollow noopener"><img src="img/shop/A000000131179.webp" alt="" loading="lazy" width="58" height="58"><span class="shop-txt"><span class="shop-brand">베네피트<i>백화점 브랜드</i></span><span class="shop-name">프리사이슬리 마이 브로우 펜슬</span><span class="shop-why">가는 심 아이브로우 펜슬</span><span class="shop-meta">평점 <b>4.9</b>, 리뷰 2,004, 3만 원대</span></span><span class="shop-go" aria-hidden="true">›</span></a><p class="shop-note">올리브영 랭킹과 평점, 리뷰 수를 보고 골랐어요(2026년 11월 기준). 가격은 묶음 기획과 할인에 따라 달라져요. 제품을 누르면 올리브영 상품 화면이 열려요.</p></div><!-- shop:eye:END -->
         <div class="axis-head" id="glossary">
             <h2><span lang="en">Terms across languages</span><span lang="ko">나라별 용어 사전</span><span lang="ja">国ごとの用語辞典</span><span lang="zh-CN">跨语言术语对照</span><span lang="zh-TW">跨語言術語對照</span><span lang="es">Términos entre idiomas</span><span lang="id">Istilah lintas bahasa</span></h2>
             <p class="axis-sub">

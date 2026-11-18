@@ -117,6 +117,33 @@
         body.lang-id.race-caucasian span[lang="id"][data-race="asian"] { display: none; }
         body.lang-es.race-caucasian span[lang="es"][data-race="caucasian"] { display: inline; }
         body.lang-id.race-caucasian span[lang="id"][data-race="caucasian"] { display: inline; }
+            /* 추천템 상자 — myFaceSize/tools/shopguide/build.py 가 넣는다(한국어에서만 보임) */
+        .shop { display: none; margin-top: 22px; padding-top: 16px; border-top: 1px solid rgba(86,98,78,0.16); scroll-margin-top: 16px; }
+        body.lang-ko .shop { display: block; }
+        .shop.alone { margin: 0 0 18px; padding: 18px 22px 16px; border: 1px solid rgba(255,255,255,0.65); border-radius: 18px; background: rgba(255,255,255,0.5); box-shadow: 0 2px 12px rgba(99,150,55,0.1); }
+        .shop-head { font-size: 14px; font-weight: 800; color: #4e8a2c; }
+        .shop-sub { font-size: 12px; color: #7d8a74; margin-top: 3px; line-height: 1.5; word-break: keep-all; }
+        .shop-tier { font-size: 11.5px; font-weight: 800; color: #56624e; margin: 14px 0 2px; display: flex; align-items: center; gap: 8px; }
+        .shop-tier::after { content: ""; flex: 1; height: 1px; background: rgba(86,98,78,0.16); }
+        .shop-item { display: flex; align-items: center; gap: 12px; padding: 9px 0; text-decoration: none; color: inherit; scroll-margin-top: 80px; }
+        .shop-item + .shop-item { border-top: 1px solid rgba(86,98,78,0.09); }
+        .shop-item:target { background: rgba(124,179,66,0.13); border-radius: 12px; box-shadow: 0 0 0 6px rgba(124,179,66,0.13); border-top-color: transparent; }
+        .shop-item img { flex: none; width: 58px; height: 58px; border-radius: 10px; background: #fff; border: 1px solid rgba(86,98,78,0.12); object-fit: cover; }
+        .shop-txt { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+        .shop-brand { font-size: 11px; font-weight: 700; color: #7d8a74; }
+        .shop-brand i { font-style: normal; font-weight: 600; color: #a8851a; margin-left: 6px; }
+        .shop-name { font-size: 13.5px; font-weight: 700; color: #33402b; line-height: 1.35; word-break: keep-all; }
+        .shop-why { font-size: 12px; color: #5e6d54; line-height: 1.4; margin-top: 1px; word-break: keep-all; }
+        .shop-meta { font-size: 11px; color: #8a9483; margin-top: 3px; }
+        .shop-meta b { color: #a8851a; font-weight: 700; }
+        .shop-go { flex: none; font-size: 17px; line-height: 1; color: #8fb86a; }
+        .shop-note { font-size: 11px; color: #8a9483; margin: 10px 0 0; line-height: 1.5; word-break: keep-all; }
+        .shop-jump { display: none; margin-top: 14px; font-size: 12.5px; font-weight: 700; color: #4e8a2c; text-decoration: none; }
+        body.lang-ko .shop-jump { display: inline-block; }
+        .ing-shop { display: none; margin-top: 5px; font-size: 12px; color: #7d8a74; line-height: 1.6; word-break: keep-all; }
+        body.lang-ko .ing-shop { display: block; }
+        .ing-shop a { color: #3d6b1f; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }
+        /* 추천템 상자 끝 */
     </style>
 </head>
 <body class="lang-en">
@@ -220,7 +247,7 @@
                 <li><span lang="en">Hard rubbing or pulling: lymph is shallow, so light pressure works; force irritates skin and can cause sagging.</span><span lang="ko">세게 문지르거나 당기기: 림프는 얕아서 약한 압이 효과적이에요. 강한 자극은 피부 자극·처짐을 유발해요.</span><span lang="ja">強くこする・引っぱる：リンパは浅く、弱い圧が有効。強い刺激は肌荒れ・たるみの元。</span><span lang="zh-CN">用力揉搓或拉扯——淋巴很浅，轻压才有效；用力会刺激皮肤、导致松弛。</span><span lang="zh-TW">用力揉搓或拉扯——淋巴很淺，輕壓才有效；用力會刺激皮膚、導致鬆弛。</span><span lang="es">Frotar o tirar con fuerza: la linfa es superficial, así que una presión ligera funciona; la fuerza irrita la piel y puede provocar flacidez.</span><span lang="id">Menggosok atau menarik keras: limfa berada dangkal, jadi tekanan ringan sudah bekerja; tenaga berlebih mengiritasi kulit dan bisa menyebabkan kendur.</span></li>
                 <li><span lang="en">Dry skin: use a little oil or cream so you don't drag the skin.</span><span lang="ko">크림 없이 마른 피부에 마찰: 오일이나 크림을 살짝 발라 끌리지 않게 해요.</span><span lang="ja">乾いた肌での摩擦：オイルやクリームを少し使い、引っぱらない。</span><span lang="zh-CN">干燥皮肤上摩擦——抹点油或面霜，避免拉扯。</span><span lang="zh-TW">乾燥皮膚上摩擦——抹點油或面霜，避免拉扯。</span><span lang="es">Piel seca: usa un poco de aceite o crema para no arrastrar la piel.</span><span lang="id">Kulit kering: gunakan sedikit minyak atau krim agar kulit tidak tertarik.</span></li>
             </ul>
-        </section>
+        <!-- shop:tools:START (myFaceSize/tools/shopguide/build.py 가 만든다 — 직접 고치지 말 것) --><div class="shop" lang="ko" id="shop-tools"><div class="shop-head">🛍️ 마사지에 쓰는 도구</div><div class="shop-sub">도구 없이 손으로 해도 충분해요. 무엇을 쓰든 세게 누르지 않는 게 먼저예요.</div><div class="shop-tier">마사지 도구</div><a class="shop-item" id="p-A000000234312" href="https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000234312" rel="nofollow noopener"><img src="img/shop/A000000234312.webp" alt="" loading="lazy" width="58" height="58"><span class="shop-txt"><span class="shop-brand">필리밀리</span><span class="shop-name">페이스&amp;바디 괄사</span><span class="shop-why">얼굴과 몸에 같이 쓰는 괄사</span><span class="shop-meta">평점 <b>4.7</b>, 리뷰 6,650, 1만 원대</span></span><span class="shop-go" aria-hidden="true">›</span></a><a class="shop-item" id="p-A000000234315" href="https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000234315" rel="nofollow noopener"><img src="img/shop/A000000234315.webp" alt="" loading="lazy" width="58" height="58"><span class="shop-txt"><span class="shop-brand">필리밀리</span><span class="shop-name">쿨링 냉매 마사저</span><span class="shop-why">차갑게 해서 쓰는 마사지 도구</span><span class="shop-meta">평점 <b>4.7</b>, 리뷰 1,903, 2만 원대</span></span><span class="shop-go" aria-hidden="true">›</span></a><a class="shop-item" id="p-A000000258355" href="https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000258355" rel="nofollow noopener"><img src="img/shop/A000000258355.webp" alt="" loading="lazy" width="58" height="58"><span class="shop-txt"><span class="shop-brand">리파</span><span class="shop-name">CAXA M1</span><span class="shop-why">괄사형 마사지 도구</span><span class="shop-meta">평점 <b>5.0</b>, 리뷰 32, 11만 원대</span></span><span class="shop-go" aria-hidden="true">›</span></a><div class="shop-tier">눈가</div><a class="shop-item" id="p-A000000243616" href="https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000243616" rel="nofollow noopener"><img src="img/shop/A000000243616.webp" alt="" loading="lazy" width="58" height="58"><span class="shop-txt"><span class="shop-brand">멕리듬</span><span class="shop-name">온열 순환 스팀 아이마스크 5매</span><span class="shop-why">따뜻해지는 일회용 아이마스크</span><span class="shop-meta">평점 <b>4.9</b>, 리뷰 2만, 1만 원 미만</span></span><span class="shop-go" aria-hidden="true">›</span></a><a class="shop-item" id="p-A000000260107" href="https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000260107" rel="nofollow noopener"><img src="img/shop/A000000260107.webp" alt="" loading="lazy" width="58" height="58"><span class="shop-txt"><span class="shop-brand">아비브</span><span class="shop-name">아이패치</span><span class="shop-why">눈 밑에 붙이는 패치. 3종</span><span class="shop-meta">평점 <b>4.7</b>, 리뷰 4,766, 1만 원대</span></span><span class="shop-go" aria-hidden="true">›</span></a><p class="shop-note">올리브영 랭킹과 평점, 리뷰 수를 보고 골랐어요(2026년 11월 기준). 가격은 묶음 기획과 할인에 따라 달라져요. 제품을 누르면 올리브영 상품 화면이 열려요.</p></div><!-- shop:tools:END --></section>
 
         <!-- =================== 눈가 (eye) =================== -->
         <section class="guide-card" id="eye">
@@ -257,6 +284,7 @@
             <ul class="tips avoid">
                 <li><span lang="en">Pressing or rubbing the eyeball, or dragging the under-eye skin.</span><span lang="ko">안구를 누르거나 비비기, 눈밑 피부를 세게 당기기.</span><span lang="ja">眼球を押す・こする、目の下を強く引っぱる。</span><span lang="zh-CN">按压或揉搓眼球，拉扯眼下皮肤。</span><span lang="zh-TW">按壓或揉搓眼球，拉扯眼下皮膚。</span><span lang="es">Presionar o frotar el globo ocular, o tirar de la piel bajo los ojos.</span><span lang="id">Menekan atau menggosok bola mata, atau menarik kulit bawah mata.</span></li>
             </ul>
+        <!-- shopjump --><a class="shop-jump" lang="ko" href="#shop-tools">🛍️ 마사지 도구 보기 <span aria-hidden="true">↓</span></a><!-- /shopjump -->
         </section>
 
         <!-- =================== 볼·광대 (cheek) =================== -->
@@ -293,6 +321,7 @@
             <ul class="tips avoid">
                 <li><span lang="en">Dragging the cheek downward, or pressing too hard: both can encourage sagging.</span><span lang="ko">볼을 아래로 당기는 방향, 너무 강한 압: 처짐을 부를 수 있어요.</span><span lang="ja">頬を下へ引く方向や強すぎる圧：たるみの原因に。</span><span lang="zh-CN">把脸颊向下拉或用力过猛——都可能导致松弛。</span><span lang="zh-TW">把臉頰向下拉或用力過猛——都可能導致鬆弛。</span><span lang="es">Arrastrar la mejilla hacia abajo o presionar demasiado fuerte: ambos pueden favorecer la flacidez.</span><span lang="id">Menarik pipi ke bawah, atau menekan terlalu keras: keduanya bisa memicu kendur.</span></li>
             </ul>
+        <!-- shopjump --><a class="shop-jump" lang="ko" href="#shop-tools">🛍️ 마사지 도구 보기 <span aria-hidden="true">↓</span></a><!-- /shopjump -->
         </section>
 
         <!-- =================== 턱·라인 (jaw) =================== -->
@@ -329,6 +358,7 @@
             <ul class="tips avoid">
                 <li><span lang="en">Pinching or twisting the jawline hard: keep the pressure light and gliding.</span><span lang="ko">턱선을 세게 꼬집거나 비틀기: 압은 가볍게 미끄러지듯.</span><span lang="ja">フェイスラインを強くつまむ・ねじる：圧は軽く滑らせるように。</span><span lang="zh-CN">用力捏或扭下颌线——保持轻柔滑动。</span><span lang="zh-TW">用力捏或扭下顎線——保持輕柔滑動。</span><span lang="es">Pellizcar o retorcer la mandíbula con fuerza: mantén una presión ligera y deslizante.</span><span lang="id">Mencubit atau memelintir garis rahang dengan keras: jaga tekanan tetap ringan dan meluncur.</span></li>
             </ul>
+        <!-- shopjump --><a class="shop-jump" lang="ko" href="#shop-tools">🛍️ 마사지 도구 보기 <span aria-hidden="true">↓</span></a><!-- /shopjump -->
         </section>
 
         <!-- =================== 식이·생활 (diet) =================== -->
