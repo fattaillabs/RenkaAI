@@ -43,6 +43,13 @@ figure figcaption{margin-top:9px;color:var(--muted);font-size:13px;text-align:ce
 .notes{margin-top:52px;padding-top:28px;border-top:2px solid var(--band)}
 footer{margin-top:52px;padding-top:26px;border-top:2px solid var(--band);
   color:var(--muted);font-size:15px}
+details.fold{margin:16px 0;border:1px solid #DCD3EE;border-radius:14px;background:#fff}
+details.fold>summary{cursor:pointer;padding:16px 20px;font-weight:700;list-style:none;position:relative;padding-right:44px}
+details.fold>summary::-webkit-details-marker{display:none}
+details.fold>summary::after{content:"＋";position:absolute;right:18px;top:14px;color:var(--acc);font-size:20px}
+details.fold[open]>summary::after{content:"－"}
+.fold-body{padding:0 20px 18px}
+.fold-body h3:first-child{margin-top:8px}
 @media (max-width:560px){.shots{grid-template-columns:1fr}h1{font-size:25px}}
 </style>
 </head>
@@ -67,7 +74,91 @@ footer{margin-top:52px;padding-top:26px;border-top:2px solid var(--band);
 <div class="tip"><b>一個拍攝小建議</b>：測量的過程本身就很好看。掃臉的畫面只有影片才能呈現，
 而且不用解釋就證明了「是 3D 在測」。</div>
 
-<h2>最近新增 <span class="muted">（2026 年 11 月更新）</span></h2>
+<h2>各功能的看點</h2>
+<p class="muted">順序沒有意義，挑感興趣的看就行。</p>
+
+<h3>面部大小</h3>
+<figure>
+  <a href="screens/01_face_size.png" target="_blank"><img src="screens/01_face_size.png" alt="面部大小分析"></a>
+  <figcaption>面部面積 287.7cm² · 縱向 21.2cm · 橫向 14.8cm（示範模特的數值）</figcaption>
+</figure>
+<p>大家說「臉大臉小」，量的通常是從下巴到頭頂 —— 這樣頭髮的厚度也算進去了。
+Renka 量的是臉真正結束的位置，所以換髮型數值也不會變。</p>
+<p class="muted"><code>頭部長度</code> 旁邊標著「估算」—— 那是推算值，不是實測值。</p>
+
+<h3>中面部長度</h3>
+<p>同一張臉有<b>兩個標準</b>：醫學（眉間→鼻下）6.6cm，美容（眼下→上唇）7.4cm。
+App 裡可以切換，直接疊在自己臉上。</p>
+<div class="shots">
+  <figure><a href="screens/03_thirds_med.png" target="_blank"><img src="screens/03_thirds_med.png" alt="醫學標準"></a><figcaption>醫學標準</figcaption></figure>
+  <figure><a href="screens/04_thirds_cos.png" target="_blank"><img src="screens/04_thirds_cos.png" alt="美容標準"></a><figcaption>美容標準</figcaption></figure>
+</div>
+<div class="tip"><b>如果講這個</b>：切換的時候線會動，不用解釋就能看出差別。也是一直以來反響最好的題材。
+<b>即時濾鏡裡也有同樣的功能</b>（「醫學三等分」「美容三等分」），
+把即時疊加的畫面和靜態報告放在一起，觀眾會更快理解。</div>
+
+<h3>浮腫</h3>
+<div class="shots">
+  <figure><a href="screens/05_swelling_map.png" target="_blank"><img src="screens/05_swelling_map.png" alt="浮腫熱力圖"></a><figcaption>熱力圖</figcaption></figure>
+  <figure><a href="screens/06_swelling.png" target="_blank"><img src="screens/06_swelling.png" alt="浮腫分區"></a><figcaption>分區分析</figcaption></figure>
+</div>
+<div class="tip"><b>如果打算講這個</b>：建議從體驗初期開始每天測一次。
+浮腫是<b>和你自己過去的測量值比較</b>的，第一次測會顯示 0（因為還沒有基準值）。
+積累幾天，到拍攝時就有「吃鹹了的第二天」這樣的對比了。<br><br>
+<b>趕時間的話</b>：拍攝前連續測幾次也能用 —— 從第二次開始就有對比。
+只是同一天內變化小，效果不如積累幾天的明顯。</div>
+
+<h3>黃金比例</h3>
+<figure>
+  <a href="screens/08_golden_ratio.png" target="_blank"><img src="screens/08_golden_ratio.png" alt="黃金比例"></a>
+  <figcaption>8 個項目的「理想值 vs 實際值」對照表</figcaption>
+</figure>
+<p>一個畫面的資訊量很大，很適合當結果畫面。</p>
+
+<h2>還有這些</h2>
+
+<h3>臉型</h3>
+<p>也會給出鵝蛋臉、圓臉、方臉等臉型結果，並和適合臉型的髮型、眼鏡推薦連在一起。</p>
+<div class="tip"><b>如果講這個</b>：接著展示 <b>AI 造型試戴</b>（在下方新功能欄裡）或即時濾鏡的試戴功能會很順 ——
+臉型 → 適合的髮型和眼鏡，個人色彩 → 適合的顏色（彩妝試色）。結果聽人說，不如看它疊在臉上來得直接。
+即時濾鏡從測量完成後的畫面進入。（即時濾鏡沒有截圖，需要你自己錄製。）</div>
+<p class="muted">不太建議把試戴單獨當主題 —— 像上面那樣搭配著展示比較好。</p>
+
+<h3>你的煥顏建議</h3>
+<figure>
+  <a href="screens/09_glowup_tips.png" target="_blank"><img src="screens/09_glowup_tips.png" alt="你的煥顏建議"></a>
+  <figcaption>按測得的類型(眼型·臉型·個人色彩·皮膚)組合出來的建議</figcaption>
+</figure>
+<p>把測量結果組合起來挑建議。比如「你的眼型是這樣，所以眼線畫到眼尾外 3〜4mm」——
+<b>會把從數值推出來的理由一起寫出來</b>。入口在詳細報告最下方的按鈕。</p>
+<div class="tip"><b>如果講這個</b>：測量畫面 → 結果數字 → 建議，連成一條線來看最清楚。
+能用數字解釋「為什麼給我這條建議」，這一點會顯出來。</div>
+
+<h3>更好的自己 <span class="muted">（測試版）</span></h3>
+<figure>
+  <a href="screens/10_preview_face.png" target="_blank"><img src="screens/10_preview_face.png" alt="更好的自己"></a>
+  <figcaption>用滑桿比較現在 / 預期。畫面上有測試版標記和「AI 生成的預覽」提示</figcaption>
+</figure>
+<p>按建議做之後的樣子，用 AI 先畫出來。拖動中間的手柄左右滑動就能比較現在和預期，還能存成照片。
+入口在煥顏建議頁面的最下方。</p>
+<div class="tip"><b>拜託一件事</b>：請不要讓它看起來像<b>醫美的效果</b>。
+這是靠髮型、妝容和日常護理改變的樣子，畫面上也有測試版和 AI 生成的提示。
+拍攝時讓那行提示留在畫面裡，對我們幫助最大。</div>
+
+<h3>卡路里相機</h3>
+<p>拍食物就能看到熱量和營養資訊。<b>不用付費就能用</b>，食物識別在手機上完成。</p>
+<div class="tip"><b>如果講這個</b>：很多人不知道臉部 App 裡還有這個，
+容易出「這也行？」的反應。也請順便說明它是免費的。</div>
+
+<h3>Rena AI 諮詢</h3>
+<p>可以拿著測量結果和 AI 對話。</p>
+<div class="tip"><b>如果講這個</b>：把自己的測量結果丟給 Rena 問「我適合什麼妝？」，對話過程本身就很有畫面。</div>
+
+<h2>新功能 <span class="muted">（已經了解 App 的話）</span></h2>
+<p class="muted">第一次了解 Renka 的話，建議先看上面的內容。下面的欄點開就能看。</p>
+<details class="fold">
+<summary>最近新增 <span class="muted">（2026 年 11 月更新）</span></summary>
+<div class="fold-body">
 <p class="muted">這次更新裡新加入或變化最大的部分，歡迎優先介紹。</p>
 
 <h3>我的保養流程 <span class="muted">（Pro · 11 月 17 日更新）</span></h3>
@@ -132,7 +223,12 @@ footer{margin-top:52px;padding-top:26px;border-top:2px solid var(--band);
   <li><b>測量提醒</b> —— 可以開啟通知，到該再測一次的時候提醒你。</li>
 </ul>
 
-<h2>上個月新增 <span class="muted">（2026 年 10 月更新）</span></h2>
+</div>
+</details>
+
+<details class="fold">
+<summary>上個月新增 <span class="muted">（2026 年 10 月更新）</span></summary>
+<div class="fold-body">
 
 <h3>AI 造型試戴（髮型 · 眼鏡）</h3>
 <figure>
@@ -150,85 +246,8 @@ footer{margin-top:52px;padding-top:26px;border-top:2px solid var(--band);
   <li><b>美顏自拍</b> —— 即時美顏（皮膚·眼睛·鼻子）更自然，跟隨臉部也更穩定。</li>
 </ul>
 
-<h2>各功能的看點</h2>
-<p class="muted">順序沒有意義，挑感興趣的看就行。</p>
-
-<h3>面部大小</h3>
-<figure>
-  <a href="screens/01_face_size.png" target="_blank"><img src="screens/01_face_size.png" alt="面部大小分析"></a>
-  <figcaption>面部面積 287.7cm² · 縱向 21.2cm · 橫向 14.8cm（示範模特的數值）</figcaption>
-</figure>
-<p>大家說「臉大臉小」，量的通常是從下巴到頭頂 —— 這樣頭髮的厚度也算進去了。
-Renka 量的是臉真正結束的位置，所以換髮型數值也不會變。</p>
-<p class="muted"><code>頭部長度</code> 旁邊標著「估算」—— 那是推算值，不是實測值。</p>
-
-<h3>中面部長度</h3>
-<p>同一張臉有<b>兩個標準</b>：醫學（眉間→鼻下）6.6cm，美容（眼下→上唇）7.4cm。
-App 裡可以切換，直接疊在自己臉上。</p>
-<div class="shots">
-  <figure><a href="screens/03_thirds_med.png" target="_blank"><img src="screens/03_thirds_med.png" alt="醫學標準"></a><figcaption>醫學標準</figcaption></figure>
-  <figure><a href="screens/04_thirds_cos.png" target="_blank"><img src="screens/04_thirds_cos.png" alt="美容標準"></a><figcaption>美容標準</figcaption></figure>
 </div>
-<div class="tip"><b>如果講這個</b>：切換的時候線會動，不用解釋就能看出差別。也是一直以來反響最好的題材。
-<b>即時濾鏡裡也有同樣的功能</b>（「醫學三等分」「美容三等分」），
-把即時疊加的畫面和靜態報告放在一起，觀眾會更快理解。</div>
-
-<h3>浮腫</h3>
-<div class="shots">
-  <figure><a href="screens/05_swelling_map.png" target="_blank"><img src="screens/05_swelling_map.png" alt="浮腫熱力圖"></a><figcaption>熱力圖</figcaption></figure>
-  <figure><a href="screens/06_swelling.png" target="_blank"><img src="screens/06_swelling.png" alt="浮腫分區"></a><figcaption>分區分析</figcaption></figure>
-</div>
-<div class="tip"><b>如果打算講這個</b>：建議從體驗初期開始每天測一次。
-浮腫是<b>和你自己過去的測量值比較</b>的，第一次測會顯示 0（因為還沒有基準值）。
-積累幾天，到拍攝時就有「吃鹹了的第二天」這樣的對比了。<br><br>
-<b>趕時間的話</b>：拍攝前連續測幾次也能用 —— 從第二次開始就有對比。
-只是同一天內變化小，效果不如積累幾天的明顯。</div>
-
-<h3>黃金比例</h3>
-<figure>
-  <a href="screens/08_golden_ratio.png" target="_blank"><img src="screens/08_golden_ratio.png" alt="黃金比例"></a>
-  <figcaption>8 個項目的「理想值 vs 實際值」對照表</figcaption>
-</figure>
-<p>一個畫面的資訊量很大，很適合當結果畫面。</p>
-
-<h2>還有這些</h2>
-
-<h3>臉型</h3>
-<p>也會給出鵝蛋臉、圓臉、方臉等臉型結果，並和適合臉型的髮型、眼鏡推薦連在一起。</p>
-<div class="tip"><b>如果講這個</b>：接著展示上面的 <b>AI 造型試戴</b>或即時濾鏡的試戴功能會很順 ——
-臉型 → 適合的髮型和眼鏡，個人色彩 → 適合的顏色（彩妝試色）。結果聽人說，不如看它疊在臉上來得直接。
-即時濾鏡從測量完成後的畫面進入。（即時濾鏡沒有截圖，需要你自己錄製。）</div>
-<p class="muted">不太建議把試戴單獨當主題 —— 像上面那樣搭配著展示比較好。</p>
-
-<h3>你的煥顏建議</h3>
-<figure>
-  <a href="screens/09_glowup_tips.png" target="_blank"><img src="screens/09_glowup_tips.png" alt="你的煥顏建議"></a>
-  <figcaption>按測得的類型(眼型·臉型·個人色彩·皮膚)組合出來的建議</figcaption>
-</figure>
-<p>把測量結果組合起來挑建議。比如「你的眼型是這樣，所以眼線畫到眼尾外 3〜4mm」——
-<b>會把從數值推出來的理由一起寫出來</b>。入口在詳細報告最下方的按鈕。</p>
-<div class="tip"><b>如果講這個</b>：測量畫面 → 結果數字 → 建議，連成一條線來看最清楚。
-能用數字解釋「為什麼給我這條建議」，這一點會顯出來。</div>
-
-<h3>更好的自己 <span class="muted">（測試版）</span></h3>
-<figure>
-  <a href="screens/10_preview_face.png" target="_blank"><img src="screens/10_preview_face.png" alt="更好的自己"></a>
-  <figcaption>用滑桿比較現在 / 預期。畫面上有測試版標記和「AI 生成的預覽」提示</figcaption>
-</figure>
-<p>按建議做之後的樣子，用 AI 先畫出來。拖動中間的手柄左右滑動就能比較現在和預期，還能存成照片。
-入口在煥顏建議頁面的最下方。</p>
-<div class="tip"><b>拜託一件事</b>：請不要讓它看起來像<b>醫美的效果</b>。
-這是靠髮型、妝容和日常護理改變的樣子，畫面上也有測試版和 AI 生成的提示。
-拍攝時讓那行提示留在畫面裡，對我們幫助最大。</div>
-
-<h3>卡路里相機</h3>
-<p>拍食物就能看到熱量和營養資訊。<b>不用付費就能用</b>，食物識別在手機上完成。</p>
-<div class="tip"><b>如果講這個</b>：很多人不知道臉部 App 裡還有這個，
-容易出「這也行？」的反應。也請順便說明它是免費的。</div>
-
-<h3>Rena AI 諮詢</h3>
-<p>可以拿著測量結果和 AI 對話。</p>
-<div class="tip"><b>如果講這個</b>：把自己的測量結果丟給 Rena 問「我適合什麼妝？」，對話過程本身就很有畫面。</div>
+</details>
 
 <h2>觀眾看到的畫面可能和你不一樣</h2>
 <div class="key">

@@ -37,6 +37,13 @@ figure figcaption{margin-top:9px;color:var(--muted);font-size:13px;text-align:ce
 .notes{margin-top:52px;padding-top:28px;border-top:2px solid var(--band)}
 footer{margin-top:52px;padding-top:26px;border-top:2px solid var(--band);
   color:var(--muted);font-size:15px}
+details.fold{margin:16px 0;border:1px solid #DCD3EE;border-radius:14px;background:#fff}
+details.fold>summary{cursor:pointer;padding:16px 20px;font-weight:700;list-style:none;position:relative;padding-right:44px}
+details.fold>summary::-webkit-details-marker{display:none}
+details.fold>summary::after{content:"＋";position:absolute;right:18px;top:14px;color:var(--acc);font-size:20px}
+details.fold[open]>summary::after{content:"－"}
+.fold-body{padding:0 20px 18px}
+.fold-body h3:first-child{margin-top:8px}
 @media (max-width:560px){.shots{grid-template-columns:1fr}h1{font-size:24px}}
 </style>
 </head>
@@ -60,7 +67,72 @@ footer{margin-top:52px;padding-top:26px;border-top:2px solid var(--band);
 얼굴을 스캔하는 과정은 결과 화면과 달리 <b>영상으로만 보여줄 수 있고</b>,
 "3D로 잰다"는 걸 말 없이 증명해줍니다.</div>
 
-<h2>최근 새로 들어간 것 <span class="muted">(2026년 11월 업데이트)</span></h2>
+<h2>기능별로 볼 만한 것</h2>
+<p class="muted">순서에 의미는 없습니다.</p>
+
+<h3>얼굴 크기</h3>
+<figure>
+  <a href="screens/01_face_size.png" target="_blank"><img src="screens/01_face_size.png" alt="얼굴 크기"></a>
+  <figcaption>얼굴 표면적 287.7cm² · 세로 21.2cm · 가로 14.8cm (데모 모델 값)</figcaption>
+</figure>
+<p>「얼굴이 크다/작다」는 대개 턱끝에서 정수리까지 잰 건데, 그러면 머리카락 두께가 같이 들어갑니다.
+Renka는 우리가 임의로 그은 선이 아니라 <b>애플 엔지니어들이 고안한 얼굴 메시 기준</b> —
+얼굴만 덮고 끝나는 그 경계 — 까지를 잽니다. 헤어스타일이 바뀌어도 값이 안 변하고,
+누구에게나 같은 기준입니다.</p>
+<p class="muted"><code>머리 길이</code> 옆에는 「추정」이 붙어 있습니다 — 실측이 아니라 추산값입니다.</p>
+
+<h3>중안부 길이</h3>
+<p>같은 얼굴에 <b>기준이 두 개</b>입니다. 의학적(미간→코밑) 6.6cm, 미용적(눈밑→윗입술) 7.4cm.
+<b>앱 화면에도 미용적 기준에 「日本で主に使用」라고 표시돼 있습니다</b> — 일본에서 통용되는 그 기준입니다.</p>
+<figure>
+  <a href="screens/02_midface.png" target="_blank"><img src="screens/02_midface.png" alt="중안부"></a>
+  <figcaption>의학 6.6cm / 미용 7.4cm · 삼분할 32:33:35</figcaption>
+</figure>
+<div class="shots">
+  <figure><a href="screens/03_thirds_med.png" target="_blank"><img src="screens/03_thirds_med.png" alt="의학적"></a><figcaption>의학적 기준</figcaption></figure>
+  <figure><a href="screens/04_thirds_cos.png" target="_blank"><img src="screens/04_thirds_cos.png" alt="미용적"></a><figcaption>미용적 기준</figcaption></figure>
+</div>
+<div class="tip"><b>이걸 다룬다면</b>: 전환할 때 선이 움직여서 설명 없이도 차이가 보입니다.
+반응이 제일 좋았던 소재입니다. <b>라이브 필터에도 같은 기능이 있어서</b>
+실시간 화면과 정지 리포트를 같이 보여주면 이해가 빠릅니다.</div>
+
+<h3>붓기</h3>
+<div class="shots">
+  <figure><a href="screens/05_swelling_map.png" target="_blank"><img src="screens/05_swelling_map.png" alt="붓기 히트맵"></a><figcaption>히트맵</figcaption></figure>
+  <figure><a href="screens/06_swelling.png" target="_blank"><img src="screens/06_swelling.png" alt="붓기 부위별"></a><figcaption>부위별 분석</figcaption></figure>
+</div>
+<div class="tip"><b>이걸 다룰 생각이라면</b>: 체험 초반부터 하루 한 번씩 재두길 권합니다.
+붓기는 <b>자기 과거 측정값과 비교</b>하는 기능이라 처음 측정은 0으로 나옵니다(기준값이 아직 없어서).
+며칠 쌓아두면 「짜게 먹은 다음날」 같은 비교가 만들어집니다.<br><br>
+<b>급하면</b>: 촬영 직전 연속으로 몇 번 측정해도 동작합니다 — 두 번째부터 비교가 나오되,
+하루 사이 변화라 차이가 작게 보입니다.</div>
+
+<h3>황금비</h3>
+<figure>
+  <a href="screens/08_golden_ratio.png" target="_blank"><img src="screens/08_golden_ratio.png" alt="황금비"></a>
+  <figcaption>8개 항목의 「이상값 대 실제값」 대조표</figcaption>
+</figure>
+
+<h2>이런 것도 있습니다</h2>
+
+<h3>얼굴형</h3>
+<p>달걀형·둥근형·각진형처럼 얼굴형도 나오고, 어울리는 헤어·안경 추천으로 이어집니다.</p>
+<div class="tip"><b>이걸 다룬다면</b>: <b>AI 헤어·안경 피팅</b>(아래 새 기능 칸)이나 라이브 필터의 피팅을 이어서 보여주면 자연스럽습니다 —
+얼굴형 → 어울리는 헤어·안경, 퍼스널컬러 → 어울리는 색.
+라이브 필터는 측정 완료 화면에서 진입. (라이브 필터는 스크린샷이 없어 직접 녹화 필요)</div>
+
+<h3>칼로리 카메라</h3>
+<p>음식을 찍으면 칼로리·영양 정보가 나옵니다. <b>별도 결제 없이</b> 쓸 수 있고 인식은 폰 안에서 돌아갑니다.</p>
+
+<h3>Rena AI 상담</h3>
+<p>측정 결과를 두고 AI와 대화합니다. 측정에서 나온 숫자를 바탕으로 답하는 게 특징.
+칼로리 카메라의 Rena 보조 인식은 하루 3회 무료입니다.</p>
+
+<h2>새 기능 <span class="muted">(앱을 이미 아시는 분께)</span></h2>
+<p class="muted">Renka 를 처음 보신다면 위쪽부터 읽어 주세요. 아래 칸은 눌러서 펼쳐 보실 수 있습니다.</p>
+<details class="fold">
+<summary>최근 새로 들어간 것 <span class="muted">(2026년 11월 업데이트)</span></summary>
+<div class="fold-body">
 <p class="muted">이번 업데이트에서 새로 들어오거나 크게 바뀐 부분이에요. 새로 다뤄 주시면 가장 반가운 소재입니다.</p>
 
 <h3>내 피부 루틴 <span class="muted">(Pro · 11월 17일 업데이트)</span></h3>
@@ -129,7 +201,12 @@ footer{margin-top:52px;padding-top:26px;border-top:2px solid var(--band);
   <li><b>측정 알림</b> — 다시 잴 때가 되면 알려 주는 알림을 켤 수 있어요.</li>
 </ul>
 
-<h2>지난달에 들어간 것 <span class="muted">(2026년 10월 업데이트)</span></h2>
+</div>
+</details>
+
+<details class="fold">
+<summary>지난달에 들어간 것 <span class="muted">(2026년 10월 업데이트)</span></summary>
+<div class="fold-body">
 
 <h3>성형 시뮬레이터</h3>
 <figure>
@@ -160,66 +237,8 @@ footer{margin-top:52px;padding-top:26px;border-top:2px solid var(--band);
   <li>뷰티 셀피 실시간 보정이 더 자연스럽게</li>
 </ul>
 
-<h2>기능별로 볼 만한 것</h2>
-<p class="muted">순서에 의미는 없습니다.</p>
-
-<h3>얼굴 크기</h3>
-<figure>
-  <a href="screens/01_face_size.png" target="_blank"><img src="screens/01_face_size.png" alt="얼굴 크기"></a>
-  <figcaption>얼굴 표면적 287.7cm² · 세로 21.2cm · 가로 14.8cm (데모 모델 값)</figcaption>
-</figure>
-<p>「얼굴이 크다/작다」는 대개 턱끝에서 정수리까지 잰 건데, 그러면 머리카락 두께가 같이 들어갑니다.
-Renka는 우리가 임의로 그은 선이 아니라 <b>애플 엔지니어들이 고안한 얼굴 메시 기준</b> —
-얼굴만 덮고 끝나는 그 경계 — 까지를 잽니다. 헤어스타일이 바뀌어도 값이 안 변하고,
-누구에게나 같은 기준입니다.</p>
-<p class="muted"><code>머리 길이</code> 옆에는 「추정」이 붙어 있습니다 — 실측이 아니라 추산값입니다.</p>
-
-<h3>중안부 길이</h3>
-<p>같은 얼굴에 <b>기준이 두 개</b>입니다. 의학적(미간→코밑) 6.6cm, 미용적(눈밑→윗입술) 7.4cm.
-<b>앱 화면에도 미용적 기준에 「日本で主に使用」라고 표시돼 있습니다</b> — 일본에서 통용되는 그 기준입니다.</p>
-<figure>
-  <a href="screens/02_midface.png" target="_blank"><img src="screens/02_midface.png" alt="중안부"></a>
-  <figcaption>의학 6.6cm / 미용 7.4cm · 삼분할 32:33:35</figcaption>
-</figure>
-<div class="shots">
-  <figure><a href="screens/03_thirds_med.png" target="_blank"><img src="screens/03_thirds_med.png" alt="의학적"></a><figcaption>의학적 기준</figcaption></figure>
-  <figure><a href="screens/04_thirds_cos.png" target="_blank"><img src="screens/04_thirds_cos.png" alt="미용적"></a><figcaption>미용적 기준</figcaption></figure>
 </div>
-<div class="tip"><b>이걸 다룬다면</b>: 전환할 때 선이 움직여서 설명 없이도 차이가 보입니다.
-반응이 제일 좋았던 소재입니다. <b>라이브 필터에도 같은 기능이 있어서</b>
-실시간 화면과 정지 리포트를 같이 보여주면 이해가 빠릅니다.</div>
-
-<h3>붓기</h3>
-<div class="shots">
-  <figure><a href="screens/05_swelling_map.png" target="_blank"><img src="screens/05_swelling_map.png" alt="붓기 히트맵"></a><figcaption>히트맵</figcaption></figure>
-  <figure><a href="screens/06_swelling.png" target="_blank"><img src="screens/06_swelling.png" alt="붓기 부위별"></a><figcaption>부위별 분석</figcaption></figure>
-</div>
-<div class="tip"><b>이걸 다룰 생각이라면</b>: 체험 초반부터 하루 한 번씩 재두길 권합니다.
-붓기는 <b>자기 과거 측정값과 비교</b>하는 기능이라 처음 측정은 0으로 나옵니다(기준값이 아직 없어서).
-며칠 쌓아두면 「짜게 먹은 다음날」 같은 비교가 만들어집니다.<br><br>
-<b>급하면</b>: 촬영 직전 연속으로 몇 번 측정해도 동작합니다 — 두 번째부터 비교가 나오되,
-하루 사이 변화라 차이가 작게 보입니다.</div>
-
-<h3>황금비</h3>
-<figure>
-  <a href="screens/08_golden_ratio.png" target="_blank"><img src="screens/08_golden_ratio.png" alt="황금비"></a>
-  <figcaption>8개 항목의 「이상값 대 실제값」 대조표</figcaption>
-</figure>
-
-<h2>이런 것도 있습니다</h2>
-
-<h3>얼굴형</h3>
-<p>달걀형·둥근형·각진형처럼 얼굴형도 나오고, 어울리는 헤어·안경 추천으로 이어집니다.</p>
-<div class="tip"><b>이걸 다룬다면</b>: 위의 <b>AI 헤어·안경 피팅</b>이나 라이브 필터의 피팅을 이어서 보여주면 자연스럽습니다 —
-얼굴형 → 어울리는 헤어·안경, 퍼스널컬러 → 어울리는 색.
-라이브 필터는 측정 완료 화면에서 진입. (라이브 필터는 스크린샷이 없어 직접 녹화 필요)</div>
-
-<h3>칼로리 카메라</h3>
-<p>음식을 찍으면 칼로리·영양 정보가 나옵니다. <b>별도 결제 없이</b> 쓸 수 있고 인식은 폰 안에서 돌아갑니다.</p>
-
-<h3>Rena AI 상담</h3>
-<p>측정 결과를 두고 AI와 대화합니다. 측정에서 나온 숫자를 바탕으로 답하는 게 특징.
-칼로리 카메라의 Rena 보조 인식은 하루 3회 무료입니다.</p>
+</details>
 
 <h2>시청자가 보는 화면은 다를 수 있습니다</h2>
 <div class="key">

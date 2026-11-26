@@ -43,6 +43,13 @@ figure figcaption{margin-top:9px;color:var(--muted);font-size:13px;text-align:ce
 .notes{margin-top:52px;padding-top:28px;border-top:2px solid var(--band)}
 footer{margin-top:52px;padding-top:26px;border-top:2px solid var(--band);
   color:var(--muted);font-size:15px}
+details.fold{margin:16px 0;border:1px solid #DCD3EE;border-radius:14px;background:#fff}
+details.fold>summary{cursor:pointer;padding:16px 20px;font-weight:700;list-style:none;position:relative;padding-right:44px}
+details.fold>summary::-webkit-details-marker{display:none}
+details.fold>summary::after{content:"＋";position:absolute;right:18px;top:14px;color:var(--acc);font-size:20px}
+details.fold[open]>summary::after{content:"－"}
+.fold-body{padding:0 20px 18px}
+.fold-body h3:first-child{margin-top:8px}
 @media (max-width:560px){.shots{grid-template-columns:1fr}h1{font-size:25px}}
 </style>
 </head>
@@ -67,7 +74,97 @@ footer{margin-top:52px;padding-top:26px;border-top:2px solid var(--band);
 <div class="tip"><b>一个拍摄小建议</b>：测量的过程本身就很好看。扫脸的画面只有视频才能呈现，
 而且不用解释就证明了「是 3D 在测」。</div>
 
-<h2>最近新增 <span class="muted">（2026 年 11 月更新）</span></h2>
+<h2>各功能的看点</h2>
+<p class="muted">顺序没有意义，挑感兴趣的看就行。</p>
+
+<h3>面部大小</h3>
+<figure>
+  <a href="screens/01_face_size.png" target="_blank"><img src="screens/01_face_size.png" alt="面部大小分析"></a>
+  <figcaption>面部面积 287.7cm² · 纵向 21.2cm · 横向 14.8cm（演示模特的数值）</figcaption>
+</figure>
+<p>大家说「脸大脸小」，量的通常是从下巴到头顶 —— 这样头发的厚度也算进去了。
+Renka 量的是脸真正结束的位置，所以换发型数值也不会变。</p>
+<p class="muted"><code>头部长度</code> 旁边标着「估算」—— 那是推算值，不是实测值。</p>
+
+<h3>中面部长度</h3>
+<p>同一张脸有<b>两个标准</b>：医学（眉间→鼻下）6.6cm，美容（眼下→上唇）7.4cm。
+App 里可以切换，直接叠在自己脸上。</p>
+<div class="shots">
+  <figure><a href="screens/03_thirds_med.png" target="_blank"><img src="screens/03_thirds_med.png" alt="医学标准"></a><figcaption>医学标准</figcaption></figure>
+  <figure><a href="screens/04_thirds_cos.png" target="_blank"><img src="screens/04_thirds_cos.png" alt="美容标准"></a><figcaption>美容标准</figcaption></figure>
+</div>
+<div class="tip"><b>如果讲这个</b>：切换的时候线会动，不用解释就能看出差别。也是一直以来反响最好的题材。
+<b>实时滤镜里也有同样的功能</b>（「医学三等分」「美容三等分」），
+把实时叠加的画面和静态报告放在一起，观众会更快理解。</div>
+
+<h3>浮肿</h3>
+<div class="shots">
+  <figure><a href="screens/05_swelling_map.png" target="_blank"><img src="screens/05_swelling_map.png" alt="浮肿热力图"></a><figcaption>热力图</figcaption></figure>
+  <figure><a href="screens/06_swelling.png" target="_blank"><img src="screens/06_swelling.png" alt="浮肿分区"></a><figcaption>分区分析</figcaption></figure>
+</div>
+<div class="tip"><b>如果打算讲这个</b>：建议从体验初期开始每天测一次。
+浮肿是<b>和你自己过去的测量值比较</b>的，第一次测会显示 0（因为还没有基准值）。
+积累几天，到拍摄时就有「吃咸了的第二天」这样的对比了。<br><br>
+<b>赶时间的话</b>：拍摄前连续测几次也能用 —— 从第二次开始就有对比。
+只是同一天内变化小，效果不如积累几天的明显。</div>
+
+<h3>黄金比例</h3>
+<figure>
+  <a href="screens/08_golden_ratio.png" target="_blank"><img src="screens/08_golden_ratio.png" alt="黄金比例"></a>
+  <figcaption>8 个项目的「理想值 vs 实际值」对照表</figcaption>
+</figure>
+<p>一屏信息量大，适合拿来当结果画面。</p>
+
+<h2>还有这些</h2>
+
+<h3>脸型</h3>
+<p>也会给出鹅蛋脸、圆脸、方脸等脸型结果，并和适合脸型的发型、眼镜推荐连在一起。</p>
+<div class="tip"><b>如果讲这个</b>：接着展示 <b>AI 造型试戴</b>（在下方新功能栏里）或实时滤镜的试戴功能会很顺 ——
+脸型 → 适合的发型和眼镜，个人色彩 → 适合的颜色（彩妆试色）。结果听人说，不如看它叠在脸上来得直接。
+实时滤镜从测量完成后的画面进入。（实时滤镜没有截图，需要你自己录制。）</div>
+<p class="muted">不太建议把试戴单独当主题 —— 在中国用户的脸上效果如何，我们还没有把握。
+像上面那样搭配着展示比较好。</p>
+
+<h3>你的焕颜建议</h3>
+<figure>
+  <a href="screens/09_glowup_tips.png" target="_blank"><img src="screens/09_glowup_tips.png" alt="你的焕颜建议"></a>
+  <figcaption>按测得的类型(眼型·脸型·个人色彩·皮肤)组合出来的建议</figcaption>
+</figure>
+<p>把测量结果组合起来挑建议。比如「你的眼型是这样，所以眼线画到眼尾外 3〜4mm」——
+<b>会把从数值推出来的理由一起写出来</b>。入口在详细报告最下方的按钮。</p>
+<div class="tip"><b>如果讲这个</b>：测量画面 → 结果数字 → 建议，连成一条线来看最清楚。
+能用数字解释「为什么给我这条建议」，这一点会显出来。</div>
+
+<h3>更好的自己 <span class="muted">(内测)</span></h3>
+<figure>
+  <a href="screens/10_preview_face.png" target="_blank"><img src="screens/10_preview_face.png" alt="更好的自己"></a>
+  <figcaption>用滑块比较现在 / 预期。画面上有内测标记和「AI 生成的预览」提示</figcaption>
+</figure>
+<p>按建议做之后的样子，用 AI 先画出来。拖动中间的手柄左右滑动就能比较现在和预期，还能存成照片。
+入口在焕颜建议页面的最下方。</p>
+<div class="tip"><b>拜托一件事</b>：请不要让它看起来像<b>医美的效果</b>。
+这是靠发型、妆容和日常护理改变的样子，画面上也有内测和 AI 生成的提示。
+拍摄时让那行提示留在画面里，对我们帮助最大。</div>
+
+<h3>卡路里相机</h3>
+<p>拍食物就能看到热量和营养信息。<b>不用付费就能用</b>，食物识别在手机上完成。</p>
+<div class="tip"><b>如果讲这个</b>：很多人不知道脸部 App 里还有这个，
+容易出「这也行？」的反应。也请顺便说明它是免费的。</div>
+
+<h3>Rena AI 咨询</h3>
+<p>可以拿着测量结果和 AI 对话。</p>
+<div class="warn">
+  <div class="h">我们还在确认</div>
+  <p>这个功能需要连服务器，中国大陆能不能正常访问还没确认。
+  想讲的话请先打开试一次，不行就告诉我们。
+  （卡路里相机的 Rena 辅助识别也是同样情况 —— 基础识别在手机上完成，没有问题。）</p>
+</div>
+
+<h2>新功能 <span class="muted">（已经了解 App 的话）</span></h2>
+<p class="muted">第一次了解 Renka 的话，建议先看上面的内容。下面的栏点开就能看。</p>
+<details class="fold">
+<summary>最近新增 <span class="muted">（2026 年 11 月更新）</span></summary>
+<div class="fold-body">
 <p class="muted">这次更新里新加入或变化最大的部分，欢迎优先介绍。</p>
 
 <h3>我的护肤流程 <span class="muted">（Pro · 11 月 17 日更新）</span></h3>
@@ -132,7 +229,12 @@ footer{margin-top:52px;padding-top:26px;border-top:2px solid var(--band);
   <li><b>测量提醒</b> —— 可以打开通知，到该再测一次的时候提醒你。</li>
 </ul>
 
-<h2>上个月新增 <span class="muted">（2026 年 10 月更新）</span></h2>
+</div>
+</details>
+
+<details class="fold">
+<summary>上个月新增 <span class="muted">（2026 年 10 月更新）</span></summary>
+<div class="fold-body">
 
 <h3>AI 造型试戴（发型 · 眼镜）</h3>
 <figure>
@@ -150,91 +252,8 @@ footer{margin-top:52px;padding-top:26px;border-top:2px solid var(--band);
   <li><b>美颜自拍</b> —— 实时美颜（皮肤·眼睛·鼻子）更自然，跟随脸部也更稳定。</li>
 </ul>
 
-<h2>各功能的看点</h2>
-<p class="muted">顺序没有意义，挑感兴趣的看就行。</p>
-
-<h3>面部大小</h3>
-<figure>
-  <a href="screens/01_face_size.png" target="_blank"><img src="screens/01_face_size.png" alt="面部大小分析"></a>
-  <figcaption>面部面积 287.7cm² · 纵向 21.2cm · 横向 14.8cm（演示模特的数值）</figcaption>
-</figure>
-<p>大家说「脸大脸小」，量的通常是从下巴到头顶 —— 这样头发的厚度也算进去了。
-Renka 量的是脸真正结束的位置，所以换发型数值也不会变。</p>
-<p class="muted"><code>头部长度</code> 旁边标着「估算」—— 那是推算值，不是实测值。</p>
-
-<h3>中面部长度</h3>
-<p>同一张脸有<b>两个标准</b>：医学（眉间→鼻下）6.6cm，美容（眼下→上唇）7.4cm。
-App 里可以切换，直接叠在自己脸上。</p>
-<div class="shots">
-  <figure><a href="screens/03_thirds_med.png" target="_blank"><img src="screens/03_thirds_med.png" alt="医学标准"></a><figcaption>医学标准</figcaption></figure>
-  <figure><a href="screens/04_thirds_cos.png" target="_blank"><img src="screens/04_thirds_cos.png" alt="美容标准"></a><figcaption>美容标准</figcaption></figure>
 </div>
-<div class="tip"><b>如果讲这个</b>：切换的时候线会动，不用解释就能看出差别。也是一直以来反响最好的题材。
-<b>实时滤镜里也有同样的功能</b>（「医学三等分」「美容三等分」），
-把实时叠加的画面和静态报告放在一起，观众会更快理解。</div>
-
-<h3>浮肿</h3>
-<div class="shots">
-  <figure><a href="screens/05_swelling_map.png" target="_blank"><img src="screens/05_swelling_map.png" alt="浮肿热力图"></a><figcaption>热力图</figcaption></figure>
-  <figure><a href="screens/06_swelling.png" target="_blank"><img src="screens/06_swelling.png" alt="浮肿分区"></a><figcaption>分区分析</figcaption></figure>
-</div>
-<div class="tip"><b>如果打算讲这个</b>：建议从体验初期开始每天测一次。
-浮肿是<b>和你自己过去的测量值比较</b>的，第一次测会显示 0（因为还没有基准值）。
-积累几天，到拍摄时就有「吃咸了的第二天」这样的对比了。<br><br>
-<b>赶时间的话</b>：拍摄前连续测几次也能用 —— 从第二次开始就有对比。
-只是同一天内变化小，效果不如积累几天的明显。</div>
-
-<h3>黄金比例</h3>
-<figure>
-  <a href="screens/08_golden_ratio.png" target="_blank"><img src="screens/08_golden_ratio.png" alt="黄金比例"></a>
-  <figcaption>8 个项目的「理想值 vs 实际值」对照表</figcaption>
-</figure>
-<p>一屏信息量大，适合拿来当结果画面。</p>
-
-<h2>还有这些</h2>
-
-<h3>脸型</h3>
-<p>也会给出鹅蛋脸、圆脸、方脸等脸型结果，并和适合脸型的发型、眼镜推荐连在一起。</p>
-<div class="tip"><b>如果讲这个</b>：接着展示上面的 <b>AI 造型试戴</b>或实时滤镜的试戴功能会很顺 ——
-脸型 → 适合的发型和眼镜，个人色彩 → 适合的颜色（彩妆试色）。结果听人说，不如看它叠在脸上来得直接。
-实时滤镜从测量完成后的画面进入。（实时滤镜没有截图，需要你自己录制。）</div>
-<p class="muted">不太建议把试戴单独当主题 —— 在中国用户的脸上效果如何，我们还没有把握。
-像上面那样搭配着展示比较好。</p>
-
-<h3>你的焕颜建议</h3>
-<figure>
-  <a href="screens/09_glowup_tips.png" target="_blank"><img src="screens/09_glowup_tips.png" alt="你的焕颜建议"></a>
-  <figcaption>按测得的类型(眼型·脸型·个人色彩·皮肤)组合出来的建议</figcaption>
-</figure>
-<p>把测量结果组合起来挑建议。比如「你的眼型是这样，所以眼线画到眼尾外 3〜4mm」——
-<b>会把从数值推出来的理由一起写出来</b>。入口在详细报告最下方的按钮。</p>
-<div class="tip"><b>如果讲这个</b>：测量画面 → 结果数字 → 建议，连成一条线来看最清楚。
-能用数字解释「为什么给我这条建议」，这一点会显出来。</div>
-
-<h3>更好的自己 <span class="muted">(内测)</span></h3>
-<figure>
-  <a href="screens/10_preview_face.png" target="_blank"><img src="screens/10_preview_face.png" alt="更好的自己"></a>
-  <figcaption>用滑块比较现在 / 预期。画面上有内测标记和「AI 生成的预览」提示</figcaption>
-</figure>
-<p>按建议做之后的样子，用 AI 先画出来。拖动中间的手柄左右滑动就能比较现在和预期，还能存成照片。
-入口在焕颜建议页面的最下方。</p>
-<div class="tip"><b>拜托一件事</b>：请不要让它看起来像<b>医美的效果</b>。
-这是靠发型、妆容和日常护理改变的样子，画面上也有内测和 AI 生成的提示。
-拍摄时让那行提示留在画面里，对我们帮助最大。</div>
-
-<h3>卡路里相机</h3>
-<p>拍食物就能看到热量和营养信息。<b>不用付费就能用</b>，食物识别在手机上完成。</p>
-<div class="tip"><b>如果讲这个</b>：很多人不知道脸部 App 里还有这个，
-容易出「这也行？」的反应。也请顺便说明它是免费的。</div>
-
-<h3>Rena AI 咨询</h3>
-<p>可以拿着测量结果和 AI 对话。</p>
-<div class="warn">
-  <div class="h">我们还在确认</div>
-  <p>这个功能需要连服务器，中国大陆能不能正常访问还没确认。
-  想讲的话请先打开试一次，不行就告诉我们。
-  （卡路里相机的 Rena 辅助识别也是同样情况 —— 基础识别在手机上完成，没有问题。）</p>
-</div>
+</details>
 
 <h2>观众看到的画面可能和你不一样</h2>
 <div class="key">
