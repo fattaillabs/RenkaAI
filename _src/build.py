@@ -22,9 +22,9 @@ import sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 BASE = "https://fattaillabs.com/RenkaAI/"
-LANG_ORDER = ["en", "ko", "ja", "zh-CN", "zh-TW", "es", "id"]
+LANG_ORDER = ["en", "ko", "ja", "zh-CN", "zh-TW", "es", "id", "th"]
 # 로케일 페이지의 상대 경로 접두어. LANG_HOME 은 페이지 위치 기준.
-DIRS = {"en": "", "ko": "ko/", "ja": "ja/", "zh-CN": "zh-cn/", "zh-TW": "zh-tw/", "es": "es/", "id": "id/"}
+DIRS = {"en": "", "ko": "ko/", "ja": "ja/", "zh-CN": "zh-cn/", "zh-TW": "zh-tw/", "es": "es/", "id": "id/", "th": "th/"}
 
 
 def strip_other_langs(body, keep):

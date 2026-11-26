@@ -82,5 +82,17 @@
     "og_title": "Renka — Analisis Wajah 3D Sejati",
     "og_description": "Pengukuran wajah dalam mm nyata dengan TrueScale. Bentuk wajah, rasio emas dan simetri, serta simulator kecantikan, semuanya di perangkat.",
     "ld_description": "Renka mengukur wajah dalam milimeter nyata dengan teknologi TrueScale: analisis bentuk wajah, laporan daya tarik rasio emas dan simetri, simulator kecantikan, dan pelacakan bengkak, semuanya diproses di perangkat."
+  },
+  "th": {
+    "dir": "th/",
+    "html_lang": "th",
+    "og_locale": "th_TH",
+    "play_hl": "th",
+    "title": "Renka — วิเคราะห์ใบหน้า 3D ของจริง | วัดใบหน้าเป็นมิลลิเมตร รายงานความน่าดึงดูด และเครื่องจำลองความงาม",
+    "description": "Renka วัดใบหน้าของคุณเป็นมิลลิเมตรจริงด้วยเทคโนโลยี TrueScale วิเคราะห์รูปหน้า รายงานความน่าดึงดูดจากสัดส่วนทองคำและความสมมาตร เครื่องจำลองศัลยกรรม และติดตามอาการบวม ทั้งหมดประมวลผลบนเครื่อง รูปของคุณไม่เคยออกจากโทรศัพท์",
+    "keywords": "Renka, แอปวัดใบหน้า, วิเคราะห์ใบหน้า, รูปหน้า, สัดส่วนทองคำใบหน้า, ความสมมาตรของใบหน้า, เครื่องจำลองศัลยกรรม, แอปความงาม, TrueScale",
+    "og_title": "Renka — วิเคราะห์ใบหน้า 3D ของจริง",
+    "og_description": "วัดใบหน้าเป็นมิลลิเมตรจริงด้วย TrueScale รูปหน้า สัดส่วนทองคำ ความสมมาตร และเครื่องจำลองความงาม ทั้งหมดบนเครื่อง",
+    "ld_description": "Renka วัดใบหน้าเป็นมิลลิเมตรจริงด้วยเทคโนโลยี TrueScale: วิเคราะห์รูปหน้า รายงานความน่าดึงดูดจากสัดส่วนทองคำและความสมมาตร เครื่องจำลองความงาม และติดตามอาการบวม ประมวลผลทั้งหมดบนเครื่อง"
   }
 }
