@@ -11,7 +11,7 @@
  *  4. CTA     — 스크롤에 따라 그라데이션이 흐른다.
  *  5. 기타    — 히어로 칩 숫자 카운트업, 포인터 기울기, 모바일 언어 메뉴.
  *
- * 메쉬 데이터: assets/mesh/hero.json — 히어로 사진 세 장(asia/en/ja, ja 는 11/29 일본 모델)에서 MediaPipe 로 뽑았다.
+ * 메쉬 데이터: assets/mesh/hero.json — 히어로 사진 네 장(asia/en/ja/ko, ja·ko 는 11/29 로케일 전용 모델)에서 MediaPipe 로 뽑았다.
  * 사진을 바꾸면 JSON 도 다시 뽑아야 한다(정렬이 어긋난다).
  */
 (function () {
@@ -51,7 +51,7 @@
       f.box = { x0: minx, x1: maxx, y0: miny, y1: maxy };
     });
   }
-  function faceKeyFor(img) { var u = img.currentSrc || img.src; return /-en\.jpg/.test(u) ? 'en' : /-ja\.jpg/.test(u) ? 'ja' : 'asia'; }
+  function faceKeyFor(img) { var m = /hero-face-(en|ja|ko)\.jpg/.exec(img.currentSrc || img.src); return m ? m[1] : 'asia'; }
 
   // ── 공용: 캔버스 크기 맞추기, 화면에 보일 때만 돌리기 ──────────────
   function fit(canvas) {

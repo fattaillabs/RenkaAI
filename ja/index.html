@@ -552,11 +552,14 @@
             .cta-inner .store-badge img { width: 100%; height: auto; }
         }
 
-        /* ══ 일본어 모바일은 간단하게 (2026-11-29) — 히어로 → 앱 실제 화면 3장 → 다운로드. 긴 스캔 여정·기능 행·카드 묶음은 폰에서 숨김 ══ */
+        /* ══ 일본어·한국어 모바일은 간단하게 (2026-11-29) — 히어로 → 앱 실제 화면 3장 → 다운로드. 긴 스캔 여정·기능 행·카드 묶음은 폰에서 숨김 ══ */
+        /* 한국어는 낱말 중간에서 줄이 끊기지 않게('준 / 비' 방지) */
+        html[lang="ko"] body { word-break: keep-all; overflow-wrap: break-word; }
         .m-simple { display: none; }
         @media (max-width: 640px) {
-            html[lang="ja"] .trust, html[lang="ja"] .journey, html[lang="ja"] .section { display: none; }
-            html[lang="ja"] .m-simple { display: block; }
+            html[lang="ja"] .trust, html[lang="ja"] .journey, html[lang="ja"] .section,
+            html[lang="ko"] .trust, html[lang="ko"] .journey, html[lang="ko"] .section { display: none; }
+            html[lang="ja"] .m-simple, html[lang="ko"] .m-simple { display: block; }
         }
         .m-simple { padding: 56px 18px 8px; max-width: 480px; margin: 0 auto; }
         .m-card { background: var(--card); border-radius: 24px; box-shadow: var(--shadow-card); padding: 26px 20px 20px; margin-bottom: 18px; overflow: hidden; }
@@ -629,7 +632,7 @@
                 <div class="phone-screen">
                     <div class="phone-notch"></div>
                     <!-- 실사 얼굴 + 앱 윤곽 오버레이(틸 턱선·노랑 하악각·주황 턱끝·흰/마젠타 캘리퍼) 합성 -->
-                    <img class="screen-photo" id="heroPhoto" src="../assets/hero-face.jpg" alt="Renkaの顔分析画面。3Dの特徴点と計測値の表示例">
+                    <img class="screen-photo" id="heroPhoto" src="../assets/hero-face-ja.jpg" alt="Renkaの顔分析画面。3Dの特徴点と計測値の表示例">
                     <svg class="scan-face" viewBox="0 0 200 420" aria-hidden="true">
                         <defs>
                             <linearGradient id="meshg" x1="0" y1="0" x2="1" y2="1">
@@ -736,7 +739,7 @@
         <div class="journey-wrap">
             <div class="journey-stage">
                 <div class="stage" data-step="0">
-                    <img id="journeyPhoto" src="../assets/hero-face.jpg" alt="" loading="lazy" decoding="async">
+                    <img id="journeyPhoto" src="../assets/hero-face-ja.jpg" alt="" loading="lazy" decoding="async">
                     <div class="stage-dots" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
                     <div class="stage-cap"><span lang="ja">サンプルの顔 · Webプレビュー</span></div>
                 </div>
@@ -1108,12 +1111,12 @@
                     hero.src = '../assets/hero-face-en.jpg';
                     overlay.setAttribute('transform', 'translate(7,16) scale(0.93,1)');
                 } else {
-                    hero.src = lang === 'ja' ? '../assets/hero-face-ja.jpg' : '../assets/hero-face.jpg';
+                    hero.src = (lang === 'ja' || lang === 'ko') ? '../assets/hero-face-' + lang + '.jpg' : '../assets/hero-face.jpg';
                     overlay.removeAttribute('transform');
                 }
             }
             var journeyPhoto = document.getElementById('journeyPhoto');
-            if (journeyPhoto) journeyPhoto.src = lang === 'en' ? '../assets/hero-face-en.jpg' : lang === 'ja' ? '../assets/hero-face-ja.jpg' : '../assets/hero-face.jpg';
+            if (journeyPhoto) journeyPhoto.src = (lang === 'en' || lang === 'ja' || lang === 'ko') ? '../assets/hero-face-' + lang + '.jpg' : '../assets/hero-face.jpg';
             var simPhoto = document.getElementById('simPhoto');
             var simOverlay = document.getElementById('simOverlay');
             if (simPhoto && simOverlay) {

@@ -552,11 +552,14 @@
             .cta-inner .store-badge img { width: 100%; height: auto; }
         }
 
-        /* ══ 일본어 모바일은 간단하게 (2026-11-29) — 히어로 → 앱 실제 화면 3장 → 다운로드. 긴 스캔 여정·기능 행·카드 묶음은 폰에서 숨김 ══ */
+        /* ══ 일본어·한국어 모바일은 간단하게 (2026-11-29) — 히어로 → 앱 실제 화면 3장 → 다운로드. 긴 스캔 여정·기능 행·카드 묶음은 폰에서 숨김 ══ */
+        /* 한국어는 낱말 중간에서 줄이 끊기지 않게('준 / 비' 방지) */
+        html[lang="ko"] body { word-break: keep-all; overflow-wrap: break-word; }
         .m-simple { display: none; }
         @media (max-width: 640px) {
-            html[lang="ja"] .trust, html[lang="ja"] .journey, html[lang="ja"] .section { display: none; }
-            html[lang="ja"] .m-simple { display: block; }
+            html[lang="ja"] .trust, html[lang="ja"] .journey, html[lang="ja"] .section,
+            html[lang="ko"] .trust, html[lang="ko"] .journey, html[lang="ko"] .section { display: none; }
+            html[lang="ja"] .m-simple, html[lang="ko"] .m-simple { display: block; }
         }
         .m-simple { padding: 56px 18px 8px; max-width: 480px; margin: 0 auto; }
         .m-card { background: var(--card); border-radius: 24px; box-shadow: var(--shadow-card); padding: 26px 20px 20px; margin-bottom: 18px; overflow: hidden; }
@@ -1085,12 +1088,12 @@
                     hero.src = '../assets/hero-face-en.jpg';
                     overlay.setAttribute('transform', 'translate(7,16) scale(0.93,1)');
                 } else {
-                    hero.src = lang === 'ja' ? '../assets/hero-face-ja.jpg' : '../assets/hero-face.jpg';
+                    hero.src = (lang === 'ja' || lang === 'ko') ? '../assets/hero-face-' + lang + '.jpg' : '../assets/hero-face.jpg';
                     overlay.removeAttribute('transform');
                 }
             }
             var journeyPhoto = document.getElementById('journeyPhoto');
-            if (journeyPhoto) journeyPhoto.src = lang === 'en' ? '../assets/hero-face-en.jpg' : lang === 'ja' ? '../assets/hero-face-ja.jpg' : '../assets/hero-face.jpg';
+            if (journeyPhoto) journeyPhoto.src = (lang === 'en' || lang === 'ja' || lang === 'ko') ? '../assets/hero-face-' + lang + '.jpg' : '../assets/hero-face.jpg';
             var simPhoto = document.getElementById('simPhoto');
             var simOverlay = document.getElementById('simOverlay');
             if (simPhoto && simOverlay) {

@@ -552,11 +552,14 @@
             .cta-inner .store-badge img { width: 100%; height: auto; }
         }
 
-        /* ══ 일본어 모바일은 간단하게 (2026-11-29) — 히어로 → 앱 실제 화면 3장 → 다운로드. 긴 스캔 여정·기능 행·카드 묶음은 폰에서 숨김 ══ */
+        /* ══ 일본어·한국어 모바일은 간단하게 (2026-11-29) — 히어로 → 앱 실제 화면 3장 → 다운로드. 긴 스캔 여정·기능 행·카드 묶음은 폰에서 숨김 ══ */
+        /* 한국어는 낱말 중간에서 줄이 끊기지 않게('준 / 비' 방지) */
+        html[lang="ko"] body { word-break: keep-all; overflow-wrap: break-word; }
         .m-simple { display: none; }
         @media (max-width: 640px) {
-            html[lang="ja"] .trust, html[lang="ja"] .journey, html[lang="ja"] .section { display: none; }
-            html[lang="ja"] .m-simple { display: block; }
+            html[lang="ja"] .trust, html[lang="ja"] .journey, html[lang="ja"] .section,
+            html[lang="ko"] .trust, html[lang="ko"] .journey, html[lang="ko"] .section { display: none; }
+            html[lang="ja"] .m-simple, html[lang="ko"] .m-simple { display: block; }
         }
         .m-simple { padding: 56px 18px 8px; max-width: 480px; margin: 0 auto; }
         .m-card { background: var(--card); border-radius: 24px; box-shadow: var(--shadow-card); padding: 26px 20px 20px; margin-bottom: 18px; overflow: hidden; }
@@ -621,10 +624,10 @@
                     
                     <span lang="ko"><img src="../assets/badges/appstore-ko.svg" alt="App Store에서 다운로드"></span>
                 </a>
-                <a class="store-badge play-live" href="../go/googleplay/"><img src="../assets/badges/googleplay-en.png" alt="Get it on Google Play"></a>
+                <a class="store-badge play-live" href="../go/googleplay/"><img src="../assets/badges/googleplay-en.png" alt="Google Play에서 다운로드"></a>
                 <span class="hero-note">
                     
-                    <span lang="ko">무료 · Face ID 지원 아이폰 · Android 8.0 이상</span>
+                    <span lang="ko">기본 무료 · Face ID 지원 아이폰 · Android 8.0 이상</span>
                 </span>
             </div>
         </div>
@@ -634,7 +637,7 @@
                 <div class="phone-screen">
                     <div class="phone-notch"></div>
                     <!-- 실사 얼굴 + 앱 윤곽 오버레이(틸 턱선·노랑 하악각·주황 턱끝·흰/마젠타 캘리퍼) 합성 -->
-                    <img class="screen-photo" id="heroPhoto" src="../assets/hero-face.jpg" alt="렌카 얼굴 분석 화면 — 3D 랜드마크와 mm 실측 오버레이 예시">
+                    <img class="screen-photo" id="heroPhoto" src="../assets/hero-face-ko.jpg" alt="렌카 얼굴 분석 화면 — 3D 랜드마크와 mm 실측 오버레이 예시">
                     <svg class="scan-face" viewBox="0 0 200 420" aria-hidden="true">
                         <defs>
                             <linearGradient id="meshg" x1="0" y1="0" x2="1" y2="1">
@@ -686,6 +689,29 @@
             </div>
         </div>
     </header>
+    <!-- ══ 한국어 모바일 간단 소개 (2026-11-29) — 폰에서만 보인다. 사진은 앱 실제 화면(한국어, 예시 모델) ══ -->
+    <section class="m-simple" aria-label="Renka로 할 수 있는 것">
+        <div class="m-card">
+            <h2>내 얼굴 크기,<br>정확히 알고 있나요?</h2>
+            <p>앞카메라로 얼굴을 3D로 측정해요. 얼굴 면적은 cm², 세로·가로 길이는 cm로 보여줘요.</p>
+            <img src="../assets/ko/m_report.jpg" alt="얼굴 분석 리포트의 얼굴 크기 분석 화면" width="720" height="880" loading="lazy" decoding="async">
+        </div>
+        <div class="m-card">
+            <h2>중안부 비율도,<br>오늘 붓기도</h2>
+            <p>얼굴 3등분 비율과, 평소 내 얼굴과 비교한 붓기 정도를 부위별로 확인해요.</p>
+            <div class="m-pair">
+                <img src="../assets/ko/m_thirds.jpg" alt="얼굴 3등분 오버레이 화면" width="720" height="730" loading="lazy" decoding="async">
+                <img src="../assets/ko/m_swell.jpg" alt="평소와 비교한 붓기 정도를 색으로 보여주는 화면" width="720" height="676" loading="lazy" decoding="async">
+            </div>
+        </div>
+        <div class="m-card">
+            <h2>어울리는 헤어,<br>미리 적용해 보기</h2>
+            <p>단발도 웨이브도 허쉬컷도, AI가 내 얼굴에 맞춰 보여줘요.</p>
+            <img src="../assets/ko/m_hair.jpg" alt="AI 헤어 피팅 결과 3가지" width="924" height="300" loading="lazy" decoding="async">
+            <div class="m-note">※AI로 만든 이미지예요.</div>
+        </div>
+        <p class="m-privacy">3D 측정은 폰 안에서 끝나요.<br>AI 기능을 쓸 때만 동의를 받고 사진을 서버로 보내요.</p>
+    </section>
     <!-- ══ Trust strip ══ -->
     <div class="trust reveal">
         <div class="trust-inner">
@@ -719,7 +745,7 @@
         <div class="journey-wrap">
             <div class="journey-stage">
                 <div class="stage" data-step="0">
-                    <img id="journeyPhoto" src="../assets/hero-face.jpg" alt="" loading="lazy" decoding="async">
+                    <img id="journeyPhoto" src="../assets/hero-face-ko.jpg" alt="" loading="lazy" decoding="async">
                     <div class="stage-dots" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
                     <div class="stage-cap"><span lang="ko">예시 얼굴 · 웹 미리보기</span></div>
                 </div>
@@ -1052,17 +1078,17 @@
             <img src="../logo.png" alt="Renka" loading="lazy" decoding="async">
             <h2 class="serif">
                 
-                <span lang="ko">진짜 내 얼굴, 만나볼 준비 됐나요?</span>
+                <span lang="ko">진짜 내 얼굴,<br>만나볼 준비 됐나요?</span>
             </h2>
             <p>
                 
-                <span lang="ko">무료 다운로드 · Face ID 지원 아이폰과 Android 8.0 이상에서 사용할 수 있습니다.</span>
+                <span lang="ko">기본 무료 · Face ID 지원 아이폰과 Android 8.0 이상에서 사용할 수 있습니다.</span>
             </p>
             <a class="store-badge" href="../go/appstore/">
                     
                     <span lang="ko"><img src="../assets/badges/appstore-ko.svg" alt="App Store에서 다운로드"></span>
                 </a>
-                <a class="store-badge play-live" href="../go/googleplay/"><img src="../assets/badges/googleplay-en.png" alt="Get it on Google Play"></a>
+                <a class="store-badge play-live" href="../go/googleplay/"><img src="../assets/badges/googleplay-en.png" alt="Google Play에서 다운로드"></a>
         </div>
     </section>
 
@@ -1109,12 +1135,12 @@
                     hero.src = '../assets/hero-face-en.jpg';
                     overlay.setAttribute('transform', 'translate(7,16) scale(0.93,1)');
                 } else {
-                    hero.src = lang === 'ja' ? '../assets/hero-face-ja.jpg' : '../assets/hero-face.jpg';
+                    hero.src = (lang === 'ja' || lang === 'ko') ? '../assets/hero-face-' + lang + '.jpg' : '../assets/hero-face.jpg';
                     overlay.removeAttribute('transform');
                 }
             }
             var journeyPhoto = document.getElementById('journeyPhoto');
-            if (journeyPhoto) journeyPhoto.src = lang === 'en' ? '../assets/hero-face-en.jpg' : lang === 'ja' ? '../assets/hero-face-ja.jpg' : '../assets/hero-face.jpg';
+            if (journeyPhoto) journeyPhoto.src = (lang === 'en' || lang === 'ja' || lang === 'ko') ? '../assets/hero-face-' + lang + '.jpg' : '../assets/hero-face.jpg';
             var simPhoto = document.getElementById('simPhoto');
             var simOverlay = document.getElementById('simOverlay');
             if (simPhoto && simOverlay) {

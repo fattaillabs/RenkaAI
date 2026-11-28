@@ -105,11 +105,17 @@ def build(lang, cfg, master):
     if lang == "en":
         s = s.replace('src="assets/hero-face.jpg"', 'src="assets/hero-face-en.jpg"')   # 히어로 + 스캔 여정 무대
         s = s.replace('src="assets/face-male.jpg"', 'src="assets/face-male-en.jpg"', 1)
-    elif lang == "ja":
-        s = s.replace('src="assets/hero-face.jpg"', 'src="assets/hero-face-ja.jpg"')   # 11/29 일본 모델(히어로 + 스캔 여정)
+    elif lang in ("ja", "ko"):
+        # 11/29 로케일 전용 모델(히어로 + 스캔 여정). 이 시점엔 이미 상대 경로 접두어(../)가 붙어 있다
+        s, n = re.subn(r'src="((?:\.\./)?)assets/hero-face\.jpg"', r'src="\1assets/hero-face-%s.jpg"' % lang, s)
+        assert n == 2, "hero-face src not found (%d)" % n
+    if lang == "ja":
         # 이미지 alt 는 span 으로 언어를 못 나눠서 원본이 한국어·영어 — 일본어 페이지는 일본어로(11/29 codex 검수)
         s = s.replace('alt="렌카 얼굴 분석 화면 — 3D 랜드마크와 mm 실측 오버레이 예시"', 'alt="Renkaの顔分析画面。3Dの特徴点と計測値の表示例"')
         s = s.replace('alt="Get it on Google Play"', 'alt="Google Playで手に入れよう"')
+
+    if lang == "ko":
+        s = s.replace('alt="Get it on Google Play"', 'alt="Google Play에서 다운로드"')
 
     # ── 한 언어 전용 블록: <!--only:ja--> … <!--/only--> (다른 로케일에선 통째로 지움) ──
     s = re.sub(r'<!--only:([\w-]+)-->(.*?)<!--/only-->',
