@@ -11,7 +11,7 @@
  *  4. CTA     — 스크롤에 따라 그라데이션이 흐른다.
  *  5. 기타    — 히어로 칩 숫자 카운트업, 포인터 기울기, 모바일 언어 메뉴.
  *
- * 메쉬 데이터: assets/mesh/hero.json — 히어로 사진 두 장(asia/en)에서 MediaPipe 로 뽑았다.
+ * 메쉬 데이터: assets/mesh/hero.json — 히어로 사진 세 장(asia/en/ja, ja 는 11/29 일본 모델)에서 MediaPipe 로 뽑았다.
  * 사진을 바꾸면 JSON 도 다시 뽑아야 한다(정렬이 어긋난다).
  */
 (function () {
@@ -51,7 +51,7 @@
       f.box = { x0: minx, x1: maxx, y0: miny, y1: maxy };
     });
   }
-  function faceKeyFor(img) { return /-en\.jpg/.test(img.currentSrc || img.src) ? 'en' : 'asia'; }
+  function faceKeyFor(img) { var u = img.currentSrc || img.src; return /-en\.jpg/.test(u) ? 'en' : /-ja\.jpg/.test(u) ? 'ja' : 'asia'; }
 
   // ── 공용: 캔버스 크기 맞추기, 화면에 보일 때만 돌리기 ──────────────
   function fit(canvas) {
@@ -146,7 +146,7 @@
     function frame(now) {
       if (!ready()) return;
       if (!t0) { t0 = now; screen.classList.add('mesh-on'); }
-      var size = fit(canvas), face = mesh.faces[faceKeyFor(img)];
+      var size = fit(canvas), face = (mesh.faces[faceKeyFor(img)] || mesh.faces.asia);
       var W = img.naturalWidth, H = img.naturalHeight, s = Math.max(size.w / W, size.h / H);
       var map = { W: W, H: H, s: s, ox: (size.w - W * s) / 2, oy: (size.h - H * s) / 2 };
       ctx.clearRect(0, 0, size.w, size.h);
@@ -203,7 +203,7 @@
       measure();
       cur += RM ? (target - cur) : (target - cur) * 0.12;
       setActive(Math.min(steps.length - 1, Math.floor(cur + 0.0001)));
-      var size = fit(canvas), face = mesh.faces[faceKeyFor(img)], W = img.naturalWidth, H = img.naturalHeight;
+      var size = fit(canvas), face = (mesh.faces[faceKeyFor(img)] || mesh.faces.asia), W = img.naturalWidth, H = img.naturalHeight;
 
       // 사진은 캔버스가 직접 그린다 — 얼굴 상자를 기준으로 잘라 무대(4:5)를 채운다(오버레이와 좌표가 정확히 같게)
       var b = face.box, fh = (b.y1 - b.y0) * H, cy = (b.y0 + b.y1) / 2 * H + fh * 0.04;

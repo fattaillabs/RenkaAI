@@ -543,6 +543,30 @@
             .gviz i, .gviz b, .gviz-filter { animation: none !important; }
             .jstep { opacity: 1; }
         }
+        /* ══ 모바일 다운로드 배지 폭 맞춤 (2026-11-29) — 높이를 같게 두면 Google Play 배지가 훨씬 넓어 보여서, 폰에선 두 배지 폭을 똑같이 ══ */
+        @media (max-width: 640px) {
+            .hero-ctas { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; align-items: center; max-width: 360px; margin-left: auto; margin-right: auto; }
+            .hero-ctas .hero-note { grid-column: 1 / -1; }
+            .hero-ctas .store-badge img { width: 100%; height: auto; }
+            .cta-inner .store-badge { width: calc(50% - 12px); max-width: 172px; margin: 6px 4px; }
+            .cta-inner .store-badge img { width: 100%; height: auto; }
+        }
+
+        /* ══ 일본어 모바일은 간단하게 (2026-11-29) — 히어로 → 앱 실제 화면 3장 → 다운로드. 긴 스캔 여정·기능 행·카드 묶음은 폰에서 숨김 ══ */
+        .m-simple { display: none; }
+        @media (max-width: 640px) {
+            html[lang="ja"] .trust, html[lang="ja"] .journey, html[lang="ja"] .section { display: none; }
+            html[lang="ja"] .m-simple { display: block; }
+        }
+        .m-simple { padding: 56px 18px 8px; max-width: 480px; margin: 0 auto; }
+        .m-card { background: var(--card); border-radius: 24px; box-shadow: var(--shadow-card); padding: 26px 20px 20px; margin-bottom: 18px; overflow: hidden; }
+        .m-card h2 { font-size: 23px; line-height: 1.35; letter-spacing: -0.3px; margin-bottom: 8px; }
+        .m-card p { color: var(--ink-soft); font-size: 14.5px; line-height: 1.7; margin-bottom: 16px; }
+        .m-card img { display: block; width: 100%; height: auto; border-radius: 16px; background: var(--bg-soft); }
+        .m-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+        .m-pair img { border-radius: 12px; }
+        .m-note { font-size: 11.5px; color: var(--ink-faint); margin-top: 8px; }
+        .m-privacy { text-align: center; font-size: 13px; color: var(--ink-soft); line-height: 1.7; padding: 6px 8px 0; }
     </style>
 <!-- Cloudflare Web Analytics — 퍼널의 가운데 구간을 보려고 넣었다(2026-08-23).
      틱톡 클릭 → [여기] → 스토어 도달 에서, 홈페이지 도착 수만 안 보였다.
@@ -656,7 +680,6 @@
             </div>
         </div>
     </header>
-
     <!-- ══ Trust strip ══ -->
     <div class="trust reveal">
         <div class="trust-inner">
@@ -1062,12 +1085,12 @@
                     hero.src = '../assets/hero-face-en.jpg';
                     overlay.setAttribute('transform', 'translate(7,16) scale(0.93,1)');
                 } else {
-                    hero.src = '../assets/hero-face.jpg';
+                    hero.src = lang === 'ja' ? '../assets/hero-face-ja.jpg' : '../assets/hero-face.jpg';
                     overlay.removeAttribute('transform');
                 }
             }
             var journeyPhoto = document.getElementById('journeyPhoto');
-            if (journeyPhoto) journeyPhoto.src = lang === 'en' ? '../assets/hero-face-en.jpg' : '../assets/hero-face.jpg';
+            if (journeyPhoto) journeyPhoto.src = lang === 'en' ? '../assets/hero-face-en.jpg' : lang === 'ja' ? '../assets/hero-face-ja.jpg' : '../assets/hero-face.jpg';
             var simPhoto = document.getElementById('simPhoto');
             var simOverlay = document.getElementById('simOverlay');
             if (simPhoto && simOverlay) {
